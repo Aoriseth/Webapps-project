@@ -11,6 +11,10 @@
 	<body>
 		<h1>Welcome to Grace Age</h1>
 
+		<p>
+			{feedback}
+		</p>
+		
         <form action="login" method="POST">
             <label> Username: </label>
 			<input type="text" name="username" placeholder="Username" value="{username}" required><br>
