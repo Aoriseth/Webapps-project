@@ -23,7 +23,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = '';
+
+/*
+ * TODO
+ * some kind of PHP magic to detect which is correct...
+ */
+$config['base_url'] = 'http://localhost:8888/_dev/a16_webapps_3/trunk/';
 
 /*
 |--------------------------------------------------------------------------
