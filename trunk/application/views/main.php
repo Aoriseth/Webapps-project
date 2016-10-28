@@ -7,7 +7,7 @@
 	<body>
 		<h1>Welcome to Grace Age</h1>
 		<p>
-			Main page...
+			Hello {name}.
 		</p>
 	</body>
 </html>

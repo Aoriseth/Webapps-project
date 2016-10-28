@@ -10,8 +10,16 @@
 	</head>
 	<body>
 		<h1>Welcome to Grace Age</h1>
-		<p>
-			You're logged in now. Go back <a href=<?php echo base_url()?>>home</a>.
-		</p>
+
+        <form action="login" method="POST">
+            <label> Username: </label>
+			<input type="text" name="username" placeholder="Username" value="{username}" required><br>
+            <label> Password: </label>
+            <input type="password" name="password" placeholder="Password" value="{password}" required><br>
+            <input type="submit" name="login" value="Log in">
+        </form>
+		<br>
+
+        <hr />
 	</body>
 </html>
