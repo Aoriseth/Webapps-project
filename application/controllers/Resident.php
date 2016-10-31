@@ -7,10 +7,20 @@ class Resident extends CI_Controller {
 		
 		// redirect to base if the user shouldn't be here
 		if ( $this->session->type != 'resident' ) { redirect( base_url() ); }
+
+		$this->load->library( 'parser' );
 	}
 
 	function index()
 	{
-		$this->load->view( 'resident/resident_main.php' );
+		redirect( 'resident/home' );
+	}
+
+	function home()
+	{
+		$data[ 'feedback' ] = '';
+		$data[ 'content' ] = '';
+
+		$this->parser->parse( 'resident/resident_main.php', $data );
 	}
 }

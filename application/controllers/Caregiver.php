@@ -14,7 +14,7 @@ class Caregiver extends CI_Controller {
 	function index()
 	{
 		$data[ 'name' ] = $this->session->first_name;
-		
+
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
 }
