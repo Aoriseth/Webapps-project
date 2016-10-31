@@ -24,11 +24,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-/*
- * TODO
- * some kind of PHP magic to detect which is correct...
- */
-$config['base_url'] = 'http://localhost:8888/_dev/a16_webapps_3/trunk/';
+if (strpos(__DIR__, 'trunk') !== false) {	// if contains trunk
+	$config['base_url'] = 'https://a16_webapps_3.studev.groept.be/_dev/a16_webapps_3/trunk/';
+} else {
+	$config[ 'base_url'] = 'https://a16_webapps_3.studev.groept.be/';
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +81,12 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
+
+/*
+ * TODO
+ * 
+ * add support for dutch and french?
+ */
 $config['language']	= 'english';
 
 /*
@@ -372,10 +378,15 @@ $config['encryption_key'] = '';
 | except for 'cookie_prefix' and 'cookie_httponly', which are ignored here.
 |
 */
-$config['sess_driver'] = 'files'; //'/var/chroot/users/a16_webapps_3/var/www'
+/*
+ * TODO
+ * 
+ * store session somewhere else than local files? database?
+ */
+$config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
-$config['sess_expiration'] = 7200;
-$config['sess_save_path'] = NULL;
+$config['sess_expiration'] = 7200;		// 2 hours
+$config['sess_save_path'] = 'upload';	// relative paths work suprisingly well here...
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;

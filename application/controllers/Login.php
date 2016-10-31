@@ -40,6 +40,12 @@ class Login extends CI_Controller {
 						$this->session->first_name = $row->first_name;
 						$this->session->is_logged_in = true;
 
+						/*
+						 * TODO
+						 * find out which type of user we are facing
+						 * redirect to specific location
+						 */
+
 						redirect( base_url() );
 						break;
                     } else {
