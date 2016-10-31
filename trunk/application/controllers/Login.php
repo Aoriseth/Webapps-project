@@ -5,62 +5,79 @@ class Login extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 
-		require 'lib/password.php';
-
 		$this->load->library( 'parser' );
 		$this->load->model( 'Login_model' );
 	}
 
 	public function index() {
-		$this->parser->parse( 'login_screen_default' );
+		if ( $this->session->is_logged_in )	{
+			redirect( 'login/success' );
+		} else {
+			redirect( 'login/facial_recognition' );
+		}
+	}
+	
+	public function success() {
+		if ( ! $this->session->is_logged_in )	{
+			redirect( base_url() );
+		}
+
+		$data[ 'feedback' ] = 'Welcome ' . $this->session->first_name . ', you\'ve logged in succesfully.';
+		$data[ 'content' ] = '';
+
+		$data2[ 'type' ] = $this->session->type;
+		$data[ 'navigation_buttons' ] = $this->parser->parse( 'login/login_go_home_button', $data2, true );
+
+		$this->parser->parse( 'login/login_main', $data );
+	}
+	
+	public function facial_recognition() {
+		if ( $this->session->is_logged_in )	{
+			redirect( 'login/success' );
+		}
+
+		$data[ 'feedback' ] = '';
+		$data[ 'content' ] = $this->load->view( 'login/login_facial_recognition', '', true );
+
+		$data[ 'navigation_buttons' ] = $this->load->view( 'login/login_navigation_buttons', '', true );
+		
+		$this->parser->parse( 'login/login_main', $data );		
 	}
 
 	public function manual() {
-		$data[ 'feedback' ] = "";
-		$data[ 'username' ] = "";
-		$data[ 'password' ] = "";
-
-		if ( isset( $_POST[ 'username' ] ) ) {
-			/*
-			 * TODO
-			 * filtering does not seem to work...
-			 */
-			// get input from POST
-			$data[ 'username' ] = $this->input->post( 'username' );
-			$data[ 'password' ] = $this->input->post( 'password' );
-
-			// get stored password for this username
-			$result = $this->Login_model->get_password_all( $data[ 'username' ] );
-
-			// check if there are any matches
-			if ( count( $result ) > 0 ) {
-//				$list = $result;
-
-				// iterate through matches to check password
-				foreach( $result as $row ) {
-                    if( password_verify( $data[ 'password' ], $row->password ) ) {
-						$this->session->first_name = $row->first_name;
-						$this->session->is_logged_in = true;
-
-						/*
-						 * TODO
-						 * find out which type of user we are facing
-						 * redirect to specific location
-						 */
-
-						redirect( base_url() );
-						break;
-                    } else {
-                        $data[ 'feedback' ] = 'Incorrect password.';
-                    }
-				}
-			} else {
-				// no matches
-				$data[ 'feedback' ] = 'The username you\'ve entered does not exist.';
-			}
-			
+		if ( $this->session->is_logged_in )	{
+			redirect( 'login/success' );
 		}
 
-		$this->parser->parse( 'login_screen_manual', $data );
+		$data[ 'feedback' ] = '';
+
+		$username = '';
+		$password = '';
+
+		if ( isset( $_POST[ 'username' ] ) ) {
+			$username = $this->input->post( 'username' );
+			$password = $this->input->post( 'password' );
+
+			$result = $this->Login_model->login( $username, $password );
+
+			if ( $result[ 'succeeded' ] == true ) {
+				$this->session->is_logged_in = true;
+				$this->session->first_name = $result[ 'name' ];
+				$this->session->type = $result[ 'type' ];
+
+				redirect( 'login/success' );
+			} else {
+				$data[ 'feedback' ] = $result[ 'error' ];
+			}
+		}
+
+		// filter output that will be displayed in html!
+		$data2[ 'username' ] = htmlspecialchars( $username );
+		$data2[ 'password' ] = htmlspecialchars( $password );
+		$data[ 'content' ] = $this->parser->parse( 'login/login_form', $data2, true );
+
+		$data[ 'navigation_buttons' ] = $this->load->view( 'login/login_navigation_buttons', '', true );
+
+		$this->parser->parse( 'login/login_main', $data );
 	}
 }

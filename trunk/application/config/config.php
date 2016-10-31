@@ -24,10 +24,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
+$base = 'https://a16_webapps_3.studev.groept.be/';
+//$base = 'http://localhost:8888/';
+
 if (strpos(__DIR__, 'trunk') !== false) {	// if contains trunk
-	$config['base_url'] = 'https://a16_webapps_3.studev.groept.be/_dev/a16_webapps_3/trunk/';
+	$config[ 'base_url' ] = $base . '_dev/a16_webapps_3/trunk/';
 } else {
-	$config[ 'base_url'] = 'https://a16_webapps_3.studev.groept.be/';
+	$config[ 'base_url' ] = $base;
 }
 
 /*
@@ -325,7 +328,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = '05AWGEQ88S5LCSJ3u72FDC284R1jrnb4';
 
 /*
 |--------------------------------------------------------------------------
@@ -378,6 +381,7 @@ $config['encryption_key'] = '';
 | except for 'cookie_prefix' and 'cookie_httponly', which are ignored here.
 |
 */
+
 /*
  * TODO
  * 
