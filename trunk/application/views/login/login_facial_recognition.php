@@ -1,1 +1,6 @@
-<i>&lt;TODO Facial recognition system&gt;</i>
+<p>
+	<i>Log in using facial recognition.</i>
+</p>
+<p>
+	&lt;TODO Facial recognition system&gt;
+</p>

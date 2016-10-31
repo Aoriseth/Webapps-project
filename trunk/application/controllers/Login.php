@@ -16,14 +16,14 @@ class Login extends CI_Controller {
 			redirect( 'login/facial_recognition' );
 		}
 	}
-	
+
 	public function success() {
 		if ( ! $this->session->is_logged_in )	{
 			redirect( base_url() );
 		}
 
 		$data[ 'feedback' ] = 'Welcome ' . $this->session->first_name . ', you\'ve logged in succesfully.';
-		$data[ 'content' ] = '';
+		$data[ 'content' ] = '<p><i>This page confirms the user has succesfully logged in.</i></p>';
 
 		$data2[ 'type' ] = $this->session->type;
 		$data[ 'navigation_buttons' ] = $this->parser->parse( 'login/login_go_home_button', $data2, true );
@@ -67,7 +67,7 @@ class Login extends CI_Controller {
 
 				redirect( 'login/success' );
 			} else {
-				$data[ 'feedback' ] = $result[ 'error' ];
+				$data[ 'feedback' ] = '<span style="color:red">'.$result[ 'error' ].'</span>';
 			}
 		}
 
