@@ -7,13 +7,15 @@ class Login extends CI_Controller {
 
 		require 'lib/password.php';
 
-		$this->load->helper( 'url' );
 		$this->load->library( 'parser' );
-		$this->load->library( 'session' );
 		$this->load->model( 'Login_model' );
 	}
 
 	public function index() {
+		$this->parser->parse( 'login_screen_default' );
+	}
+
+	public function manual() {
 		$data[ 'feedback' ] = "";
 		$data[ 'username' ] = "";
 		$data[ 'password' ] = "";
@@ -59,6 +61,6 @@ class Login extends CI_Controller {
 			
 		}
 
-		$this->parser->parse( 'login_screen', $data );
+		$this->parser->parse( 'login_screen_manual', $data );
 	}
 }

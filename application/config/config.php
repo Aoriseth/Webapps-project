@@ -385,8 +385,8 @@ $config['encryption_key'] = '';
  */
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
-$config['sess_expiration'] = 7200;		// 2 hours
-$config['sess_save_path'] = 'upload';	// relative paths work suprisingly well here...
+$config['sess_expiration'] = 7200;				// 2 hours
+$config['sess_save_path'] = 'upload/sessions/';	// relative paths work suprisingly well here...
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
