@@ -7,12 +7,8 @@
 	<body>
 		<h1>Grace Age: Resident</h1>
 
-		<p>
-			{feedback}
-		</p>
-		<p>
-			{content}
-		</p>
+		{content}
+
 		<hr />
 		<form action=<?php echo base_url() ?> method="POST">
 			<input type="submit" name="Home" value="Home">
