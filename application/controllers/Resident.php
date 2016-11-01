@@ -53,7 +53,7 @@ class Resident extends CI_Controller {
 		
 		
 		$category = $_GET[ 'category' ];	// $this->input->get/post does not work for some reason
-		$questions = $this->Question_model->getAllQuestionsFrom( $category );
+		$questions = $this->Question_model->getAllQuestionsFrom( 'english', $category );
 
 		$data2[ 'category' ] = htmlspecialchars( $category );
 		$data2[ 'questions' ] = $questions;
