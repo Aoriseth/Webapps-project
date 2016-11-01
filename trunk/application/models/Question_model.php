@@ -7,8 +7,10 @@ class Question_model extends CI_Model {
 		return $query->result();
 	}
 
-	function getAllQuestionsFrom( $category ) {
-		$query = $this->db->query( "SELECT * FROM a16_webapps_3.questions WHERE category='$category' ORDER BY category_order ASC");
+	function getAllQuestionsFrom( $language, $category ) {
+		$query = $this->db->query(
+			"SELECT * FROM a16_webapps_3.questions WHERE language='$language' AND WHERE category='$category' ORDER BY category_order ASC"
+		);
 		return $query->result();
 	}
 	
