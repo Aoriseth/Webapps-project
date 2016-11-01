@@ -18,6 +18,13 @@ class Login_model extends CI_Model {
 	 *	- error = string
 	 */
 	function login( $username, $password ) {
+		/*
+		 * I think this can be optimized. We'll need an extra type 'field' in the database though.
+		 * 
+		 * SELECT id, password, first_name, type
+		 * FROM a16_webapps_3.elderly FULL a16_webapps_3.caregivers
+		 * WHERE id=$username
+		 */
 		$query_eldery = $this->db->query( "SELECT * FROM a16_webapps_3.elderly WHERE id='$username'" );
 		$query_caregivers = $this->db->query( "SELECT * FROM a16_webapps_3.caregivers WHERE id='$username'" );
 
