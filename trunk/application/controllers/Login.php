@@ -7,6 +7,7 @@ class Login extends CI_Controller {
 
 		$this->load->library( 'parser' );
 		$this->load->model( 'Login_model' );
+                $this->load->helper('url'); //load url helper
 	}
 
 	public function index() {
