@@ -4,10 +4,10 @@ class Login extends CI_Controller {
 	
 	public function __construct() {
 		parent::__construct();
-
+                $this->load->helper('url'); //load url helper
 		$this->load->library( 'parser' );
 		$this->load->model( 'Login_model' );
-                $this->load->helper('url'); //load url helper
+                
 	}
 
 	public function index() {
