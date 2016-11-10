@@ -15,7 +15,7 @@ class Answer_model extends CI_Model {
      *      - answer            (int)       The entered answer.
      *      - currentSession    (int)       The number of the session in progress, meaning that (currentSession-1) questionnaires are completed by the given resident.
      */
-    function addAnswer($residentID, $questionID, $answer, $currentSession) {
+    function storeAnswer($residentID, $questionID, $answer, $currentSession) {
         $this->db->insert('answers', $residentID, $questionID, $answer, $currentSession, date('Y-m-d H:i:s', now()));
     }
 }

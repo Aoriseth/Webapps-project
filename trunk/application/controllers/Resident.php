@@ -10,6 +10,7 @@ class Resident extends CI_Controller {
 
 		$this->load->library( 'parser' );
 		$this->load->model( 'Question_model' );
+                $this->load->model('Answer_model');
 	}
 
 	function index()
@@ -60,8 +61,15 @@ class Resident extends CI_Controller {
 		if ( isset( $_POST[ 'option' ] ) ) {
 			/*
 			 * TODO: store answer
-			 * form now posts the string value, use id instead?
+			 * form now posts the string value, use id instead? -> yes, please!
 			 */
+                        //if('elderly'.completed_sessions == NULL) {
+                        //currentSession = 0;
+                        //}
+                        //else {
+                        //currentSession = 'elderly'.completed_sessions - 1
+                        //} 
+                        //$this->Answer_model->storeAnswer($residentID, $questionID, 'option', $currentSession);
 		}
 
 		if ( isset( $_GET[ 'index' ] ) ) {
