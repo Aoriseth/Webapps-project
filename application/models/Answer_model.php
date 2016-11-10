@@ -2,6 +2,10 @@
 
 class Answer_model extends CI_Model {
     
+    function __construct() {
+        parent::__construct();
+    }
+    
     /**
      * Adds the given answer of the resident to the database.
      * 
@@ -12,6 +16,6 @@ class Answer_model extends CI_Model {
      *      - currentSession    (int)       The number of the session in progress, meaning that (currentSession-1) questionnaires are completed by the given resident.
      */
     function addAnswer($residentID, $questionID, $answer, $currentSession) {
-        
+        $this->db->insert('answers', $residentID, $questionID, $answer, $currentSession, date('Y-m-d H:i:s', now()));
     }
 }
