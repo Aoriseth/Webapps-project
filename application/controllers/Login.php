@@ -49,7 +49,7 @@ class Login extends CI_Controller {
 		if ( $this->session->is_logged_in )	{
 			redirect( 'login/success' );
 		}
-
+                $data['navbar'] = $this->load->view( 'login/login_navbar', '', true );
 		$data[ 'feedback' ] = '';
 
 		$username = '';
