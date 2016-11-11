@@ -12,8 +12,17 @@
 		<title>Grace Age: Login</title>
 	</head>
 	<body>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">
+                            Grace Age
+                        </a>
+                    </div>
+                </div>
+            </nav>
             <div class="container">
-		<h1>Welcome to Grace Age</h1>
+		
                 <div class="jumbotron">
                 <p>
 			{feedback}	<!-- used to dispay error notifications, is often empty -->
