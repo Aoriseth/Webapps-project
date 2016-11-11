@@ -36,7 +36,7 @@ class Login extends CI_Controller {
 		if ( $this->session->is_logged_in )	{
 			redirect( 'login/success' );
 		}
-
+                $data['navbar'] = $this->load->view( 'login/login_navbar', '', true );
 		$data[ 'feedback' ] = '';
 		$data[ 'content' ] = $this->load->view( 'login/login_facial_recognition', '', true );
 
