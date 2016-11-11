@@ -3,7 +3,6 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
                 Grace Age
-            </h1>
         </div>
     </div>
     
