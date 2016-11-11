@@ -6,5 +6,5 @@
 	<input type="text" name="username" placeholder="Username" value="{username}" required><br>
 	<label> Password: </label>
 	<input type="password" name="password" placeholder="Password" value="{password}" required><br>
-	<input type="submit" name="login" value="Log in">
+	<input class="btn btn-default" type="submit" name="login" value="Log in">
 </form>
