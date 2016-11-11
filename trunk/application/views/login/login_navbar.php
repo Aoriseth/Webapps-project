@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
-                Grace Age
+                Grace Age</a>
         </div>
     </div>
     
