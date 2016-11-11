@@ -8,7 +8,9 @@ and open the template in the editor.
     Author     : Lennart
 */
 
-p{
+.container{
     /* I apologise for the looks, just testing some stuff */
-    background-color: black;
+    margin-left: auto;
+    margin-right: auto;
+    
 }
