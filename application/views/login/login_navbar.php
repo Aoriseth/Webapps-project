@@ -1,8 +1,10 @@
-<nav>
-    <div>
-        <h1>
-            Grace Age
-        </h1>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                Grace Age
+            </h1>
+        </div>
     </div>
     
 </nav>
