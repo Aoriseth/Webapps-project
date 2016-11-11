@@ -14,7 +14,8 @@
 	<body>
             <div class="container">
 		<h1>Welcome to Grace Age</h1>
-		<p>
+                <div class="jumbotron">
+                <p>
 			{feedback}	<!-- used to dispay error notifications, is often empty -->
 		</p>
 
@@ -23,6 +24,7 @@
 		<hr />
 
 		{navigation_buttons}
+                </div>
             </div>
 	</body>
 </html>
