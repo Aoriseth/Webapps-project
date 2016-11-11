@@ -22,8 +22,7 @@
                 </div>
             </nav>
             <div class="container">
-		
-                <div class="jumbotron">
+		 <div class="jumbotron">
                 <p>
 			{feedback}	<!-- used to dispay error notifications, is often empty -->
 		</p>
