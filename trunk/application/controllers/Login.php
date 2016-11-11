@@ -22,7 +22,7 @@ class Login extends CI_Controller {
 		if ( ! $this->session->is_logged_in )	{
 			redirect( base_url() );
 		}
-
+                $data['navbar'] = $this->load->view( 'login/login_navbar', '', true );
 		$data[ 'feedback' ] = 'Welcome ' . $this->session->first_name . ', you\'ve logged in succesfully.';
 		$data[ 'content' ] = '<p><i>This page confirms the user has succesfully logged in.</i></p>';
 
