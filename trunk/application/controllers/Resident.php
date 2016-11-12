@@ -70,6 +70,7 @@ class Resident extends CI_Controller {
 			 * form now posts the string value, use id instead? -> yes, please!
 			 */
                         //TODO: use real values
+                        log_message('debugging ', 'testing-testing');
                         $currentSession = 0; //TODO: check resident's real current session and add 1.
                         $residentID = 'ep123';
                         $questionID = 10;
