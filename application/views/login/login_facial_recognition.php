@@ -2,5 +2,5 @@
 	<i>Log in using facial recognition.</i>
 </p>
 <p>
-	&lt;TODO acial recognition system&gt;
+	&lt;TODO facial recognition system&gt;
 </p>
