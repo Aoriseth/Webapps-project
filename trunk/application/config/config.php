@@ -24,11 +24,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$base = 'https://a16_webapps_3.studev.groept.be/';
-//$base = 'http://localhost:8888/';
+//$base = 'https://a16_webapps_3.studev.groept.be/';
+$base = 'http://localhost/';
 
 if (strpos(__DIR__, 'trunk') !== false) {	// if contains trunk
-	$config[ 'base_url' ] = $base . '_dev/a16_webapps_3/trunk/';
+	$config[ 'base_url' ] = $base . 'trunk/'; // '_dev/a16_webapps_3/trunk/'
 } else {
 	$config[ 'base_url' ] = $base;
 }
