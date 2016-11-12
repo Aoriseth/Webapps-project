@@ -5,7 +5,7 @@
 		<title>Grace Age: Resident</title>
 	</head>
 	<body>
-		<h1>Grace Age: Resident</h1>
+		<h1>Grace Age: Residents</h1>
 
 		{content}
 
