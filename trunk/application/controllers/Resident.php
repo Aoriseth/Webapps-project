@@ -55,7 +55,9 @@ class Resident extends CI_Controller {
 
 	function question()
 	{
-		if ( ! isset( $_GET[ 'category' ] ) ) {
+                log_message('test ', 'xyz123');
+		
+                if ( ! isset( $_GET[ 'category' ] ) ) {
 			redirect( 'resident/categories' );
 		}
 		$category = $_GET[ 'category' ];	// TODO $this->input->get/post does not work for some reason
