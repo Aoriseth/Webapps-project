@@ -22,6 +22,8 @@ class Resident extends CI_Controller {
 	{
 		$data2[ 'name' ] = $this->session->first_name;
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_home', $data2, true );
+                $data['navbar'] = $this->load->view( 'resident/resident_navbar', '', true );
+                $data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
 
 		$this->parser->parse( 'resident/resident_main', $data );
 	}
@@ -30,6 +32,8 @@ class Resident extends CI_Controller {
 	{
 		$data2[ 'name' ] = $this->session->first_name;
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_gallery', $data2, true );
+                $data['navbar'] = $this->load->view( 'resident/resident_navbar', '', true );
+                $data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
 
 		$this->parser->parse( 'resident/resident_main', $data );
 	}
@@ -43,6 +47,8 @@ class Resident extends CI_Controller {
 
 		$data2[ 'categories' ] = $categories;
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_categories', $data2, true );
+                $data['navbar'] = $this->load->view( 'resident/resident_navbar', '', true );
+                $data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
 
 		$this->parser->parse( 'resident/resident_main', $data );
 	}
@@ -91,6 +97,8 @@ class Resident extends CI_Controller {
 		$data2[ 'question' ] = htmlspecialchars( $question->question );
 		$data2[ 'options' ] = $options;
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_question', $data2, true );
+                $data['navbar'] = $this->load->view( 'resident/resident_navbar', '', true );
+                $data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
 
 		$this->parser->parse( 'resident/resident_main', $data );
 	}
@@ -105,6 +113,8 @@ class Resident extends CI_Controller {
 
 		$data2[ 'category' ] = htmlspecialchars( $category );
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_completed', $data2, true );
+                $data['navbar'] = $this->load->view( 'resident/resident_navbar', '', true );
+                $data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
 
 		$this->parser->parse( 'resident/resident_main', $data );
 	}

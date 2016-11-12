@@ -1,16 +1,31 @@
-<p>
-	<i>Currently showing english categories, dutch categories are also easily accesible from the database.</i><br>
-	<i>No check if category is completed yet.</i>
-</p>
 
-<p>
-	Select a category:
-</p>
+<div class="container">
+    <div class="row">
+        
 
-<?php foreach( $categories as $category ) { ?>
+        
+        <div class="col-lg-12" >
+            <p>
+                Select a category:
+            </p>
+            <?php foreach( $categories as $category ) { ?>
+                <div class="col-lg-4" >
+                    <form action="<?php echo base_url().'index.php/resident/question' ?>" method="GET">
+                        <!--input class="btn btn-default" type="submit" name="category" value="<?php echo $category->category ?>" class="text-center"-->
+                        <button type="submit" name="category" value="<?php echo $category->category ?>" class="text-center">
+                            <span class="glyphicon glyphicon-edit"></span>
+                            
+                        </button></br>
+                        <?php echo $category->category ?>
 
-	<form action="<?php echo base_url().'index.php/resident/question' ?>" method="GET">
-		<input type="submit" name="category" value="<?php echo $category->category ?>">
-	</form>
+                           
+                    </form>
+                </div>
 
-<?php } ?>
+            <?php } ?>
+
+        </div>
+
+    </div>
+
+</div>

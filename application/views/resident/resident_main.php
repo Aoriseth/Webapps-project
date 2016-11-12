@@ -3,20 +3,36 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Grace Age: Resident</title>
-	</head>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	        <link href=<?php echo base_url()."assets/css/main.css" ?> rel="stylesheet" type="text/css"/>
+
+        </head>
 	<body>
-		<h1>Grace Age: Residents</h1>
+		{navbar}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-2" >
+                            <form action=<?php echo base_url().'index.php/resident/gallery' ?> method="POST" class="text-center">
+                                <input class="btn btn-primary" type="submit" name="Gallery" value="View gallery">
+                            </form>
+            <p>
+                <i>The gallery contains the completed puzzles.</i>
+            </p>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="jumbotron">
+                                {content}		<!-- the main element of the page (login form etc) -->
 
-		{content}
+                                <hr />
 
-		<hr />
-		<form action=<?php echo base_url() ?> method="POST">
-			<input type="submit" name="Home" value="Home">
-		</form>
-
-		<form action=<?php echo base_url().'index.php/logout' ?> method="POST">
-			<input type="submit" name="logout" value="Logout">
-		</form>
-
+                                
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            {navigation_buttons}
+                        </div>
+                    </div>
+                    
+                </div>
 	</body>
 </html>
