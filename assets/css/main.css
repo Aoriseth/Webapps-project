@@ -16,15 +16,23 @@ and open the template in the editor.
 }
 
 
-.navbar-default .navbar-brand {
+.navbar-default .navbar-brand { 
+    background-color: #3358b7;
+    border-color: #E7E7E7;
+    color: #fff;
+}
+
+.navbar-default { 
     background-color: #337ab7;
     border-color: #E7E7E7;
     color: #fff;
 }
 
-.navbar-default {
-    background-color: #337ab7;
-    border-color: #E7E7E7;
-    color: #fff;
+.glyphicon-user{
+    font-size: 50px;
+    float: right;
 }
 
+nav.ul{
+    float: right;
+}

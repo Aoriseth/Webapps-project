@@ -1,5 +1,7 @@
 
-
+<?php 
+    $progress = 0;
+?>
 <div class="container">
     <div class="row">
                
@@ -34,7 +36,19 @@
     <div class="row">
         <p class="text-center">
                 Question <?php echo $index+1 ?> of {category_size} from {category}.
+                </br>
+   
         </p>
+        
+        <div class="progress">
+            
+            <div class="progress-bar" role="progressbar" aria-valuenow="0"
+            aria-valuemin="0" aria-valuemax="100" 
+            style="width:<?php echo $index+1 ?>%">
+                <span class="sr-only">70% Complete</span>
+            </div>
+        </div>
+
 
         <?php if ( $index > 0 ) { ?>
 
@@ -45,3 +59,12 @@
         <?php } ?>
     </div>
 </div>
+
+<script>
+
+    function calculate_progress(category_size, question) {
+
+        document.write(question/category_size);
+
+}
+</script>

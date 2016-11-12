@@ -15,17 +15,13 @@
                             <form action=<?php echo base_url().'index.php/resident/gallery' ?> method="POST" class="text-center">
                                 <input class="btn btn-primary" type="submit" name="Gallery" value="View gallery">
                             </form>
-            <p>
-                <i>The gallery contains the completed puzzles.</i>
-            </p>
+                            <p>
+                                <i>The gallery contains the completed puzzles.</i>
+                            </p>
                         </div>
                         <div class="col-lg-8">
                             <div class="jumbotron">
                                 {content}		<!-- the main element of the page (login form etc) -->
-
-                                <hr />
-
-                                
                             </div>
                         </div>
                         <div class="col-lg-2">

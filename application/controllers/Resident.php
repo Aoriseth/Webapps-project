@@ -97,10 +97,11 @@ class Resident extends CI_Controller {
 		$data2[ 'category_size' ] = htmlspecialchars( count( $this->session->questions ) );
 		$data2[ 'question' ] = htmlspecialchars( $question->question );
 		$data2[ 'options' ] = $options;
+               
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_question', $data2, true );
                 $data['navbar'] = $this->load->view( 'resident/resident_navbar', '', true );
                 $data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
-
+                
 		$this->parser->parse( 'resident/resident_main', $data );
 	}
 
