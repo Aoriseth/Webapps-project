@@ -55,7 +55,7 @@ class Resident extends CI_Controller {
 
 	function question()
 	{
-                log_message('test ', 'xyz123');
+                log_message('info', 'xyz123');
 		
                 if ( ! isset( $_GET[ 'category' ] ) ) {
 			redirect( 'resident/categories' );
@@ -72,7 +72,7 @@ class Resident extends CI_Controller {
 			 * form now posts the string value, use id instead? -> yes, please!
 			 */
                         //TODO: use real values
-                        log_message('debugging ', 'testing-testing');
+                        log_message('info ', 'testing-testing');
                         $currentSession = 0; //TODO: check resident's real current session and add 1.
                         $residentID = 'ep123';
                         $questionID = 10;
