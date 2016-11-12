@@ -3,9 +3,11 @@
         <div class="navbar-header">
             <a class="navbar-brand">
                 Grace Age</a>
-            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
             
         </div>
+        <ul>
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        </ul>
     </div>
     
 </nav>
