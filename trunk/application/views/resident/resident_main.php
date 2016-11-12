@@ -20,9 +20,9 @@
                             </p>
                         </div>
                         <div class="col-lg-8">
-                            <div class="jumbotron">
+                            <!--div class="jumbotron"-->
                                 {content}		<!-- the main element of the page (login form etc) -->
-                            </div>
+                            <!--/div-->
                         </div>
                         <div class="col-lg-2">
                             {navigation_buttons}
