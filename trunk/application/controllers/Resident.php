@@ -63,13 +63,12 @@ class Resident extends CI_Controller {
 			 * TODO: store answer
 			 * form now posts the string value, use id instead? -> yes, please!
 			 */
-                        //if('elderly'.completed_sessions == NULL) {
-                        //currentSession = 0;
-                        //}
-                        //else {
-                        //currentSession = 'elderly'.completed_sessions - 1
-                        //} 
-                        //$this->Answer_model->storeAnswer($residentID, $questionID, 'option', $currentSession);
+                        //TODO: use real values
+                        $currentSession = 0; //TODO: check resident's real current session and add 1.
+                        $residentID = 'ep1234';
+                        $questionID = 99;
+                        $chosenOption = 1;
+                        $this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption, $currentSession);
 		}
 
 		if ( isset( $_GET[ 'index' ] ) ) {
