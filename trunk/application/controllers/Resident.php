@@ -65,8 +65,8 @@ class Resident extends CI_Controller {
 			 */
                         //TODO: use real values
                         $currentSession = 0; //TODO: check resident's real current session and add 1.
-                        $residentID = 'ep1234';
-                        $questionID = 99;
+                        $residentID = 'ep123';
+                        $questionID = 10;
                         $chosenOption = 1;
                         $this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption, $currentSession);
 		}
