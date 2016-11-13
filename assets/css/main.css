@@ -41,6 +41,11 @@ and open the template in the editor.
 
 }
 
+.button_emotion img{
+    display: block;
+    height: 100px;  
+    width: 100px;
+}
 
 .navbar-default .navbar-brand { 
     background-color: #3358b7;
