@@ -4,8 +4,8 @@ $progress = 0;
 <div class="container">
     <div class="row">
         <div class="col-lg-12" >
-            <!--div class="col-lg-1" ></div-->
-            <!--div class="col-lg-10" -->
+            <div class="col-lg-1" ></div>
+            <div class="col-lg-10">
 
                 <div class="card" id="card_question">
                     <p class="text-center">
@@ -26,9 +26,9 @@ $progress = 0;
                         </div>
                     <?php } ?>
                 </div>
-            <!--/div-->
+            </div>
 
-            <!--div class="col-lg-1" ></div-->
+            <div class="col-lg-1" ></div>
         </div>
     </div>
     <div class="row">
