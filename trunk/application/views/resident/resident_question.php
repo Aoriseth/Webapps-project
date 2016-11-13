@@ -17,10 +17,8 @@ $progress = 0;
                     <?php $index = 0; foreach ($options as $option) { ?>
                         <div class="col-lg-2" >
                             <form action="<?php echo base_url() . 'index.php/resident/question?category=' . $category . '&index=' . ($index + 1) ?>" method="POST" class="text-center">
-                                <!--input class="glyphicon-user" type="submit" name="option" value="<?php echo htmlspecialchars($option->option) ?>"-->
-                                <button type="submit" name="category" value="<?php echo htmlspecialchars($option->option) ?>" > 
-                                    <!--span class="glyphicon glyphicon-edit"></span-->
-                                    <img src=<?php echo base_url().'assets/imgs/emotions/'.$index.".png" ?> width="100" height="100">
+                                <button class="button_emotion" type="submit" name="category" value="<?php echo htmlspecialchars($option->option) ?>"> 
+                                        <img src=<?php echo base_url().'assets/imgs/emotions/'.$index.".png" ?>>                                   
                                 </button></br>
                                 <?php echo htmlspecialchars($option->option); $index++; ?>
                             </form>
