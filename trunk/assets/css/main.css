@@ -32,19 +32,21 @@ and open the template in the editor.
 #card_question {
     min-height: 100px;
     font-size: 24px;
-
 }
 
 #card_answer{
     min-height: 200px;
     font-size: 18px;
-
 }
 
 .button_emotion img{
     display: block;
     height: 100px;  
     width: 100px;
+}
+
+.button_form {
+    min-width: 100px;
 }
 
 .navbar-default .navbar-brand { 
