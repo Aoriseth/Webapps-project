@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<title>Grace Age: Resident</title>
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	        <link href=<?php echo base_url()."assets/css/main.css" ?> rel="stylesheet" type="text/css"/>
 
         </head>
@@ -21,6 +22,7 @@
                         </div>
                         <div class="col-lg-8">
                             <!--div class="jumbotron"-->
+                            
                                 {content}		<!-- the main element of the page (login form etc) -->
                             <!--/div-->
                         </div>

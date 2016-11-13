@@ -28,6 +28,10 @@ and open the template in the editor.
     border-radius: 8px;
 }
 
+p.card {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
 #card_question {
     min-height: 100px;
 }
