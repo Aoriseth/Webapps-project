@@ -26,12 +26,10 @@ and open the template in the editor.
     transition: .4s;
     -webkit-transition: .4s;
     border-radius: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
 }
 
-p.card {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-}
 #card_question {
     min-height: 100px;
 }
