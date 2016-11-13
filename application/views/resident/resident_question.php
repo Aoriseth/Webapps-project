@@ -32,7 +32,7 @@ $progress = 0;
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-10" col-lg-offset-1>
+        <div class="col-lg-10">
             <p class="text-center">
                 Question <?php echo $index + 1 ?> of {category_size} from {category}.
                 </br>
@@ -46,7 +46,7 @@ $progress = 0;
             </div>
             <?php if ($index > 0) { ?>
                 <form action="<?php echo base_url() . 'index.php/resident/question?category=' . $category . '&index=' . ($index - 1) ?>" method="POST">
-                    <input class="btn btn-primary" type="submit" name="back" value="Go back">
+                    <input class="btn btn-primary, col-lg-1" type="submit" name="back" value="Go back">
                 </form>
             <?php } ?>
         </div>
