@@ -14,13 +14,13 @@ $progress = 0;
                 </div>
                 
                 <div class="card" id="card_answer">
-                    <?php $index = 0; foreach ($options as $option) { ?>
+                    <?php foreach ($options as $option) { ?>
                         <div class="col-lg-2" >
                             <form class="button_form" action="<?php echo base_url() . 'index.php/resident/question?category=' . $category . '&index=' . ($index + 1) ?>" method="POST" class="text-center">
                                 <button class="button_emotion" type="submit" name="category" value="<?php echo htmlspecialchars($option->option) ?>"> 
                                         <img src=<?php echo base_url().'assets/imgs/emotions/'.$index.".png" ?>>                                   
                                 </button></br>
-                                <?php echo htmlspecialchars($option->option); $index++; ?>
+                                <?php echo htmlspecialchars($option->option); ?>
                             </form>
                         </div>
                     <?php } ?>
