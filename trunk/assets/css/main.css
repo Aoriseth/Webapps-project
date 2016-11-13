@@ -24,18 +24,21 @@ and open the template in the editor.
     margin-right: 0px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 6px rgba(0,0,0,0.05);
     transition: .4s;
-    -webkit-transition: .4s;
+    /*-webkit-transition: .4s;*/
     border-radius: 8px;
     font-family: 'Roboto', sans-serif;
-    font-size: 20px;
 }
 
 #card_question {
     min-height: 100px;
+    font-size: 24px;
+
 }
 
 #card_answer{
     min-height: 200px;
+    font-size: 18px;
+
 }
 
 
