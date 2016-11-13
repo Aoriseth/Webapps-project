@@ -20,7 +20,7 @@ $progress = 0;
                                 <!--input class="glyphicon-user" type="submit" name="option" value="<?php echo htmlspecialchars($option->option) ?>"-->
                                 <button type="submit" name="category" value="<?php echo htmlspecialchars($option->option) ?>" > 
                                     <!--span class="glyphicon glyphicon-edit"></span-->
-                                    <img src=<?php echo base_url().'assets/imgs/emotions'.$index."png" ?> width="100" height="100" >
+                                    <img src=<?php echo base_url().'assets/imgs/emotions'.$index.".png" ?> width="100" height="100" >
                                 </button></br>
                                 <?php echo htmlspecialchars($option->option); $index++; ?>
                             </form>
