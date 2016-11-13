@@ -4,8 +4,8 @@ $progress = 0;
 <div class="container">
     <div class="row">
         <div class="col-lg-12" >
-            <div class="col-lg-1" ></div>
-            <div class="col-lg-10" >
+            <!--div class="col-lg-1" ></div-->
+            <!--div class="col-lg-10" -->
 
                 <div class="card" id="card_question">
                     <p class="text-center">
@@ -26,9 +26,9 @@ $progress = 0;
                         </div>
                     <?php } ?>
                 </div>
-            </div>
+            <!--/div-->
 
-            <div class="col-lg-1" ></div>
+            <!--div class="col-lg-1" ></div-->
         </div>
     </div>
     <div class="row">
@@ -40,7 +40,7 @@ $progress = 0;
             <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="0"
                      aria-valuemin="0" aria-valuemax="100" 
-                     style="width: <?php echo ( ((int)$index) / ((int)${category_size}) * 100 )?>%">
+                     style="width: <?php echo ( (int)$index / (int)$category_size * 100 )?>%">
                     <!--span class="sr-only">70% Complete</span-->
                 </div>
             </div>
