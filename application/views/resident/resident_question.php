@@ -27,13 +27,16 @@ $progress = 0;
                     <?php } ?>
                 </div>
             </div>
-
             <div class="col-md-1" ></div>
         </div>
     </div>
+    
+    <p style="margin-top:10px;">
+        
     <div class="row">
         <div class="col-md-12" >
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-1" ></div>
+            <div class="col-md-8">
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="0"
                          aria-valuemin="0" aria-valuemax="100" 
@@ -50,6 +53,7 @@ $progress = 0;
                     <input class="btn btn-primary, col-md-1" type="submit" name="back" value="Go back">
                 </form>
             <?php } ?>
+            <div class="col-md-1" ></div>
         </div>
     </div>
 </div>
