@@ -4,6 +4,8 @@ class Answer_model extends CI_Model {
     
     function __construct() {
         parent::__construct();
+        
+        $this->load->helper('date');
     }
     
     /**
@@ -21,7 +23,7 @@ class Answer_model extends CI_Model {
             'question_id' => "4",
             'answer' => "1",
             'session' => "3",
-            'datetime_answered' => date('Y-m-d H:i:s', now())
+            'datetime_answered' => now()
         );
         $this->db->insert('a16_webapps_3.answers', $answerData);
     }
