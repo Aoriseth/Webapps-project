@@ -51,6 +51,13 @@ class Resident extends CI_Controller {
                 $data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
 
 		$this->parser->parse( 'resident/resident_main', $data );
+                
+                //Delete these lines: (only for testing)
+                $currentSession = 0; //TODO: use real values.
+                        $residentID = "ep123";
+                        $questionID = 10;
+                        $chosenOption = 1;
+                        $this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption, $currentSession);
 	}
 
 	function question()
@@ -65,13 +72,8 @@ class Resident extends CI_Controller {
 		}
 
 		if ( isset( $_POST[ 'option' ] ) ) {
-			/*
-			 * TODO: store answer
-			 * form now posts the string value, use id instead? -> yes, please!
-			 */
-                        //TODO: use real values
-                        $currentSession = 0; //TODO: check resident's real current session and add 1.
-                        $residentID = 'ep123';
+                        $currentSession = 0; //TODO: use real values.
+                        $residentID = "ep123";
                         $questionID = 10;
                         $chosenOption = 1;
                         $this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption, $currentSession);
