@@ -33,23 +33,23 @@ $progress = 0;
     </div>
     <div class="row">
         <div class="col-md-12" >
-            <div class="col-md-10" col-md-offset-1>
+            <div class="col-md-10 col-md-offset-1">
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="0"
                          aria-valuemin="0" aria-valuemax="100" 
-                         style="width: <?php echo ( (int)$index / (int)$category_size * 100 )?>%">
+                         style="width: <?php echo ( (int)($index + 1)/ (int)$category_size * 100 )?>%">
                                 <!--span class="sr-only">70% Complete</span-->
                         <p class="text-center">
                             Question <?php echo $index + 1 ?> of {category_size} from {category}.
                         </p>
                     </div>
                 </div>
-                <?php if ($index > 0) { ?>
-                    <form action="<?php echo base_url() . 'index.php/resident/question?category=' . $category . '&index=' . ($index - 1) ?>" method="POST">
-                        <input class="btn btn-primary, col-md-1" type="submit" name="back" value="Go back">
-                    </form>
-                <?php } ?>
             </div>
+            <?php if ($index > 0) { ?>
+                <form action="<?php echo base_url() . 'index.php/resident/question?category=' . $category . '&index=' . ($index - 1) ?>" method="POST">
+                    <input class="btn btn-primary, col-md-1" type="submit" name="back" value="Go back">
+                </form>
+            <?php } ?>
         </div>
     </div>
 </div>
