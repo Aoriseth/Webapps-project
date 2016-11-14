@@ -8,12 +8,15 @@ and open the template in the editor.
     Author     : Robin
 */
 
+body {
+    background: #E8F0FE;
+}
+
 .container{
     /* I apologise for the looks, just testing some stuff */
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-
 }
 
 .card {
@@ -47,6 +50,7 @@ and open the template in the editor.
 
 .button_form {
     min-width: 100px;
+    min-height: 100px;
 }
 
 .navbar-default .navbar-brand { 
