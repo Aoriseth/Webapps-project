@@ -17,12 +17,12 @@ class Answer_model extends CI_Model {
      */
     function storeAnswer($residentID, $questionID, $answer, $currentSession) {
         $answerData = array(
-            'elderly_id' => $residentID,
-            'question_id' => $questionID,
-            'answer' => $answer,
-            'session' => $currentSession,
+            'elderly_id' => "ep123",
+            'question_id' => "4",
+            'answer' => "1",
+            'session' => "3",
             'datetime_answered' => date('Y-m-d H:i:s', now())
         );
-        $this->db->insert('answers', $answerData);
+        $this->db->insert('a16_webapps_3.answers', $answerData);
     }
 }
