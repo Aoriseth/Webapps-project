@@ -4,10 +4,10 @@ class Login extends CI_Controller {
 	
 	public function __construct() {
 		parent::__construct();
-                $this->load->helper('url'); //load url helper
+
 		$this->load->library( 'parser' );
 		$this->load->model( 'Login_model' );
-                
+		$this->load->helper( 'url' );                
 	}
 
 	public function index() {
@@ -22,12 +22,12 @@ class Login extends CI_Controller {
 		if ( ! $this->session->is_logged_in )	{
 			redirect( base_url() );
 		}
-                $data['navbar'] = $this->load->view( 'login/login_navbar', '', true );
+
+		$data['navbar'] = $this->load->view( 'login/login_navbar', '', true );
+		$data[ 'navigation_buttons' ] = $this->load->view( 'login/login_go_home_button', '', true );
+
 		$data[ 'feedback' ] = 'Welcome ' . $this->session->first_name . ', you\'ve logged in succesfully.';
 		$data[ 'content' ] = '<p><i>This page confirms the user has succesfully logged in.</i></p>';
-
-		$data2[ 'type' ] = $this->session->type;
-		$data[ 'navigation_buttons' ] = $this->parser->parse( 'login/login_go_home_button', $data2, true );
 
 		$this->parser->parse( 'login/login_main', $data );
 	}
@@ -36,12 +36,13 @@ class Login extends CI_Controller {
 		if ( $this->session->is_logged_in )	{
 			redirect( 'login/success' );
 		}
-                $data['navbar'] = $this->load->view( 'login/login_navbar', '', true );
+
+		$data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
+		$data[ 'navigation_buttons' ] = $this->load->view( 'login/login_navigation_buttons', '', true );
+
 		$data[ 'feedback' ] = '';
 		$data[ 'content' ] = $this->load->view( 'login/login_facial_recognition', '', true );
 
-		$data[ 'navigation_buttons' ] = $this->load->view( 'login/login_navigation_buttons', '', true );
-		
 		$this->parser->parse( 'login/login_main', $data );		
 	}
 
@@ -49,7 +50,10 @@ class Login extends CI_Controller {
 		if ( $this->session->is_logged_in )	{
 			redirect( 'login/success' );
 		}
-                $data['navbar'] = $this->load->view( 'login/login_navbar', '', true );
+		
+		$data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
+		$data[ 'navigation_buttons' ] = $this->load->view( 'login/login_navigation_buttons', '', true );
+
 		$data[ 'feedback' ] = '';
 
 		$username = '';
@@ -68,6 +72,7 @@ class Login extends CI_Controller {
 
 				redirect( 'login/success' );
 			} else {
+				// TODO remove HTML code from controller
 				$data[ 'feedback' ] = '<span style="color:red">'.$result[ 'error' ].'</span>';
 			}
 		}
@@ -75,9 +80,8 @@ class Login extends CI_Controller {
 		// filter output that will be displayed in html!
 		$data2[ 'username' ] = htmlspecialchars( $username );
 		$data2[ 'password' ] = htmlspecialchars( $password );
+		// re-insert login attempt into form
 		$data[ 'content' ] = $this->parser->parse( 'login/login_form', $data2, true );
-
-		$data[ 'navigation_buttons' ] = $this->load->view( 'login/login_navigation_buttons', '', true );
 
 		$this->parser->parse( 'login/login_main', $data );
 	}
