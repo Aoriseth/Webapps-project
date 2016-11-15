@@ -10,25 +10,19 @@ and open the template in the editor.
 
 body {
     background: #E8F0FE;
+    padding-top: 70px;
 }
 
 .container{
-    /* I apologise for the looks, just testing some stuff */
     margin-left: auto;
     margin-right: auto;
     width: 100%;
 }
 
 .jumbotron {
-    background: white;
     text-align: center;
     /*width: 200px;*/
-    margin-top: 10px;
-    margin-right: 0px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 6px rgba(0,0,0,0.05);
-    transition: .4s;
     /*-webkit-transition: .4s;*/
-    border-radius: 8px;
     font-family: 'Roboto', sans-serif;
 }
 
