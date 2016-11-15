@@ -99,7 +99,7 @@ class Resident extends CI_Controller {
                         $this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption, $currentSession);
 		}
 
-		// check if caterogy is done
+		// check if category is done
 		if ( $index >= count( $this->session->questions ) ) {
 			unset( $this->session->questions );
 			redirect( 'resident/completed?category='.$category );
