@@ -24,7 +24,8 @@ class Caregiver extends CI_Controller {
 
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
-	
+	// I added a comment here
+        
 	function groups()
 	{
 		$data[ 'navigation_buttons' ] = $this->load->view( 'caregiver/caregiver_navigation_buttons', '', true );
