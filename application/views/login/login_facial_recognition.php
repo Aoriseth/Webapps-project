@@ -18,6 +18,10 @@
             function handleVideo(stream) {
                 video.src = window.URL.createObjectURL(stream);
             }
+
+            function videoError(e) {
+                // do something
+            }
         </script>
     </p>
 </div>
