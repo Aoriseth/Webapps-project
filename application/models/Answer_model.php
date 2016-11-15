@@ -19,13 +19,22 @@ class Answer_model extends CI_Model {
      *      - currentSession    (int)       The number of the session in progress, meaning that (currentSession-1) questionnaires are completed by the given resident.
      */
     function storeAnswer($residentID, $questionID, $chosenOption, $currentSession) {
-        $answerData = array(
-            'elderly_id' => $residentID,
-            'question_id' => $questionID,
-            'answer' => $chosenOption,
-            'session' => $currentSession,
-            'datetime_answered' => date('Y-m-d H:i:s')
-        );
-        $this->db->insert('a16_webapps_3.answers', $answerData);
+        if(! hasQuestionAlreadyBeenAnswered($residentID, $questionID, $currentSession)) {
+			$answerData = array(
+				'elderly_id' => $residentID,
+				'question_id' => $questionID,
+				'answer' => $chosenOption,
+				'session' => $currentSession,
+				'datetime_answered' => date('Y-m-d H:i:s')
+			);
+			$this->db->insert('a16_webapps_3.answers', $answerData);
+		} else {
+			
+		}
     }
+	
+	private function hasQuestionAlreadyBeenAnswered($residentID, $questionID, $currentSession) {
+		
+		return FALSE;
+	}
 }
