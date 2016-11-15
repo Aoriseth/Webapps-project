@@ -59,6 +59,13 @@ class Resident extends CI_Controller {
 
 	function question()
 	{
+		/* ERROR: if user goes to home during questionnaire, variables are not reset
+		 * 
+		 * TODO
+		 *	- reload questions from database
+		 * FUTURE
+		 *	- detect if session in progress
+		 */
 		if ( ! isset( $_GET[ 'category' ] ) ) {
 			redirect( 'resident/categories' );
 		}
