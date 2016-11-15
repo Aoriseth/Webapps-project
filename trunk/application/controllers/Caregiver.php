@@ -13,8 +13,43 @@ class Caregiver extends CI_Controller {
 
 	function index()
 	{
+		redirect( 'caregiver/home' );
+	}
+
+	function home()
+	{
+		$data[ 'navigation_buttons' ] = $this->load->view( 'caregiver/caregiver_navigation_buttons', '', true );
+
 		$data[ 'name' ] = $this->session->first_name;
 
+		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
+	}
+	
+	function groups()
+	{
+		$data[ 'navigation_buttons' ] = $this->load->view( 'caregiver/caregiver_navigation_buttons', '', true );
+		
+		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
+	}
+	
+	function statistics()
+	{
+		$data[ 'navigation_buttons' ] = $this->load->view( 'caregiver/caregiver_navigation_buttons', '', true );
+		
+		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
+	}
+	
+	function resident_overview()
+	{
+		$data[ 'navigation_buttons' ] = $this->load->view( 'caregiver/caregiver_navigation_buttons', '', true );
+		
+		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
+	}
+	
+	function resident_profile()
+	{
+		$data[ 'navigation_buttons' ] = $this->load->view( 'caregiver/caregiver_navigation_buttons', '', true );
+		
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
 }

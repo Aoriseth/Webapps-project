@@ -13,8 +13,6 @@
 			<i>This is the main landing page for the caregivers. WIP.</i>
 		</p>
 		<hr />
-		<form action=<?php echo base_url().'index.php/logout' ?> method="POST">
-			<input type="submit" name="logout" value="Logout">
-		</form>
+		{navigation_buttons}
 	</body>
 </html>
