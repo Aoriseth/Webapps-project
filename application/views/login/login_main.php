@@ -22,7 +22,7 @@
 	<body>
             {navbar}
             <div class="container">
-		 <div class="jumbotron">
+		 
                 <p>
 			{feedback}	<!-- used to dispay error notifications, is often empty -->
 		</p>
@@ -32,7 +32,7 @@
 		<hr />
 
 		{navigation_buttons}
-                </div>
+                
             </div>
 	</body>
 </html>
