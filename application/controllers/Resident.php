@@ -55,31 +55,24 @@ class Resident extends CI_Controller {
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_categories', $data2, true );
 
 		$this->parser->parse( 'resident/resident_main', $data );
-        }
+	}
 
 	function question()
 	{
-		$data[ 'navbar' ] = $this->load->view( 'resident/resident_navbar', '', true );
-		$data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
-
-                if ( isset( $_GET[ 'category' ] ) ) {
-			$category = $this->input->get( 'category' );
-                        $this->session->questions = $this->Question_model->getAllQuestionsFrom( 'English', $category );
-		} else {
-			// TODO error message?
-			$category = '';
-		}
-                
-		/*// detect the category
 		if ( ! isset( $_GET[ 'category' ] ) ) {
 			redirect( 'resident/categories' );
 		}
-                $category = $this->input->get( 'category' );
-                
-		// grab the questions from database, if not aready loaded into session
-		if ( ! isset( $this->session->questions ) ) {
+
+		$data[ 'navbar' ] = $this->load->view( 'resident/resident_navbar', '', true );
+		$data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
+
+		// get category
+		$category = $this->input->get( 'category' );
+
+		// grab questions from database
+		if ( count( $this->session->questions ) == 0 ) {
 			$this->session->questions = $this->Question_model->getAllQuestionsFrom( 'English', $category );
-		}*/
+		}
 
 		// get index of current question
 		if ( isset( $_GET[ 'index' ] ) ) {
@@ -111,7 +104,8 @@ class Resident extends CI_Controller {
 
 		// check if category is done
 		if ( $index >= count( $this->session->questions ) ) {
-			unset( $this->session->questions );
+			// clear array of questions
+			$this->session->questions = array();
 			redirect( 'resident/completed?category='.$category );
 		}
 
@@ -136,9 +130,8 @@ class Resident extends CI_Controller {
                 
 		if ( isset( $_GET[ 'category' ] ) ) {
 			$category = $this->input->get( 'category' );
-		}
-                else {
-			// TODO error message?
+		} else {
+			// TODO error message? ignored for now
 			$category = '';
 		}
 
