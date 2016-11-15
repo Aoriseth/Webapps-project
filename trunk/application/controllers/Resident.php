@@ -50,7 +50,7 @@ class Resident extends CI_Controller {
 		$categories = $this->Question_model->getAllCategories( 'english' );
 		shuffle( $categories );
 		$categories = array_splice( $categories, 0, 3 );
-
+                
 		$data2[ 'categories' ] = $categories;
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_categories', $data2, true );
 
@@ -62,16 +62,24 @@ class Resident extends CI_Controller {
 		$data[ 'navbar' ] = $this->load->view( 'resident/resident_navbar', '', true );
 		$data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
 
-		// detect the category
+                if ( isset( $_GET[ 'category' ] ) ) {
+			$category = $this->input->get( 'category' );
+                        $this->session->questions = $this->Question_model->getAllQuestionsFrom( 'English', $category );
+		} else {
+			// TODO error message?
+			$category = '';
+		}
+                
+		/*// detect the category
 		if ( ! isset( $_GET[ 'category' ] ) ) {
 			redirect( 'resident/categories' );
 		}
-		$category = $this->input->get( 'category' );
-
+                $category = $this->input->get( 'category' );
+                
 		// grab the questions from database, if not aready loaded into session
 		if ( ! isset( $this->session->questions ) ) {
-			$this->session->questions = $this->Question_model->getAllQuestionsFrom( 'english', $category );
-		}
+			$this->session->questions = $this->Question_model->getAllQuestionsFrom( 'English', $category );
+		}*/
 
 		// get index of current question
 		if ( isset( $_GET[ 'index' ] ) ) {
@@ -125,10 +133,11 @@ class Resident extends CI_Controller {
 	{
 		$data['navbar'] = $this->load->view( 'resident/resident_navbar', '', true );
 		$data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
-
+                
 		if ( isset( $_GET[ 'category' ] ) ) {
 			$category = $this->input->get( 'category' );
-		} else {
+		}
+                else {
 			// TODO error message?
 			$category = '';
 		}
