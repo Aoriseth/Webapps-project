@@ -26,7 +26,7 @@ class Login extends CI_Controller {
 		$data['navbar'] = $this->load->view( 'login/login_navbar', '', true );
 		$data[ 'navigation_buttons' ] = $this->load->view( 'login/login_go_home_button', '', true );
 
-		$data[ 'feedback' ] = 'Welcome ' . $this->session->first_name . ', you\'ve logged in succesfully.';
+		$data[ 'feedback' ] = '<div class="jumbotron">Welcome ' . $this->session->first_name . ', you\'ve logged in succesfully.';
 		$data[ 'content' ] = '<p><i>This page confirms the user has succesfully logged in.</i></p>';
 
 		$this->parser->parse( 'login/login_main', $data );
