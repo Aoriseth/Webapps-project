@@ -2,7 +2,6 @@
     <p>
             <i>Log in using facial recognition.</i>
     </p>
-    <p>
         <video id="camfr" width="100%" height="100%" autoplay="true">
             
         </video>
@@ -21,7 +20,7 @@
 
             function videoError(e) {
                 // do something
+                video.style.display = "none";
             }
         </script>
-    </p>
 </div>
