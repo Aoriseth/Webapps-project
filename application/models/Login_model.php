@@ -57,6 +57,7 @@ class Login_model extends CI_Model {
 			$data[ 'name' ] = $person->first_name;
 
 			if ( $data[ 'type' ] == 'resident' ) {
+				// TODO replace storing everything in session by using a Person class with all relevant data
 				$this->session->id = $person->id;
 				$this->session->completedSessions = $person->completed_sessions;
 			}
