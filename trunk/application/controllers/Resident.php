@@ -62,7 +62,7 @@ class Resident extends CI_Controller {
 			$this->Answer_model->storeAnswer( $residentID, $questionID, $chosenOption, $currentSession );
 
 		$this->parser->parse( 'resident/resident_main', $data );
-	}
+        }
 
 	function question()
 	{
@@ -89,11 +89,28 @@ class Resident extends CI_Controller {
 			$this->session->questions = $this->Question_model->getAllQuestionsFrom( 'english', $category );
 		}
 
-		// get index of current question
 		if ( isset( $_GET[ 'index' ] ) ) {
 			$index = $this->input->get( 'index' );
 		} else {
 			$index = 0;
+		}
+                
+                if ( isset( $_POST['option'] ) ) {
+                        $residentID = $this->session->id;
+                        $currentSession = ($this->session->competedSessions + 1); //TODO: use real values.
+                        if($index > 0) {
+                            $questionID = $this->session->questions[$index-1]->id;
+                        }
+                        else {
+                            $questionID = $this->session->questions[$index]->id;
+                        }
+                        foreach($options as $option) {
+                            if($option->option == $_POST['option']) {
+                                $chosenOption = $option->id;
+                                break;
+                            }
+                        }
+                        $this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption, $currentSession);
 		}
 
 		// check if caterogy is done
