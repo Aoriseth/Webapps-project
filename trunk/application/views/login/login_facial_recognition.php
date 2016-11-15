@@ -11,7 +11,7 @@
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
 
             if (navigator.getUserMedia) {       
-                navigator.getUserMedia({video: true}, handleVideo, videoError);
+                navigator.getUserMedia({video: {facingMode:"user"}}, handleVideo, videoError);
             }
 
             function handleVideo(stream) {
