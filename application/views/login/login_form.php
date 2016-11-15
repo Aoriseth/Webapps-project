@@ -14,7 +14,7 @@
                 <input class="form-control" name="password" id="focusedInput1" value="{password}" required type="password">
             </div>
             </div>
-            <input class="btn btn-default" type="submit" name="login" value="Log in">
+            <input class="btn btn-raised btn-default" type="submit" name="login" value="Log in">
 
     </form>
 </div>
