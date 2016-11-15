@@ -73,30 +73,32 @@ class Resident extends CI_Controller {
 			$this->session->questions = $this->Question_model->getAllQuestionsFrom( 'english', $category );
 		}
 
+		// get index of current question
 		if ( isset( $_GET[ 'index' ] ) ) {
 			$index = $this->input->get( 'index' );
 		} else {
 			$index = 0;
 		}
-                
-                if (isset($_POST['option'])) {
-                        $residentID = $this->session->id;
-                        $currentSession = ($this->session->completedSessions + 1); //TODO: use real values.
-                        if($index > 0) {
-                            $questionID = $this->session->questions[$index-1]->id;
-                        }
-                        else {
-                            $questionID = $this->session->questions[$index]->id;
-                        }
-                        
-                        $options = $this->Question_model->getOptionsFor($questionID);
-                        foreach($options as $option) {
-                            if($option->option == filter_input(INPUT_POST, 'option')) {
-                                $chosenOption = $option->id;
-                                break;
-                            }
-                        }
-                        $this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption, $currentSession);
+
+		// store the chosen option (if any)
+		if (isset($_POST['option'])) {
+			$residentID = $this->session->id;
+			$currentSession = ($this->session->completedSessions + 1); //TODO: use real values.
+			if($index > 0) {
+				$questionID = $this->session->questions[$index-1]->id;
+			}
+			else {
+				$questionID = $this->session->questions[$index]->id;
+			}
+
+			$options = $this->Question_model->getOptionsFor($questionID);
+			foreach($options as $option) {
+				if($option->option == filter_input(INPUT_POST, 'option')) {
+					$chosenOption = $option->id;
+					break;
+				}
+			}
+			$this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption, $currentSession);
 		}
 
 		// check if category is done
