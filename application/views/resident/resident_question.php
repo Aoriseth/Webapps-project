@@ -7,13 +7,13 @@ $progress = 0;
             <div class="col-md-1" ></div>
             <div class="col-md-10">
 
-                <div class="jumbotron" id="card_question">
+                <div class="jumbotron" id="jumbotron_question">
                     <p class="text-center">
                         {question}
                     </p>
                 </div>
 
-                <div class="jumbotron" id="card_answer">
+                <div class="jumbotron" id="jumbotron_answer">
                     <?php $emotion_index = 0;
                     foreach ($options as $option) { ?>
                         <div class="col-md-2" >
