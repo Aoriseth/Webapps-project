@@ -54,13 +54,6 @@ class Resident extends CI_Controller {
 		$data2[ 'categories' ] = $categories;
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_categories', $data2, true );
 
-			//Delete these lines: (only for testing)
-			$currentSession = 0;	// TODO use real values.
-			$residentID = "ep123";	// TODO get username from session (TODO Login.php)
-			$questionID = 10;
-			$chosenOption = 1;
-			$this->Answer_model->storeAnswer( $residentID, $questionID, $chosenOption, $currentSession );
-
 		$this->parser->parse( 'resident/resident_main', $data );
         }
 
@@ -68,15 +61,6 @@ class Resident extends CI_Controller {
 	{
 		$data[ 'navbar' ] = $this->load->view( 'resident/resident_navbar', '', true );
 		$data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
-
-		// store answer (if any)
-		if ( isset( $_POST[ 'option' ] ) ) {
-			$currentSession = 0;	// TODO use real values.
-			$residentID = "ep123";	// TODO get username from session (TODO Login.php)
-			$questionID = 10;
-			$chosenOption = 1;		// $this->input->post( 'option' );
-			$this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption, $currentSession);
-		}
 
 		// detect the category
 		if ( ! isset( $_GET[ 'category' ] ) ) {
@@ -95,17 +79,19 @@ class Resident extends CI_Controller {
 			$index = 0;
 		}
                 
-                if ( isset( $_POST['option'] ) ) {
+                if (isset($_POST['option'])) {
                         $residentID = $this->session->id;
-                        $currentSession = ($this->session->competedSessions + 1); //TODO: use real values.
+                        $currentSession = ($this->session->completedSessions + 1); //TODO: use real values.
                         if($index > 0) {
                             $questionID = $this->session->questions[$index-1]->id;
                         }
                         else {
                             $questionID = $this->session->questions[$index]->id;
                         }
+                        
+                        $options = $this->Question_model->getOptionsFor($questionID);
                         foreach($options as $option) {
-                            if($option->option == $_POST['option']) {
+                            if($option->option == filter_input(INPUT_POST, 'option')) {
                                 $chosenOption = $option->id;
                                 break;
                             }

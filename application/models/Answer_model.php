@@ -17,11 +17,11 @@ class Answer_model extends CI_Model {
      *      - answer            (int)       The entered answer.
      *      - currentSession    (int)       The number of the session in progress, meaning that (currentSession-1) questionnaires are completed by the given resident.
      */
-    function storeAnswer($residentID, $questionID, $answer, $currentSession) {
+    function storeAnswer($residentID, $questionID, $chosenOption, $currentSession) {
         $answerData = array(
             'elderly_id' => $residentID,
             'question_id' => $questionID,
-            'answer' => $answer,
+            'answer' => $chosenOption,
             'session' => $currentSession,
             'datetime_answered' => now()
         );

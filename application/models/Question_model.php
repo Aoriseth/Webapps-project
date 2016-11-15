@@ -35,7 +35,7 @@ class Question_model extends CI_Model {
 	
 	function getOptionsFor( $question_id ) {
 		$query = $this->db->query(
-			"SELECT  options.option"
+			"SELECT  options.id, options.option"
 			. " FROM a16_webapps_3.options"
 			. " JOIN a16_webapps_3.questions_options"
 				. " on (a16_webapps_3.options.id = a16_webapps_3.questions_options.option_id)"
