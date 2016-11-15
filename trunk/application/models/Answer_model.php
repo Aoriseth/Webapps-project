@@ -6,6 +6,7 @@ class Answer_model extends CI_Model {
         parent::__construct();
         
         $this->load->helper('date');
+        date_default_timezone_set('Europe/Brussels');
     }
     
     /**
@@ -23,7 +24,7 @@ class Answer_model extends CI_Model {
             'question_id' => $questionID,
             'answer' => $chosenOption,
             'session' => $currentSession,
-            'datetime_answered' => now()
+            'datetime_answered' => date('Y-m-d H:i:s')
         );
         $this->db->insert('a16_webapps_3.answers', $answerData);
     }
