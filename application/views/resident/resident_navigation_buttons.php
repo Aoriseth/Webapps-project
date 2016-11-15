@@ -1,5 +1,5 @@
 <form action=<?php echo base_url() ?> method="POST">
-    <input class="btn btn-primary" type="submit" name="Home" value="Home">
+    <input class="btn btn-primary" type="submit" name="home" value="Home">
 </form>
 
 <form action=<?php echo base_url().'index.php/logout' ?> method="POST">
