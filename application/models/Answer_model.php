@@ -19,10 +19,10 @@ class Answer_model extends CI_Model {
      */
     function storeAnswer($residentID, $questionID, $answer, $currentSession) {
         $answerData = array(
-            'elderly_id' => "ep123",
-            'question_id' => "4",
-            'answer' => "1",
-            'session' => "3",
+            'elderly_id' => $residentID,
+            'question_id' => $questionID,
+            'answer' => $answer,
+            'session' => $currentSession,
             'datetime_answered' => now()
         );
         $this->db->insert('a16_webapps_3.answers', $answerData);

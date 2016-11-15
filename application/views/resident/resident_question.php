@@ -18,7 +18,7 @@ $progress = 0;
                     foreach ($options as $option) { ?>
                         <div class="col-md-2" >
                             <form class="button_form" action="<?php echo base_url() . 'index.php/resident/question?category=' . $category . '&index=' . ($index + 1) ?>" method="POST" class="text-center">
-                                <button class="button_emotion" type="submit" name="category" value="<?php echo htmlspecialchars($option->option) ?>"> 
+                                <button class="button_emotion" type="submit" name="option" value="<?php echo htmlspecialchars($option->option) ?>"> 
                                     <img src=<?php echo base_url() . 'assets/imgs/emotions/' . $emotion_index . ".png" ?>>                                   
                                 </button></br>
                                 <?php echo htmlspecialchars($option->option); $emotion_index++; ?>
