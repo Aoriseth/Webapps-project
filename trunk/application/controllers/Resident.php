@@ -10,7 +10,7 @@ class Resident extends CI_Controller {
 
 		$this->load->library( 'parser' );
 		$this->load->model( 'Question_model' );
-                $this->load->model('Answer_model');
+		$this->load->model('Answer_model');
 	}
 
 	function index()
@@ -20,71 +20,83 @@ class Resident extends CI_Controller {
 
 	function home()
 	{
+		$data[ 'navbar' ] = $this->load->view( 'resident/resident_navbar', '', true );
+		$data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
+
 		$data2[ 'name' ] = $this->session->first_name;
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_home', $data2, true );
-                $data['navbar'] = $this->load->view( 'resident/resident_navbar', '', true );
-                $data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
 
 		$this->parser->parse( 'resident/resident_main', $data );
 	}
 
 	function gallery()
 	{
+		$data[ 'navbar' ] = $this->load->view( 'resident/resident_navbar', '', true );
+		$data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
+
 		$data2[ 'name' ] = $this->session->first_name;
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_gallery', $data2, true );
-                $data['navbar'] = $this->load->view( 'resident/resident_navbar', '', true );
-                $data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
 
 		$this->parser->parse( 'resident/resident_main', $data );
 	}
-	
+
 	function categories()
 	{
+		$data[ 'navbar' ] = $this->load->view( 'resident/resident_navbar', '', true );
+		$data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
+
 		// get 3 random categories
-		$categories = $this->Question_model->getAllCategories( 'english' ); // TODO check if category already done
+		// TODO check if category is already done
+		$categories = $this->Question_model->getAllCategories( 'english' );
 		shuffle( $categories );
 		$categories = array_splice( $categories, 0, 3 );
 
 		$data2[ 'categories' ] = $categories;
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_categories', $data2, true );
-                $data['navbar'] = $this->load->view( 'resident/resident_navbar', '', true );
-                $data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
+
+			//Delete these lines: (only for testing)
+			$currentSession = 0;	// TODO use real values.
+			$residentID = "ep123";	// TODO get username from session (TODO Login.php)
+			$questionID = 10;
+			$chosenOption = 1;
+			$this->Answer_model->storeAnswer( $residentID, $questionID, $chosenOption, $currentSession );
 
 		$this->parser->parse( 'resident/resident_main', $data );
-                
-                //Delete these lines: (only for testing)
-                $currentSession = 0; //TODO: use real values.
-                        $residentID = "ep123";
-                        $questionID = 10;
-                        $chosenOption = 1;
-                        $this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption, $currentSession);
 	}
 
 	function question()
-	{	
-                if ( ! isset( $_GET[ 'category' ] ) ) {
+	{
+		$data[ 'navbar' ] = $this->load->view( 'resident/resident_navbar', '', true );
+		$data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
+
+		// store answer (if any)
+		if ( isset( $_POST[ 'option' ] ) ) {
+			$currentSession = 0;	// TODO use real values.
+			$residentID = "ep123";	// TODO get username from session (TODO Login.php)
+			$questionID = 10;
+			$chosenOption = 1;		// $this->input->post( 'option' );
+			$this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption, $currentSession);
+		}
+
+		// detect the category
+		if ( ! isset( $_GET[ 'category' ] ) ) {
 			redirect( 'resident/categories' );
 		}
-		$category = $_GET[ 'category' ];	// TODO $this->input->get/post does not work for some reason
+		$category = $this->input->get( 'category' );
 
+		// grab the questions from database, if not aready loaded into session
 		if ( ! isset( $this->session->questions ) ) {
 			$this->session->questions = $this->Question_model->getAllQuestionsFrom( 'english', $category );
 		}
 
-		if ( isset( $_POST[ 'option' ] ) ) {
-                        $currentSession = 0; //TODO: use real values.
-                        $residentID = "ep123";
-                        $questionID = 10;
-                        $chosenOption = 1;
-                        $this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption, $currentSession);
-		}
-
+		// get index of current question
 		if ( isset( $_GET[ 'index' ] ) ) {
-			$index = $_GET[ 'index' ];		// TODO input filtering?
+			$index = $this->input->get( 'index' );
 		} else {
 			$index = 0;
 		}
 
+		// check if caterogy is done
 		if ( $index >= count( $this->session->questions ) ) {
 			unset( $this->session->questions );
 			redirect( 'resident/completed?category='.$category );
@@ -100,24 +112,24 @@ class Resident extends CI_Controller {
 		$data2[ 'options' ] = $options;
                
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_question', $data2, true );
-                $data['navbar'] = $this->load->view( 'resident/resident_navbar', '', true );
-                $data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
-                
+
 		$this->parser->parse( 'resident/resident_main', $data );
 	}
 
 	function completed()
 	{
+		$data['navbar'] = $this->load->view( 'resident/resident_navbar', '', true );
+		$data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
+
 		if ( isset( $_GET[ 'category' ] ) ) {
-			$category = $_GET[ 'category' ];	// TODO filtering?
+			$category = $this->input->get( 'category' );
 		} else {
+			// TODO error message?
 			$category = '';
 		}
 
 		$data2[ 'category' ] = htmlspecialchars( $category );
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_completed', $data2, true );
-                $data['navbar'] = $this->load->view( 'resident/resident_navbar', '', true );
-                $data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
 
 		$this->parser->parse( 'resident/resident_main', $data );
 	}
