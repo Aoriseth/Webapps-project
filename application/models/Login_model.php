@@ -55,8 +55,11 @@ class Login_model extends CI_Model {
 		if ( password_verify( $password, $person->password ) ) {
 			$data[ 'succeeded' ] = true;
 			$data[ 'name' ] = $person->first_name;
-                        $this->session->id = $person->id;
-                        $this->session->completedSessions = $person->completed_sessions;
+
+			if ( $data[ 'type' ] == 'resident' ) {
+				$this->session->id = $person->id;
+				$this->session->completedSessions = $person->completed_sessions;
+			}
 		} else {
 			$data[ 'error' ] = 'Incorrect password.';
 		}
