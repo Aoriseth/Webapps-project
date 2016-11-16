@@ -9,7 +9,7 @@
 
             
             <p>
-                <img src=<?php echo base_url().'assets/imgs/images.jpg'?> alt="Mountain View" style="width:100%;height:40%;" class="center-block">
+                <img src=<?php echo base_url().'assets/imgs/puzzle.jpg'?> alt="Puzzle View" style="width:100%;height:40vw;" class="center-block">
             </p>
 
             <form action=<?php echo base_url().'index.php/resident/categories' ?> method="POST" class="text-center">
