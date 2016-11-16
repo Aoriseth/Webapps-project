@@ -1,8 +1,11 @@
+<!DOCTYPE html>
+
+<html lang="en">
 <head> 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Grace-Age</title>
+    <title>Grace-Age : Caregiver Home</title>
     <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>" rel="stylesheet">
@@ -77,8 +80,8 @@
         </table>
     </div>
 
-<script src="<?php echo base_url(); ?>assets/jquery/jquery-2.1.4.min.js')?>"></script>
-<script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js')?>"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/datatables/js/jquery.dataTables.min.js')?>"></script>
 <script src="<?php echo base_url(); ?>assets/datatables/js/dataTables.bootstrap.js')?>"></script>
 <script src="<?php echo base_url(); ?>assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
@@ -289,18 +292,18 @@ function delete_person(id)
             <div class="modal-body form">
                 <form action="#" id="form" class="form-horizontal">
                     <input type="hidden" value="" name="id"/> 
-                    <div class="form-body">
+                    <div class="form-body">                
                         <div class="form-group">
                             <label class="control-label col-md-3">First Name</label>
                             <div class="col-md-9">
-                                <input name="firstName" placeholder="First Name" class="form-control" type="text">
+                                <input name="first_name" placeholder="First Name" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3">Last Name</label>
                             <div class="col-md-9">
-                                <input name="lastName" placeholder="Last Name" class="form-control" type="text">
+                                <input name="last_name" placeholder="Last Name" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
@@ -309,26 +312,72 @@ function delete_person(id)
                             <div class="col-md-9">
                                 <select name="gender" class="form-control">
                                     <option value="">--Select Gender--</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>                                    
                                 </select>
                                 <span class="help-block"></span>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Address</label>
+                         <div class="form-group">
+                            <label class="control-label col-md-3">Password</label>
                             <div class="col-md-9">
-                                <textarea name="address" placeholder="Address" class="form-control"></textarea>
+                                <input name="password" placeholder="Password" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
-                        </div>
+                        </div>                      
                         <div class="form-group">
                             <label class="control-label col-md-3">Date of Birth</label>
                             <div class="col-md-9">
-                                <input name="dob" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
+                                <input name="date_of_birth" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>                
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Language</label>
+                            <div class="col-md-9">
+                                <input name="language" placeholder="Language" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Floor Number</label>
+                            <div class="col-md-9">
+                                <input name="floor_number" placeholder="Floor Number" class="form-control" type="text">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Last Domicile</label>
+                            <div class="col-md-9">
+                                <input name="last_domicile" placeholder="Last Domicile" class="form-control" type="text">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Account Created By</label>
+                            <div class="col-md-9">
+                                <input name="account_created_by" placeholder="Account Created By" class="form-control" type="text">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Account Created On</label>
+                            <div class="col-md-9">                                
+                                <input name="account_created_on" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                     </div>
                 </form>
             </div>
@@ -341,4 +390,5 @@ function delete_person(id)
 </div><!-- /.modal -->
 <!-- End Bootstrap modal -->
 </body>
+</html>
 
