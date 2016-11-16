@@ -5,17 +5,17 @@
  */
 class Caregiver extends Person {
 	
-	private $email;
-	private $phone_number;
+	private $_email;
+	private $_phone_number;
 	
 	/**
 	 * Constructor, initializing this new caregiver with an given db record of this caregiver containing:
-	 *		- first_name:			the first name of this caregiver.
-	 *		- last_name:			the last name of this caregiver.
-	 *		- id:					the id of this caregiver.
-	 *		- gender:				the gender of this caregiver.
-	 *		- email:				the email address of this caregiver.
-	 *		- phone_number:			the phone number of this caregiver.
+	 *		- _first_name:			the first name of this caregiver.
+	 *		- _last_name:			the last name of this caregiver.
+	 *		- _id:					the id of this caregiver.
+	 *		- _gender:				the gender of this caregiver.
+	 *		- _email:				the email address of this caregiver.
+	 *		- _phone_number:			the phone number of this caregiver.
 	 */
 	public function __construct($caregiver_db_record) {
 		parent::__construct(
@@ -34,18 +34,18 @@ class Caregiver extends Person {
 	 */
 	
 	function setEmail($email_to_set) {
-		$this->email = $email_to_set;
+		$this->_email = $email_to_set;
 	}
 	
 	function getEmail() {
-		return $this->email;
+		return $this->_email;
 	}
 	
 	function setPhoneNumber($phone_number_to_set) {
-		$this->phone_number = $phone_number_to_set;
+		$this->_phone_number = $phone_number_to_set;
 	}
 	
 	function getPhoneNumber() {
-		return $this->phone_number;
+		return $this->_phone_number;
 	}
 }
