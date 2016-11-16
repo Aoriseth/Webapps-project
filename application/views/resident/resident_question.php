@@ -19,7 +19,7 @@ $progress = 0;
                         <div class="col-xs-2" >
                             <form class="button_form" action="<?php echo base_url() . 'index.php/resident/question?category=' . $category . '&index=' . ($index + 1) ?>" method="POST" class="text-center">
                                 <button class="button_emotion" type="submit" name="option" value="<?php echo htmlspecialchars($option->option) ?>"> 
-                                    <img src=<?php echo base_url() . 'assets/imgs/emotions/' . $emotion_index . ".png" ?>>                                   
+                                    <img src=<?php echo base_url() . 'assets/imgs/emotions/' . $emotion_index . ".png" ?> >                                   
                                 </button></br>
                                 <?php echo htmlspecialchars($option->option); $emotion_index++; ?>
                             </form>
@@ -34,26 +34,29 @@ $progress = 0;
         
     <div class="row">
 
-            <div class="col-xs-1" ></div>
-            <div class="col-xs-8">
+    
+
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="0"
                          aria-valuemin="0" aria-valuemax="100" 
                          style="width: <?php echo ( (int)($index + 1)/ (int)$category_size * 100 )?>%">
                                 <!--span class="sr-only">70% Complete</span-->
                         <p class="text-center">
-                            Question <?php echo $index + 1 ?> of {category_size} from {category}.
+                            Question <?php echo $index + 1 ?> of {category_size}
                         </p>
                     </div>
                 </div>
-            </div>
+    </div>
+    <div class="row"> 
+        <div class="col-xs-3" >
             <?php if ($index > 0) { ?>
                 <form action="<?php echo base_url() . 'index.php/resident/question?category=' . $category . '&index=' . ($index - 1) ?>" method="POST">
-                    <input class="btn btn-primary, col-md-1" type="submit" name="back" value="Go back">
+                    <input class="btn btn-primary" type="submit" name="back" value="Go back" style="width:100%">
                 </form>
             <?php } ?>
-            <div class="col-xs-1" ></div>
+        </div>
     </div>
+    
 </div>
 
 <script>
