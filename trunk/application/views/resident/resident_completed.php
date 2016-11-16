@@ -1,10 +1,17 @@
-<p>
-	Congratulations, you've just completed the category {category}.
-</p>
-<p>
-	<i>Show animation in which they receive a puzzle piece.</i>
-</p>
-
-<form action=<?php echo base_url().'index.php/resident/categories' ?> method="POST">
-	<input type="submit" name="Categories" value="Do a new category!">
-</form>
+<div class="container-fluid">
+    <div class="row">
+        <p>
+                Congratulations, you've just completed the category {category}.
+        </p>
+        <p>
+                <i>Show animation in which they receive a puzzle piece.</i>
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">
+            <form action=<?php echo base_url().'index.php/resident/categories' ?> method="POST">
+                <input class="btn btn-primary" type="submit" name="Categories" value="Do a new category!" style="size: 100%">
+            </form>
+        </div>
+    </div>
+</div>
