@@ -3,9 +3,9 @@ $progress = 0;
 ?>
 <div class="container">
     <div class="row">
-        <div class="col-md-12" >
-            <div class="col-md-1" ></div>
-            <div class="col-md-10">
+
+            <div class="col-xs-1" ></div>
+            <div class="col-xs-10">
 
                 <div class="jumbotron" id="jumbotron_question">
                     <p class="text-center">
@@ -16,7 +16,7 @@ $progress = 0;
                 <div class="jumbotron" id="jumbotron_answer">
                     <?php $emotion_index = 0;
                     foreach ($options as $option) { ?>
-                        <div class="col-md-2" >
+                        <div class="col-xs-2" >
                             <form class="button_form" action="<?php echo base_url() . 'index.php/resident/question?category=' . $category . '&index=' . ($index + 1) ?>" method="POST" class="text-center">
                                 <button class="button_emotion" type="submit" name="option" value="<?php echo htmlspecialchars($option->option) ?>"> 
                                     <img src=<?php echo base_url() . 'assets/imgs/emotions/' . $emotion_index . ".png" ?>>                                   
@@ -27,16 +27,15 @@ $progress = 0;
                     <?php } ?>
                 </div>
             </div>
-            <div class="col-md-1" ></div>
-        </div>
+            <div class="col-xs-1" ></div>
     </div>
     
     <p style="margin-top:10px;">
         
     <div class="row">
-        <div class="col-md-12" >
-            <div class="col-md-1" ></div>
-            <div class="col-md-8">
+
+            <div class="col-xs-1" ></div>
+            <div class="col-xs-8">
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="0"
                          aria-valuemin="0" aria-valuemax="100" 
@@ -53,8 +52,7 @@ $progress = 0;
                     <input class="btn btn-primary, col-md-1" type="submit" name="back" value="Go back">
                 </form>
             <?php } ?>
-            <div class="col-md-1" ></div>
-        </div>
+            <div class="col-xs-1" ></div>
     </div>
 </div>
 
