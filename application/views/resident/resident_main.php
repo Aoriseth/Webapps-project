@@ -12,18 +12,17 @@
 		{navbar}
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-2" >
+                        <div class="col-xs-2" >
                             <form action=<?php echo base_url().'index.php/resident/gallery' ?> method="POST" class="text-center">
                                 <input class="btn btn-primary" type="submit" name="Gallery" value="View gallery">
                             </form>
                         </div>
-                        <div class="col-lg-8">
-                            <!--div class="jumbotron"-->
-                            
+                        <div class="col-xs-8">
+                            <!--div class="jumbotron"-->       
                                 {content}		<!-- the main element of the page (login form etc) -->
                             <!--/div-->
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-xs-2">
                             {navigation_buttons}
                         </div>
                     </div>

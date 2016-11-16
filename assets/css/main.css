@@ -56,6 +56,8 @@ body {
 .glyphicon-user{
     font-size: 50px;
     float: right;
+    position: absolute;
+    right: 1px;
 }
 
 nav.ul{
