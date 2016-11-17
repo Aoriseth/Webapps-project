@@ -4,8 +4,8 @@ $progress = 0;
 <div class="container">
     <div class="row">
 
-            <div class="col-xs-1" ></div>
-            <div class="col-xs-10">
+            <!--div class="col-xs-1" ></div-->
+            <div class="col-xs-12">
 
                 <div class="jumbotron" id="jumbotron_question">
                     <p class="text-center">
@@ -29,7 +29,7 @@ $progress = 0;
                     <?php } ?>
                 </div>
             </div>
-            <div class="col-xs-1" ></div>
+            <!--div class="col-xs-1" ></div-->
     </div>
     
     <p style="margin-top:10px;">
@@ -50,7 +50,7 @@ $progress = 0;
 
     <!--/div-->
     <!--div class="row"--> 
-        <div class="col-xs-3" >
+        <div class="col-xs-2" >
             <?php if ($index > 0) { ?>
                 <form action="<?php echo base_url() . 'index.php/resident/question?category=' . $category . '&index=' . ($index - 1) ?>" method="POST">
                     <input class="btn btn-raised btn-default" type="submit" name="back" value="Go back" style="width:100%">
