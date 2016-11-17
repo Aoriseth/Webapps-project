@@ -34,7 +34,7 @@ body {
     font-size: 18px;
 }
 
-.button_emotion img{
+#button_emotion img{
     display: inline-block;
     align-content: center;
     width: 80%;      
