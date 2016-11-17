@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 body {
-    background: #E8F0FE;
+    background: #E8F0FE !important;
     padding-top: 70px;
 }
 
