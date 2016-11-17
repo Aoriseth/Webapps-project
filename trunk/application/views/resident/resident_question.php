@@ -35,21 +35,21 @@ $progress = 0;
     <p style="margin-top:10px;">
         
     <div class="row">
-
-    
-
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0"
-                         aria-valuemin="0" aria-valuemax="100" 
-                         style="width: <?php echo ( (int)($index + 1)/ (int)$category_size * 100 )?>%">
-                                <!--span class="sr-only">70% Complete</span-->
-                        <p class="text-center">
-                            Question <?php echo $index + 1 ?> of {category_size}
-                        </p>
-                    </div>
+        <div class="col-xs-10">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="0"
+                     aria-valuemin="0" aria-valuemax="100" 
+                     style="width: <?php echo ( (int)($index + 1)/ (int)$category_size * 100 )?>%">
+                            <!--span class="sr-only">70% Complete</span-->
+                    <p class="text-center">
+                        Question <?php echo $index + 1 ?> of {category_size}
+                    </p>
                 </div>
-    </div>
-    <div class="row"> 
+            </div>
+        </div>
+
+    <!--/div-->
+    <!--div class="row"--> 
         <div class="col-xs-3" >
             <?php if ($index > 0) { ?>
                 <form action="<?php echo base_url() . 'index.php/resident/question?category=' . $category . '&index=' . ($index - 1) ?>" method="POST">
