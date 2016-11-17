@@ -13,7 +13,7 @@ body {
     padding-top: 70px;
 }
 
-.container{
+#container_resident {
     margin-left: auto;
     margin-right: auto;
     width: auto !important;
