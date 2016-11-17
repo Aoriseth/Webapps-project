@@ -25,7 +25,7 @@
     
     <body>
         {navbar}
-        <div class="container">
+        <div class="container" id="container_resident">
             <div class="row">
                 <div class="col-xs-2" >
                     <form action=<?php echo base_url() . 'index.php/resident/gallery' ?> method="POST" class="text-center">
