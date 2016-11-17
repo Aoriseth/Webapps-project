@@ -27,17 +27,17 @@
         {navbar}
         <div class="container" id="container_resident">
             <div class="row">
-                <div class="col-xs-2" >
+                <div class="col-lg-2 col-md-2 col-sm-6" >
                     <form action=<?php echo base_url() . 'index.php/resident/gallery' ?> method="POST" class="text-center">
                         <input class="btn btn-raised btn-default" type="submit" name="Gallery" value="View gallery" style="width: 100%">
                     </form>
                 </div>
-                <div class="col-xs-8">
+                <div class="col-lg-8 col-md-10 col-sm-8">
                     <!--div class="jumbotron"-->       
                     {content}		<!-- the main element of the page (login form etc) -->
                     <!--/div-->
                 </div>
-                <div class="col-xs-2">
+                <div class="col-lg-2 col-md-2 col-sm-6">
                     {navigation_buttons}
                 </div>
             </div>
