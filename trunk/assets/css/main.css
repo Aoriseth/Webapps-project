@@ -43,6 +43,10 @@ body {
     background-size: 100% 100%;
 }
 
+#progress_col{
+    transform: translateY(100%);
+}
+
 .glyphicon-user{
     font-size: 50px;
     float: right;
