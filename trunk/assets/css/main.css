@@ -34,9 +34,10 @@ body {
     font-size: 18px;
 }
 
-#button_emotion img{
-    max-width: 150px;
-    max-height: 150px;
+#button_emotion {
+    display: block;
+    width: 100%;
+    background-size: 100% 100%;
 }
 
 /*.navbar-default { 
