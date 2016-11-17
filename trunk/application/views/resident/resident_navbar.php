@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top navbar-default" style="height: 50px">
+<nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid" >
         <div class="navbar-header">
             <a class="navbar-brand">
