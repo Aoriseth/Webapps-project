@@ -1,7 +1,7 @@
 <?php
 $progress = 0;
 ?>
-<div class="container">
+<div class="container" id="container_resident">
     <div class="row">
 
             <!--div class="col-xs-1" ></div-->
