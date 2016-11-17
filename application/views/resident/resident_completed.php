@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-xs-3">
             <form action=<?php echo base_url().'index.php/resident/categories' ?> method="POST">
-                <input class="btn btn-primary" type="submit" name="Categories" value="Do a new category!" style="size: 100%">
+                <input class="btn btn-raised btn-default" type="submit" name="Categories" value="Do a new category!" style="size: 100%">
             </form>
         </div>
     </div>

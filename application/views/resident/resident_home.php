@@ -13,7 +13,7 @@
             </p>
 
             <form action=<?php echo base_url().'index.php/resident/categories' ?> method="POST" class="text-center">
-                <input class="btn btn-primary" type="submit" name="Categories" value="Start a new test!" style="width: 50%">
+                <input class="btn btn-raised btn-default" type="submit" name="Categories" value="Start a new test!" style="width: 50%">
             </form>
 
     </div>
