@@ -16,7 +16,7 @@ $progress = 0;
                 <div class="jumbotron" id="jumbotron_answer">
                     <?php $emotion_index = 0;
                     foreach ($options as $option) { ?>
-                        <div class="col-xs-2" >
+                    <div class="col-xs-2" id="col_btn">
                             <form class="form_btn" action="<?php echo base_url() . 'index.php/resident/question?category=' . $category . '&index=' . ($index + 1) ?>" method="POST" class="text-center">
                                 <button class="btn btn-raised btn-default" id="button_emotion" 
                                         type="submit" name="option" value="<?php echo htmlspecialchars($option->option) ?>"
