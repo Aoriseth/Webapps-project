@@ -33,19 +33,13 @@ body {
     min-height: 200px;
     font-size: 18px;
 }
-/*
+
 .button_emotion img{
-    display: block;
-    height: 100px;  
-    width: 100px;
+    display: inline-block;
+    align-content: center;
+    width: 80%;      
+    height: 80%; 
 }
-
-.button_form {
-    min-width: 100px;
-    min-height: 100px;
-}
-*/
-
 
 /*.navbar-default { 
     background-color: #337ab7;
