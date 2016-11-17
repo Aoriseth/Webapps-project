@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Grace-Age : Caregiver Home</title>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
     <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>" rel="stylesheet">
@@ -24,6 +25,9 @@
 	It seems that all your residents are still alive. Good job.
 </p>
 <body>
+    <div>
+        {navbar}
+    </div>
     <div class="container">
         <h1 style="font-size:20pt">Health care Patients</h1>
 
@@ -179,15 +183,15 @@ function edit_person(id)
             $('[name="gender"]').val(data.gender);
             $('[name="password"]').val(data.password);
             $('[name="date_of_birth"]').datepicker('update',date_of_birth);
-             $('[name="language"]').val(data.language);
+            $('[name="language"]').val(data.language);
             $('[name="floor_number"]').val(data.floor_number);
             $('[name="last_domicile"]').val(data.last_domicile);           
-             $('[name="last_activity"]').datepicker('update',last_activity);           
-             $('[name="last_completed"]').datepicker('update',last_completed);
+            $('[name="last_activity"]').datepicker('update',last_activity);           
+            $('[name="last_completed"]').datepicker('update',last_completed);
             $('[name="completed_sessions"]').val(data.completed_sessions);
             $('[name="session_in_progress"]').val(data.session_in_progress);
             $('[name="account_created_by"]').val(data.account_created_by);          
-             $('[name="account_created_on"]').datepicker('update',account_created_on);
+            $('[name="account_created_on"]').datepicker('update',account_created_on);
           
 
             $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
