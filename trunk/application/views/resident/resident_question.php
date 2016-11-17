@@ -56,8 +56,8 @@ $progress = 0;
                     <input class="btn btn-raised btn-default" type="submit" name="back" value="Go back" style="width:100%">
                 </form>
             <?php } ?>
-                    <input class="btn btn-raised btn-default" type="submit" name="back" value="Go back" style="width:100%">
             <?php 
+                <input class="btn btn-raised btn-default" type="submit" name="back" value="Go back" style="width:100%; color:LightGray;">
             ?>
         </div>
     </div>
