@@ -66,6 +66,13 @@ class Resident extends CI_Controller {
 		 * FUTURE
 		 *	- detect if session in progress
 		 */
+		/*
+		 * TODO
+		 * progress bar is confusion: we start at 1?
+		 * confirmation screen should also show load bar
+		 * 
+		 * Work with AJAX?
+		 */
 		if ( ! isset( $_GET[ 'category' ] ) ) {
 			redirect( 'resident/categories' );
 		}
