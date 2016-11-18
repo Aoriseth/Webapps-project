@@ -32,7 +32,7 @@
                         <input class="btn btn-raised btn-default" type="submit" name="Gallery" value="View gallery" style="width: 100%">
                     </form>
                 </div>
-                <div class="col-lg-8 col-md-10 col-sm-8">
+                <div class="col-lg-8 col-md-10 col-sm-12">
                     <!--div class="jumbotron"-->       
                     {content}		<!-- the main element of the page (login form etc) -->
                     <!--/div-->
