@@ -1,8 +1,8 @@
-<div class="jumbotron">
+<div class="jumbotron text-center">
     <p>
             <i>Log in using facial recognition.</i>
     </p>
-        <video id="camfr" width="70%" height="70%" autoplay="true" align="center">
+        <video id="camfr" width="50%" height="50%" autoplay="true">
             
         </video>
         <script>
