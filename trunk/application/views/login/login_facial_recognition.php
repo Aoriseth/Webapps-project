@@ -2,7 +2,7 @@
     <p>
             <i>Log in using facial recognition.</i>
     </p>
-        <video id="camfr" width="100%" height="70%" autoplay="true">
+        <video id="camfr" width="70%" height="70%" autoplay="true" align="center">
             
         </video>
         <script>
