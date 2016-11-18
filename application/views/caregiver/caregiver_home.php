@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 
 <html lang="en">
 <head> 
@@ -10,13 +10,13 @@
     <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+     HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries 
+     WARNING: Respond.js doesn't work if you view the page via file:// 
+    [if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    </head> 
+    <![endif]
+    </head> -->
 <h1>Home page for the caregivers</h1>
 <p>
 	Hello {name}.
@@ -24,7 +24,7 @@
 <p>
 	It seems that all your residents are still alive. Good job.
 </p>
-<body>
+<!--<body>
     <div>
         {navbar}
     </div>
@@ -285,7 +285,7 @@ function delete_person(id)
 
 </script>
 
-<!-- Bootstrap modal -->
+ Bootstrap modal 
 <div class="modal fade" id="modal_form" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -389,10 +389,10 @@ function delete_person(id)
                 <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!-- End Bootstrap modal -->
+        </div> /.modal-content 
+    </div> /.modal-dialog 
+</div> /.modal 
+ End Bootstrap modal 
 </body>
 </html>
-
+-->
