@@ -1,3 +1,8 @@
+<!--
+	This stuff should be in caregiver_main.
+	caregiver_home is the content for the home page.
+-->
+
 <!--<!DOCTYPE html>
 
 <html lang="en">
