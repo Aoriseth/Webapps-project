@@ -16,6 +16,7 @@
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
                 <script src="<?php echo base_url(); ?>assets/js/material.js"></script>
                 <script src="<?php echo base_url(); ?>assets/js/ripples.js"></script>
+                <script src="<?php echo base_url(); ?>assets/js/FRLambdaAPI.js"></script>
                  <!-- Activate Material Design -->
                 <script>$.material.init();</script>
                  
