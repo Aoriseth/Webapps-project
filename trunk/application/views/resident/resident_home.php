@@ -1,6 +1,6 @@
 
-<div class="container">
-    <div class="row">
+<div class="container-fluid">
+    <div class="row" >
         <p>
             Hello {name}.
         </p>
