@@ -21,7 +21,8 @@ class Resident extends CI_Controller {
 	function home()
 	{
 		$data[ 'navbar' ] = $this->load->view( 'resident/resident_navbar', '', true );
-		$data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
+		$data2[ 'page' ] = 'home';
+		$data[ 'navigation_buttons' ] = $this->parser->parse( 'resident/resident_navigation_buttons', $data2, true );
 
 		$data2[ 'name' ] = $this->session->first_name;
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_home', $data2, true );
@@ -32,7 +33,8 @@ class Resident extends CI_Controller {
 	function gallery()
 	{
 		$data[ 'navbar' ] = $this->load->view( 'resident/resident_navbar', '', true );
-		$data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
+		$data2[ 'page' ] = 'gallery';
+		$data[ 'navigation_buttons' ] = $this->parser->parse( 'resident/resident_navigation_buttons', $data2, true );
 
 		$data2[ 'name' ] = $this->session->first_name;
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_gallery', $data2, true );
@@ -43,7 +45,8 @@ class Resident extends CI_Controller {
 	function categories()
 	{
 		$data[ 'navbar' ] = $this->load->view( 'resident/resident_navbar', '', true );
-		$data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
+		$data2[ 'page' ] = 'categories';
+		$data[ 'navigation_buttons' ] = $this->parser->parse( 'resident/resident_navigation_buttons', $data2, true );
 
 		// get 3 random categories
 		// TODO check if category is already done
@@ -78,7 +81,8 @@ class Resident extends CI_Controller {
 		}
 
 		$data[ 'navbar' ] = $this->load->view( 'resident/resident_navbar', '', true );
-		$data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
+		$data2[ 'page' ] = 'question';
+		$data[ 'navigation_buttons' ] = $this->parser->parse( 'resident/resident_navigation_buttons', $data2, true );
 
 		// get category
 		$category = $this->input->get( 'category' );
@@ -140,7 +144,8 @@ class Resident extends CI_Controller {
 	function completed()
 	{
 		$data['navbar'] = $this->load->view( 'resident/resident_navbar', '', true );
-		$data[ 'navigation_buttons' ] = $this->load->view( 'resident/resident_navigation_buttons', '', true );
+		$data2[ 'page' ] = 'completed';
+		$data[ 'navigation_buttons' ] = $this->parser->parse( 'resident/resident_navigation_buttons', $data2, true );
                 
 		if ( isset( $_GET[ 'category' ] ) ) {
 			$category = $this->input->get( 'category' );
