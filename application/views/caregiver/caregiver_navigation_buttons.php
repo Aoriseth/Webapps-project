@@ -4,7 +4,11 @@
 
 	Let me know if this is useful and I'll update all the controllers.
 	 - Koenraad
+
+	If this isn't useful. Just delete this comment.
 -->
+
+<!-- I am currently on page '{page}' -->
 
 <form action=<?php echo base_url() ?> method="POST">
     <input class="btn btn-primary" type="submit" name="home" value="Home">

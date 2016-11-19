@@ -18,21 +18,21 @@ class Caregiver extends CI_Controller {
 
 	function home()
 	{
-		$data[ 'navbar' ] = $this->load->view( 'caregiver/caregiver_navbar', '', true );
-		$data[ 'navigation_buttons' ] = $this->load->view( 'caregiver/caregiver_navigation_buttons', '', true );
+		$data2[ 'page' ] = 'home';
+		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
+		$data[ 'navigation_buttons' ] = $this->parser->parse( 'caregiver/caregiver_navigation_buttons', $data2, true );
 
 		$data2[ 'name' ] = $this->session->first_name;
 		$data[ 'content' ] = $this->parser->parse( 'caregiver/caregiver_home', $data2, true );
 
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
-	// I added a comment here
         
 	function groups()
 	{
 		$data2[ 'page' ] = 'groups';
 		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
-		$data[ 'navigation_buttons' ] = $this->load->view( 'caregiver/caregiver_navigation_buttons', '', true );
+		$data[ 'navigation_buttons' ] = $this->parser->parse( 'caregiver/caregiver_navigation_buttons', $data2, true );
 
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_groups', '', true );
 		
@@ -43,7 +43,7 @@ class Caregiver extends CI_Controller {
 	{
 		$data2[ 'page' ] = 'statistics';
 		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
-		$data[ 'navigation_buttons' ] = $this->load->view( 'caregiver/caregiver_navigation_buttons', '', true );
+		$data[ 'navigation_buttons' ] = $this->parser->parse( 'caregiver/caregiver_navigation_buttons', $data2, true );
 		
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_statistics', '', true );
 
@@ -54,7 +54,7 @@ class Caregiver extends CI_Controller {
 	{
 		$data2[ 'page' ] = 'overview';
 		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
-		$data[ 'navigation_buttons' ] = $this->load->view( 'caregiver/caregiver_navigation_buttons', '', true );
+		$data[ 'navigation_buttons' ] = $this->parser->parse( 'caregiver/caregiver_navigation_buttons', $data2, true );
 
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_overview', '', true );
 		
@@ -63,8 +63,9 @@ class Caregiver extends CI_Controller {
 	
 	function resident()
 	{
-		$data[ 'navbar' ] = $this->load->view( 'caregiver/caregiver_navbar', '', true );
-		$data[ 'navigation_buttons' ] = $this->load->view( 'caregiver/caregiver_navigation_buttons', '', true );
+		$data2[ 'page' ] = 'resident';
+		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
+		$data[ 'navigation_buttons' ] = $this->parser->parse( 'caregiver/caregiver_navigation_buttons', $data2, true );
 
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_resident', '', true );
 		
