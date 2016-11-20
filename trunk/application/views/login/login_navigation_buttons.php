@@ -1,9 +1,9 @@
 <div class="jumbotron">
     <form action=<?php echo base_url() . 'index.php/login/facial_recognition' ?> method="POST">
-            <input class="withripple btn btn-raised btn-default<?php if ( $page == 'facial_recognition' ) { ?> disabled<?php } ?>" type="submit" name="login_facial_recognition" value="Log in using facial recognition">
+            <input <?php if ( $page == 'facial_recognition' ) { ?>disabled<?php } ?> class="withripple btn btn-raised btn-default" type="submit" name="login_facial_recognition" value="Log in using facial recognition">
     </form>
 
     <form action=<?php echo base_url() . 'index.php/login/manual' ?> method="POST">
-            <input class="withripple btn btn-raised btn-default<?php if ( $page == 'manual' ) { ?> disabled<?php } ?>" type="submit" name="login_manual" value="Log in manually">
+            <input <?php if ( $page == 'manual' ) { ?>disabled<?php } ?> class="withripple btn btn-raised btn-default" type="submit" name="login_manual" value="Log in manually">
     </form>
 <div>
