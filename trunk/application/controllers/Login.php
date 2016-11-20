@@ -38,13 +38,14 @@ class Login extends CI_Controller {
 		}
 
 		$data2[ 'page' ] = 'facial_recognition';
+                $data[ 'navigation_buttons' ] = $this->parser->parse( 'login/login_navigation_buttons', $data2, true );
                 $data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
 		$data[ 'navigation_buttons' ] = $this->load->view( 'login/login_navigation_buttons', '', true );
 
 		$data[ 'feedback' ] = '';
 		$data[ 'content' ] = $this->load->view( 'login/login_facial_recognition', '', true );
 
-		$this->parser->parse( 'login/login_main', $data );		
+		$this->parser->parse( 'login/login_main', $data );
 	}
 
 	public function manual() {
@@ -52,6 +53,7 @@ class Login extends CI_Controller {
 			redirect( 'login/success' );
 		}
 		$data2[ 'page' ] = 'manual';
+                $data[ 'navigation_buttons' ] = $this->parser->parse( 'login/login_navigation_buttons', $data2, true );
 		$data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
 		$data[ 'navigation_buttons' ] = $this->load->view( 'login/login_navigation_buttons', '', true );
 
