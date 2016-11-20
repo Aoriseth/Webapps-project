@@ -6,6 +6,13 @@
 	 - Koenraad
 
 	If this isn't useful. Just delete this comment.
+
+
+        Re-using existing code is always useful, but we might want to use 
+        different styling for the buttons of the resident. (bigger, etc)
+        Maybe refactor to one view and load a different css in resident_main
+        and caregiver_main?
+         - Lennart
 -->
 
 <!-- I am currently on page '{page}' -->
