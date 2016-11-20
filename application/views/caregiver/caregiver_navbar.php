@@ -2,6 +2,15 @@
 
 <!-- I am currently on page '{page}' -->
 
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                Grace Age</a>
+        </div>
+    </div>
+</nav>
+
 <form action="overview" method="POST">
     <input <?php if ( $page == 'overview' ) { ?>disabled<?php } ?> class="btn btn-primary" type="submit" name="resident" value="Resident overview">
 	<?php if ( $page == 'overview' ) { echo ' &lt-- current page'; } ?>
