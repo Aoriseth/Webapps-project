@@ -1,10 +1,7 @@
 <!-- I am currently on page '{page}' -->
 
 <form action=<?php echo base_url() ?> method="POST">
-    <input class="btn btn-raised btn-default" type="submit" name="home" value="Home" style="width: 100%">
-	<?php if ( $page == 'home' ) { ?>
-		<!-- This comment appears when you are on the home page -->
-	<?php } ?>
+    <input  id="homebutton" class="btn btn-raised btn-default<?php if ( $page == 'home' ) { ?> disabled<?php } ?>" type="submit" name="home" value="Home" style="width: 100%">
 </form>
 
 <form action=<?php echo base_url().'index.php/logout' ?> method="POST">
