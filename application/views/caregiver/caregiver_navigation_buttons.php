@@ -18,7 +18,7 @@
 <!-- I am currently on page '{page}' -->
 
 <form action=<?php echo base_url() ?> method="POST">
-    <input class="btn btn-primary" type="submit" name="home" value="Home">
+    <input <?php if ( $page == 'home' ) { ?>disabled<?php } ?> class="btn btn-primary" type="submit" name="home" value="Home">
 </form>
 
 <form action=<?php echo base_url().'index.php/logout' ?> method="POST">
