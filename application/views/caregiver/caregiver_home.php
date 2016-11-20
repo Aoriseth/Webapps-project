@@ -23,6 +23,7 @@
     <![endif]
     </head> -->
 <h1>Home page for the caregivers</h1>
+</hr>
 <p>
 	Hello {name}.
 </p>

@@ -3,11 +3,10 @@
 <html lang="en">
 	<head> 
 		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Grace-Age : Caregiver Home</title>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
-		<link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link href="<?php echo base_url(); ?>assets/datatables/css/dataTables.bootstrap.css" rel="stylesheet">
 		<link href="<?php echo base_url(); ?>assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
                 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap-material-design.css">
@@ -29,13 +28,11 @@
 		<![endif]-->
     </head> 
 	<body>
-		<div>
-			{navbar}
-		</div>
-
-		<hr />
-
-		<div class="container">
+		
+                {navbar}
+		
+                <div class="container">
+		<div class="jumbotron">
 			{content}
 		</div>
 
@@ -44,6 +41,6 @@
 		<div>
 			{navigation_buttons}
 		</div>
-
+                </div>
 	</body>
 </html>
