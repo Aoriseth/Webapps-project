@@ -37,7 +37,8 @@ class Login extends CI_Controller {
 			redirect( 'login/success' );
 		}
 
-		$data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
+		$data2[ 'page' ] = 'facial_recognition';
+                $data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
 		$data[ 'navigation_buttons' ] = $this->load->view( 'login/login_navigation_buttons', '', true );
 
 		$data[ 'feedback' ] = '';
@@ -50,7 +51,7 @@ class Login extends CI_Controller {
 		if ( $this->session->is_logged_in )	{
 			redirect( 'login/success' );
 		}
-		
+		$data2[ 'page' ] = 'manual';
 		$data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
 		$data[ 'navigation_buttons' ] = $this->load->view( 'login/login_navigation_buttons', '', true );
 
