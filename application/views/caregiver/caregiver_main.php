@@ -29,18 +29,24 @@
     </head> 
 	<body>
 		
-                {navbar}
-		
-                <div class="container">
-		<div class="jumbotron">
-			{content}
-		</div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-4 col-md-3 sidebar">
+                            {navbar}
+                        </div>
+                        
+                        <div class="col-sm-8 col-md-9">
+                            <div class="jumbotron">
+                                    {content}
+                            </div>
 
-		<hr />
+                            <hr />
 
-		<div>
-			{navigation_buttons}
-		</div>
+                            <div>
+                                    {navigation_buttons}
+                            </div>
+                        </div>
+                    </div>
                 </div>
 	</body>
 </html>
