@@ -14,6 +14,16 @@ class Question_model extends CI_Model {
 		);
 		return $query->result();
 	}
+	
+	/* Returns all categories of the given language and within the current session
+	 * that are not yet completed.
+	 * Members:
+	 *	- language		(string)
+	 *	- session		(value from 0 to ..)
+	 */
+	function getAllUnfinishedCategories($language, $session) {
+		//TODO
+	}
 
 	/* Returns all questions of the given language in the given category.
 	 * Members:
