@@ -40,7 +40,6 @@
                                     {content}
                             </div>
 
-                            <hr />
 
                             <div>
                                     {navigation_buttons}
