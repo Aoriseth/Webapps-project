@@ -29,10 +29,8 @@ class Answer_model extends CI_Model {
 		
 		//Check if the resident already answered this question (needed when going back to the previous question).
 		if(! $this->hasQuestionAlreadyBeenAnswered($residentID, $questionID, $currentSession)) {
-			echo 'test2';
 			$this->db->insert('a16_webapps_3.answers', $answerData);
 		} else {
-			echo 'test3';
 			$whereArray = array(
 				'resident_id' => $residentID,
 				'question_id' => $questionID,
