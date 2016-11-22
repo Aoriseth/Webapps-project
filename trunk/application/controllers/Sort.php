@@ -6,7 +6,7 @@ class Sort extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Sort_model','elderly');
+		$this->load->model('Sort_model','residents');
 	}
 
 	public function index()
@@ -17,39 +17,39 @@ class Sort extends CI_Controller {
 
 	public function ajax_list()
 	{
-		$list = $this->elderly->get_datatables();
+		$list = $this->residents->get_datatables();
 		$data = array();
 		$no = $_POST['start'];
-		foreach ($list as $elderly) {
+		foreach ($list as $residents) {
 			$no++;
 			$row = array();
-			$row[] = $elderly->id;
-			$row[] = $elderly->first_name;
-                        $row[] = $elderly->last_name;
-                        $row[] = $elderly->gender;
-                        $row[] = $elderly->password;
-                        $row[] = $elderly->date_of_birth;
-                        $row[] = $elderly->language;
-                        $row[] = $elderly->floor_number;
-                        $row[] = $elderly->last_domicile;
-                        $row[] = $elderly->last_activity;
-                        $row[] = $elderly->last_completed;
-                        $row[] = $elderly->completed_sessions;
-                        $row[] = $elderly->session_in_progress;
-                        $row[] = $elderly->account_created_by;
-                        $row[] = $elderly->account_created_on;
+			$row[] = $residents->id;
+			$row[] = $residents->first_name;
+                        $row[] = $residents->last_name;
+                        $row[] = $residents->gender;
+                        $row[] = $residents->password;
+                        $row[] = $residents->date_of_birth;
+                        $row[] = $residents->language;
+                        $row[] = $residents->floor_number;
+                        $row[] = $residents->last_domicile;
+                        $row[] = $residents->last_activity;
+                        $row[] = $residents->last_completed;
+                        $row[] = $residents->completed_sessions;
+                        $row[] = $residents->session_in_progress;
+                        $row[] = $residents->account_created_by;
+                        $row[] = $residents->account_created_on;
                        
 			//add html for action
-			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$elderly->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-				  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$elderly->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$residents->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+				  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$residents->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
 		
 			$data[] = $row;
 		}
 
 		$output = array(
 						"draw" => $_POST['draw'],
-						"recordsTotal" => $this->elderly->count_all(),
-						"recordsFiltered" => $this->elderly->count_filtered(),
+						"recordsTotal" => $this->residents->count_all(),
+						"recordsFiltered" => $this->residents->count_filtered(),
 						"data" => $data,
 				);
 		//output to json format
@@ -58,7 +58,7 @@ class Sort extends CI_Controller {
 
 	public function ajax_edit($id)
 	{
-		$data = $this->elderly->get_by_id($id);
+		$data = $this->residents->get_by_id($id);
 		$data->date_of_birth = ($data->date_of_birth == '0000-00-00') ? '' : $data->date_of_birth; // if 0000-00-00 set to empty for datepicker compatibility
                 $data->last_activity = ($data->last_activity == '0000-00-00') ? '' : $data->last_activity; // if 0000-00-00 set to empty for datepicker compatibility
                 $data->last_completed = ($data->last_completed == '0000-00-00') ? '' : $data->last_completed; // if 0000-00-00 set to empty for datepicker compatibility
@@ -89,7 +89,7 @@ class Sort extends CI_Controller {
                     
                     
 			);
-		$insert = $this->elderly->save($data);
+		$insert = $this->residents->save($data);
 		echo json_encode(array("status" => TRUE));
 	}
 
@@ -114,13 +114,13 @@ class Sort extends CI_Controller {
                                 'account_created_on' => $this->input->post('account_created_on'),
 				
 			);
-		$this->elderly->update(array('id' => $this->input->post('id')), $data);
+		$this->residents->update(array('id' => $this->input->post('id')), $data);
 		echo json_encode(array("status" => TRUE));
 	}
 
 	public function ajax_delete($id)
 	{
-		$this->elderly->delete_by_id($id);
+		$this->residents->delete_by_id($id);
 		echo json_encode(array("status" => TRUE));
 	}
 

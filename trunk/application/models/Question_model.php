@@ -8,8 +8,8 @@ class Question_model extends CI_Model {
 	 */
 	function getAllCategories( $language ) {
 		$query = $this->db->query(
-			"SELECT DISTINCT category"
-			. " FROM a16_webapps_3.questions"
+			"SELECT id, category"
+			. " FROM a16_webapps_3.categories"
 			. " WHERE language='$language'"
 		);
 		return $query->result();
@@ -34,11 +34,17 @@ class Question_model extends CI_Model {
 	 * 
 	 */
 	function getAllQuestionsFrom( $language, $category ) {
-		$query = $this->db->query(
-			"SELECT id, category, category_order, question"
-			. " FROM a16_webapps_3.questions"
+		$category_temp = $this->db->query(
+			"SELECT id"
+			. " FROM a16_webapps_3.categories"
 			. " WHERE language='$language' AND category='$category'"
-			. " ORDER BY category_order ASC"
+		);
+		$categoryID = $category_temp->row()->id;
+		
+		$query = $this->db->query(
+			"SELECT id, category_id, question"
+			. " FROM a16_webapps_3.questions"
+			. " WHERE language='$language' AND category_id='$categoryID'"
 		);
 		return $query->result();
 	}

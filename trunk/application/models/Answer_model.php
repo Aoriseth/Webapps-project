@@ -21,9 +21,9 @@ class Answer_model extends CI_Model {
     function storeAnswer($residentID, $questionID, $chosenOption, $currentSession) {
 		//Ready the array with the answers
 		$answerData = array(
-			'elderly_id' => $residentID,
+			'resident_id' => $residentID,
 			'question_id' => $questionID,
-			'answer' => $chosenOption,
+			'option_id' => $chosenOption,
 			'session' => $currentSession,
 			'datetime_answered' => date('Y-m-d H:i:s'));
 		
@@ -32,7 +32,7 @@ class Answer_model extends CI_Model {
 			$this->db->insert('a16_webapps_3.answers', $answerData);
 		} else {
 			$whereArray = array(
-				'elderly_id' => $residentID,
+				'resident_id' => $residentID,
 				'question_id' => $questionID,
 				'session' => $currentSession);
 			$this->db->where($whereArray);
@@ -50,7 +50,7 @@ class Answer_model extends CI_Model {
      *      - currentSession    (int)       The number of the session in progress, meaning that (currentSession-1) questionnaires are completed by the given resident.
 	 */
 	private function hasQuestionAlreadyBeenAnswered($residentID, $questionID, $currentSession) {
-		$query_answers = $this->db->query("SELECT id FROM a16_webapps_3.answers WHERE elderly_id='$residentID' AND question_id='$questionID' AND session='$currentSession'");
+		$query_answers = $this->db->query("SELECT id FROM a16_webapps_3.answers WHERE resident_id='$residentID' AND question_id='$questionID' AND session='$currentSession'");
 		if($query_answers->num_rows() == 0) {
 			return FALSE;
 		}
