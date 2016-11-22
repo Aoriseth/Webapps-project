@@ -27,9 +27,28 @@ class Login_model extends CI_Model {
 		 */
 		$query_residents = $this->db->query( "SELECT * FROM a16_webapps_3.residents WHERE id='$username'" );
 		$query_caregivers = $this->db->query( "SELECT * FROM a16_webapps_3.caregivers WHERE id='$username'" );
-
+		//$query = $this->db->query("SELECT id FROM a16_webapps_3.person_view WHERE id='$username'");
+		
 		$data[ 'succeeded' ] = false;
+		
+		//Alternative
+/*
+		//No matches
+		if ( $query->num_rows() == 0 ) {
+			$data[ 'error' ] = 'The username you\'ve entered does not exist in the system.';
+			return $data;
+		}
 
+		//Too many matches
+		if ( $query->num_rows() > 1 ) {
+			$data[ 'error' ] = 'Found multiple entries with this username. Contact support please.';
+			return $data;
+		}
+		
+		//Get type of person
+		$person = $query->row();
+		$data[ 'type' ] = $person->type;
+*/
 		// no matches
 		if ( $query_residents->num_rows() == 0 && $query_caregivers->num_rows() == 0 ) {
 			$data[ 'error' ] = 'The username you\'ve entered does not exist in the system.';
@@ -65,5 +84,6 @@ class Login_model extends CI_Model {
 			$data[ 'error' ] = 'Incorrect password.';
 		}
 		return $data;
+ 
 	}
 }
