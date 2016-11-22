@@ -6,6 +6,7 @@ class Login_model extends CI_Model {
 		parent::__construct();
 
 		require 'lib/password.php';
+		$this->load->library('Resident');
 	}
 	
 	/* Returns an array with
@@ -47,7 +48,6 @@ class Login_model extends CI_Model {
 			$data[ 'name' ] = $person->first_name;
 
 			if ( $data[ 'type' ] == 'resident' ) {
-				// TODO replace storing everything in session by using a Person class with all relevant data
 				$this->session->id = $person->id;
 				$this->session->completedSessions = $person->completed_sessions;
 			}

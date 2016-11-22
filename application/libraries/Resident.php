@@ -1,5 +1,7 @@
 <?php if(! defined('BASEPATH')) exit('No direct script access allowed');
 
+require_once 'Person.php';
+
 /**
  * A class containing all properties of a resident, inlcuding the functions to get/set them.
  */
@@ -33,24 +35,26 @@ class Resident extends Person {
 	 *		- _account_created_by:	the resident that created the account of this resident.
 	 *		- _account_created_on:	the moment the account of this resident was created on.
 	 */
-	public function __construct($resident_db_record) {
-		parent::__construct(
-				$resident_db_record->first_name,
-				$resident_db_record->lasst_name,
-				$resident_db_record->id,
-				$resident_db_record->gender,
-				$resident_db_record->date_of_birth,
-				$resident_db_record->language,
-				$resident_db_record->type,
-				$resident_db_record->account_created_on);
-		$this->setFloorNumber($resident_db_record->floor_number);
-		$this->setRoomNumber($resident_db_record->room_number);
-		$this->setLastDomicile($resident_db_record->last_domicile);
-		$this->setLastActivity($resident_db_record->last_activity);
-		$this->setLastCompleted($resident_db_record->last_completed);
-		$this->setCompletedSessions($resident_db_record->completed_sessions);
-		$this->setSessionInProgress($resident_db_record->session_in_progress);
-		$this->setAccountCreatedBy($resident_db_record->account_created_by);
+	public function __construct($resident_db_record = null) {
+		if($resident_db_record != null) {
+			parent::__construct(
+					$resident_db_record->first_name,
+					$resident_db_record->last_name,
+					$resident_db_record->id,
+					$resident_db_record->gender,
+					$resident_db_record->date_of_birth,
+					$resident_db_record->language,
+					$resident_db_record->type,
+					$resident_db_record->account_created_on);
+			$this->setFloorNumber($resident_db_record->floor_number);
+			$this->setRoomNumber($resident_db_record->room_number);
+			$this->setLastDomicile($resident_db_record->last_domicile);
+			$this->setLastActivity($resident_db_record->last_activity);
+			$this->setLastCompleted($resident_db_record->last_completed);
+			$this->setCompletedSessions($resident_db_record->completed_sessions);
+			$this->setSessionInProgress($resident_db_record->session_in_progress);
+			$this->setAccountCreatedBy($resident_db_record->account_created_by);
+		}
 	}
 	
 	/**
