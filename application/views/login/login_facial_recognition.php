@@ -1,26 +1,17 @@
 <div class="jumbotron text-center">
     <p>
-            <i>Log in using facial recognition.</i>
+        <i>Log in using facial recognition.</i>
     </p>
-        <video id="camfr" width="50%" height="50%" autoplay="true">
-            
-        </video>
-        <script>
-            var video = document.querySelector("#camfr");
- 
-            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+    <video id="camfr" width="50%" height="50%" autoplay="true">
 
-            if (navigator.getUserMedia) {       
-                navigator.getUserMedia({video: {facingMode:'user'}}, handleVideo, videoError);
-            }
+    </video>
+    <script src="<?php echo base_url(); ?>assets/js/faceRecognition/capture.js" type="text/javascript"></script>
+    <canvas id = "canvasVideo" hidden="true"width="50%" height="50%" ></canvas>
+    <img id="photoFR" width="50%" height="50%" > 
 
-            function handleVideo(stream) {
-                video.src = window.URL.createObjectURL(stream);
-            }
 
-            function videoError(e) {
-                // do something
-                video.style.display = "none";
-            }
-        </script>
+    <br/>
+    <button id="facialLoginButton">Log in</button>
+
+
 </div>
