@@ -18,8 +18,7 @@ class Question_model extends CI_Model {
 	/* Returns all categories of the given language and within the current session
 	 * that are not yet completed.
 	 * Members:
-	 *	- language		(string)
-	 *	- session		(value from 0 to ..)
+	 *	- category		(string)
 	 */
 	function getAllUnfinishedCategories($language, $session) {
 		//TODO
@@ -49,6 +48,9 @@ class Question_model extends CI_Model {
 		return $query->result();
 	}
 	
+	/**
+	 * Returns all options for a question with a given id.
+	 */
 	function getOptionsFor( $question_id ) {
 		$query = $this->db->query(
 			"SELECT  options.id, options.option"

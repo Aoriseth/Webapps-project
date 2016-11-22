@@ -22,9 +22,13 @@ class Caregiver extends Person {
 				$caregiver_db_record->first_name,
 				$caregiver_db_record->lasst_name,
 				$caregiver_db_record->id,
-				$caregiver_db_record->gender);
-		setEmail($caregiver_db_record->email);
-		setPhoneNumber($caregiver_db_record->phone_number);
+				$caregiver_db_record->gender,
+				$caregiver_db_record->date_of_birth,
+				$caregiver_db_record->language,
+				$caregiver_db_record->type,
+				$caregiver_db_record->account_created_on);
+		$this->setEmail($caregiver_db_record->email);
+		$this->setPhoneNumber($caregiver_db_record->phone_number);
 	}
 	
 	/**
