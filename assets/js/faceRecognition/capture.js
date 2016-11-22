@@ -30,7 +30,7 @@
             }
         }, false);
         FRecButton.addEventListener('click', (function () {
-            console.log("takePicture");
+            //console.log("takePicture");
             var width = $("#camfr").width();
             var height = $("#camfr").height();
             
@@ -38,11 +38,11 @@
             canvas.height = height;
             canvas.width = width;
             
-            console.log("video.height = " + height + "video.height = " + height);
+            //console.log("video.height = " + height + "video.height = " + height);
             if (streaming) {
                 canvas.getContext('2d').drawImage(video, 0, 0, width, height);
                 var data = canvas.toDataURL('image/png');
-                console.log(data);
+                //console.log(data);
                 $("#photoFR").attr("src", data);
                 video.style.display = "none";
                 //photo.style.display="inline-box";
