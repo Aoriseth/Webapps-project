@@ -50,7 +50,7 @@ class Resident extends CI_Controller {
 
 		// get 3 random categories
 		// TODO check if category is already done
-		$categories = $this->Question_model->getAllCategories( 'english' );
+		$categories = $this->Question_model->getAllCategories( 'English' );
 		shuffle( $categories );
 		$categories = array_splice( $categories, 0, 3 );
                 
