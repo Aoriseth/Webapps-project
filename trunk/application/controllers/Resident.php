@@ -86,7 +86,7 @@ class Resident extends CI_Controller {
 
 		// get category
 		$category = $this->input->get( 'category' );
-
+		
 		// grab questions from database
 		if ( count( $this->session->questions ) == 0 ) {
 			$this->session->questions = $this->Question_model->getAllQuestionsFrom( 'English', $category );
