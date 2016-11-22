@@ -25,14 +25,13 @@ class Login_model extends CI_Model {
 		 * FROM a16_webapps_3.residents FULL a16_webapps_3.caregivers
 		 * WHERE id=$username
 		 */
-		$query_residents = $this->db->query( "SELECT * FROM a16_webapps_3.residents WHERE id='$username'" );
-		$query_caregivers = $this->db->query( "SELECT * FROM a16_webapps_3.caregivers WHERE id='$username'" );
-		//$query = $this->db->query("SELECT id FROM a16_webapps_3.person_view WHERE id='$username'");
+		//$query_residents = $this->db->query( "SELECT * FROM a16_webapps_3.residents WHERE id='$username'" );
+		//$query_caregivers = $this->db->query( "SELECT * FROM a16_webapps_3.caregivers WHERE id='$username'" );
+		$query = $this->db->query("SELECT id,type FROM a16_webapps_3.person_view WHERE id='$username'");
 		
 		$data[ 'succeeded' ] = false;
 		
 		//Alternative
-/*
 		//No matches
 		if ( $query->num_rows() == 0 ) {
 			$data[ 'error' ] = 'The username you\'ve entered does not exist in the system.';
@@ -48,7 +47,14 @@ class Login_model extends CI_Model {
 		//Get type of person
 		$person = $query->row();
 		$data[ 'type' ] = $person->type;
-*/
+		if ( $data[ 'type' ] == 'resident' ) {
+			$query = $this->db->query("SELECT * FROM a16_webapps_3.residents WHERE id='$username'");
+		} else {
+			$query = $this->db->query("SELECT * FROM a16_webapps_3.caregivers WHERE id='$username'");
+		}
+		$person = $query->row();
+
+		/*
 		// no matches
 		if ( $query_residents->num_rows() == 0 && $query_caregivers->num_rows() == 0 ) {
 			$data[ 'error' ] = 'The username you\'ve entered does not exist in the system.';
@@ -69,7 +75,8 @@ class Login_model extends CI_Model {
 			$data[ 'type' ] = 'caregiver';
 			$person = $query_caregivers->row();
 		}
-
+		 */
+		
 		// and as last verify password
 		if ( password_verify( $password, $person->password ) ) {
 			$data[ 'succeeded' ] = true;
