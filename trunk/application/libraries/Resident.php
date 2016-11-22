@@ -5,8 +5,6 @@
  */
 class Resident extends Person {
 	
-	private $_date_of_birth;
-	private $_language;
 	private $_floor_number;
 	private $_room_number;
 	private $_last_domicile;
@@ -15,7 +13,6 @@ class Resident extends Person {
 	private $_completed_sessions;
 	private $_session_in_progress;
 	private $_account_created_by;
-	private $_account_created_on;
 	
 	/**
 	 * Constructor, initializing this new resident with an given db record of this resident containing:
@@ -24,14 +21,15 @@ class Resident extends Person {
 	 *		- _id:					the id of this resident.
 	 *		- _gender:				the gender of this resident.
 	 *		- _date_of_birth:		the date of birth of this resident.
-	 *		- _language:				the language the pages should be displayed in.
-	 *		- _floor_number:			the floor of this resident.
+	 *		- _language:			the language the pages should be displayed in.
+	 *		- _floor_number:		the floor of this resident.
 	 *		- _room_number:			the room number of this resident.
 	 *		- _last_domicile:		the city this resident lived in before moving to a residence.
 	 *		- _last_activity:		the moment this resident was last active.
 	 *		- _last_completed:		the most recent moment this resident fully completed the questionnaire.
 	 *		- _completed_sessions:	the number of session this resident has completed.
 	 *		- _session_in_progress:	the number of the session that is in progress.
+	 *		- _type:				the type of this resident.
 	 *		- _account_created_by:	the resident that created the account of this resident.
 	 *		- _account_created_on:	the moment the account of this resident was created on.
 	 */
@@ -40,18 +38,19 @@ class Resident extends Person {
 				$resident_db_record->first_name,
 				$resident_db_record->lasst_name,
 				$resident_db_record->id,
-				$resident_db_record->gender);
-		setDateOfBirth($resident_db_record->date_of_birth);
-		setLanguage($resident_db_record->language);
-		setFloorNumber($resident_db_record->floor_number);
-		setRoomNumber($resident_db_record->room_number);
-		setLastDomicile($resident_db_record->last_domicile);
-		setLastActivity($resident_db_record->last_activity);
-		setLastCompleted($resident_db_record->last_completed);
-		setCompletedSessions($resident_db_record->completed_sessions);
-		setSessionInProgress($resident_db_record->session_in_progress);
-		setAccountCreatedBy($resident_db_record->account_created_by);
-		setAccountCreatedOn($resident_db_record->account_created_on);
+				$resident_db_record->gender,
+				$resident_db_record->date_of_birth,
+				$resident_db_record->language,
+				$resident_db_record->type,
+				$resident_db_record->account_created_on);
+		$this->setFloorNumber($resident_db_record->floor_number);
+		$this->setRoomNumber($resident_db_record->room_number);
+		$this->setLastDomicile($resident_db_record->last_domicile);
+		$this->setLastActivity($resident_db_record->last_activity);
+		$this->setLastCompleted($resident_db_record->last_completed);
+		$this->setCompletedSessions($resident_db_record->completed_sessions);
+		$this->setSessionInProgress($resident_db_record->session_in_progress);
+		$this->setAccountCreatedBy($resident_db_record->account_created_by);
 	}
 	
 	/**
@@ -59,22 +58,6 @@ class Resident extends Person {
 	 *  Getters/Setters for all variables of this resident below.
 	 * ========================================================
 	 */
-	
-	function setDateOfBirth($date_of_birth_to_set) {
-		$this->_date_of_birth = $date_of_birth_to_set;
-	}
-	
-	function getDateOfBirth() {
-		return $this->_date_of_birth;
-	}
-	
-	function setLanguage($language_to_set) {
-		$this->_language = $language_to_set;
-	}
-	
-	function getLanguage() {
-		return $this->_language;
-	}
 	
 	function setFloorNumber($floor_number_to_set) {
 		$this->_floor_number;
@@ -138,13 +121,5 @@ class Resident extends Person {
 	
 	function getAccountCreatedBy() {
 		return $this->_account_created_by;
-	}
-	
-	function setAccountCreatedOn($account_created_on_to_set) {
-		$this->_account_created_on = $account_created_on_to_set;
-	}
-	
-	function getAccountCreatedOn() {
-		return $this->_account_created_on;
 	}
 }
