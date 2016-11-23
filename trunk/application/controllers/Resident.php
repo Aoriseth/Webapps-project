@@ -11,6 +11,7 @@ class Resident extends CI_Controller {
 		$this->load->library( 'parser' );
 		$this->load->model( 'Question_model' );
 		$this->load->model('Answer_model');
+		$this->load->model('Resident_model');
 	}
 
 	function index()
@@ -52,10 +53,13 @@ class Resident extends CI_Controller {
 		// get 3 random categories
 		$categories = $this->Question_model->getAllUnfinishedCategories($this->session->id, $this->session->language, ($this->session->completedSessions + 1));
 		if(count($categories) == 0) {
-			//$this->Resident_model->increaseSession($this->session->id);
+			//If all categories are done, increment the session number
+			$this->Resident_model->incrementSession($this->session->id);
+			$this->session->completedSessions = $this->session->completedSessions + 1;
 			
 			//TODO DO SOMETHING WHEN ALL CATEGORIES ARE FINISHED
 			//Possible to put the $category fetch and this condition before the narbar, button,... loading to prevent unnecessary loading
+			//Or move this if statement block + $category fetch to somewhere more appropriate.
 		}
 		shuffle( $categories );
 		$categories = array_splice( $categories, 0, 3 );
