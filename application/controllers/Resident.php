@@ -28,6 +28,7 @@ class Resident extends CI_Controller {
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_home', $data2, true );
 
 		$this->parser->parse( 'resident/resident_main', $data );
+		
 	}
 
 	function gallery()
@@ -49,8 +50,10 @@ class Resident extends CI_Controller {
 		$data[ 'navigation_buttons' ] = $this->parser->parse( 'resident/resident_navigation_buttons', $data2, true );
 
 		// get 3 random categories
-		$categories = $this->Question_model->getAllUnfinishedCategories($this->session->id, 'English', ($this->session->completedSessions + 1));
+		$categories = $this->Question_model->getAllUnfinishedCategories($this->session->id, $this->session->language, ($this->session->completedSessions + 1));
 		if(count($categories) == 0) {
+			//$this->Resident_model->increaseSession($this->session->id);
+			
 			//TODO DO SOMETHING WHEN ALL CATEGORIES ARE FINISHED
 			//Possible to put the $category fetch and this condition before the narbar, button,... loading to prevent unnecessary loading
 		}
@@ -89,11 +92,11 @@ class Resident extends CI_Controller {
 
 		// get category
 		$category = $this->input->get( 'category' );
-		$categoryID = $this->Question_model->getCategoryIdFrom('English', $category); //TODO: use real language setting
+		$categoryID = $this->Question_model->getCategoryIdFrom($this->session->language, $category); //TODO: use real language setting
 		
 		// grab questions from database
 		if ( count( $this->session->questions ) == 0 ) {
-			$this->session->questions = $this->Question_model->getAllUnansweredQuestionsFrom($this->session->id, 'English', $categoryID, ($this->session->completedSessions + 1));
+			$this->session->questions = $this->Question_model->getAllUnansweredQuestionsFrom($this->session->id, $this->session->language, $categoryID, ($this->session->completedSessions + 1));
 		}
 
 		// get index of current question
