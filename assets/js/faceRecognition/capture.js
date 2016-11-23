@@ -1,9 +1,11 @@
 (function () {
-    streaming = false;
+    
+    var streaming = false;
     var video = null;
     var FRecButton = null;
 
     function startup() {
+        // This function is called when the page is started up
 
         FRecButton = document.querySelector("#facialLoginButton");
         video = document.querySelector("#camfr");
@@ -23,12 +25,14 @@
             });
             // {facingMode: 'user'}
         }
+        // This function is called when the webcam is ready to play
         video.addEventListener('canplay', function (ev) {
             if (!streaming) {
                 video.play();
                 streaming = true;
             }
         }, false);
+        // add event listener to the login button
         FRecButton.addEventListener('click', (function () {
             //console.log("takePicture");
             var width = $("#camfr").width();
@@ -38,7 +42,8 @@
             canvas.height = height;
             canvas.width = width;
 
-            //console.log("video.height = " + height + "video.height = " + height);
+            //console.log("video.height  " + height + "video.height = " + height);
+            // if the video is busy with streaming freeze the screen and do facial recognition
             if (streaming) {
                 canvas.getContext('2d').drawImage(video, 0, 0, width, height);
                 var data = canvas.toDataURL('image/png');
@@ -53,21 +58,20 @@
 
 
 
-
+    // add event listener to the window to execute the function startup when the page is loaded
     window.addEventListener('load', startup, false);
 })();
-
+/*
+ *This function is called when you want to use facial recognition 
+ *right now it log the answer of the online API to the console
+ * @param {string} dataURL
+ * @returns {undefined}
+ */
 function recognizePicture(dataURL) {
     getKeys(function (result) {
-        
-
-   
-        
         var albumname = result.albumname;
         var albumkey = result.albumKey;
         var mashapekey = result.mashapeKey;
-        
-
         recognizeFunc(dataURL, albumname, albumkey, mashapekey, function (result) {
             var resultObject = JSON.stringify(result);
             console.log(resultObject);
@@ -78,10 +82,16 @@ function recognizePicture(dataURL) {
 
 
 }
+/**
+ * This function is used to get the authentication keys in a secure manner
+ * It takes in a callback function in which you will get a JSON parsed object from the function
+ * @param {function} callback
+ * @returns {nothing nothing
+ */
 function getKeys(callback) {
 
     $.ajax({
-        url: "get_facial_recognition_tokens",
+        url: "get_facial_recognition_tokens"
     }).always(function (result) {
         if (callback && typeof (callback) === "function") {
             var resultObject = JSON.stringify(result);
