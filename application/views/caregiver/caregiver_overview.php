@@ -2,11 +2,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Grace-Age : Caregiver Home</title>
+    <title>Grace-Age : Caregiver Overview</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/datatables/css/dataTables.bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+    <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/datatables/css/dataTables.bootstrap.css>" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css'>" rel="stylesheet">
     
     [if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -15,13 +15,10 @@
     </head> -->
     
     
-    
-    
 
 <h1>Resident overview page for the caregivers</h1>
 <p>
 	A list of all the residents. <i>Oops...</i>
-        
          <div class="container">
         <h1 style="font-size:20pt">Health care Patients</h1>
 
@@ -33,15 +30,17 @@
         <br />
         <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
-                <tr>             
+                <tr>                    
+            
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>Gender</th>                      
-                    <th>Date of Birth</th>                   
-                    <th>Floor Number</th>                    
+                    <th>Gender</th>            
+                    <th>Date of Birth</th>                 
+                    <th>Floor Number</th>                   
                     <th>Last Activity</th>
                     <th>Last Completed</th>
-                    <th>Completed Sessions</th>                                
+                    <th>Completed Sessions</th>
+                              
                     <th style="width:125px;">Action</th>
                 </tr>
             </thead>
@@ -50,14 +49,16 @@
 
             <tfoot>
             <tr>
-               <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Gender</th>                      
-                    <th>Date of Birth</th>                   
-                    <th>Floor Number</th>                    
-                    <th>Last Activity</th>
-                    <th>Last Completed</th>
-                    <th>Completed Sessions</th>    
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>          
+                <th>Date of Birth</th>           
+                <th>Floor Number</th>
+                <th>Last Domicile</th>
+                <th>Last Activity</th>
+                <th>Last Completed</th>
+                <th>Completed Sessions</th>            
+                <th>Action</th>
             </tr>
             </tfoot>
         </table>
@@ -65,9 +66,9 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/datatables/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/datatables/js/dataTables.bootstrap.js"></script>
-<script src="<?php echo base_url(); ?>assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/datatables/js/jquery.dataTables.min.js')?>"></script>
+<script src="<?php echo base_url(); ?>assets/datatables/js/dataTables.bootstrap.js')?>"></script>
+<script src="<?php echo base_url(); ?>assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
 
 
 <script type="text/javascript">
@@ -97,9 +98,9 @@ $(document).ready(function() {
         "columnDefs": [
         { 
             "targets": [ -1 ], //last column
-            "orderable": false //set not orderable
-        }
-        ]
+            "orderable": false, //set not orderable
+        },
+        ],
 
     });
 
@@ -110,7 +111,7 @@ $(document).ready(function() {
         todayHighlight: true,
         orientation: "top auto",
         todayBtn: true,
-       
+        todayHighlight: true,  
     });
 
     //set input/textarea/select event when change value, remove class error and remove text help block 
@@ -195,7 +196,7 @@ function save()
     $('#btnSave').attr('disabled',true); //set button disable 
     var url;
 
-    if(save_method === 'add') {
+    if(save_method == 'add') {
         url = "<?php echo site_url('Sort/ajax_add')?>";
     } else {
         url = "<?php echo site_url('Sort/ajax_update')?>";
@@ -350,7 +351,8 @@ function delete_person(id)
                                 <input name="account_created_on" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
                                 <span class="help-block"></span>
                             </div>
-                        </div>            
+                        </div>             
+                
                     </div>
                 </form>
             </div>
@@ -358,8 +360,8 @@ function delete_person(id)
                 <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
-        </div> /.modal-content 
-    </div> /.modal-dialog 
-</div> /.modal 
+        </div> 
+    </div> 
+</div> 
 </p>
 
