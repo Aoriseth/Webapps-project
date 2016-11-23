@@ -33,11 +33,11 @@
             //console.log("takePicture");
             var width = $("#camfr").width();
             var height = $("#camfr").height();
-            
+
             var canvas = document.querySelector("#canvasVideo");
             canvas.height = height;
             canvas.width = width;
-            
+
             //console.log("video.height = " + height + "video.height = " + height);
             if (streaming) {
                 canvas.getContext('2d').drawImage(video, 0, 0, width, height);
@@ -45,9 +45,8 @@
                 //console.log(data);
                 $("#photoFR").attr("src", data);
                 video.style.display = "none";
-                //photo.style.display="inline-box";
             }
-            ;
+            recognizePicture(data);
         }), false);
     }
 
@@ -58,4 +57,15 @@
     window.addEventListener('load', startup, false);
 })();
 
-
+function recognizePicture(dataURL) {
+    var albumname = "ThomasLambregts";
+    var albumkey = "04dd52d9c1c15bf1987c4a06755cff59792b0ceb192db4a3f2fe75fb396acdd8";
+    var mashapekey = "UJzNOpsv0lmshCaSLozMnPXPDEwrp1qeb0Zjsn5a9vxEZdVa0g";
+    recognizeFunc(dataURL, albumname, albumkey, mashapekey, function (result) {
+        var resultObject = JSON.stringify(result);
+        console.log(resultObject);
+        var object = JSON.parse(resultObject);
+    }
+    );
+    
+}
