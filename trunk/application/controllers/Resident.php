@@ -86,10 +86,12 @@ class Resident extends CI_Controller {
 
 		// get category
 		$category = $this->input->get( 'category' );
+		$categoryID = $this->Question_model->getCategoryIdFrom('English', $category); //TODO: use real language setting
 		
 		// grab questions from database
 		if ( count( $this->session->questions ) == 0 ) {
-			$this->session->questions = $this->Question_model->getAllQuestionsFrom( 'English', $category );
+			$categoryID = $this->Question_model->getCategoryIdFrom('English', $category); //TODO: use real language setting
+			$this->session->questions = $this->Question_model->getAllQuestionsFrom('English', $categoryID);
 		}
 
 		// get index of current question
@@ -117,7 +119,7 @@ class Resident extends CI_Controller {
 					break;
 				}
 			}
-			$this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption, $currentSession);
+			$this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption, $categoryID, $currentSession);
 		}
 
 		// check if category is done

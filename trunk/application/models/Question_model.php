@@ -20,8 +20,17 @@ class Question_model extends CI_Model {
 	 * Members:
 	 *	- category		(string)
 	 */
-	function getAllUnfinishedCategories($language, $session) {
+	function getAllUnfinishedCategories( $residentID, $language, $currentSession ) {
+		
+
 		//TODO
+
+		$query = $this->db->query(
+			"SELECT id, category"
+			. " FROM a16_webapps_3.categories"
+			. " WHERE language='$language'"
+		);
+		return $query->result();
 	}
 
 	/* Returns all questions of the given language in the given category.
@@ -32,20 +41,44 @@ class Question_model extends CI_Model {
 	 *	- question		(string)
 	 * 
 	 */
-	function getAllQuestionsFrom( $language, $category ) {
-		$category_temp = $this->db->query(
-			"SELECT id"
-			. " FROM a16_webapps_3.categories"
-			. " WHERE language='$language' AND category='$category'"
-		);
-		$categoryID = $category_temp->row()->id;
-		
+	function getAllQuestionsFrom( $language, $categoryID ) {
 		$query = $this->db->query(
-			"SELECT id, category_id, question"
+			"SELECT id, category_id, question, score_weight"
 			. " FROM a16_webapps_3.questions"
 			. " WHERE language='$language' AND category_id='$categoryID'"
 		);
 		return $query->result();
+	}
+	
+	function getAllUnansweredQuestionsFrom( $residentID, $language, $categoryID, $currentSession ) {
+		$all_questions = array_column('id', $this->getAllQuestionsFrom($language, $categoryID));
+		$answered_questions = array_column('id', $this->getAllAnsweredQuestionsFrom($residentID, $categoryID, $currentSession));
+		$unanswered_questions = array();
+		foreach($all_questions as $question) {
+			if(! in_array($question, $answered_questions)) {
+				$unanswered_questions[] = $question;
+			}
+		}
+		return $unanswered_questions->result();
+	}
+	
+	//TODO: database!!!
+	private function getAllAnsweredQuestionsFrom( $residentID, $categoryID, $currentSession ) {
+		$query = $this->db->query(
+			"SELECT id"
+			. " FROM a16_webapps_3.answers"
+			. " WHERE resident_id='$residentID' AND category_id='$categoryID' AND session='$currentSession'"
+		);
+		return $query->result();
+	}
+	
+	function getCategoryIdFrom( $language, $category ) {
+		$query = $this->db->query(
+			"SELECT id"
+			. " FROM a16_webapps_3.categories"
+			. " WHERE language='$language' AND category='$category'"
+		);
+		return $query->row()->id;
 	}
 	
 	/**
