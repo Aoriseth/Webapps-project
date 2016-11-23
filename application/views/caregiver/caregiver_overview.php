@@ -21,6 +21,7 @@
 <h1>Resident overview page for the caregivers</h1>
 <p>
 	A list of all the residents. <i>Oops...</i>
+        
          <div class="container">
         <h1 style="font-size:20pt">Health care Patients</h1>
 
@@ -32,23 +33,15 @@
         <br />
         <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
-                <tr>                    
-            
+                <tr>             
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>Gender</th>                   
-                    <th>Password</th>
-                    <th>Date of Birth</th>
-                    <th>Language</th>
-                    <th>Floor Number</th>
-                    <th>Last Domicile</th>
+                    <th>Gender</th>                      
+                    <th>Date of Birth</th>                   
+                    <th>Floor Number</th>                    
                     <th>Last Activity</th>
                     <th>Last Completed</th>
-                    <th>Completed Sessions</th>
-                    <th>Session In Progress</th>
-                    <th>Account Created By</th>
-                    <th>Account Created On</th>
-                    <th>Session</th>                          
+                    <th>Completed Sessions</th>                                
                     <th style="width:125px;">Action</th>
                 </tr>
             </thead>
@@ -57,27 +50,19 @@
 
             <tfoot>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Gender</th>                   
-                <th>Password</th>
-                <th>Date of Birth</th>
-                <th>Language</th>
-                <th>Floor Number</th>
-                <th>Last Domicile</th>
-                <th>Last Activity</th>
-                <th>Last Completed</th>
-                <th>Completed Sessions</th>
-                <th>Session In Progress</th>
-                <th>Account Created By</th>
-                <th>Account Created On</th>
-                <th>Action</th>
+               <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>                      
+                    <th>Date of Birth</th>                   
+                    <th>Floor Number</th>                    
+                    <th>Last Activity</th>
+                    <th>Last Completed</th>
+                    <th>Completed Sessions</th>    
             </tr>
             </tfoot>
         </table>
     </div>
 
-  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/datatables/js/jquery.dataTables.min.js"></script>
@@ -124,7 +109,7 @@ $(document).ready(function() {
         format: "yyyy-mm-dd",
         todayHighlight: true,
         orientation: "top auto",
-        todayBtn: true
+        todayBtn: true,
        
     });
 
@@ -210,7 +195,7 @@ function save()
     $('#btnSave').attr('disabled',true); //set button disable 
     var url;
 
-    if(save_method == 'add') {
+    if(save_method === 'add') {
         url = "<?php echo site_url('Sort/ajax_add')?>";
     } else {
         url = "<?php echo site_url('Sort/ajax_update')?>";
@@ -279,7 +264,7 @@ function delete_person(id)
 
 </script>
 
- Bootstrap modal 
+
 <div class="modal fade" id="modal_form" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -365,17 +350,7 @@ function delete_person(id)
                                 <input name="account_created_on" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
                                 <span class="help-block"></span>
                             </div>
-                        </div>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+                        </div>            
                     </div>
                 </form>
             </div>
