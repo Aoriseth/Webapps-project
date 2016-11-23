@@ -59,14 +59,14 @@
 
 function recognizePicture(dataURL) {
     getKeys(function (result) {
-        console.log(result);
+        
 
    
         
         var albumname = result.albumname;
         var albumkey = result.albumKey;
         var mashapekey = result.mashapeKey;
-        console.log("mashapekey:" + mashapekey);
+        
 
         recognizeFunc(dataURL, albumname, albumkey, mashapekey, function (result) {
             var resultObject = JSON.stringify(result);
