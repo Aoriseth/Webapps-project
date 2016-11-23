@@ -90,7 +90,7 @@ class Resident extends CI_Controller {
 		
 		// grab questions from database
 		if ( count( $this->session->questions ) == 0 ) {
-			$this->session->questions = $this->Question_model->getAllQuestionsFrom('English', $categoryID);
+			$this->session->questions = $this->Question_model->getAllUnansweredQuestionsFrom($this->session->id, 'English', $categoryID, ($this->session->completedSessions + 1));
 		}
 
 		// get index of current question
