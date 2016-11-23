@@ -15,4 +15,14 @@ class Resident_model extends CI_Model {
 		$this->db->update('a16_webapps_3.residents');
 	}
 	
+	/**
+	 * Get all residents that are stored in the database.
+	 */
+	function getAllResidents() {
+		$query = $this->dB->query(
+			"SELECT * "
+			. "FROM a16_webapps_3.residents"
+		);
+		return $query->result();
+	}
 }
