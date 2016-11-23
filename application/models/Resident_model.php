@@ -6,6 +6,9 @@ class Resident_model extends CI_Model {
 		parent::__construct();
 	}
 
+	/*
+	 * Increase the session of the resident whith given ID by 1.
+	 */
 	function incrementSession( $residentID ) {
 		$this->db->where('id', $residentID);
 		$this->db->set('completed_sessions', 'completed_sessions+1', FALSE);

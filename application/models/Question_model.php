@@ -35,6 +35,10 @@ class Question_model extends CI_Model {
 		return $this->getCategoriesById($unfinished_categories);
 	}
 	
+	/**
+	 * Check if a given category (by ID) is completed finished by a
+	 * given resident (by ID) with a given session count in a given language.
+	 */
 	private function isFinishedCategory( $residentID, $language, $currentSession, $categoryID ) {
 		$category = $this->db->query(
 			"SELECT id, question_count"
@@ -56,6 +60,10 @@ class Question_model extends CI_Model {
 		return FALSE;
 	}
 	
+	/*
+	 * Get the category ID by a given category (string description)
+	 * in a given language.
+	 */
 	function getCategoryIdFrom( $language, $category ) {
 		$query = $this->db->query(
 			"SELECT id"
@@ -65,6 +73,10 @@ class Question_model extends CI_Model {
 		return $query->row()->id;
 	}
 	
+	/*
+	 * Get an array with categories (both ID and name of the category)
+	 * given an array with just the category IDs.
+	 */
 	function getCategoriesById( $array_with_category_ids ) {
 		if(count($array_with_category_ids) == 0) {
 			return array();
@@ -94,6 +106,10 @@ class Question_model extends CI_Model {
 		return $query->result();
 	}
 	
+	/**
+	 * Get the question IDs of all questions of a given category (by ID), answered
+	 * by a given resident (by ID) with a given session count. 
+	 */
 	private function getAllAnsweredQuestionsFrom( $residentID, $categoryID, $currentSession ) {
 		$query = $this->db->query(
 			"SELECT question_id"
@@ -103,6 +119,11 @@ class Question_model extends CI_Model {
 		return $query->result();
 	}
 	
+	/**
+	 * Get the question IDs of all questions within a given category (by ID) of a
+	 * given language that still need to be answered by a resident (by ID) with a
+	 * given session count.
+	 */
 	function getAllUnansweredQuestionsFrom( $residentID, $language, $categoryID, $currentSession ) {
 		$all_questions = $this->getAllQuestionsFrom($language, $categoryID);
 		$answered_questions = $this->getAllAnsweredQuestionsFrom($residentID, $categoryID, $currentSession);
@@ -122,7 +143,7 @@ class Question_model extends CI_Model {
 	}
 	
 	/**
-	 * Returns all options for a question with a given id.
+	 * Returns all options for a question with a given ID.
 	 */
 	function getOptionsFor( $question_id ) {
 		$query = $this->db->query(
@@ -137,6 +158,10 @@ class Question_model extends CI_Model {
 		return $query->result();
 	}
 	
+	/**
+	 * Get the ID, category ID, question text and score weight of the questions
+	 * of which the given array contains all the IDs.
+	 */
 	function getQuestionsByID( $array_with_question_ids ) {
 		if(count($array_with_question_ids) == 0) {
 			return array();
