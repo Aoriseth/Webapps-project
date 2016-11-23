@@ -59,7 +59,8 @@
 
 function recognizePicture(dataURL) {
     getKeys(function (result) {
-        result = JSON.parse(result.responseText);
+        var result2 = JSON.parse(result.responseText);
+        console.log(result2);
         var albumname = result.albumname;
         var albumkey = result.albumKey;
         var mashapekey = result.mashapeKey;
