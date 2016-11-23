@@ -51,8 +51,8 @@ class Resident extends CI_Controller {
 		// get 3 random categories
 		$categories = $this->Question_model->getAllUnfinishedCategories($this->session->id, 'English', ($this->session->completedSessions + 1));
 		if(count($categories) == 0) {
-			echo 'FINISHED!';
 			//TODO DO SOMETHING WHEN ALL CATEGORIES ARE FINISHED
+			//Possible to put the $category fetch and this condition before the narbar, button,... loading to prevent unnecessary loading
 		}
 		shuffle( $categories );
 		$categories = array_splice( $categories, 0, 3 );
