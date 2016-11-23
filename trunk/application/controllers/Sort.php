@@ -12,7 +12,7 @@ class Sort extends CI_Controller {
 	public function index()
 	{
 		$this->load->helper('url');
-		$this->load->view('caregiver_home');
+		$this->load->view('caregiver_overview');
 	}
 
 	public function ajax_list()
