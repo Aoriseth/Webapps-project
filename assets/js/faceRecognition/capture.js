@@ -58,14 +58,31 @@
 })();
 
 function recognizePicture(dataURL) {
-    var albumname = "ThomasLambregts";
-    var albumkey = "04dd52d9c1c15bf1987c4a06755cff59792b0ceb192db4a3f2fe75fb396acdd8";
-    var mashapekey = "UJzNOpsv0lmshCaSLozMnPXPDEwrp1qeb0Zjsn5a9vxEZdVa0g";
-    recognizeFunc(dataURL, albumname, albumkey, mashapekey, function (result) {
-        var resultObject = JSON.stringify(result);
-        console.log(resultObject);
-        var object = JSON.parse(resultObject);
-    }
-    );
-    
+    getKeys(function (result) {
+        result = JSON.parse(result.responseText);
+        var albumname = result.albumname;
+        var albumkey = result.albumKey;
+        var mashapekey = result.mashapeKey;
+        console.log("mashapekey:" + mashapekey);
+
+        recognizeFunc(dataURL, albumname, albumkey, mashapekey, function (result) {
+            var resultObject = JSON.stringify(result);
+            console.log(resultObject);
+            var object = JSON.parse(resultObject);
+        }
+        );
+    });
+
+
+}
+function getKeys(callback) {
+
+    $.ajax({
+        url: "get_facial_recognition_tokens",
+    }).always(function (result) {
+        if (callback && typeof (callback) === "function") {
+            var resultObject = JSON.stringify(result);
+            callback(JSON.parse(resultObject));
+        }
+    });
 }
