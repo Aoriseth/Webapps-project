@@ -50,7 +50,7 @@ class Resident extends CI_Controller {
 
 		// get 3 random categories
 		// TODO check if category is already done
-		$categories = $this->Question_model->getAllCategories( 'English' );
+		$categories = $this->Question_model->getAllUnfinishedCategories($this->session->id, 'English', ($this->session->completedSessions + 1));
 		shuffle( $categories );
 		$categories = array_splice( $categories, 0, 3 );
                 
@@ -90,7 +90,6 @@ class Resident extends CI_Controller {
 		
 		// grab questions from database
 		if ( count( $this->session->questions ) == 0 ) {
-			$categoryID = $this->Question_model->getCategoryIdFrom('English', $category); //TODO: use real language setting
 			$this->session->questions = $this->Question_model->getAllQuestionsFrom('English', $categoryID);
 		}
 
