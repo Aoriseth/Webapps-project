@@ -4,9 +4,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Grace-Age : Caregiver Overview</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
-    <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/datatables/css/dataTables.bootstrap.css>" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css'>" rel="stylesheet">
+      
+    <link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/datatables/css/dataTables.bootstrap.min.css')?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')?>" rel="stylesheet">
     
     [if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -54,7 +55,7 @@
                 <th>Gender</th>          
                 <th>Date of Birth</th>           
                 <th>Floor Number</th>
-                <th>Last Domicile</th>
+               
                 <th>Last Activity</th>
                 <th>Last Completed</th>
                 <th>Completed Sessions</th>            
