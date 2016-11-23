@@ -104,40 +104,20 @@ class Question_model extends CI_Model {
 	}
 	
 	function getAllUnansweredQuestionsFrom( $residentID, $language, $categoryID, $currentSession ) {
-		echo $categoryID;
-		echo '<- id --- ';
 		$all_questions = $this->getAllQuestionsFrom($language, $categoryID);
 		$answered_questions = $this->getAllAnsweredQuestionsFrom($residentID, $categoryID, $currentSession);
-		$unanswered_questions = array();
-		
-		foreach($all_questions as $question) {
-			echo $question->id;
-			echo ' ';
-		}
-		echo ' --- ';
-		
-		foreach($answered_questions as $question) {
-			echo $question->question_id;
-			echo ' ';
-		}
 		
 		$stored = array();
 		foreach($answered_questions as $question) {
 			$stored[] = $question->question_id;
 		}
+		
+		$unanswered_questions = array();
 		foreach($all_questions as $question) {
 			if(! in_array($question->id, $stored)) {
 				$unanswered_questions[] = $question->id;
 			}
 		}
-		
-		echo ' === ';
-		foreach($unanswered_questions as $question) {
-			echo $question;
-			echo ' ';
-		}
-		
-		
 		return $this->getQuestionsByID($unanswered_questions);
 	}
 	

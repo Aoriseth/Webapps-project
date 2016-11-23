@@ -49,8 +49,11 @@ class Resident extends CI_Controller {
 		$data[ 'navigation_buttons' ] = $this->parser->parse( 'resident/resident_navigation_buttons', $data2, true );
 
 		// get 3 random categories
-		// TODO check if category is already done
 		$categories = $this->Question_model->getAllUnfinishedCategories($this->session->id, 'English', ($this->session->completedSessions + 1));
+		if(count($categories) == 0) {
+			echo 'FINISHED!';
+			//TODO DO SOMETHING WHEN ALL CATEGORIES ARE FINISHED
+		}
 		shuffle( $categories );
 		$categories = array_splice( $categories, 0, 3 );
                 
