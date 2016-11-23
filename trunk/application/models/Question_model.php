@@ -18,7 +18,7 @@ class Question_model extends CI_Model {
 	/* Returns all categories of the given language and within the current session
 	 * that are not yet completed.
 	 * Members:
-	 *	- category		(string)
+	 *	- id		(int)
 	 */
 	function getAllUnfinishedCategories( $residentID, $language, $currentSession ) {
 		$all_categories = $this->db->query(
@@ -26,11 +26,9 @@ class Question_model extends CI_Model {
 			. " FROM a16_webapps_3.categories"
 			. " WHERE language='$language'"
 		);
-		//$all_categories = array_column($all_categories, 'id');
 		$unfinished_categories = array();
 		foreach($all_categories->result_array() as $category) {
-			$categoryID = $category['id'];
-			if(! $this->isFinishedCategory($residentID, $language, $currentSession, $categoryID)) {
+			if(! $this->isFinishedCategory($residentID, $language, $currentSession, $category['id'])) {
 				$unfinished_categories[] = $category['id'];
 			}
 		}
@@ -48,16 +46,44 @@ class Question_model extends CI_Model {
 			. " FROM a16_webapps_3.answers"
 			. " WHERE resident_id='$residentID' AND category_id='$categoryID' AND session='$currentSession'"
 		);
-		if($category->row()->question_count == $nb_of_questions_of_category_answered) {
+		$q_count = $category->row()->question_count;
+		$nb_of_questions_of_category_answered = $nb_of_questions_of_category_answered->row_array();
+		$nb_of_q = $nb_of_questions_of_category_answered['COUNT(id)'];
+		echo $nb_of_q;
+		echo '/';
+		echo $q_count;
+		echo ' & ';
+		if($q_count == $nb_of_q) {
 			return TRUE;
 		}
 		return FALSE;
+	}
+	
+	function getCategoryIdFrom( $language, $category ) {
+		$query = $this->db->query(
+			"SELECT id"
+			. " FROM a16_webapps_3.categories"
+			. " WHERE language='$language' AND category='$category'"
+		);
+		return $query->row()->id;
+	}
+	
+	function getCategoriesById( $array_with_category_ids ) {
+		if(count($array_with_category_ids) == 0) {
+			return array();
+		}
+		$query = $this->db->query(
+			"SELECT id, category"
+			. " FROM a16_webapps_3.categories"
+			. " WHERE id IN (".implode(',',$array_with_category_ids).")"
+		);
+		return $query->result();
 	}
 
 	/* Returns all questions of the given language in the given category.
 	 * Members:
 	 *	- id			(unique number)
-	 *	- category		(string)
+	 *	- score_weight	(int)
 	 *	- category_id	(value from 0 to ...)
 	 *	- question		(string)
 	 * 
@@ -71,34 +97,51 @@ class Question_model extends CI_Model {
 		return $query->result();
 	}
 	
-	function getAllUnansweredQuestionsFrom( $residentID, $language, $categoryID, $currentSession ) {
-		$all_questions = array_column($this->getAllQuestionsFrom($language, $categoryID), 'id');
-		$answered_questions = array_column($this->getAllAnsweredQuestionsFrom($residentID, $categoryID, $currentSession), 'id');
-		$unanswered_questions = array();
-		foreach($all_questions as $question) {
-			if(! in_array($question, $answered_questions)) {
-				$unanswered_questions[] = $question;
-			}
-		}
-		return $this->getQuestionsByID($unanswered_questions)->result();
-	}
-	
 	private function getAllAnsweredQuestionsFrom( $residentID, $categoryID, $currentSession ) {
 		$query = $this->db->query(
-			"SELECT id"
+			"SELECT question_id"
 			. " FROM a16_webapps_3.answers"
 			. " WHERE resident_id='$residentID' AND category_id='$categoryID' AND session='$currentSession'"
 		);
 		return $query->result();
 	}
 	
-	function getCategoryIdFrom( $language, $category ) {
-		$query = $this->db->query(
-			"SELECT id"
-			. " FROM a16_webapps_3.categories"
-			. " WHERE language='$language' AND category='$category'"
-		);
-		return $query->row()->id;
+	function getAllUnansweredQuestionsFrom( $residentID, $language, $categoryID, $currentSession ) {
+		echo $categoryID;
+		echo '<- id --- ';
+		$all_questions = $this->getAllQuestionsFrom($language, $categoryID);
+		$answered_questions = $this->getAllAnsweredQuestionsFrom($residentID, $categoryID, $currentSession);
+		$unanswered_questions = array();
+		
+		foreach($all_questions as $question) {
+			echo $question->id;
+			echo ' ';
+		}
+		echo ' --- ';
+		
+		foreach($answered_questions as $question) {
+			echo $question->question_id;
+			echo ' ';
+		}
+		
+		$stored = array();
+		foreach($answered_questions as $question) {
+			$stored[] = $question->question_id;
+		}
+		foreach($all_questions as $question) {
+			if(! in_array($question->id, $stored)) {
+				$unanswered_questions[] = $question->id;
+			}
+		}
+		
+		echo ' === ';
+		foreach($unanswered_questions as $question) {
+			echo $question;
+			echo ' ';
+		}
+		
+		
+		return $this->getQuestionsByID($unanswered_questions);
 	}
 	
 	/**
@@ -118,19 +161,14 @@ class Question_model extends CI_Model {
 	}
 	
 	function getQuestionsByID( $array_with_question_ids ) {
+		if(count($array_with_question_ids) == 0) {
+			return array();
+		}
 		$query = $this->db->query(
 			"SELECT id, category_id, question, score_weight"
 			. " FROM a16_webapps_3.questions"
-			. " WHERE id IN '$array_with_question_ids'"
+			. " WHERE id IN (".implode(',',$array_with_question_ids).")"
 		);
-		return $query->result();
-	}
-	
-	function getCategoriesById( $array_with_category_ids ) {
-		$query = $this->db->query(
-			"SELECT id, category"
-			. " FROM a16_webapps_3.categories"
-			. " WHERE id IN (".implode(',',$array_with_category_ids).")");
 		return $query->result();
 	}
 }
