@@ -49,10 +49,7 @@ class Question_model extends CI_Model {
 		$q_count = $category->row()->question_count;
 		$nb_of_questions_of_category_answered = $nb_of_questions_of_category_answered->row_array();
 		$nb_of_q = $nb_of_questions_of_category_answered['COUNT(id)'];
-		echo $nb_of_q;
-		echo '/';
-		echo $q_count;
-		echo ' & ';
+		
 		if($q_count == $nb_of_q) {
 			return TRUE;
 		}
