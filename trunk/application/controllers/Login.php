@@ -7,6 +7,7 @@ class Login extends CI_Controller {
 
 		$this->load->library( 'parser' );
 		$this->load->model( 'Login_model' );
+		$this->load->model( 'FaceRecKeys_model' );
 		$this->load->helper( 'url' );                
 	}
 
@@ -47,13 +48,25 @@ class Login extends CI_Controller {
 
 		$this->parser->parse( 'login/login_main', $data );
 	}
+	
+	public function get_facial_recognition_tokens() {
+		// only allow AJAX requests
+		if ( ! $this->input->is_ajax_request() ) {
+			redirect('404');
+		}
+
+		$result = $this->FaceRecKeys_model->getKeys();
+
+	    header( 'Content-Type: application/json' );
+		echo json_encode( $result );
+	}
 
 	public function manual() {
 		if ( $this->session->is_logged_in )	{
 			redirect( 'login/success' );
 		}
 		$data2[ 'page' ] = 'manual';
-                $data[ 'navigation_buttons' ] = $this->parser->parse( 'login/login_navigation_buttons', $data2, true );
+		$data[ 'navigation_buttons' ] = $this->parser->parse( 'login/login_navigation_buttons', $data2, true );
 		$data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
 		$data[ 'navigation_buttons' ] = $this->load->view( 'login/login_navigation_buttons', '', true );
 
