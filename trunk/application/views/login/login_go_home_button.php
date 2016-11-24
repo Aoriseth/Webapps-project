@@ -1,3 +1,3 @@
-<form action=<?php echo base_url() ?> method="POST">
-	<input type="submit" class="withripple btn btn-raised btn-default" name="go_home" value="Continue">
+<form>
+    <button  class=" btn-lg withripple btn btn-raised btn-default" formaction="<?php echo base_url() . 'index.php/resident/home' ?>">Continue</button>
 </form>
