@@ -64,8 +64,8 @@ class Sort extends CI_Controller {
 
 	public function ajax_add()
 	{
-                $id=null;
-                $type='resident';
+                $id=' ';
+                $type=null;
 		$this->_validate();
 		$data = array(
 				'id' => $this->input->post($id),
