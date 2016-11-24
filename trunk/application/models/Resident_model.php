@@ -4,6 +4,9 @@ class Resident_model extends CI_Model {
 
 	public function __construct() {
 		parent::__construct();
+		
+		$this->load->helper('date');
+        date_default_timezone_set('Europe/Brussels');
 	}
 
 	/*
@@ -13,6 +16,8 @@ class Resident_model extends CI_Model {
 		$this->db->where('id', $residentID);
 		$this->db->set('completed_sessions', 'completed_sessions+1', FALSE);
 		$this->db->update('a16_webapps_3.residents');
+		
+		$this->updateLastCompleted($residentID);
 	}
 	
 	/**
@@ -25,4 +30,16 @@ class Resident_model extends CI_Model {
 		);
 		return $query->result();
 	}
+	
+	/**
+	 * Update the last completed field with the current time and date
+	 * for a given resident (by ID).
+	 */
+	private function updateLastCompleted( $residentID ) {
+		$this->db->where('id', $residentID);
+		$this->db->set('last_completed', date('Y-m-d H:i:s'));
+		$this->db->update('a16_webapps_3.residents');
+	}
+	
+	
 }
