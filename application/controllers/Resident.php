@@ -152,6 +152,36 @@ class Resident extends CI_Controller {
 		$this->parser->parse( 'resident/resident_main', $data );
 	}
 
+	function question_store_answer()
+	{
+		// only allow AJAX requests
+		if ( ! $this->input->is_ajax_request() ) {
+			redirect('404');
+		}
+
+		// check if POST is set correct (at least kind of)
+		if ( ! isset( $_POST[ 'category_id' ] ) ) {
+			echo 'Error: category_id not set.';
+			return;
+		} else if ( ! isset( $_POST[ 'question_id' ] ) ) {
+			echo 'Error: question_id not set.';
+			return;
+		} else if ( ! isset( $_POST[ 'chosen_option' ] ) ) {
+			echo 'Error: chosen_option not set.';
+			return;			
+		}
+
+		$residentId = $this->session->id;
+		$questionId = $this->input->post( 'question_id' );
+		$chosenOption = $this->input->post( 'chosen_option' );
+		$categoryId = $this->input->post( 'category_id' );
+		$currentSession = ($this->session->completedSessions + 1); //TODO: use real values.
+
+		$this->Answer_model->storeAnswer( $residentId, $questionId, $chosenOption, $categoryId, $currentSession );
+
+		echo 'Answer stored succesfully.';
+	}
+
 	function completed()
 	{
 		$data['navbar'] = $this->load->view( 'resident/resident_navbar', '', true );
