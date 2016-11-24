@@ -46,6 +46,12 @@ body {
 #progress_col{
     transform: translateY(100%);
 }
+table{
+    margin-left: auto;
+    margin-right: auto;
+    width: auto !important;
+    
+}
 
 .glyphicon-user{
     font-size: 50px;
