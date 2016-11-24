@@ -5,7 +5,7 @@ class Sort_model extends CI_Model {
 
 	var $table = 'residents';
         //set column field database for datatable orderable
-	var $column_order = array('id','first_name','last_name','gender','password','date_of_birth','language','floor_number','last_domicile','last_activity','last_completed','completed_sessions','session_in_progress','account_created_by','account_created_on',null);   
+	var $column_order = array('id','first_name','last_name','gender','password','date_of_birth','language','floor_number','room_number','last_domicile','last_activity','last_completed','completed_sessions','session_in_progress','account_created_by','account_created_on',null);   
         //set column field database for datatable searchable just firstname , lastname , address are searchable
 	var $column_search = array('first_name','last_name'); 
          // default order 
