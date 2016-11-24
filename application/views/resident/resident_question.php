@@ -1,3 +1,23 @@
+<script>
+	// User has to be logged in as resident to be able to do this!
+	function storeAnswer( categoryId, questionId, chosenOption ) {
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url() ?>index.php/resident/question_store_answer", 
+			data: {
+				category_id: categoryId,
+				question_id: questionId,
+				chosen_option: chosenOption
+			},
+			dataType: "text",
+			cache:false,
+			success: function( data ) {
+				console.log(data);  // debugging message.
+			}
+		});
+	}
+</script>
+
 <?php
 $progress = 0;
 ?>
