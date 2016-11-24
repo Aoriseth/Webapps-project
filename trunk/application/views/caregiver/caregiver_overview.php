@@ -5,7 +5,6 @@
     <title>Grace-Age : Caregiver Overview</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
       
-    <link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">  
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.min.css"/>
   
@@ -18,7 +17,8 @@
     
     
 
-<h1>Resident overview page for the caregivers</h1>
+<h2>Resident overview page for the caregivers</h2>
+<hr>
 <p>
 	A list of all the residents. <i>Oops...</i>
          <div class="container">
@@ -30,7 +30,7 @@
         <button class="btn btn-default" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> Reload</button>
         <br />
         <br />
-        <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <table  id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>                    
             

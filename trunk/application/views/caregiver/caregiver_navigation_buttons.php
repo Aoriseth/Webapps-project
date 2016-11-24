@@ -16,12 +16,12 @@
 -->
 
 <!-- I am currently on page '{page}' -->
-<div class=" well">
+<div class="">
     <form action=<?php echo base_url() ?> method="POST">
-        <input <?php if ( $page == 'home' ) { ?>disabled<?php } ?> class="btn btn-raised btn-default" type="submit" name="home" value="Home">
+        <input <?php if ( $page == 'home' ) { ?>disabled<?php } ?> style="width: 100%" class="btn btn-raised btn-default" type="submit" name="home" value="Home">
     </form>
 
     <form action=<?php echo base_url().'index.php/logout' ?> method="POST">
-        <input class="btn btn-raised btn-default" type="submit" name="logout" value="Logout">
+        <input style="width: 100%" class="btn btn-raised btn-default" type="submit" name="logout" value="Logout">
     </form>
 </div>

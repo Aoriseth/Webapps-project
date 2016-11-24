@@ -33,18 +33,20 @@
 		
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-sm-4 col-md-3 sidebar">
-                            {navbar}
+                        <div class="col-sm-3 col-md-3 sidebar">
+                            <div class="well">
+                                {navbar}
+                                <hr>
+                                {navigation_buttons}
+                            </div>
                         </div>
                         
-                        <div class="col-sm-8 col-md-9">
+                        <div class="col-sm-9 col-md-9">
                             <div class="jumbotron">
                                     {content}
                             </div>
-
-
-                            <div>
-                                    {navigation_buttons}
+                            <div class="col-sm-1 col-md-1">
+                                
                             </div>
                         </div>
                     </div>

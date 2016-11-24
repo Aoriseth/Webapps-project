@@ -5,7 +5,8 @@
 
 
 
-<h1>Home page for the caregivers</h1>
+<h2>Home page for the caregivers</h2>
+<hr>
 </hr>
 <p>
 	Hello {name}.
@@ -14,9 +15,6 @@
 	It seems that all your residents are still alive. Good job.
 </p>
 <body>
-    <div>
-        {navbar}
-    </div>
    
 
 </body>

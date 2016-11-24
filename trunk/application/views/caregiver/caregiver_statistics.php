@@ -1,4 +1,5 @@
-<h1>Statistics for the caregivers</h1>
+<h2>Statistics for the caregivers</h2>
+<hr>
 <p>
 	Many stats. <i>In progress.</i>
 </p>
