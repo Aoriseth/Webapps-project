@@ -81,8 +81,7 @@ class Resident extends CI_Controller {
 		 */
 		/*
 		 * TODO
-		 * progress bar is confusion: we start at 1?
-		 * confirmation screen should also show load bar
+		 * confirmation screen should also show progress bar
 		 * 
 		 * Work with AJAX?
 		 */
