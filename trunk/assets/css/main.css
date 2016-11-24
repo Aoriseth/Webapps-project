@@ -46,9 +46,6 @@ body {
 #progress_col{
     transform: translateY(100%);
 }
-#modal_form{
-    width: 40%
-}
 
 .glyphicon-user{
     font-size: 50px;
