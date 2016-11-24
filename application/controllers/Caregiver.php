@@ -9,6 +9,7 @@ class Caregiver extends CI_Controller {
 		if ( $this->session->type != 'caregiver' ) { redirect( base_url() ); }
 		
 		$this->load->library( 'parser' );
+                $this->load->model( 'Question_model' );
 	}
 
 	function index()
@@ -41,11 +42,12 @@ class Caregiver extends CI_Controller {
 	
 	function statistics()
 	{
+                $categories = $this->Question_model->getAllCategories( 'English' );
 		$data2[ 'page' ] = 'statistics';
 		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
 		$data[ 'navigation_buttons' ] = $this->parser->parse( 'caregiver/caregiver_navigation_buttons', $data2, true );
-		
-		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_statistics', '', true );
+		$data2[ 'categories'] = $categories;
+		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_statistics', $data2, true );
 
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}

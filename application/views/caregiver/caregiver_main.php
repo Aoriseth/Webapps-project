@@ -17,7 +17,9 @@
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
                 <script src="<?php echo base_url(); ?>assets/js/material.js"></script>
                 <script src="<?php echo base_url(); ?>assets/js/ripples.js"></script>
+                <script src="<?php echo base_url(); ?>assets/js/statistics/chartCallbacks.js"></script>
                 <script src="<?php echo base_url(); ?>assets/js/FRLambdaAPI.js"></script>
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                  <!-- Activate Material Design -->
                 <script>$.material.init();</script>
 <!--	HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
