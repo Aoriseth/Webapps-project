@@ -72,12 +72,12 @@ class Sort extends CI_Controller {
                 $completed_sessions=0;
                 //date
                 $last_activity='2016-11-24';
-                $last_completed='2016-11-24';
+                $last_completed='';
                 
 		$this->_validate();
 		$data = array(
                     
-				'id' => $this->input->post($id),
+				'id' => $this->input->$id,
 				'first_name' => $this->input->post('first_name'),
 				'last_name' => $this->input->post('last_name'),
 				'gender' => $this->input->post('gender'),
@@ -87,11 +87,11 @@ class Sort extends CI_Controller {
                                 'floor_number' => $this->input->post('floor_number'),
                                 'room_number' => $this->input->post('room_number'),
                                 'last_domicile' => $this->input->post('last_domicile'),
-                                'last_activity' => $this->input->post($last_activity),
-                                'last_completed' => $this->input->post($last_completed),
-				'completed_sessions' => $this->input->post($completed_sessions),
-                                'session_in_progress' => $this->input->post($session_In_Progress),
-                                'type' => $this->input->post($type),                    
+                                'last_activity' => $this->input->$last_activity,
+                                'last_completed' => $this->input->$last_completed,
+				'completed_sessions' => $this->input->$completed_sessions,
+                                'session_in_progress' => $this->input->$session_In_Progress,
+                                'type' => $this->input->$type,                    
                                 'account_created_by' => $this->input->post('account_created_by'),
                                 'account_created_on' => $this->input->post('account_created_on'),                     
                     
