@@ -46,6 +46,9 @@ body {
 #progress_col{
     transform: translateY(100%);
 }
+#modal_form{
+    width: 60%
+}
 
 .glyphicon-user{
     font-size: 50px;
@@ -53,6 +56,7 @@ body {
     position: absolute;
     right: 1px;
 }
+
 
 /*nav.ul{
     float: right;

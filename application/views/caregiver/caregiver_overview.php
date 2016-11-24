@@ -151,6 +151,7 @@ function edit_person(id)
     save_method = 'update';
     $('#form')[0].reset(); // reset form on modals
     $('.form-group').removeClass('has-error'); // clear error class
+    $('#modal_form').modal('show'); // show bootstrap modal
     $('.help-block').empty(); // clear error string
 
     //Ajax Load data from ajax

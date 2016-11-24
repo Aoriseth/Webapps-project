@@ -28,7 +28,8 @@ class Sort extends CI_Controller {
                         $row[] = $residents->last_name;
                         $row[] = $residents->gender;                       
                         $row[] = $residents->date_of_birth;                       
-                        $row[] = $residents->floor_number;                      
+                        $row[] = $residents->floor_number;   
+                        $row[] = $residents->room_number;   
                         $row[] = $residents->last_activity;
                         $row[] = $residents->last_completed;
                         $row[] = $residents->completed_sessions;
