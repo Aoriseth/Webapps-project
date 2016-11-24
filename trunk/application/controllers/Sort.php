@@ -64,7 +64,8 @@ class Sort extends CI_Controller {
 
 	public function ajax_add()
 	{
-                $id=' ';
+                $id=null;
+                $type='resident';
 		$this->_validate();
 		$data = array(
 				'id' => $this->input->post($id),
@@ -81,6 +82,7 @@ class Sort extends CI_Controller {
                                 'last_completed' => $this->input->post('last_completed'),
 				'completed_sessions' => $this->input->post('completed_sessions'),
                                 'session_in_progress' => $this->input->post('session_in_progress'),
+                                'type' => $this->input->post($type),                    
                                 'account_created_by' => $this->input->post('account_created_by'),
                                 'account_created_on' => $this->input->post('account_created_on'),                     
                     
