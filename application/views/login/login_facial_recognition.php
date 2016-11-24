@@ -11,7 +11,7 @@
 
 
     <br/>
-    <button class="btn btn-default btn-raised" id="facialLoginButton">Log in</button>
+    <button class="btn-lg btn btn-default btn-raised" id="facialLoginButton">Log in</button>
 
 
 </div>
