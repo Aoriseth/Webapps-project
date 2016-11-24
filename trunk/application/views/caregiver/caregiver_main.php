@@ -33,7 +33,7 @@
 		
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-sm-3 col-md-3 sidebar">
+                        <div class="col-sm-3 col-md-2 sidebar">
                             <div class="well">
                                 {navbar}
                                 <hr>
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         
-                        <div class="col-sm-9 col-md-9">
+                        <div class="col-sm-9 col-md-10">
                             <div class="jumbotron">
                                     {content}
                             </div>
