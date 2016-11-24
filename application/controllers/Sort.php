@@ -35,8 +35,8 @@ class Sort extends CI_Controller {
                       
                        
 			//add html for action
-			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$residents->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-				  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$residents->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+			$row[] = '<a class="btn btn-raised btn-success" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$residents->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+				  <a class="btn btn-raised btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$residents->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
 		
 			$data[] = $row;
 		}
@@ -73,6 +73,7 @@ class Sort extends CI_Controller {
                                 'date_of_birth' => $this->input->post('date_of_birth'),
                                 'language' => $this->input->post('language'),
                                 'floor_number' => $this->input->post('floor_number'),
+                                'room_number' => $this->input->post('room_number'),
                                 'last_domicile' => $this->input->post('last_domicile'),
                                 'last_activity' => $this->input->post('last_activity'),
                                 'last_completed' => $this->input->post('last_completed'),
@@ -100,6 +101,7 @@ class Sort extends CI_Controller {
                                 'date_of_birth' => $this->input->post('date_of_birth'),
                                 'language' => $this->input->post('language'),
                                 'floor_number' => $this->input->post('floor_number'),
+                                 'room_number' => $this->input->post('room_number'),
                                 'last_domicile' => $this->input->post('last_domicile'),
                                 'last_activity' => $this->input->post('last_activity'),
                                 'last_completed' => $this->input->post('last_completed'),
@@ -172,6 +174,12 @@ class Sort extends CI_Controller {
 		{
 			$data['inputerror'][] = 'floor_number';
 			$data['error_string'][] = 'floor_number is required';
+			$data['status'] = FALSE;
+		} 
+                  if($this->input->post('room_number') == '')
+		{
+			$data['inputerror'][] = 'room_number';
+			$data['error_string'][] = 'room_number is required';
 			$data['status'] = FALSE;
 		}  
                 if($this->input->post('last_domicile') == '')

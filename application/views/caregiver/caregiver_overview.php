@@ -26,7 +26,7 @@
 
         <h3>Person Data</h3>
         <br />
-        <button class="btn btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i> Add Person</button>
+        <button class="btn btn-raised btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i> Add Person</button>
         <button class="btn btn-default" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> Reload</button>
         <br />
         <br />
@@ -38,7 +38,8 @@
                     <th>Last Name</th>
                     <th>Gender</th>            
                     <th>Date of Birth</th>                 
-                    <th>Floor Number</th>                   
+                    <th>Floor Number</th>  
+                    <th>room_number</th>
                     <th>Last Activity</th>
                     <th>Last Completed</th>
                     <th>Completed Sessions</th>
@@ -55,7 +56,8 @@
                 <th>Last Name</th>
                 <th>Gender</th>          
                 <th>Date of Birth</th>           
-                <th>Floor Number</th>               
+                <th>Floor Number</th>     
+                <th>room_number</th>
                 <th>Last Activity</th>
                 <th>Last Completed</th>
                 <th>Completed Sessions</th>            
@@ -167,6 +169,7 @@ function edit_person(id)
             $('[name="date_of_birth"]').datepicker('update',date_of_birth);
             $('[name="language"]').val(data.language);
             $('[name="floor_number"]').val(data.floor_number);
+            $('[name="room_number"]').val(data.room_number);
             $('[name="last_domicile"]').val(data.last_domicile);           
             $('[name="last_activity"]').datepicker('update',last_activity);           
             $('[name="last_completed"]').datepicker('update',last_completed);
@@ -198,7 +201,7 @@ function save()
     $('#btnSave').attr('disabled',true); //set button disable 
     var url;
 
-    if(save_method === 'add') {
+    if(save_method == 'add') {
         url = "<?php echo site_url('Sort/ajax_add')?>";
     } else {
         url = "<?php echo site_url('Sort/ajax_update')?>";
@@ -334,6 +337,13 @@ function delete_person(id)
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="control-label col-md-3">Room Number</label>
+                            <div class="col-md-9">
+                                <input name="room_number" placeholder="Room Number" class="form-control" type="text">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-3">Last Domicile</label>
                             <div class="col-md-9">
                                 <input name="last_domicile" placeholder="Last Domicile" class="form-control" type="text">
@@ -359,8 +369,8 @@ function delete_person(id)
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnSave" onclick="save()" class="btn btn-primary">Save</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <button type="button" id="btnSave" onclick="save()" class="btn btn-raised btn-success">Save</button>
+                <button type="button" class="btn btn-raised btn-danger" data-dismiss="modal">Cancel</button>
             </div>
         </div> 
     </div> 
