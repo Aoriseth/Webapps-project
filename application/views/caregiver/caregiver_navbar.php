@@ -14,19 +14,19 @@
 
 
 
-<div class="well">
+<div class="">
     <form  action="overview" method="POST">
-    <input <?php if ( $page == 'overview' ) { ?>disabled<?php } ?> class="btn btn-raised btn-default" type="submit" name="resident" value="Resident overview">
+    <input <?php if ( $page == 'overview' ) { ?>disabled<?php } ?> style="width: 100%" class="btn btn-raised btn-default" type="submit" name="resident" value="Resident overview">
 	
 </form>
 
     <form action="groups" method="POST">
-    <input <?php if ( $page == 'groups' ) { ?>disabled<?php } ?> class=" btn btn-raised btn-default" type="submit" name="groups" value="Group selection">
+    <input <?php if ( $page == 'groups' ) { ?>disabled<?php } ?> style="width: 100%" class=" btn btn-raised btn-default" type="submit" name="groups" value="Group selection">
 	
 </form>
 
     <form  action="statistics" method="POST">
-    <input <?php if ( $page == 'statistics' ) { ?>disabled<?php } ?> class=" btn btn-raised btn-default" type="submit" name="statistics" value="Statistics">
+    <input <?php if ( $page == 'statistics' ) { ?>disabled<?php } ?> style="width: 100%" class=" btn btn-raised btn-default" type="submit" name="statistics" value="Statistics">
 	
 </form>
 </div>
