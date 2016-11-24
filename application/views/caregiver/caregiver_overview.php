@@ -30,7 +30,7 @@
         <button class="btn btn-default" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> Reload</button>
         <br />
         <br />
-        <table id="table" class="table table-striped table-bordered" cellspacing="0" width="60%">
+        <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>                    
             
@@ -201,7 +201,7 @@ function save()
     $('#btnSave').attr('disabled',true); //set button disable 
     var url;
 
-    if(save_method === 'add') {
+    if(save_method == 'add') {
         url = "<?php echo site_url('Sort/ajax_add')?>";
     } else {
         url = "<?php echo site_url('Sort/ajax_update')?>";
