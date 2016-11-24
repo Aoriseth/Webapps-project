@@ -64,10 +64,11 @@ class Sort extends CI_Controller {
 
 	public function ajax_add()
 	{
-                $id=' ';
-                $type=null;
+                $id='r126';
+                $type='resident';
 		$this->_validate();
 		$data = array(
+                    
 				'id' => $this->input->post($id),
 				'first_name' => $this->input->post('first_name'),
 				'last_name' => $this->input->post('last_name'),
