@@ -55,8 +55,7 @@
                 <th>Last Name</th>
                 <th>Gender</th>          
                 <th>Date of Birth</th>           
-                <th>Floor Number</th>
-               
+                <th>Floor Number</th>               
                 <th>Last Activity</th>
                 <th>Last Completed</th>
                 <th>Completed Sessions</th>            

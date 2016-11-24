@@ -22,22 +22,17 @@ class Sort extends CI_Controller {
 		$no = $_POST['start'];
 		foreach ($list as $residents) {
 			$no++;
-			$row = array();
-			$row[] = $residents->id;
+			$row = array();              
+                     
 			$row[] = $residents->first_name;
                         $row[] = $residents->last_name;
-                        $row[] = $residents->gender;
-                        $row[] = $residents->password;
-                        $row[] = $residents->date_of_birth;
-                        $row[] = $residents->language;
-                        $row[] = $residents->floor_number;
-                        $row[] = $residents->last_domicile;
+                        $row[] = $residents->gender;                       
+                        $row[] = $residents->date_of_birth;                       
+                        $row[] = $residents->floor_number;                      
                         $row[] = $residents->last_activity;
                         $row[] = $residents->last_completed;
                         $row[] = $residents->completed_sessions;
-                        $row[] = $residents->session_in_progress;
-                        $row[] = $residents->account_created_by;
-                        $row[] = $residents->account_created_on;
+                      
                        
 			//add html for action
 			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$residents->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
