@@ -112,7 +112,7 @@ class Resident extends CI_Controller {
 		// store the chosen option (if any)
 		if (isset($_POST['option'])) {
 			$residentID = $this->session->id;
-			$currentSession = ($this->session->completedSessions + 1); //TODO: use real values.
+			$currentSession = ($this->session->completedSessions + 1);
 			if($index > 0) {
 				$questionID = $this->session->questions[$index-1]->id;
 			}
