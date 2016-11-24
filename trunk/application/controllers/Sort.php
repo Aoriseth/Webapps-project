@@ -23,7 +23,7 @@ class Sort extends CI_Controller {
 		foreach ($list as $residents) {
 			$no++;
 			$row = array();              
-                     
+                        
 			$row[] = $residents->first_name;
                         $row[] = $residents->last_name;
                         $row[] = $residents->gender;                       
@@ -64,9 +64,10 @@ class Sort extends CI_Controller {
 
 	public function ajax_add()
 	{
+                $id=' ';
 		$this->_validate();
 		$data = array(
-				'id' => $this->input->post('id'),
+				'id' => $this->input->post($id),
 				'first_name' => $this->input->post('first_name'),
 				'last_name' => $this->input->post('last_name'),
 				'gender' => $this->input->post('gender'),
