@@ -64,8 +64,16 @@ class Sort extends CI_Controller {
 
 	public function ajax_add()
 	{
+                //varchar
                 $id='r126';
                 $type='resident';
+                //int
+                $session_In_Progress=0;
+                $completed_sessions=0;
+                //date
+                $last_activity='2016-11-24';
+                $last_completed='2016-11-24';
+                
 		$this->_validate();
 		$data = array(
                     
@@ -79,10 +87,10 @@ class Sort extends CI_Controller {
                                 'floor_number' => $this->input->post('floor_number'),
                                 'room_number' => $this->input->post('room_number'),
                                 'last_domicile' => $this->input->post('last_domicile'),
-                                'last_activity' => $this->input->post('last_activity'),
-                                'last_completed' => $this->input->post('last_completed'),
-				'completed_sessions' => $this->input->post('completed_sessions'),
-                                'session_in_progress' => $this->input->post('session_in_progress'),
+                                'last_activity' => $this->input->post($last_activity),
+                                'last_completed' => $this->input->post($last_completed),
+				'completed_sessions' => $this->input->post($completed_sessions),
+                                'session_in_progress' => $this->input->post($session_In_Progress),
                                 'type' => $this->input->post($type),                    
                                 'account_created_by' => $this->input->post('account_created_by'),
                                 'account_created_on' => $this->input->post('account_created_on'),                     
@@ -192,37 +200,8 @@ class Sort extends CI_Controller {
 			$data['inputerror'][] = 'last_domicile';
 			$data['error_string'][] = 'last_domicile is required';
 			$data['status'] = FALSE;
-		}
-                if($this->input->post('last_activity') == '')
-		{
-			$data['inputerror'][] = 'last_activity';
-			$data['error_string'][] = 'last_activity is required';
-			$data['status'] = FALSE;
-		}
-                if($this->input->post('last_completed') == '')
-		{
-			$data['inputerror'][] = 'last_completed';
-			$data['error_string'][] = 'last_completed is required';
-			$data['status'] = FALSE;
-		}
-                if($this->input->post('completed_sessions') == '')
-		{
-			$data['inputerror'][] = 'completed_sessions';
-			$data['error_string'][] = 'completed_sessions is required';
-			$data['status'] = FALSE;
-		}
-                if($this->input->post('last_completed') == '')
-		{
-			$data['inputerror'][] = 'last_completed';
-			$data['error_string'][] = 'last_completed is required';
-			$data['status'] = FALSE;
-		}
-                if($this->input->post('session_in_progress') == '')
-		{
-			$data['inputerror'][] = 'session_in_progress';
-			$data['error_string'][] = 'session_in_progress is required';
-			$data['status'] = FALSE;
-		}
+		}              
+              
                 if($this->input->post('account_created_by') == '')
 		{
 			$data['inputerror'][] = 'account_created_by';
