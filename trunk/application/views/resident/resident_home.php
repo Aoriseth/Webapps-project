@@ -1,21 +1,21 @@
 
 <div class="container-fluid">
-    <div class="row" >
-        <p>
-            Hello {name}.
-        </p>
-    </div>
-    <div class="row">     
+        
 
             
-            <p>
+        <div class="well">
+            <h2 class="text-center">
+                Welcome {name}.<br><br>
+        </h2>
                 <img src=<?php echo base_url().'assets/imgs/puzzle.jpg'?> alt="Puzzle View" style="width:100%;height:35vw;" class="center-block">
-            </p>
+        </div>
 
-            <form action=<?php echo base_url().'index.php/resident/categories' ?> method="POST" class="text-center">
-                <input class="btn btn-raised btn-default" type="submit" name="Categories" value="Start a new test!" style="width: 50%">
+            
+        <div class="well">
+            <form class="text-center">
+                <button style="width: 50%;font-size:2em;" class="btn-lg withripple btn btn-raised btn-info" formaction="<?php echo base_url() . 'index.php/resident/categories' ?>"><br>Start a new test!<br><br></button>
             </form>
-
+        </div>
     </div>
 
 </div>
