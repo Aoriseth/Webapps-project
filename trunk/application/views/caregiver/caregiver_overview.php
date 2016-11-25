@@ -70,7 +70,7 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
 
-<script src="<?php echo base_url(); ?>assets/datatables/js/dataTables.bootstrap.js')?>"></script>
+<script src="<?php echo base_url(); ?>assets/datatables/js/dataTables.bootstrap.js"></script>
 
 
 <script type="text/javascript">
