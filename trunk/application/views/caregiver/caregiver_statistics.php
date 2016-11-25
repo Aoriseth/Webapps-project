@@ -1,9 +1,5 @@
 <h2>Statistics for the caregivers</h2>
 <hr>
-<p>
-	Many stats. <i>In progress.</i>
-</p>
-
 <script type="text/javascript">
       //get all categories
       var categories = [];
