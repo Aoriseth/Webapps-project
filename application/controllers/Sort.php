@@ -23,10 +23,7 @@ class Sort extends CI_Controller {
 		foreach ($list as $residents) {
 			$no++;
 			$row = array();              
-                         if($person->photo)
-                $row[] = '<a href="'.base_url('upload/'.$person->photo).'" target="_blank"><img src="'.base_url('upload/'.$person->photo).'" class="img-responsive" /></a>';
-            else
-                $row[] = '(No photo)';
+                        
 			$row[] = $residents->first_name;
                         $row[] = $residents->last_name;
                         $row[] = $residents->gender;                       
@@ -80,7 +77,7 @@ class Sort extends CI_Controller {
 		$this->_validate();
 		$data = array(
                     
-				'id' => $this->input->$id,                                   
+				'id' => $this->input->$id,
 				'first_name' => $this->input->post('first_name'),
 				'last_name' => $this->input->post('last_name'),
 				'gender' => $this->input->post('gender'),
@@ -96,16 +93,11 @@ class Sort extends CI_Controller {
                                 'session_in_progress' => $this->input->$session_In_Progress,
                                 'type' => $this->input->$type,                    
                                 'account_created_by' => $this->input->post('account_created_by'),
-                                'account_created_on' => $this->input->post('account_created_on'),  
+                                'account_created_on' => $this->input->post('account_created_on'),                     
+                    
+                    
                     
 			);
-                
-                if(!empty($_FILES['photo']['name']))
-                    {
-                       $upload = $this->_do_upload();
-                       $data['photo'] = $upload;
-                    }
-                                    
 		$insert = $this->residents->save($data);
 		echo json_encode(array("status" => TRUE));
 	}
@@ -132,26 +124,6 @@ class Sort extends CI_Controller {
                                 'account_created_on' => $this->input->post('account_created_on'),
 				
 			);
-                 if($this->input->post('remove_photo')) // if remove photo checked
-        {
-            if(file_exists('upload/'.$this->input->post('remove_photo')) && $this->input->post('remove_photo'))
-                unlink('upload/'.$this->input->post('remove_photo'));
-            $data['photo'] = '';
-        }
-
-        if(!empty($_FILES['photo']['name']))
-        {
-            $upload = $this->_do_upload();
-            
-            //delete file
-            $person = $this->person->get_by_id($this->input->post('id'));
-            if(file_exists('upload/'.$person->photo) && $person->photo)
-                unlink('upload/'.$person->photo);
-
-            $data['photo'] = $upload;
-        }
-                
-                
 		$this->residents->update(array('id' => $this->input->post('id')), $data);
 		echo json_encode(array("status" => TRUE));
 	}
@@ -159,33 +131,8 @@ class Sort extends CI_Controller {
 	public function ajax_delete($id)
 	{
 		$this->residents->delete_by_id($id);
-                if(file_exists('upload/'.$person->photo) && $person->photo)
-                     unlink('upload/'.$person->photo);
-                
 		echo json_encode(array("status" => TRUE));
 	}
-        
-         private function _do_upload()
-    {
-        $config['upload_path']          = 'upload/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 100; //set max size allowed in Kilobyte
-        $config['max_width']            = 1000; // set max width image allowed
-        $config['max_height']           = 1000; // set max height allowed
-        $config['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
-
-        $this->load->library('upload', $config);
-
-        if(!$this->upload->do_upload('photo')) //upload and validate
-        {
-            $data['inputerror'][] = 'photo';
-            $data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
-            $data['status'] = FALSE;
-            echo json_encode($data);
-            exit();
-        }
-        return $this->upload->data('file_name');
-    }
 
 
 	private function _validate()

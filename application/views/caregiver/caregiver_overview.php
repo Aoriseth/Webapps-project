@@ -145,8 +145,7 @@ function add_person()
     $('.help-block').empty(); // clear error string
     $('#modal_form').modal('show'); // show bootstrap modal
     $('.modal-title').text('Add Person'); // Set Title to Bootstrap modal title    
-    $('#photo-preview').hide(); // hide photo preview modal
-    $('#label-photo').text('Upload Photo'); // label photo upload
+  
 }
 
 function edit_person(id)
@@ -164,8 +163,7 @@ function edit_person(id)
         success: function(data)
         { 
            
-            $('[name="id"]').val(data.id);
-            $('#photo-preview').show(); // show photo preview modal
+            $('[name="id"]').val(data.id);          
             $('[name="first_name"]').val(data.first_name);
             $('[name="last_name"]').val(data.last_name);
             $('[name="gender"]').val(data.gender);
@@ -186,18 +184,7 @@ function edit_person(id)
             $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
             $('.modal-title').text('Edit Person'); // Set title to Bootstrap modal title
             
-             if(data.photo)
-            {
-                $('#label-photo').text('Change Photo'); // label photo upload
-                $('#photo-preview div').html('<img src="'+base_url+'upload/'+data.photo+'" class="img-responsive">'); // show photo
-                $('#photo-preview div').append('<input type="checkbox" name="remove_photo" value="'+data.photo+'"/> Remove photo when saving'); // remove photo
-
-            }
-            else
-            {
-                $('#label-photo').text('Upload Photo'); // label photo upload
-                $('#photo-preview div').text('(No photo)');
-            }
+          
 
         },
         error: function (jqXHR, textStatus, errorThrown)
