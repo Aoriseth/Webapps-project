@@ -19,9 +19,7 @@
 
 <h2>Resident overview page for the caregivers</h2>
 <hr>
-<p>
-	A list of all the residents. <i>Oops...</i>
-         <div class="container">
+    <div class="container">
         <h1 style="font-size:20pt">Health care Patients</h1>
 
         <h3>Person Data</h3>
@@ -393,5 +391,3 @@ function delete_person(id)
         </div> 
     </div> 
 </div> 
-</p>
-
