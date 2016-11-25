@@ -22,6 +22,6 @@
     </form>
 
     <form action=<?php echo base_url().'index.php/logout' ?> method="POST">
-        <input style="width: 100%" class="btn btn-raised btn-default" type="submit" name="logout" value="Logout">
+        <input style="width: 100%" class="btn btn-raised btn-warning" type="submit" name="logout" value="Logout">
     </form>
 </div>
