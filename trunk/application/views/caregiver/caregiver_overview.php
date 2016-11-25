@@ -33,13 +33,13 @@
         <table  id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>                    
-            
+                    <th>Photo</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Gender</th>            
                     <th>Date of Birth</th>                 
                     <th>Floor Number</th>  
-                    <th>room_number</th>
+                    <th>Room Number</th>
                     <th>Last Activity</th>
                     <th>Last Completed</th>
                     <th>Completed Sessions</th>
@@ -52,12 +52,13 @@
 
             <tfoot>
             <tr>
+                <th>Photo</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Gender</th>          
                 <th>Date of Birth</th>           
                 <th>Floor Number</th>     
-                <th>room_number</th>
+                <th>Room Number</th>
                 <th>Last Activity</th>
                 <th>Last Completed</th>
                 <th>Completed Sessions</th>            
@@ -143,7 +144,9 @@ function add_person()
     $('.form-group').removeClass('has-error'); // clear error class
     $('.help-block').empty(); // clear error string
     $('#modal_form').modal('show'); // show bootstrap modal
-    $('.modal-title').text('Add Person'); // Set Title to Bootstrap modal title
+    $('.modal-title').text('Add Person'); // Set Title to Bootstrap modal title    
+    $('#photo-preview').hide(); // hide photo preview modal
+    $('#label-photo').text('Upload Photo'); // label photo upload
 }
 
 function edit_person(id)
@@ -162,6 +165,7 @@ function edit_person(id)
         { 
            
             $('[name="id"]').val(data.id);
+            $('#photo-preview').show(); // show photo preview modal
             $('[name="first_name"]').val(data.first_name);
             $('[name="last_name"]').val(data.last_name);
             $('[name="gender"]').val(data.gender);
@@ -181,6 +185,19 @@ function edit_person(id)
 
             $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
             $('.modal-title').text('Edit Person'); // Set title to Bootstrap modal title
+            
+             if(data.photo)
+            {
+                $('#label-photo').text('Change Photo'); // label photo upload
+                $('#photo-preview div').html('<img src="'+base_url+'upload/'+data.photo+'" class="img-responsive">'); // show photo
+                $('#photo-preview div').append('<input type="checkbox" name="remove_photo" value="'+data.photo+'"/> Remove photo when saving'); // remove photo
+
+            }
+            else
+            {
+                $('#label-photo').text('Upload Photo'); // label photo upload
+                $('#photo-preview div').text('(No photo)');
+            }
 
         },
         error: function (jqXHR, textStatus, errorThrown)
@@ -199,6 +216,8 @@ function save()
 {
     $('#btnSave').text('saving...'); //change button text
     $('#btnSave').attr('disabled',true); //set button disable 
+    
+    
     var url;
 
     if(save_method == 'add') {
@@ -280,8 +299,17 @@ function delete_person(id)
             </div>
             <div class="modal-body form">
                 <form action="#" id="form" class="form-horizontal">
-                    <input type="hidden" value="" name="id"/> 
-                    <div class="form-body">                
+                    <input type="hidden" value=" " name="id"/> 
+                    <div class="form-body">  
+                        
+                        <div class="form-group">
+                            <label class="control-label col-md-3" id="label-photo">Upload Photo </label>
+                            <div class="col-md-9">
+                                <input name="photo" type="file">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>        
+                        
                         <div class="form-group">
                             <label class="control-label col-md-3">First Name</label>
                             <div class="col-md-9">
@@ -289,6 +317,7 @@ function delete_person(id)
                                 <span class="help-block"></span>
                             </div>
                         </div>
+                        
                         <div class="form-group">
                             <label class="control-label col-md-3">Last Name</label>
                             <div class="col-md-9">
@@ -296,6 +325,7 @@ function delete_person(id)
                                 <span class="help-block"></span>
                             </div>
                         </div>
+                        
                         <div class="form-group">
                             <label class="control-label col-md-3">Gender</label>
                             <div class="col-md-9">
@@ -306,22 +336,25 @@ function delete_person(id)
                                     <option value="Other">Other</option>                                    
                                 </select>
                                 <span class="help-block"></span>
-                            </div>
+                            </div>                            
                         </div>
+                        
                          <div class="form-group">
                             <label class="control-label col-md-3">Password</label>
                             <div class="col-md-9">
                                 <input name="password" placeholder="Password" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
-                        </div>                      
+                        </div>  
+                        
                         <div class="form-group">
                             <label class="control-label col-md-3">Date of Birth</label>
                             <div class="col-md-9">
                                 <input name="date_of_birth" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
                                 <span class="help-block"></span>
                             </div>
-                        </div>                
+                        </div> 
+                        
                         <div class="form-group">
                             <label class="control-label col-md-3">Language</label>
                             <div class="col-md-9">
@@ -329,6 +362,7 @@ function delete_person(id)
                                 <span class="help-block"></span>
                             </div>
                         </div>
+                        
                         <div class="form-group">
                             <label class="control-label col-md-3">Floor Number</label>
                             <div class="col-md-9">
@@ -336,6 +370,7 @@ function delete_person(id)
                                 <span class="help-block"></span>
                             </div>
                         </div>
+                        
                         <div class="form-group">
                             <label class="control-label col-md-3">Room Number</label>
                             <div class="col-md-9">
@@ -343,6 +378,7 @@ function delete_person(id)
                                 <span class="help-block"></span>
                             </div>
                         </div>
+                        
                         <div class="form-group">
                             <label class="control-label col-md-3">Last Domicile</label>
                             <div class="col-md-9">
@@ -350,6 +386,7 @@ function delete_person(id)
                                 <span class="help-block"></span>
                             </div>
                         </div>
+                        
                         <div class="form-group">
                             <label class="control-label col-md-3">Account Created By</label>
                             <div class="col-md-9">
@@ -357,6 +394,7 @@ function delete_person(id)
                                 <span class="help-block"></span>
                             </div>
                         </div>
+                        
                         <div class="form-group">
                             <label class="control-label col-md-3">Account Created On</label>
                             <div class="col-md-9">                                
