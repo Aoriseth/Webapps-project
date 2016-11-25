@@ -34,13 +34,14 @@
                         <form>
                             <button <input <?php if ( $page == 'gallery' ) { ?>disabled<?php } ?>  style="width: 100%" class="btn-lg withripple btn btn-raised btn-default" formaction="<?php echo base_url() . 'index.php/resident/gallery' ?>">View gallery</button>
                         </form>
+                        <hr>
                     {navigation_buttons}
                     
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-9 col-xs-10 col-sm-10 col-xs-offset-1 col-md-offset-0">
                     <!--div class="jumbotron"-->       
-                    <div class="">
+                    <div>
                     {content}	
                     </div> <!-- the main element of the page (login form etc) -->
                     <!--/div-->
