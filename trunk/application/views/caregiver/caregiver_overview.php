@@ -33,7 +33,7 @@
         <table  id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>                    
-                    
+                    <th>Photo</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Gender</th>            
@@ -52,7 +52,7 @@
 
             <tfoot>
             <tr>
-               
+                <th>Photo</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Gender</th>          
@@ -287,8 +287,16 @@ function delete_person(id)
             <div class="modal-body form">
                 <form action="#" id="form" class="form-horizontal">
                     <input type="hidden" value=" " name="id"/> 
-                    <div class="form-body">            
-                      
+                    <div class="form-body">  
+                        
+                        <div class="form-group">
+                            <label class="control-label col-md-3" id="label-photo">Upload Photo </label>
+                            <div class="col-md-9">
+                                <input name="photo" type="file">
+                                <span class="help-block"></span>
+                            </div>
+                        </div> 
+                        
                         <div class="form-group">
                             <label class="control-label col-md-3">First Name</label>
                             <div class="col-md-9">
