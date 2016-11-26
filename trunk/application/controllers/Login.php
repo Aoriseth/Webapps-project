@@ -26,7 +26,6 @@ class Login extends CI_Controller {
 		$data[ 'navigation_buttons' ] = $this->parser->parse( 'login/login_navigation_buttons', $data2, true );
 		$data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
 
-		$data[ 'feedback' ] = '';
 		$data[ 'content' ] = $this->load->view( 'login/login_facial_recognition', '', true );
 
 		$this->parser->parse( 'login/login_main', $data );
@@ -51,32 +50,7 @@ class Login extends CI_Controller {
 		$data[ 'navigation_buttons' ] = $this->parser->parse( 'login/login_navigation_buttons', $data2, true );
 		$data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
 
-		$data[ 'feedback' ] = '';
-
-		$username = '';
-		$password = '';
-
-		if ( isset( $_POST[ 'username' ] ) ) {
-			$username = $this->input->post( 'username' );
-			$password = $this->input->post( 'password' );
-
-			$result = $this->Login_model->login( $username, $password );
-
-			if ( $result[ 'succeeded' ] == true ) {
-				$this->setup_login( $result[ 'name' ], $result[ 'type' ] );
-
-				redirect( base_url() );
-			} else {
-				// TODO remove HTML code from controller
-				$data[ 'feedback' ] = '<span style="color:red">'.$result[ 'error' ].'</span>';
-			}
-		}
-
-		// filter output that will be displayed in html!
-		$data2[ 'username' ] = htmlspecialchars( $username );
-		$data2[ 'password' ] = htmlspecialchars( $password );
-		// re-insert login attempt into form
-		$data[ 'content' ] = $this->parser->parse( 'login/login_form', $data2, true );
+		$data[ 'content' ] = $this->load->view( 'login/login_manual', '', true );
 
 		$this->parser->parse( 'login/login_main', $data );
 	}
@@ -91,7 +65,7 @@ class Login extends CI_Controller {
 		// check if POST is set correct (at least kind of)
 		if ( ! isset( $_POST[ 'username' ] ) || ! isset( $_POST[ 'password' ] ) ) {
 		    header( 'Content-Type: application/json' );
-			echo json_encode( array( 'Success' => false, 'Error message' => 'Username or password field not set.' ) );
+			echo json_encode( array( 'success' => false, 'error' => 'Username or password field not set.' ) );
 			return;
 		}
 
@@ -104,10 +78,10 @@ class Login extends CI_Controller {
 			$this->setup_login( $result[ 'name' ], $result[ 'type' ] );
 
 		    header( 'Content-Type: application/json' );
-			echo json_encode( array( "Success" => true ) );
+			echo json_encode( array( "success" => true ) );
 		} else {
 		    header( 'Content-Type: application/json' );
-			echo json_encode( array( 'Success' => false, 'Error message' => $result[ 'error' ] ) );
+			echo json_encode( array( 'success' => false, 'error' => $result[ 'error' ] ) );
 		}
 	}
 	

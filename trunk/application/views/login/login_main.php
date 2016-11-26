@@ -26,19 +26,16 @@
                
 	</head>
 	<body>
-            {navbar}
-            <div class="container">
-		 
-                <p>
-			{feedback}	<!-- used to dispay error notifications, is often empty -->
-		</p>
-
-		{content}		<!-- the main element of the page (login form etc) -->
-
-		<hr />
-
-		{navigation_buttons}
-                
-            </div>
+		{navbar}
+		
+		<div class="container">
+			
+			{content}
+			
+			<hr />
+			
+			{navigation_buttons}  
+			
+		</div>
 	</body>
 </html>
