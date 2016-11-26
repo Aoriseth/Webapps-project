@@ -80,6 +80,36 @@ class Login extends CI_Controller {
 
 		$this->parser->parse( 'login/login_main', $data );
 	}
+
+	public function ajax()
+	{
+		// only allow AJAX requests
+		if ( ! $this->input->is_ajax_request() ) {
+			redirect('404');
+		}
+
+		// check if POST is set correct (at least kind of)
+		if ( ! isset( $_POST[ 'username' ] ) || ! isset( $_POST[ 'password' ] ) ) {
+		    header( 'Content-Type: application/json' );
+			echo json_encode( array( 'Success' => false, 'Error message' => 'Username or password field not set.' ) );
+			return;
+		}
+
+		$username = $this->input->post( 'username' );
+		$password = $this->input->post( 'password' );
+
+		$result = $this->Login_model->login( $username, $password );
+
+		if ( $result[ 'succeeded' ] == true ) {
+			$this->setup_login( $result[ 'name' ], $result[ 'type' ] );
+
+		    header( 'Content-Type: application/json' );
+			echo json_encode( array( "Success" => true ) );
+		} else {
+		    header( 'Content-Type: application/json' );
+			echo json_encode( array( 'Success' => false, 'Error message' => $result[ 'error' ] ) );
+		}
+	}
 	
 	private function setup_login( $name, $type )
 	{
