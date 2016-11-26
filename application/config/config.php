@@ -24,16 +24,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-
-
 //*** Use this when working locally ***
 
-$config[ 'base_url' ] = 'http://localhost/trunk';	// add extra directories if necessary
+//$config[ 'base_url' ] = 'http://localhost/';	// add extra directories if necessary
 
-//*** Used by live site 
-/*
+//*** Used by live site ***************
+
 if (strpos(__DIR__, 'trunk') !== false) {	// if contains trunk
-	$config[ 'base_url' ] = 'trunk/';
+	$config[ 'base_url' ] = 'https://a16_webapps_3.studev.groept.be/_dev/a16_webapps_3/trunk/';
 } else {
 	$config[ 'base_url' ] = 'https://a16_webapps_3.studev.groept.be/';
 }
@@ -397,7 +395,7 @@ $config['encryption_key'] = '05AWGEQ88S5LCSJ3u72FDC284R1jrnb4';
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_expiration'] = 7200;				// 2 hours
-$config['sess_save_path'] = 'C:\Users\alaer\Desktop/sessions/';	// relative paths work suprisingly well here...
+$config['sess_save_path'] = 'upload/sessions/';	// relative paths work suprisingly well here...
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
