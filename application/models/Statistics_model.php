@@ -4,10 +4,11 @@ class Statistics_model extends CI_Model{
     
     public function __construct() {
 		parent::__construct();
-		$this->load->model( 'Resident_model' );
+		
 		
 	}
-    
+
+        
     function getWeightFor( $question_id ) {
 	return $this->Question_model->getQuestionsByID([$question_id])[0]->score_weight;
     }  
@@ -21,6 +22,8 @@ class Statistics_model extends CI_Model{
 		return $query->result();
     }
     
+
+    
     function getScoreCategory($residentID, $categoryID) {
 
         $answers = $this->getResidentAnswersFromCategory( $residentID, $categoryID);
@@ -31,16 +34,16 @@ class Statistics_model extends CI_Model{
             foreach ($answers as $answer) {
                     $categoryScore += $answer->option_id/5*100*$this->getWeightFor($answer->question_id);
             }
-        $categoryAverageScore = $categoryScore/count($answers);
+         if(count($answers) > 0) $categoryAverageScore = $categoryScore/count($answers);
         return $categoryAverageScore;
     }
 
     function getAvarageScoreCategory($category) {
         $totalScore = 0;
-        $residents = $this->Resident_model->getAllResidents();
+        $residents = $this->Question_model->getResidents();
         //for all residents
         foreach($residents as $resident){
-            $totalScore += getScoreCategory($resident->id, $category);
+            $totalScore += $this->getScoreCategory($resident->id, $category);
         }
 
         $avarageScore = $totalScore/count($residents);
