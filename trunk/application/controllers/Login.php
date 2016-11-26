@@ -1,54 +1,34 @@
 <?php
 
 class Login extends CI_Controller {
-	
+
 	public function __construct() {
 		parent::__construct();
+
+		// redirect to base if the user is already logged in
+		if ( $this->session->is_logged_in ) { redirect( base_url() ); }
 
 		$this->load->library( 'parser' );
 		$this->load->model( 'Login_model' );
 		$this->load->model( 'FaceRecKeys_model' );
-		$this->load->helper( 'url' );                
+		$this->load->helper( 'url' );
 	}
 
 	public function index() {
-		if ( $this->session->is_logged_in )	{
-			redirect( 'login/success' );
-		} else {
-			redirect( 'login/facial_recognition' );
-		}
+		redirect( 'login/facial_recognition' );
 	}
 
-	public function success() {
-		if ( ! $this->session->is_logged_in )	{
-			redirect( base_url() );
-		}
-
-		$data['navbar'] = $this->load->view( 'login/login_navbar', '', true );
-		$data[ 'navigation_buttons' ] = $this->load->view( 'login/login_go_home_button', '', true );
-
-		$data[ 'feedback' ] = '<div class="jumbotron">Welcome ' . $this->session->first_name . ', you\'ve logged in succesfully.';
-		$data[ 'content' ] = '<p><i>This page confirms the user has succesfully logged in.</i></p>';
-
-		$this->parser->parse( 'login/login_main', $data );
-	}
-	
 	public function facial_recognition() {
-		if ( $this->session->is_logged_in )	{
-			redirect( 'login/success' );
-		}
-
 		$data2[ 'page' ] = 'facial_recognition';
-                $data[ 'navigation_buttons' ] = $this->parser->parse( 'login/login_navigation_buttons', $data2, true );
-                $data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
-		$data[ 'navigation_buttons' ] = $this->load->view( 'login/login_navigation_buttons', '', true );
+		$data[ 'navigation_buttons' ] = $this->parser->parse( 'login/login_navigation_buttons', $data2, true );
+		$data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
 
 		$data[ 'feedback' ] = '';
 		$data[ 'content' ] = $this->load->view( 'login/login_facial_recognition', '', true );
 
 		$this->parser->parse( 'login/login_main', $data );
 	}
-	
+
 	public function get_facial_recognition_tokens() {
 		// only allow AJAX requests
 		if ( ! $this->input->is_ajax_request() ) {
@@ -62,13 +42,9 @@ class Login extends CI_Controller {
 	}
 
 	public function manual() {
-		if ( $this->session->is_logged_in )	{
-			redirect( 'login/success' );
-		}
 		$data2[ 'page' ] = 'manual';
 		$data[ 'navigation_buttons' ] = $this->parser->parse( 'login/login_navigation_buttons', $data2, true );
 		$data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
-		$data[ 'navigation_buttons' ] = $this->load->view( 'login/login_navigation_buttons', '', true );
 
 		$data[ 'feedback' ] = '';
 
@@ -86,7 +62,7 @@ class Login extends CI_Controller {
 				$this->session->first_name = $result[ 'name' ];
 				$this->session->type = $result[ 'type' ];
 
-				redirect( 'login/success' );
+				redirect( base_url() );
 			} else {
 				// TODO remove HTML code from controller
 				$data[ 'feedback' ] = '<span style="color:red">'.$result[ 'error' ].'</span>';
