@@ -1,21 +1,14 @@
-<!--
-	This stuff should be in caregiver_main.
-	caregiver_home is the content for the home page.
--->
-
-
-
 <h2>Home page for the caregivers</h2>
-<hr>
-</hr>
+
+<hr />
+
 <p>
 	Hello {name}.
 </p>
-<p>
-	It seems that all your residents are still alive. Good job.
-</p>
-<body>
-   
 
-</body>
-
+<?php if ( $display_login_notification == true ) { ?>
+	<!-- TODO replace this obvisously... -->
+	<p>
+		I see you've just logged in...
+	</p>
+<?php } ?>
