@@ -2,14 +2,15 @@
 
 class Caregiver extends CI_Controller {
 
-	public function __construct() {
+	public function __construct()
+	{
 		parent::__construct();
 
 		// redirect to base if the user shouldn't be here
 		if ( $this->session->type != 'caregiver' ) { redirect( base_url() ); }
 		
 		$this->load->library( 'parser' );
-                $this->load->model( 'Question_model' );
+		$this->load->model( 'Question_model' );
 	}
 
 	function index()
@@ -40,9 +41,8 @@ class Caregiver extends CI_Controller {
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
 	
-	function statistics()
-	{
-                $categories = $this->Question_model->getAllCategories( 'English' );
+	function statistics() {
+		$categories = $this->Question_model->getAllCategories( 'English' );
 		$data2[ 'page' ] = 'statistics';
 		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
 		$data[ 'navigation_buttons' ] = $this->parser->parse( 'caregiver/caregiver_navigation_buttons', $data2, true );

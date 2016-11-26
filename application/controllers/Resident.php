@@ -2,7 +2,8 @@
 
 class Resident extends CI_Controller {
 
-	public function __construct() {
+	public function __construct()
+	{
 		parent::__construct();
 
 		// redirect to base if the user shouldn't be here
