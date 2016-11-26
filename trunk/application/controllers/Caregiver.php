@@ -12,6 +12,7 @@ class Caregiver extends CI_Controller {
 		$this->load->library( 'parser' );
 		$this->load->model( 'Question_model' );
                 $this->load->model( 'Statistics_model' );
+                $this->load->model( 'Resident_model' );
 	}
 
 	function index()
@@ -46,10 +47,12 @@ class Caregiver extends CI_Controller {
 	
 	function statistics() {
 		$categories = $this->Question_model->getAllCategories( 'English' );
+                $residents = $this->Question_model->getResidents();
 		$data2[ 'page' ] = 'statistics';
 		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
 		$data[ 'navigation_buttons' ] = $this->parser->parse( 'caregiver/caregiver_navigation_buttons', $data2, true );
 		$data2[ 'categories'] = $categories;
+                $data2[ 'residents'] = $residents;
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_statistics', $data2, true );
                 
 

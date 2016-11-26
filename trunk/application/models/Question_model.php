@@ -6,6 +6,15 @@ class Question_model extends CI_Model {
 	 * Members:
 	 *	- category		(string)
 	 */
+    
+             function getResidents() {
+		$query = $this->db->query(
+			"SELECT *"
+			. " FROM a16_webapps_3.residents"
+		);
+		return $query->result();
+    }
+    
 	function getAllCategories( $language ) {
 		$query = $this->db->query(
 			"SELECT id, category"

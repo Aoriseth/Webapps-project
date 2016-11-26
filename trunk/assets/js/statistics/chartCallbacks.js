@@ -1,6 +1,6 @@
 
 
-      function dataChart(yAxis, xAxis, data, chartId) {
+      function dataChart(yAxis, xAxis, data, chartId, chartTitle) {
          
         // Create the data table.
         //var data = new google.visualization.DataTable();
@@ -16,7 +16,7 @@
             
         data.addRows(rows);
         // Set chart options
-        var options = {'title':'Score per category',
+        var options = {'title':chartTitle,
                        'width':400,
                        'height':400};
 
