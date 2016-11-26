@@ -2,7 +2,8 @@
 
 class Login extends CI_Controller {
 
-	public function __construct() {
+	public function __construct()
+	{
 		parent::__construct();
 
 		// redirect to base if the user is already logged in
@@ -14,11 +15,13 @@ class Login extends CI_Controller {
 		$this->load->helper( 'url' );
 	}
 
-	public function index() {
+	public function index()
+	{
 		redirect( 'login/facial_recognition' );
 	}
 
-	public function facial_recognition() {
+	public function facial_recognition()
+	{
 		$data2[ 'page' ] = 'facial_recognition';
 		$data[ 'navigation_buttons' ] = $this->parser->parse( 'login/login_navigation_buttons', $data2, true );
 		$data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
@@ -29,7 +32,8 @@ class Login extends CI_Controller {
 		$this->parser->parse( 'login/login_main', $data );
 	}
 
-	public function get_facial_recognition_tokens() {
+	public function get_facial_recognition_tokens()
+	{
 		// only allow AJAX requests
 		if ( ! $this->input->is_ajax_request() ) {
 			redirect('404');
@@ -41,7 +45,8 @@ class Login extends CI_Controller {
 		echo json_encode( $result );
 	}
 
-	public function manual() {
+	public function manual()
+	{
 		$data2[ 'page' ] = 'manual';
 		$data[ 'navigation_buttons' ] = $this->parser->parse( 'login/login_navigation_buttons', $data2, true );
 		$data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
