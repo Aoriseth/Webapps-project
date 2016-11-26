@@ -63,9 +63,7 @@ class Login extends CI_Controller {
 			$result = $this->Login_model->login( $username, $password );
 
 			if ( $result[ 'succeeded' ] == true ) {
-				$this->session->is_logged_in = true;
-				$this->session->first_name = $result[ 'name' ];
-				$this->session->type = $result[ 'type' ];
+				$this->setup_login( $result[ 'name' ], $result[ 'type' ] );
 
 				redirect( base_url() );
 			} else {
@@ -81,5 +79,16 @@ class Login extends CI_Controller {
 		$data[ 'content' ] = $this->parser->parse( 'login/login_form', $data2, true );
 
 		$this->parser->parse( 'login/login_main', $data );
+	}
+	
+	private function setup_login( $name, $type )
+	{
+		$this->session->is_logged_in = true;
+		$this->session->display_login_notification = true;
+		/*
+		 * TODO replace by Person class
+		 */
+		$this->session->first_name = $name;
+		$this->session->type = $type;
 	}
 }

@@ -27,6 +27,8 @@ class Resident extends CI_Controller {
 		$data[ 'navigation_buttons' ] = $this->parser->parse( 'resident/resident_navigation_buttons', $data2, true );
 
 		$data2[ 'name' ] = $this->session->first_name;
+		$data2[ 'display_login_notification' ] = $this->session->display_login_notification;
+		$this->session->display_login_notification = false;
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_home', $data2, true );
 
 		$this->parser->parse( 'resident/resident_main', $data );
