@@ -1,6 +1,5 @@
 <script type="text/javascript">
 $( function() {
-
 	$( "#login_form" ).submit( function( event ) {
 		var username = $( '#login_form input[ name = username ]').val();
 		var password = $( '#login_form input[ name = password ]').val();
@@ -23,6 +22,8 @@ $( function() {
 				} else {
 					// display error message
 					$( '#error_message' ).html( response[ 'error' ] );
+					// return focus to username
+					$( '#login_form input[ name = username ]').focus();
 				}
 			}
 		});
@@ -43,7 +44,7 @@ $( function() {
 		<div class="container-fluid">
 			<div class="form-group label-floating">
 				<label class="control-label" for="focusedInput1">Username</label>
-				<input class="form-control" name="username" id="focusedInput1" required type="text">
+				<input class="form-control" name="username" id="focusedInput1" required autofocus type="text">
 			</div>
 			<div class="form-group label-floating">
 				<label class="control-label" for="focusedInput1">Password</label>
