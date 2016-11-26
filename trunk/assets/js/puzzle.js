@@ -15,7 +15,7 @@ window.onload = function() {
     
     for(var y = 0; y < 3; ++y) {
         for(var x = 0; x < 3; ++x) {
-            if((Math.random() <= nrToDisplay/9 && nrDisplayed < nrToDisplay) || 9-3*(y+1)+x+1 <= nrToDisplay - nrDisplayed - 1){
+            if((Math.random() <= nrToDisplay/9 && nrDisplayed < nrToDisplay) || 9-3*(y+1)+x+1 <= nrToDisplay - nrDisplayed){
                 context.drawImage(image, x * (image.width / 3), y * (image.height / 3), (image.width / 3), (image.height / 3),
                 centerShift_x +( x * image.width * ratio)/3, centerShift_y + (y * image.height * ratio)/3, (image.width * ratio)/3, (image.height * ratio)/3);
                 nrDisplayed++;
