@@ -8,4 +8,4 @@
             <button <?php if ( $page == 'manual' ) { ?>disabled<?php } ?> class=" btn-lg withripple btn btn-raised btn-default" formaction="<?php echo base_url() . 'index.php/login/manual' ?>">Log in manually</button>
         </form>
     </div>
-<div>
+</div>
