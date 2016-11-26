@@ -157,6 +157,8 @@ class Question_model extends CI_Model {
 		);
 		return $query->result();
 	}
+        
+        
 	
 	/**
 	 * Get the ID, category ID, question text and score weight of the questions
@@ -173,4 +175,6 @@ class Question_model extends CI_Model {
 		);
 		return $query->result();
 	}
+        
+        
 }

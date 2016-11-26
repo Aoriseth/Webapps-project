@@ -11,6 +11,7 @@ class Caregiver extends CI_Controller {
 		
 		$this->load->library( 'parser' );
 		$this->load->model( 'Question_model' );
+                $this->load->model( 'Statistics_model' );
 	}
 
 	function index()
@@ -50,6 +51,7 @@ class Caregiver extends CI_Controller {
 		$data[ 'navigation_buttons' ] = $this->parser->parse( 'caregiver/caregiver_navigation_buttons', $data2, true );
 		$data2[ 'categories'] = $categories;
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_statistics', $data2, true );
+                
 
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
