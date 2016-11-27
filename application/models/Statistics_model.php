@@ -28,7 +28,7 @@ class Statistics_model extends CI_Model{
 
         $answers = $this->getResidentAnswersFromCategory( $residentID, $categoryID);
         $categoryScore = 0;
-        $categoryAverageScore = 0;
+        $categoryAverageScore = 1;
 
         //for all questions
             foreach ($answers as $answer) {

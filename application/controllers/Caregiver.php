@@ -80,4 +80,37 @@ class Caregiver extends CI_Controller {
 		
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
+        
+        function load_charts(){
+                // only allow AJAX requests
+//		if ( ! $this->input->is_ajax_request() ) {
+//			//redirect('404');
+//		}
+                 
+                if ( isset( $_POST[ 'resident' ] ) ) {
+                    
+                    $categories = $this->Question_model->getAllCategories( 'English');
+                    $resident = $_POST[ 'resident' ];
+                    $resultArray = [];
+          
+                    array_push($resultArray, $categories);
+                    foreach($categories as $category){
+                        
+                        $result = $this->Statistics_model->getScoreCategory($resident, (int)$category->id);
+                        array_push($resultArray, $result);
+                    }
+                    
+                    
+                    echo json_encode($resultArray);
+		}
+                
+                else{
+                    header( 'Content-Type: application/json' );
+			echo json_encode( array( 'resident' => 'undefined', 'category' => 'undefined' ) );
+			return;
+                }
+              
+              //header( 'Content-Type: application/json' );
+                  
+        }
 }

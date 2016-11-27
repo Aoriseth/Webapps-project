@@ -1,20 +1,19 @@
 <?php
 
 class Question_model extends CI_Model {
-
-	/* Returns all categories of the given language.
+  
+        function getResidents() {
+            $query = $this->db->query(
+                    "SELECT *"
+                    . " FROM a16_webapps_3.residents"
+            );
+            return $query->result();
+        }
+        
+        /* Returns all categories of the given language.
 	 * Members:
 	 *	- category		(string)
 	 */
-    
-             function getResidents() {
-		$query = $this->db->query(
-			"SELECT *"
-			. " FROM a16_webapps_3.residents"
-		);
-		return $query->result();
-    }
-    
 	function getAllCategories( $language ) {
 		$query = $this->db->query(
 			"SELECT id, category"
