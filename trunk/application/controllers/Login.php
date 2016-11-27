@@ -22,11 +22,13 @@ class Login extends CI_Controller {
 
 	public function facial_recognition()
 	{
+                $data[ 'include' ] = $this->load->view( 'include', '', true );
 		$data2[ 'page' ] = 'facial_recognition';
 		$data[ 'navigation_buttons' ] = $this->parser->parse( 'login/login_navigation_buttons', $data2, true );
 		$data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
-
-		$data[ 'content' ] = $this->load->view( 'login/login_facial_recognition', '', true );
+                $data[ 'facial' ] = $this->load->view( 'login/login_facial_recognition', '', true );
+                $data[ 'manual' ] = $this->load->view( 'login/login_manual', '', true );
+		
 
 		$this->parser->parse( 'login/login_main', $data );
 	}
@@ -71,7 +73,7 @@ class Login extends CI_Controller {
 
 		$username = $this->input->post( 'username' );
 		$password = $this->input->post( 'password' );
-
+                
 		$result = $this->Login_model->login( $username, $password );
 
 		if ( $result[ 'succeeded' ] == true ) {
