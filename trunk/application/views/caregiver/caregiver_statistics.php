@@ -2,79 +2,75 @@
 <hr>
 
 
-<script type="text/javascript">
-        
 
-            
-     
-      //get all categories
-      var categories = [];
-      var group_scores = [];
-      var individual_scores = [];
-      
-      <?php foreach ($categories as $category){ ?>
-          categories.push( <?php echo json_encode($category->category); ?>);
-      <?php } ?>     
-
-     <?php if(isset($_POST['residents'])){
-     foreach ($categories as $category){ ?>
-            individual_scores.push(<?php echo json_encode($this->Statistics_model->getScoreCategory($_POST['residents'], $category->id)); ?>);         
-     <?php }} ?> 
-     <?php foreach ($categories as $category){ ?>          
-            group_scores.push(<?php echo json_encode($this->Statistics_model->getAvarageScoreCategory($category->id)); ?>);
-           
-     <?php } ?> 
-          
-          
-      //load Charts and corechart package
-      google.charts.load('current', {'packages':['corechart']});
-      
-      //draw charts when Charts is loaded
-
-      google.charts.setOnLoadCallback(individual_Chart); //Don't add brackets after callback function!
-      
-      function individual_Chart() {
-        
-        var data = new google.visualization.DataTable();
-        dataChart(categories, individual_scores, data, "individual_scores_chart", "resident");
-      }
-
-      
-      google.charts.setOnLoadCallback(group_Chart); //Don't add brackets after callback function!
-      
-      function group_Chart() {
-        
-        var data = new google.visualization.DataTable();
-        dataChart(categories, group_scores, data, "group_scores_chart", "group");
-      }
-      
-
-           
-</script>
 
 
 <body>
     <!--Div that will hold the pie chart-->
     
-    <div id="group_scores_chart"></div>
-    <div id="individual_scores_chart"></div>
+    <div id="chart_div"></div>
     
-    <form method='post'>
-        <select name="categories" id="categories_select" onchange="this.form.submit()">
+    <form method="POST" id="select_axis_form" name="selectForm">
+        <select name="categories" id="categories_select">
             <?php foreach ($categories as $category){ ?>   
-                        <option value=<?php echo json_encode($category->category); ?>> <?php echo json_encode($category->category); ?> </option>
+                        <option value=<?php echo json_encode($category->id); ?>> <?php echo json_encode($category->category); ?> </option>
             <?php } ?>           
         </select>
-    </form>
-    <form method='post'>
-        <select name="residents" id="residents_select" onchange="this.form.submit()">
-            <option value=0> -Pick a resident- </option>
+        <select name="residents" id="residents_select">
             <?php foreach ($residents as $resident){ ?>   
                         <option value=<?php echo json_encode($resident->id); ?>> <?php echo json_encode($resident->first_name); ?> </option>
             <?php } ?>           
         </select>
+        <input type="submit" value="submit" name="submit"/>
     </form>
+<script type="text/javascript">
+        var formAxis = document.getElementById('select_axis_form');
+        
+        formAxis.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var selects = this.getElementsByTagName('select');
+            var category = parseInt(selects[0].value);
+            var resident = selects[1].value;
+            
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url() ?>index.php/caregiver/load_charts", 
+                data: {category: category, resident: resident},
+                dataType: "text",
+                cache: false,
 
+                success: function( data ) {
+                    var categories = [];
+
+                    var scores = [];
+                    console.log(data);
+                    var response = JSON.parse( data);
+                    console.log(response);
+                    
+                    for(var i = 0; i < response[0].length; i++){
+                        categories.push(response[0][i].category);
+                    }
+                    for(var i = 1; i < response.length; i++){
+                        scores.push(response[i]);
+                    }
+                    google.charts.load('current', {'packages':['corechart']});
+                    google.charts.setOnLoadCallback(drawChart);
+                    
+                    function drawChart() {
+
+                        var data = new google.visualization.DataTable();
+                        dataChart(categories, scores, data, "chart_div", "resident");
+                    }
+                    
+                }
+            });
+            return false;
+        });
+
+
+  
+           
+</script>
 
       
   </body>

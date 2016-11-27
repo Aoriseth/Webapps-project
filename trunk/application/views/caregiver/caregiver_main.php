@@ -18,8 +18,6 @@
                 <script src="<?php echo base_url(); ?>assets/js/material.js"></script>
                 <script src="<?php echo base_url(); ?>assets/js/ripples.js"></script>
                 <script src="<?php echo base_url(); ?>assets/js/statistics/chartCallbacks.js"></script>
-                <script src="<?php echo base_url(); ?>assets/js/statistics/score.js"></script>
-                <script src="<?php echo base_url(); ?>assets/js/FRLambdaAPI.js"></script>
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                  <!-- Activate Material Design -->
                 <script>$.material.init();</script>
