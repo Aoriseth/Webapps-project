@@ -5,6 +5,8 @@ window.onload = function() {
     var nrDisplayed = 0;
     image.src = 'https://a16_webapps_3.studev.groept.be/assets/imgs/puzzle.jpg';
     greyImage.src = 'https://a16_webapps_3.studev.groept.be/assets/imgs/grey.jpg';
+    //image.src = 'http://localhost/www/trunk/assets/imgs/puzzle.jpg';
+    //greyImage.src = 'http://localhost/www/trunk/assets/imgs/grey.jpg';
     var canvas = document.getElementById("puzzle");
     var context = canvas.getContext("2d");
     var hRatio = canvas.width  / image.width    ;
@@ -15,13 +17,15 @@ window.onload = function() {
     
     for(var y = 0; y < 3; ++y) {
         for(var x = 0; x < 3; ++x) {
-            if((Math.random() <= nrToDisplay/9 && nrDisplayed < nrToDisplay) || 9-3*(y+1)+x+1 <= nrToDisplay - nrDisplayed){
+            if((Math.random() <= nrToDisplay/9 && nrDisplayed < nrToDisplay) || (9-(3*y+x)) <= nrToDisplay - (nrDisplayed)){
                 context.drawImage(image, x * (image.width / 3), y * (image.height / 3), (image.width / 3), (image.height / 3),
                 centerShift_x +( x * image.width * ratio)/3, centerShift_y + (y * image.height * ratio)/3, (image.width * ratio)/3, (image.height * ratio)/3);
                 nrDisplayed++;
+                console.log("piece drawn" + y + x);
             }else{
                 context.drawImage(greyImage,
                 centerShift_x +( x * image.width * ratio)/3, centerShift_y + (y * image.height * ratio)/3, (image.width * ratio)/3, (image.height * ratio)/3);
+                console.log("grey drawn "+ (9-(3*y+x)) + " " + nrToDisplay + " " + nrDisplayed);
             }
         }
     }
