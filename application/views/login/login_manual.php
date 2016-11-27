@@ -18,6 +18,7 @@ $( function() {
 				var response = JSON.parse( data );
 				if ( response[ 'success' ] ) {
 					// redirect to home page
+                                        // alert('Succesfully logged in');
 					window.location = '<?php base_url() ?>';
 				} else {
 					// display error message
@@ -31,8 +32,8 @@ $( function() {
 	});
 });
 </script>
+<div id="test">
 
-<div class="jumbotron">
 	<p>
 		Log in by manually typing your username and password.
 	</p>
@@ -47,13 +48,11 @@ $( function() {
 				<input class="form-control" name="username" id="focusedInput1" required autofocus type="text">
 			</div>
 			<div class="form-group label-floating">
-				<label class="control-label" for="focusedInput1">Password</label>
-				<input class="form-control" name="password" id="focusedInput1" required type="password">
+				<label class="control-label" for="focusedInput2">Password</label>
+				<input class="form-control" name="password" id="focusedInput2" required type="password">
 			</div>
-		</div>
-		<div class="container">
+		
 			<input class="btn btn-lg btn-raised btn-default" type="submit" name="login" value="Log in">
 		</div>
 	</form>
 </div>
-

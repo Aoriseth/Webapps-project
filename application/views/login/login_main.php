@@ -1,41 +1,22 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    
-	<head>
-		<meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <!-- Load CSS -->
-                
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-                <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap-material-design.css">
-                <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/ripples.css">
-                <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
-                
-                <!-- Load scripts -->
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-                <script src="<?php echo base_url(); ?>assets/js/material.js"></script>
-                <script src="<?php echo base_url(); ?>assets/js/ripples.js"></script>
-                <script src="<?php echo base_url(); ?>assets/js/faceRecognition/FRLambdaAPI.js"></script>
-                 <!-- Activate Material Design -->
-                <script>$.material.init();</script>
-                 
-		
-                <title>Grace Age: Login</title>
-               
-	</head>
-	<body>
-		{navbar}
-		
-		<div class="container">
-			
-			{content}
-			
-			<hr />
-			
-			{navigation_buttons}  
-			
-		</div>
-	</body>
+
+    <head>
+        {include}
+    </head>
+    <body>
+        {navbar}
+        <div class="container">
+            <div class="row">
+                <div class="well col-md-6 text-center">
+                    {facial}		<!-- the main element of the page (login form etc) -->
+                </div>
+                <div class="well col-md-offset-1 col-md-5">
+                    {manual}
+                </div>
+            </div>
+        </div>
+
+    </body>
 </html>

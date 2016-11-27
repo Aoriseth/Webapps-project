@@ -1,17 +1,13 @@
-<div class="jumbotron text-center">
-    <p>
-        <i>Log in using facial recognition.</i>
-    </p>
-    <video id="camfr" width="50%" height="50%" autoplay="true">
+          
+<p>Log in using facial recognition.</p>
+<p class="visible-sm visible-xs">Scroll down for manual login</p>
+<video id="camfr" width="90%" height="auto" autoplay="true">
 
-    </video>
-    <script src="<?php echo base_url(); ?>assets/js/faceRecognition/capture.js" type="text/javascript"></script>
-    <canvas id = "canvasVideo" hidden="true"width="50%" height="50%" ></canvas>
-    <img id="photoFR" width="50%" height="50%" > 
-
-
-    <br/>
-    <button class="btn-lg btn btn-default btn-raised" id="facialLoginButton">Log in</button>
+</video>
+<script src="<?php echo base_url(); ?>assets/js/faceRecognition/capture.js" type="text/javascript"></script>
+<canvas id = "canvasVideo" hidden="true" width="90%" height="auto" ></canvas>
+<img id="photoFR" width="90%" height="auto" > 
 
 
-</div>
+<button class="btn-lg btn btn-default btn-raised" id="facialLoginButton">Log in</button>
+            
