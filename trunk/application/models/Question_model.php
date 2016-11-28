@@ -122,7 +122,7 @@ class Question_model extends CI_Model {
 		$query = $this->db->query(
 			"SELECT question_id"
 			. " FROM a16_webapps_3.answers"
-			. " WHERE resident_id='$residentID' AND category_id='$categoryID' AND session='$currentSession'"
+			. " WHERE resident_id='$residentID' AND session='$currentSession'"
 		);
 		return $query->result();
 	}
