@@ -131,5 +131,17 @@ class Resident_model extends CI_Model {
 		return $query->result();
 	}
 	
+	/**
+	 * Get the language of the given resident.
+	 */
+	function getResidentLanguage( $residentID ) {
+		$query = $this->db->query(
+			"SELECT language "
+			. "FROM a16_webapps_3.residents "
+			. "WHERE id='$residentID'"
+		);
+		return $query->language;
+	}
+	
 	
 }
