@@ -29,7 +29,7 @@
 				</p>
 			</div>
 
-			<div id="jumbotron_answer">
+                    <div style="text-align:center" id="jumbotron_answer">
 				<?php
 					$emotion_index = 0;
 					foreach ($options as $option) {
