@@ -140,8 +140,19 @@ class Resident_model extends CI_Model {
 			. "FROM a16_webapps_3.residents "
 			. "WHERE id='$residentID'"
 		);
-		return $query->language;
+		return $query->row()->language;
 	}
 	
-	
+	/**
+	 * Return the number of sessions that are completed by the resident with
+	 * the given ID.
+	 */
+	function getSessionsCompleted( $residentID ) {
+		$query = $this->db->query(
+			"SELECT completed_sessions "
+			. "FROM a16_webapps_3.residents "
+			. "WHERE id='$residentID'"
+		);
+		return $query->row()->completed_sessions;
+	}
 }
