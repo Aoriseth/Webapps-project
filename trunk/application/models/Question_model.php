@@ -2,6 +2,10 @@
 
 class Question_model extends CI_Model {
 
+	public function __construct() {
+		parent::__construct();
+	}
+	
 	/* Returns all categories of the given language.
 	 * Members:
 	 *	- category		(string)
@@ -20,7 +24,8 @@ class Question_model extends CI_Model {
 	 * Members:
 	 *	- id		(int)
 	 */
-	function getAllUnfinishedCategories( $residentID, $language, $currentSession ) {
+	function getAllUnfinishedCategories( $residentID, $languageX, $currentSession ) {
+		$language = $this->Resident_model->getResidentLanguage($residentID);
 		$all_categories = $this->db->query(
 			"SELECT id"
 			. " FROM a16_webapps_3.categories"
@@ -39,7 +44,8 @@ class Question_model extends CI_Model {
 	 * Check if a given category (by ID) is completed finished by a
 	 * given resident (by ID) with a given session count in a given language.
 	 */
-	private function isFinishedCategory( $residentID, $language, $currentSession, $categoryID ) {
+	private function isFinishedCategory( $residentID, $languageX, $currentSession, $categoryID ) {
+		$language = $this->Resident_model->getResidentLanguage($residentID);
 		$category = $this->db->query(
 			"SELECT id, question_count"
 			. " FROM a16_webapps_3.categories"
@@ -124,7 +130,10 @@ class Question_model extends CI_Model {
 	 * given language that still need to be answered by a resident (by ID) with a
 	 * given session count.
 	 */
-	function getAllUnansweredQuestionsFrom( $residentID, $language, $categoryID, $currentSession ) {
+	function getAllUnansweredQuestionsFrom( $residentID, $categoryID ) {
+		$language = $this->Resident_model->getResidentLanguage($residentID);
+		$currentSession = ($this->Resident_model->getSessionsCompleted($residentID)) + 1;
+		
 		$all_questions = $this->getAllQuestionsFrom($language, $categoryID);
 		$answered_questions = $this->getAllAnsweredQuestionsFrom($residentID, $categoryID, $currentSession);
 		
@@ -172,6 +181,5 @@ class Question_model extends CI_Model {
 			. " WHERE id IN (".implode(',',$array_with_question_ids).")"
 		);
 		return $query->result();
-	}
-           
+	}   
 }

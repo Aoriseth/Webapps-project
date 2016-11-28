@@ -102,7 +102,7 @@ class Resident extends CI_Controller {
 		
 		// grab questions from database
 		if ( count( $this->session->questions ) == 0 ) {
-			$this->session->questions = $this->Question_model->getAllUnansweredQuestionsFrom($this->session->id, $this->session->language, $categoryID, ($this->session->completedSessions + 1));
+			$this->session->questions = $this->Question_model->getAllUnansweredQuestionsFrom($this->session->id, $categoryID);
 		}
 
 		// get index of current question
@@ -115,7 +115,6 @@ class Resident extends CI_Controller {
 		// store the chosen option (if any)
 		if (isset($_POST['option'])) {
 			$residentID = $this->session->id;
-			$currentSession = ($this->session->completedSessions + 1);
 			if($index > 0) {
 				$questionID = $this->session->questions[$index-1]->id;
 			}
@@ -130,7 +129,7 @@ class Resident extends CI_Controller {
 					break;
 				}
 			}
-			$this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption, $categoryID, $currentSession);
+			$this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption, $categoryID);
 		}
 
 		// check if category is done
@@ -177,9 +176,8 @@ class Resident extends CI_Controller {
 		$questionId = $this->input->post( 'question_id' );
 		$chosenOption = $this->input->post( 'chosen_option' );
 		$categoryId = $this->input->post( 'category_id' );
-		$currentSession = ($this->session->completedSessions + 1); //TODO: use real values.
 
-		$this->Answer_model->storeAnswer( $residentId, $questionId, $chosenOption, $categoryId, $currentSession );
+		$this->Answer_model->storeAnswer( $residentId, $questionId, $chosenOption, $categoryId );
 
 		echo 'Answer stored succesfully.';
 	}
