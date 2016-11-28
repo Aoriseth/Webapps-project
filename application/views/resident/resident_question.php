@@ -29,13 +29,15 @@
 				</p>
 			</div>
 
-                    <div style="text-align:center" id="jumbotron_answer">
+                    <div class="row"  id="jumbotron_answer">
+                        <div class="col-md-1 col-sm-1 col-lg-1 visible-sm visible-md visible-lg"></div>
 				<?php
 					$emotion_index = 0;
 					foreach ($options as $option) {
 				?>
-					<div class="col-xs-2" id="col_btn">
-						<form class="form_btn"  class="text-center"
+					<div class=" col-sm-offset-0 col-sm-2 col-md-offset-0 col-md-2 col-xs-5" id="col_btn">
+                                            <div style="width:100%;text-align: center;margin:auto;">
+                                            <form style="width:100%" class="form_btn"  class="text-center"
 							  action="<?php echo base_url().'index.php/resident/question?category='.$category.'&index='.($index + 1) ?>" method="POST">
 
                                                     <button style="width:100%;height:100%;" class="btn btn-raised btn-default" id="button_emotion" type="submit" name="option"
@@ -45,7 +47,9 @@
 							</button>
 							<br/>
 							<?php echo htmlspecialchars($option->option); $emotion_index++; ?>
-						</form>
+                                                        <span class="visible-xs"></br></span>
+                                            </form>
+                                        </div>
 					</div>
 				<?php
 					}
