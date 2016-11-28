@@ -20,16 +20,16 @@
 
 <div class="container" id="container_resident">
 
-	<div class="row">
+	<div class="well row">
 
 		<div class="col-12">
-			<div class="jumbotron" id="jumbotron_question">
+			<div  id="jumbotron_question">
 				<p class="text-center">
 					{question}
 				</p>
 			</div>
 
-			<div class="jumbotron" id="jumbotron_answer">
+			<div id="jumbotron_answer">
 				<?php
 					$emotion_index = 0;
 					foreach ($options as $option) {
@@ -53,9 +53,9 @@
 			</div>
 		</div>
 
-	</div>
+	
 
-	<p style="margin-top:10px;">
+	<hr/>
 
 	<div class="row">
 
@@ -77,5 +77,6 @@
 			<?php } ?>
 		</div>
 	</div>
+        </div>
 
 </div>
