@@ -55,7 +55,6 @@
 
 	
 
-	<hr/>
 
 	<div class="row">
 
