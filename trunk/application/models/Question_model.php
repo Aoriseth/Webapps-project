@@ -1,16 +1,8 @@
 <?php
 
 class Question_model extends CI_Model {
-  
-        function getResidents() {
-            $query = $this->db->query(
-                    "SELECT *"
-                    . " FROM a16_webapps_3.residents"
-            );
-            return $query->result();
-        }
-        
-        /* Returns all categories of the given language.
+
+	/* Returns all categories of the given language.
 	 * Members:
 	 *	- category		(string)
 	 */
@@ -54,13 +46,13 @@ class Question_model extends CI_Model {
 			. " WHERE id='$categoryID' AND language='$language'"
 		);
 		$nb_of_questions_of_category_answered = $this->db->query(
-			"SELECT COUNT(id)"
-			. " FROM a16_webapps_3.answers"
-			. " WHERE resident_id='$residentID' AND session='$currentSession'"
+			"SELECT COUNT(resident_id)"
+			. " FROM a16_webapps_3.answer_view"
+			. " WHERE resident_id='$residentID' AND category_id='$categoryID' AND current_session='$currentSession'"
 		);
 		$q_count = $category->row()->question_count;
 		$nb_of_questions_of_category_answered = $nb_of_questions_of_category_answered->row_array();
-		$nb_of_q = $nb_of_questions_of_category_answered['COUNT(id)'];
+		$nb_of_q = $nb_of_questions_of_category_answered['COUNT(resident_id)'];
 		
 		if($q_count == $nb_of_q) {
 			return TRUE;
@@ -121,8 +113,8 @@ class Question_model extends CI_Model {
 	private function getAllAnsweredQuestionsFrom( $residentID, $categoryID, $currentSession ) {
 		$query = $this->db->query(
 			"SELECT question_id"
-			. " FROM a16_webapps_3.answers"
-			. " WHERE resident_id='$residentID' AND session='$currentSession'"
+			. " FROM a16_webapps_3.answer_view"
+			. " WHERE resident_id='$residentID' AND category_id='$categoryID' AND current_session='$currentSession'"
 		);
 		return $query->result();
 	}
@@ -164,9 +156,7 @@ class Question_model extends CI_Model {
 			. " WHERE question_id='$question_id'"
 		);
 		return $query->result();
-	}
-        
-        
+	}  
 	
 	/**
 	 * Get the ID, category ID, question text and score weight of the questions
@@ -183,6 +173,5 @@ class Question_model extends CI_Model {
 		);
 		return $query->result();
 	}
-        
-        
+           
 }

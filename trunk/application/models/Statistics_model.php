@@ -4,8 +4,6 @@ class Statistics_model extends CI_Model{
     
     public function __construct() {
 		parent::__construct();
-		
-		
 	}
 
         
@@ -40,7 +38,7 @@ class Statistics_model extends CI_Model{
 
     function getAvarageScoreCategory($category) {
         $totalScore = 0;
-        $residents = $this->Question_model->getResidents();
+        $residents = $this->Resident_model->getAllResidents();
         //for all residents
         foreach($residents as $resident){
             $totalScore += $this->getScoreCategory($resident->id, $category);
