@@ -25,7 +25,7 @@ class Resident_model extends CI_Model {
 	 * Get all residents that are stored in the database.
 	 */
 	function getAllResidents() {
-		$query = $this->dB->query(
+		$query = $this->db->query(
 			"SELECT * "
 			. "FROM a16_webapps_3.residents"
 		);
@@ -36,7 +36,7 @@ class Resident_model extends CI_Model {
 	 * Get the resident with the given ID.
 	 */
 	function getResidentById( $residentID ) {
-		$query = $this->dB->query(
+		$query = $this->db->query(
 			"SELECT * "
 			. "FROM a16_webapps_3.residents "
 			. "WHERE id='$residentID'"
