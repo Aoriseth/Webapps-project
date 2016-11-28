@@ -64,7 +64,7 @@ class Resident extends Person {
 	 */
 	
 	function setFloorNumber($floor_number_to_set) {
-		$this->_floor_number;
+		$this->_floor_number = $floor_number_to_set;
 	}
 	
 	function getFloorNumber() {
