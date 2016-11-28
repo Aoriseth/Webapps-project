@@ -40,7 +40,7 @@
                     
                     </div>
                 </div>
-                <div class="col-lg-9 col-md-9 col-xs-10 col-sm-10 col-xs-offset-1 col-md-offset-0">
+                <div class="col-lg-10 col-md-10 col-xs-10 col-sm-10 col-xs-offset-1 col-md-offset-0">
                     <!--div class="jumbotron"-->       
                     <div>
                     {content}	
