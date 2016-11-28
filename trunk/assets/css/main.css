@@ -29,18 +29,14 @@ body {
 }
 
 #jumbotron_answer{
-    min-height: 250px;
     font-size: 18px;
 }
 
 #col_btn {
-    width: 20%;
 }
 
 #button_emotion img{
-    display: block;
-    width: 100%;
-    background-size: 100% 100%;
+    
 }
 
 #progress_col{
@@ -56,7 +52,10 @@ table{
     position: absolute;
     right: 1px;
 }
-
+@media(min-width:768px) {
+    
+    
+}
 .btn{
     white-space: normal !important;
     background-color: #3f51b5;

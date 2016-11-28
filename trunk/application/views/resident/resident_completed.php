@@ -1,5 +1,5 @@
-<div class="container-fluid">
-    <div class="row">
+<div class="well container-fluid">
+    <div class=" container row">
         <p>
                 Congratulations, you've just completed the category {category}.
         </p>
