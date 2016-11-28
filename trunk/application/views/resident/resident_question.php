@@ -38,10 +38,10 @@
 						<form class="form_btn"  class="text-center"
 							  action="<?php echo base_url().'index.php/resident/question?category='.$category.'&index='.($index + 1) ?>" method="POST">
 
-							<button class="btn btn-raised btn-default" id="button_emotion" type="submit" name="option"
+                                                    <button style="width:100%;height:100%;" class="btn btn-raised btn-default" id="button_emotion" type="submit" name="option"
 									value="<?php echo htmlspecialchars($option->option) ?>">
 
-								<img src=<?php echo base_url().'assets/imgs/emotions/'.$emotion_index.".png" ?> >                                   
+								<img style="width:100%;height:100%;" src=<?php echo base_url().'assets/imgs/emotions/'.$emotion_index.".png" ?> >                                   
 							</button>
 							<br/>
 							<?php echo htmlspecialchars($option->option); $emotion_index++; ?>
