@@ -56,7 +56,7 @@ class Question_model extends CI_Model {
 		$nb_of_questions_of_category_answered = $this->db->query(
 			"SELECT COUNT(id)"
 			. " FROM a16_webapps_3.answers"
-			. " WHERE resident_id='$residentID' AND category_id='$categoryID' AND session='$currentSession'"
+			. " WHERE resident_id='$residentID' AND session='$currentSession'"
 		);
 		$q_count = $category->row()->question_count;
 		$nb_of_questions_of_category_answered = $nb_of_questions_of_category_answered->row_array();
