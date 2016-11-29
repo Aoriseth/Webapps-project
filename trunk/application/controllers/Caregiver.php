@@ -118,7 +118,7 @@ class Caregiver extends CI_Controller {
 		
 		
 		function upload() {
-			$target_dir = "uploads/";
+			$target_dir = "upload/";
 			$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 			$uploadOk = 1;
 			$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -157,8 +157,6 @@ class Caregiver extends CI_Controller {
 			// if everything is ok, try to upload file
 			} else {
 				if (is_uploaded_file($_FILES["fileToUpload"]["tmp_name"])) {
-					echo 'test';
-					echo exit;
 					move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 					echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 				} else {
