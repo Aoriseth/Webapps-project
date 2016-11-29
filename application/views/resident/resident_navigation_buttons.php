@@ -6,4 +6,3 @@
 <form>
     <button style="width: 100%" class=" btn-lg withripple btn btn-raised btn-warning" formaction="<?php echo base_url() . 'index.php/logout' ?>">Logout</button>
 </form>
-
