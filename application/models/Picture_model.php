@@ -10,11 +10,7 @@ class Picture_model extends CI_Model {
 	 * Store the given picture in the database with the given resident as owner.
 	 */
 	function storePicture($residentID, $picture) {
-		//TODO this does not work! -> WIP
-		$imgData =addslashes(file_get_contents($_FILES['userImage']['tmp_name']));
-		$imageProperties = getimageSize($_FILES['userImage']['tmp_name']);
-		$this->db->query("INSERT INTO pictures(picture)
-		VALUES('{$imgData}')");
+		
 	}
 	
 	/**
