@@ -36,12 +36,12 @@ class Caregiver extends CI_Controller {
         
 	function groups()
 	{
+                $residents = $this->Resident_model->getAllResidents();
 		$data2[ 'page' ] = 'groups';
 		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
 		$data[ 'navigation_buttons' ] = $this->parser->parse( 'caregiver/caregiver_navigation_buttons', $data2, true );
-
-		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_groups', '', true );
-		
+                $data2[ 'residents'] = $residents;
+		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_groups', $data2, true );
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
 	
