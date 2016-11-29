@@ -1,16 +1,23 @@
-window.onload = function() {
+function loadPuzzle(baseURL) {
     var image = new Image();
     var greyImage = new Image();
     var nrToDisplay = 3;
     var nrDisplayed = 0;
-    image.src = 'https://a16_webapps_3.studev.groept.be/assets/imgs/puzzle.jpg';
-    greyImage.src = 'https://a16_webapps_3.studev.groept.be/assets/imgs/grey.jpg';
+    //image.src = 'https://a16_webapps_3.studev.groept.be/assets/imgs/puzzle.jpg';
+    //greyImage.src = 'https://a16_webapps_3.studev.groept.be/assets/imgs/grey.jpg';
     //image.src = 'http://localhost/www/trunk/assets/imgs/puzzle.jpg';
     //greyImage.src = 'http://localhost/www/trunk/assets/imgs/grey.jpg';
+    var baseString = 'http://localhost/www/trunk';
+    image.src = baseURL.concat('/assets/imgs/puzzle.jpg');
+    greyImage.src = baseURL.concat('/assets/imgs/grey.jpg');
+    
+    console.log(image.src);
+    console.log(greyImage.src);
+    
     var canvas = document.getElementById("puzzle");
     var context = canvas.getContext("2d");
-    var hRatio = canvas.width  / image.width    ;
-    var vRatio =  canvas.height / image.height  ;
+    var hRatio = canvas.width  / image.width;
+    var vRatio =  canvas.height / image.height;
     var ratio  = Math.min ( hRatio, vRatio );
     var centerShift_x = ( canvas.width - image.width*ratio ) / 2;
     var centerShift_y = ( canvas.height - image.height*ratio ) / 2;
@@ -29,4 +36,4 @@ window.onload = function() {
             }
         }
     }
-};
+}
