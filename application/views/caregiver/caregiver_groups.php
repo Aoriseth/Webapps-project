@@ -34,9 +34,6 @@
     </script>
 </head>
 
-
-<h2>Statistics for the caregivers</h2>
-
 <div class="row">
     <?php foreach ($residents as $resident) { ?>   
         <div id="<?php echo ($resident->id); ?>" class="ui-widget-content">
