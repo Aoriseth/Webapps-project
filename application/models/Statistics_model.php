@@ -13,7 +13,7 @@ class Statistics_model extends CI_Model{
     function getResidentAnswersFromCategory( $residentID, $categoryID) {
 		$query = $this->db->query(
 			"SELECT option_id, question_id"
-			. " FROM a16_webapps_3.answers"
+			. " FROM a16_webapps_3.answer_view"
 			. " WHERE resident_id='$residentID' AND category_id='$categoryID'"
 		);
 		return $query->result();
