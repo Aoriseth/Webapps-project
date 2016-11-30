@@ -173,5 +173,8 @@ class Caregiver extends CI_Controller {
 		else {
 			echo 'Upload failed';
 		}
+		
+		$imageData = $this->upload->data();
+		echo $imageData["file_name"];
 	}
 }
