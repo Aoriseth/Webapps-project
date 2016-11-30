@@ -64,6 +64,18 @@ class Picture_model extends CI_Model {
 	}
 	
 	/**
+	 * Return a gallery_picture stored in the database.
+	 */
+	function getGalleryPicture($galleryID) {
+		$query = $this->db->query(
+			"SELECT *"
+			. " FROM a16_webapps_3.gallery_pictures"
+			. " WHERE id='$galleryID'"
+		);
+		return $query->result();
+	}
+	
+	/**
 	 * Return a picture stored in the database. Both the folder where it is
 	 * stored in (picture_dir) and the picture name are returned.
 	 * 
