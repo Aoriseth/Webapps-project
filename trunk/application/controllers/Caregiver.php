@@ -136,7 +136,7 @@ class Caregiver extends CI_Controller {
 						'JPG' => 'image/JPEG',
 						'PNG' => 'image/PNG'
 						);
-			if(false === $ext = array_search($finfo->file($_FILES['upfile']['tmp_name']), $img_types, true)) {
+			if(false === $ext = array_search($finfo->file($_FILES["fileToUpload"]["tmp_name"]), $img_types, true)) {
 				$uploadOk = 0;
 			}
 
