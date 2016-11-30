@@ -140,7 +140,7 @@ class Caregiver extends CI_Controller {
 				$uploadOk = 0;
 			}
 
-			$target_file = $target_dir . basename(sprintf('./uploads/%s.%s', sha1_file($_FILES['upfile']['tmp_name']), $ext));
+			$target_file = $target_dir . basename(sprintf('./uploads/%s.%s', sha1_file($_FILES["fileToUpload"]["tmp_name"]), $ext));
 			$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
 			// Check if image file is a actual image or fake image
