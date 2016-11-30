@@ -24,7 +24,7 @@ class Picture_model extends CI_Model {
 			'picture_name' => addslashes($picture_name)
 		);
 		$this->db->insert('a16_webapps_3.pictures', $array);
-		echo insert_id();
+		echo $this->db->insert_id();
 		exit;
 	}
 	
