@@ -125,7 +125,8 @@ class Caregiver extends CI_Controller {
 	 */
 	function upload() {
 		$target_dir = "images/";
-		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+		//$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+		$target_file = $target_dir . basename(sprintf('./uploads/%s.%s', sha1_file($_FILES['upfile']['tmp_name'])));
 		$uploadOk = 1;
 		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
