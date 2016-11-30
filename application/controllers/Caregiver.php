@@ -124,59 +124,70 @@ class Caregiver extends CI_Controller {
 	 * TODO: Move all of this code to the place where it is needed/appropriate for uploading pictures.
 	 */
 	function upload() {
-		$target_dir = "images/";
-		//$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-		$target_file = $target_dir . basename(sprintf('./uploads/%s.%s', sha1_file($_FILES['upfile']['tmp_name'])));
-		$uploadOk = 1;
-		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-
-		// Check if image file is a actual image or fake image
 		if(isset($_POST["submit"])) {
+			$uploadOk = 1;
+			$target_dir = "images/";
+			//$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+
+			$finfo = new finfo(FILEINFO_MIME_TYPE);
+			$img_types = array(
+						'jpg' => 'image/jpeg',
+						'png' => 'image/png',
+						'JPG' => 'image/JPEG',
+						'PNG' => 'image/PNG'
+						);
+			if(false === $ext = array_search($finfo->file($_FILES['upfile']['tmp_name']), $img_types, true)) {
+				$uploadOk = 0;
+			}
+
+			$target_file = $target_dir . basename(sprintf('./uploads/%s.%s', sha1_file($_FILES['upfile']['tmp_name']), $ext));
+			$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+			// Check if image file is a actual image or fake image
 			$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-			if($check != false) {
-				$uploadOk = 1;
-			} else {
+			if($check == false) {
 				$uploadOk = 0;
 				echo 'Fake image. ';
 			}
-		}
-		// Check if file already exists
-		if (file_exists($target_file)) {
-			//File already exists
-			$uploadOk = 0;
-			echo 'File already exists. ';
-		}
-		// Check file size
-		if ($_FILES["fileToUpload"]["size"] > 800000) {
-			//File is too large
-			$uploadOk = 0;
-			echo 'File too large. ';
-		}
-		// Allow certain file formats
-		if($imageFileType != "jpg" && $imageFileType != "JPG"
-				&& $imageFileType != "png" && $imageFileType != "PNG"
-				&& $imageFileType != "jpeg" && $imageFileType != "JPEG" ) {
-			//Something else than a jpg, JPG, png, PNG, jpeg, JPEG cannot be uploaded
-			$uploadOk = 0;
-			echo 'Wrong type. ';
-		}
-		// Check if $uploadOk is set to 0 by an error
-		if ($uploadOk != 0) {
-			if (is_uploaded_file($_FILES["fileToUpload"]["tmp_name"])) {
-				move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
-				//If this line is reached, the upload was successful
-				echo 'Picture uploaded! ';
-				echo $target_file;
-				echo $target_file['name'];
-				exit;
-				$this->Picture_model->storePicture(1, $target_file);
+
+			// Check if file already exists
+			if (file_exists($target_file)) {
+				//File already exists
+				$uploadOk = 0;
+				echo 'File already exists. ';
+			}
+			// Check file size
+			if ($_FILES["fileToUpload"]["size"] > 800000) {
+				//File is too large
+				$uploadOk = 0;
+				echo 'File too large. ';
+			}
+			// Allow certain file formats
+			if($imageFileType != "jpg" && $imageFileType != "JPG"
+					&& $imageFileType != "png" && $imageFileType != "PNG"
+					&& $imageFileType != "jpeg" && $imageFileType != "JPEG" ) {
+				//Something else than a jpg, JPG, png, PNG, jpeg, JPEG cannot be uploaded
+				$uploadOk = 0;
+				echo 'Wrong type. ';
+			}
+			// Check if $uploadOk is set to 0 by an error
+			if ($uploadOk != 0) {
+				if (is_uploaded_file($_FILES["fileToUpload"]["tmp_name"])) {
+					move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+					//If this line is reached, the upload was successful
+					echo 'Picture uploaded! ';
+					echo $target_file;
+					echo $target_file['name'];
+					exit;
+					$this->Picture_model->storePicture(1, $target_file);
+				}
+				else {
+					echo 'File is not uploaded';
+				}
 			}
 			else {
-				echo 'File is not uploaded';
+				echo 'Upload failed';
 			}
-		}
-		else {
-			echo 'Upload failed';
 		}
 	}
 }
