@@ -167,7 +167,7 @@ class Caregiver extends CI_Controller {
 				echo 'Picture uploaded! ';
 				echo $target_file;
 				echo ' ';
-				echo "<img src='images/Lilliane.PNG' />";
+				echo "<img src='" . $target_file . "' />";
 			}
 			else {
 				echo 'File is not uploaded';
