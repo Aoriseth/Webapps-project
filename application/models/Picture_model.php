@@ -4,15 +4,35 @@ class Picture_model extends CI_Model {
 
 	public function __construct() {
 		parent::__construct();
+		
+		$this->load->helper('date');
+        date_default_timezone_set('Europe/Brussels');
 	}
 	
 	/**
 	 * Store new puzzle picture in the database:
 	 * - pictures table is updated
 	 * - gallery_pictures table is updated
+	 * 
+	 * If the resident is NULL or not given (so it is NULL by default), the picture
+	 * is not assigned to 1 particular and it will be available for all residents.
+	 * ==> This is NOT recommended! (might give problems with fields like last_completed, pieces_collected,...)
 	 */
-	function storeNewPuzzlePicture($picture_dir, $picture_name, $residentID) {
-		
+	function storeNewPuzzlePicture($picture_dir, $picture_name, $residentID = NULL) {
+		//TODO: use transaction to be sure id isn't changed during the execution of this function.
+		$pictureID = $this->storePicture($picture_dir, $picture_name);
+		$this->storeNewGallery($pictureID, $residentID);
+	}
+	
+	/**
+	 * Assign a new given profile picture to a given resident.
+	 */
+	function storeNewProfilePicture($picture_dir, $picture_name, $residentID) {
+		$pictureID = $this->storePicture($picture_dir, $picture_name);
+		$updateData = array('profile_picture_id' => $pictureID);
+		$whereArray = array('id' => $residentID);
+		$this->db->where($whereArray);
+		$this->db->update('a16_webapps_3.answers', $updateData);
 	}
 	
 	/**
@@ -24,8 +44,23 @@ class Picture_model extends CI_Model {
 			'picture_name' => addslashes($picture_name)
 		);
 		$this->db->insert('a16_webapps_3.pictures', $array);
-		echo $this->db->insert_id();
-		exit;
+		return $this->db->insert_id();
+	}
+	
+	/**
+	 * Store new gallery_picture with the given ID of a picture that is
+	 * already in the pictures table.
+	 */
+	function storeNewGallery($pictureID, $residentID = NULL) {
+		$array = array(
+			'picture_id' => $pictureID,
+			'resident_id' => $resident_id,
+			'in_progress' => 0,
+			'times_completed' => 0,
+			'pieces_collected' => 0,
+			'added_on' => date('Y-m-d H:i:s')
+		);
+		$this->db->insert('a16_webapps_3.pictures', $array);
 	}
 	
 	/**
