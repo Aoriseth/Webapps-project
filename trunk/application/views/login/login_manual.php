@@ -2,10 +2,7 @@
 <script>
 $( function() {
 	$( "#login_form" ).submit( function( event ) {
-		var username = $( '#login_form input[ name = username ]').val();
-		var password = $( '#login_form input[ name = password ]').val();
-
-		login( '<?php echo base_url() ?>', username, password );
+		login( '<?php echo base_url() ?>' );
 		return false;
 	});
 });
