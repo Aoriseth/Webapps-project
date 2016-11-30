@@ -139,8 +139,9 @@ class Caregiver extends CI_Controller {
 			if(false === $ext = array_search($finfo->file($_FILES["fileToUpload"]["tmp_name"]), $img_types, true)) {
 				$uploadOk = 0;
 			}
-
-			$target_file = $target_dir . basename(sprintf('./uploads/%s.%s', sha1_file($_FILES["fileToUpload"]["tmp_name"]), $ext));
+			
+			$target_name = basename(sprintf('./uploads/%s.%s', sha1_file($_FILES["fileToUpload"]["tmp_name"]), $ext));
+			$target_file = $target_dir . $target_name;
 			$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
 			// Check if image file is a actual image or fake image
@@ -177,7 +178,7 @@ class Caregiver extends CI_Controller {
 					//If this line is reached, the upload was successful
 					echo 'Picture uploaded! ';
 					echo $target_file;
-					$this->Picture_model->storePicture(1, $target_file);
+					$this->Picture_model->storePicture(NULL, $target_dir, $target_name); //Resident ID can be NULL for now
 				}
 				else {
 					echo 'File is not uploaded';
