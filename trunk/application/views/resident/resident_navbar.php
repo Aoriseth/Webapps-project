@@ -1,3 +1,4 @@
+<!-- I am currently on page '{page}' -->
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -10,8 +11,8 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="<?php echo base_url() . 'index.php/resident/home' ?>">Home</a></li>
-                <li><a href="<?php echo base_url() . 'index.php/resident/gallery' ?>">Gallery</a></li>
+                <li <?php if ( $page == 'home' ) { ?>class="active"<?php } ?> ><a href="<?php echo base_url() . 'index.php/resident/home' ?>">Home</a></li>
+                <li <?php if ( $page == 'gallery' ) { ?>class="active"<?php } ?>><a href="<?php echo base_url() . 'index.php/resident/gallery' ?>">Gallery</a></li>
             </ul>
             
             <ul class="nav navbar-nav navbar-right">
