@@ -27,6 +27,10 @@ body {
     font-size: 24px;
 }
 
+.disableClick{
+    pointer-events: none;
+}
+
 #jumbotron_answer{
     font-size: 18px;
 }
