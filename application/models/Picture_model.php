@@ -76,6 +76,30 @@ class Picture_model extends CI_Model {
 	}
 	
 	/**
+	 * Get all gallery records from a given resident.
+	 */
+	function getGalleryPicturesFrom($residentID) {
+		$query = $this->db->query(
+			"SELECT *"
+			. " FROM a16_webapps_3.gallery_pictures"
+			. " WHERE resident_id='$residentID'"
+		);
+		return $query->result();
+	}
+	
+	/**
+	 * Get all gallery records.
+	 * Not recommended because of privacy issues!
+	 */
+	function getAllGalleryPictures() {
+		$query = $this->db->query(
+			"SELECT *"
+			. " FROM a16_webapps_3.gallery_pictures"
+		);
+		return $query->result();
+	}
+	
+	/**
 	 * Return a picture stored in the database. Both the folder where it is
 	 * stored in (picture_dir) and the picture name are returned.
 	 * 
