@@ -21,9 +21,8 @@ class Resident extends CI_Controller {
     }
 
     function home() {
-        $data['navbar'] = $this->load->view('resident/resident_navbar', '', true);
         $data2['page'] = 'home';
-        $data['navigation_buttons'] = $this->parser->parse('resident/resident_navigation_buttons', $data2, true);
+        $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
 
         $data2['name'] = $this->session->first_name;
         $data2['display_login_notification'] = $this->session->display_login_notification;
@@ -34,9 +33,8 @@ class Resident extends CI_Controller {
     }
 
     function gallery() {
-        $data['navbar'] = $this->load->view('resident/resident_navbar', '', true);
         $data2['page'] = 'gallery';
-        $data['navigation_buttons'] = $this->parser->parse('resident/resident_navigation_buttons', $data2, true);
+        $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
 
         $data2['name'] = $this->session->first_name;
         $data['content'] = $this->parser->parse('resident/resident_gallery', $data2, true);
@@ -45,9 +43,8 @@ class Resident extends CI_Controller {
     }
 
     function categories() {
-        $data['navbar'] = $this->load->view('resident/resident_navbar', '', true);
         $data2['page'] = 'categories';
-        $data['navigation_buttons'] = $this->parser->parse('resident/resident_navigation_buttons', $data2, true);
+        $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
 
         // get 3 random categories
         $categories = $this->Question_model->getAllUnfinishedCategories($this->session->id, $this->session->language, ($this->session->completedSessions + 1));
@@ -87,9 +84,8 @@ class Resident extends CI_Controller {
             redirect('resident/categories');
         }
 
-        $data['navbar'] = $this->load->view('resident/resident_navbar', '', true);
         $data2['page'] = 'question';
-        $data['navigation_buttons'] = $this->parser->parse('resident/resident_navigation_buttons', $data2, true);
+        $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
 
         // get category
         $category = $this->input->get('category');
@@ -177,9 +173,8 @@ class Resident extends CI_Controller {
     }
 
     function completed() {
-        $data['navbar'] = $this->load->view('resident/resident_navbar', '', true);
         $data2['page'] = 'completed';
-        $data['navigation_buttons'] = $this->parser->parse('resident/resident_navigation_buttons', $data2, true);
+        $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
 
         if (isset($_GET['category'])) {
             $category = $this->input->get('category');
