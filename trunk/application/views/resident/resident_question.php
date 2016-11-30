@@ -6,7 +6,7 @@
     <div class="well row">
 
         <div class="col-12">
-            <div class="jumbotron" id="jumbotron_question">
+            <div class="" id="jumbotron_question">
                 <p class="text-center" id="question_text">
                     fdqs
                 </p>
