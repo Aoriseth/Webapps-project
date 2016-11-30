@@ -60,7 +60,7 @@ class Picture_model extends CI_Model {
 			'pieces_collected' => 0,
 			'added_on' => date('Y-m-d H:i:s')
 		);
-		$this->db->insert('a16_webapps_3.pictures', $array);
+		$this->db->insert('a16_webapps_3.gallery_pictures', $array);
 	}
 	
 	/**
