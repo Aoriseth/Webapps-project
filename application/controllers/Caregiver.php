@@ -166,7 +166,7 @@ class Caregiver extends CI_Controller {
 				//If this line is reached, the upload was successful
 				echo 'Picture uploaded!';
 				echo $target_file;
-				echo '<img src= "'.$target_file.'">';
+				echo "<img src='".$target_file."' />";
 			}
 			else {
 				echo 'File is not uploaded';
