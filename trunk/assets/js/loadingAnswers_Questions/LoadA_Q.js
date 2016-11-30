@@ -35,7 +35,7 @@ function storeAnswer(chosenOption, base_url) {
         $("#question_text").text("");
         $("#question_text").text(questions[index].question);
         questionId = questions[index].id;
-        $("#progresBar").progressbar({"value": index / max});
+        //$("#progresBar").progressbar({"value": index / max});
 
     } else {
         window.location.href = base_url + "index.php/resident/completed";
@@ -55,7 +55,7 @@ function loadQuestion(i) {
     window.addEventListener("load", function () {
         $("#question_text").text(questions[index].question);
         console.log($("#question_text").text());
-        $("#progresBar").progressbar({"value": index / max});
+        //$("#progresBar").progressbar({"value": index / max});
     }, false);
 }
 function pressGoBack() {
@@ -64,7 +64,7 @@ function pressGoBack() {
         $("#question_text").text("");
         $("#question_text").text(questions[index].question);
         questionId = questions[index].id;
-        $("#progresBar").progressbar({"value": index / max});
+        //$("#progresBar").progressbar({"value": index / max});
 
     }
 }
