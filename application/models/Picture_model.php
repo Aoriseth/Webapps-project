@@ -54,7 +54,7 @@ class Picture_model extends CI_Model {
 	function storeNewGallery($pictureID, $residentID = NULL) {
 		$array = array(
 			'picture_id' => $pictureID,
-			'resident_id' => $resident_id,
+			'resident_id' => $residentID,
 			'in_progress' => 0,
 			'times_completed' => 0,
 			'pieces_collected' => 0,
