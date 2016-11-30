@@ -124,7 +124,7 @@ class Caregiver extends CI_Controller {
 	 * TODO: Move all of this code to the place where it is needed/appropriate for uploading pictures.
 	 */
 	function upload() {
-		$target_dir = "application/controllers/images/";
+		$target_dir = "images/";
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 		$uploadOk = 1;
 		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -166,8 +166,7 @@ class Caregiver extends CI_Controller {
 				//If this line is reached, the upload was successful
 				echo 'Picture uploaded! ';
 				echo $target_file;
-				echo ' ';
-				echo "<img src='" . $target_file . "' />";
+				$this->Picture_model->storePicture(1,$target_file);
 			}
 			else {
 				echo 'File is not uploaded';
