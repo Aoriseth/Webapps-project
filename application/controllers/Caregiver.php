@@ -165,7 +165,9 @@ class Caregiver extends CI_Controller {
 				move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 				//If this line is reached, the upload was successful
 				echo 'Picture uploaded!';
+				echo "\r\n";
 				echo $target_file;
+				echo "\r\n";
 				echo "<img src='".$target_file."' />";
 			}
 			else {
