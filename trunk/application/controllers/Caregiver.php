@@ -177,8 +177,6 @@ class Caregiver extends CI_Controller {
 					//If this line is reached, the upload was successful
 					echo 'Picture uploaded! ';
 					echo $target_file;
-					echo $target_file['name'];
-					exit;
 					$this->Picture_model->storePicture(1, $target_file);
 				}
 				else {
