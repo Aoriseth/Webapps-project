@@ -12,12 +12,14 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/ripples.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/snackbar.css">
 
         <!-- Load scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/material.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/ripples.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/snackbar.min.js"></script>
 
         <!-- Activate Material Design -->
         <script>$.material.init();</script>
@@ -27,9 +29,9 @@
     <body>
         {navbar}
         <div class="container" id="container_resident">
+            
             <div class="row">
-                
-                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                <div class="col-md-10 col-md-offset-1">
                     <!--div class="jumbotron"-->       
                     <div>
                     {content}	
@@ -37,7 +39,8 @@
                     <!--/div-->
                 </div>
             </div>
-
+            
+            <span data-toggle=snackbar data-content="This is my awesome snackbar!"></span>
         </div>
     </body>
 </html>
