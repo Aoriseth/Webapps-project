@@ -162,6 +162,12 @@ class Caregiver extends CI_Controller {
 				//If this line is reached, the upload was successful
 				echo 'Picture uploaded!';
 			}
+			else {
+				echo 'File is not uploaded';
+			}
+		}
+		else {
+			echo 'Upload failed';
 		}
 	}
 }
