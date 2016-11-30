@@ -166,7 +166,7 @@ class Caregiver extends CI_Controller {
 				//If this line is reached, the upload was successful
 				echo 'Picture uploaded! ';
 				echo $target_file;
-				$this->Picture_model->storePicture(1, addslashes($target_file));
+				$this->Picture_model->storePicture(1, $target_file);
 			}
 			else {
 				echo 'File is not uploaded';
