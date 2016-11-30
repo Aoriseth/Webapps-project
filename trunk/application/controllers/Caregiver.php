@@ -136,17 +136,20 @@ class Caregiver extends CI_Controller {
 				$uploadOk = 1;
 			} else {
 				$uploadOk = 0;
+				echo 'Fake image. ';
 			}
 		}
 		// Check if file already exists
 		if (file_exists($target_file)) {
 			//File already exists
 			$uploadOk = 0;
+			echo 'File already exists. ';
 		}
 		// Check file size
-		if ($_FILES["fileToUpload"]["size"] > 500000) {
+		if ($_FILES["fileToUpload"]["size"] > 800000) {
 			//File is too large
 			$uploadOk = 0;
+			echo 'File too large. ';
 		}
 		// Allow certain file formats
 		if($imageFileType != "jpg" && $imageFileType != "JPG"
@@ -154,6 +157,7 @@ class Caregiver extends CI_Controller {
 				&& $imageFileType != "jpeg" && $imageFileType != "JPEG" ) {
 			//Something else than a jpg, JPG, png, PNG, jpeg, JPEG is give
 			$uploadOk = 0;
+			echo 'Wrong type. ';
 		}
 		// Check if $uploadOk is set to 0 by an error
 		if ($uploadOk != 0) {
