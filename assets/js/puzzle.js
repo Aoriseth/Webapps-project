@@ -3,13 +3,11 @@ function loadPuzzle(baseURL) {
     var greyImage = new Image();
     var nrToDisplay = 3;
     var nrDisplayed = 0;
-    //image.src = 'https://a16_webapps_3.studev.groept.be/assets/imgs/puzzle.jpg';
-    //greyImage.src = 'https://a16_webapps_3.studev.groept.be/assets/imgs/grey.jpg';
-    //image.src = 'http://localhost/www/trunk/assets/imgs/puzzle.jpg';
-    //greyImage.src = 'http://localhost/www/trunk/assets/imgs/grey.jpg';
-    var baseString = 'http://localhost/www/trunk';
     image.src = baseURL.concat('/assets/imgs/puzzle.jpg');
-    greyImage.src = baseURL.concat('/assets/imgs/grey.jpg');
+    
+    (image.onload) = function(){
+        greyImage.src = baseURL.concat('/assets/imgs/grey.jpg');
+    };
     
     greyImage.onload = function(){
         var canvas = document.getElementById("puzzle");
@@ -34,7 +32,8 @@ function loadPuzzle(baseURL) {
                 }
             }
         }
-    }
+    };
+}
     
 
-}
+
