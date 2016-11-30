@@ -7,7 +7,16 @@ class Picture_model extends CI_Model {
 	}
 	
 	/**
-	 * Store the given picture in the database.
+	 * Store new puzzle picture in the database:
+	 * - pictures table is updated
+	 * - gallery_pictures table is updated
+	 */
+	function storeNewPuzzlePicture($picture_dir, $picture_name, $residentID) {
+		
+	}
+	
+	/**
+	 * Store the given picture in the database and return the ID.
 	 */
 	function storePicture($picture_dir, $picture_name) {
 		$array = array(
@@ -15,6 +24,8 @@ class Picture_model extends CI_Model {
 			'picture_name' => addslashes($picture_name)
 		);
 		$this->db->insert('a16_webapps_3.pictures', $array);
+		echo $this->conn_id->insert_id();
+		exit;
 	}
 	
 	/**
