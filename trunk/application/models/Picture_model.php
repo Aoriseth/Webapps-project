@@ -11,7 +11,7 @@ class Picture_model extends CI_Model {
 	 */
 	function storePicture($residentID, $picture_dir, $picture_name) {
 		$array = array(
-			'picture_dir' => addslashes($picutre_dir),
+			'picture_dir' => addslashes($picture_dir),
 			'picture_name' => addslashes($picture_path)
 		);
 		$this->db->insert('a16_webapps_3.pictures', $array);
