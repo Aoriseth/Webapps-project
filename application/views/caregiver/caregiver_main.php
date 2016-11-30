@@ -11,6 +11,7 @@
 		<link href="<?php echo base_url(); ?>assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
                 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap-material-design.css">
                 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/ripples.css">
+                <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/snackbar.css">
                 
                 <!-- Load scripts -->
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -19,6 +20,8 @@
                 <script src="<?php echo base_url(); ?>assets/js/ripples.js"></script>
                 <script src="<?php echo base_url(); ?>assets/js/statistics/chartCallbacks.js"></script>
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                <script src="<?php echo base_url(); ?>assets/js/snackbar.min.js"></script>
+                
                  <!-- Activate Material Design -->
                 <script>$.material.init();</script>
 <!--	HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
