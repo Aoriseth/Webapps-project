@@ -155,7 +155,7 @@ class Caregiver extends CI_Controller {
 		if($imageFileType != "jpg" && $imageFileType != "JPG"
 				&& $imageFileType != "png" && $imageFileType != "PNG"
 				&& $imageFileType != "jpeg" && $imageFileType != "JPEG" ) {
-			//Something else than a jpg, JPG, png, PNG, jpeg, JPEG is give
+			//Something else than a jpg, JPG, png, PNG, jpeg, JPEG cannot be uploaded
 			$uploadOk = 0;
 			echo 'Wrong type. ';
 		}
@@ -165,6 +165,8 @@ class Caregiver extends CI_Controller {
 				move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 				//If this line is reached, the upload was successful
 				echo 'Picture uploaded!';
+				echo $target_file;
+				echo '<img src= "'.$target_file.'">';
 			}
 			else {
 				echo 'File is not uploaded';
@@ -173,8 +175,5 @@ class Caregiver extends CI_Controller {
 		else {
 			echo 'Upload failed';
 		}
-		
-		$imageData = $this->upload->data();
-		echo $imageData["file_name"];
 	}
 }
