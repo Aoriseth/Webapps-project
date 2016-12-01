@@ -4,7 +4,7 @@
     
         <div class="well">
             <div class="row">
-                <div class="col-sm-6 col-sm-offset-3"
+                <div class="col-sm-6 col-sm-offset-3">
                      <form>
                         <button style="width:100%;font-size:2.5vmax;" class="btn-lg withripple btn btn-raised btn-info" formaction="<?php echo base_url() . 'index.php/resident/categories' ?>">Start a new test!</button>
                     </form>
