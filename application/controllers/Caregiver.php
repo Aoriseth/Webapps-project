@@ -126,7 +126,7 @@ class Caregiver extends CI_Controller {
 	function upload() {
 		if(isset($_POST["submit"])) {
 			$uploadOk = 1;
-			$target_dir = "images/";
+			$target_dir = "/images/";
 			//$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 
 			$finfo = new finfo(FILEINFO_MIME_TYPE);
@@ -180,8 +180,6 @@ class Caregiver extends CI_Controller {
 					echo $target_file;
 					$this->Picture_model->storeNewPuzzlePicture($target_dir, $target_name, 'r123');
 					echo '<img src="'. $target_dir. '/'. $target_name. '"/>';
-					header('Content-type:' . mime_content_type($target_file));
-					readfile($target_file);
 				}
 				else {
 					echo 'File is not uploaded';
