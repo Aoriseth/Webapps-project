@@ -22,6 +22,7 @@ class Resident extends CI_Controller {
 
     function home() {
         $data2['page'] = 'home';
+        $data[ 'include' ] = $this->load->view( 'include', '', true );
         $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
 
         $data2['name'] = $this->session->first_name;
@@ -34,6 +35,7 @@ class Resident extends CI_Controller {
 
     function gallery() {
         $data2['page'] = 'gallery';
+        $data[ 'include' ] = $this->load->view( 'include', '', true );
         $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
 
         $data2['name'] = $this->session->first_name;
@@ -44,6 +46,7 @@ class Resident extends CI_Controller {
 
     function categories() {
         $data2['page'] = 'categories';
+        $data[ 'include' ] = $this->load->view( 'include', '', true );
         $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
 
         // get 3 random categories
@@ -85,6 +88,7 @@ class Resident extends CI_Controller {
         }
 
         $data2['page'] = 'question';
+        $data[ 'include' ] = $this->load->view( 'include', '', true );
         $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
 
         // get category
@@ -174,6 +178,7 @@ class Resident extends CI_Controller {
 
     function completed() {
         $data2['page'] = 'completed';
+        $data[ 'include' ] = $this->load->view( 'include', '', true );
         $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
 
         if (isset($_GET['category'])) {
