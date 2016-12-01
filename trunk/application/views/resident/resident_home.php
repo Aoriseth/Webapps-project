@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                      <form>
-                         <button data-toggle="popover" title="" data-container="body" data-content="Click this button to start a new test!" style="width:100%;font-size:2.5vmax;" class="popup btn-lg withripple btn btn-raised btn-info" formaction="<?php echo base_url() . 'index.php/resident/categories' ?>">Start a new test!</button>
+                         <button data-toggle="popover" title="" data-container="body" data-content="Click on 'Start a new test!' to start giving feedback!" style="width:100%;font-size:2.5vmax;" class="popup btn-lg withripple btn btn-raised btn-info" formaction="<?php echo base_url() . 'index.php/resident/categories' ?>">Start a new test!</button>
                     </form>
                 </div>
             </div>
