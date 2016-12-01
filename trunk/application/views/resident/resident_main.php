@@ -25,8 +25,22 @@
                 </div>
             </div>
             
+            
         </div>
-        
-        <!--<a class="btn btn-warning btn-raised" style="height:3em;width:7em;position:fixed;bottom:30px;right:30px;" href="#">HELP</a>-->
+        <script>
+        $(document).ready(function () {
+          $('#trigger').click(function(event){
+            $('.popup').popover('toggle');
+            event.stopPropagation();
+          });
+          
+          $(window).click(function() {
+            //Hide the menus if visible
+            $('.popup').popover('hide');
+            });
+        });
+        </script>
+        <button id="trigger" class="withripple btn btn-warning btn-raised" style="height:3em;width:7em;position:fixed;bottom:30px;right:30px;">HELP</button>
     </body>
 </html>
+<script>$.material.init();</script>

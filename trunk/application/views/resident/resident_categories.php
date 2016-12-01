@@ -1,4 +1,4 @@
-<div class="well">
+<div class="well popup" data-placement="bottom" data-toggle="popover" title="" data-container="body" data-content="Choose one of the three visible categories to continue">
     <div class="container-fluid">
         <div class="row">
 
