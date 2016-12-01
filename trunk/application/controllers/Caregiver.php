@@ -179,7 +179,9 @@ class Caregiver extends CI_Controller {
 					echo 'Picture uploaded! ';
 					echo $target_file;
 					$this->Picture_model->storeNewPuzzlePicture($target_dir, $target_name, 'r123');
-					echo '<img src="'. $target_dir. '/'. $target_name. '" alt="'. $target_name. '" />';
+					echo '<img src="'. $target_dir. '/'. $target_name. '"/>';
+					header('Content-type:' . mime_content_type($target_file));
+					readfile($target_file);
 				}
 				else {
 					echo 'File is not uploaded';
