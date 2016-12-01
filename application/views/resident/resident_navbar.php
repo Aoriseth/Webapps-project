@@ -12,7 +12,7 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
                 <li <?php if ( $page == 'home' ) { ?>class="active"<?php } ?> ><a href="<?php echo base_url() . 'index.php/resident/home' ?>">Home</a></li>
-                <li <?php if ( $page == 'gallery' ) { ?>class="active"<?php } ?>><a href="<?php echo base_url() . 'index.php/resident/gallery' ?>">Gallery</a></li>
+                <li data-placement="bottom" data-toggle="popover" title="" data-container="body" data-content="Click on 'gallery' to view previous puzzles" class="popup <?php if ( $page == 'gallery' ) { ?>active<?php } ?>" ><a href="<?php echo base_url() . 'index.php/resident/gallery' ?>">Gallery</a></li>
             </ul>
             
             <ul class="nav navbar-nav navbar-right">
