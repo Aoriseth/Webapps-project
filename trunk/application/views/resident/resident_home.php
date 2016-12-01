@@ -1,7 +1,6 @@
 
 <div class="container-fluid">
         
-
    
     <div class="row">
         <div class="jumbotron">
@@ -10,7 +9,8 @@
             </form>
                     
             <canvas class="center-block img-responsive" id="puzzle" style="height: 35vw;width:content-box"></canvas>
-            <script> loadPuzzle( "<?php echo base_url()?>" ); </script>
+            <script> loadPuzzle("<?php echo base_url() ?>"); </script>
+            
         </div>
 
     </div> 

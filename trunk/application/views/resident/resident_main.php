@@ -19,6 +19,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/material.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/ripples.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/puzzle.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/snackbar.min.js"></script>
 
         <!-- Activate Material Design -->
