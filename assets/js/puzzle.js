@@ -1,12 +1,12 @@
-function loadPuzzle(baseURL) {
+function loadPuzzle(base_url) {
     var image = new Image();
     var greyImage = new Image();
     var nrToDisplay = 3;
     var nrDisplayed = 0;
-    image.src = baseURL.concat('/assets/imgs/puzzle.jpg');
+    image.src = base_url.concat('/assets/imgs/puzzle.jpg');
     
     (image.onload) = function(){
-        greyImage.src = baseURL.concat('/assets/imgs/grey.jpg');
+        greyImage.src = base_url.concat('/assets/imgs/grey.jpg');
     };
     
     greyImage.onload = function(){
@@ -24,16 +24,13 @@ function loadPuzzle(baseURL) {
                     context.drawImage(image, x * (image.width / 3), y * (image.height / 3), (image.width / 3), (image.height / 3),
                     centerShift_x +( x * image.width * ratio)/3, centerShift_y + (y * image.height * ratio)/3, (image.width * ratio)/3, (image.height * ratio)/3);
                     nrDisplayed++;
-                    console.log("piece drawn" + y + x);
+                    //console.log("piece drawn" + y + x);
                 }else{
                     context.drawImage(greyImage,
                     centerShift_x +( x * image.width * ratio)/3, centerShift_y + (y * image.height * ratio)/3, (image.width * ratio)/3, (image.height * ratio)/3);
-                    console.log("grey drawn "+ (9-(3*y+x)) + " " + nrToDisplay + " " + nrDisplayed);
+                    //console.log("grey drawn "+ (9-(3*y+x)) + " " + nrToDisplay + " " + nrDisplayed);
                 }
             }
         }
     };
 }
-    
-
-
