@@ -16,3 +16,11 @@
     </div> 
 
 </div>
+<?php if ($display_login_notification == true) { ?>
+    <!-- TODO replace this obvisously... -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+                $.snackbar({content: 'Hello {name}, you succesfully logged in!'});
+        });
+    </script>
+<?php } ?>
