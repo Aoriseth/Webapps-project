@@ -9,7 +9,6 @@ class Caregiver extends CI_Controller {
 		// redirect to base if the user shouldn't be here
 		if ( $this->session->type != 'caregiver' ) { redirect( base_url() ); }
 		
-		$this->load->library( 'parser' );
 		$this->load->model( 'Question_model' );
 		$this->load->model( 'Statistics_model' );
 		$this->load->model( 'Resident_model' );

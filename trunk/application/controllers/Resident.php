@@ -2,25 +2,25 @@
 
 class Resident extends CI_Controller {
 
-    public function __construct() {
-        parent::__construct();
+	public function __construct()
+	{
+		parent::__construct();
 
-        // redirect to base if the user shouldn't be here
-        if ($this->session->type != 'resident') {
-            redirect(base_url());
-        }
+		// redirect to base if the user shouldn't be here
+		if ($this->session->type != 'resident') { redirect(base_url()); }
 
-        $this->load->library('parser');
-        $this->load->model('Question_model');
-        $this->load->model('Answer_model');
-        $this->load->model('Resident_model');
-    }
+		$this->load->model('Question_model');
+		$this->load->model('Answer_model');
+		$this->load->model('Resident_model');
+	}
 
-    function index() {
-        redirect('resident/home');
-    }
+	function index()
+	{
+		redirect('resident/home');
+	}
 
-    function home() {
+    function home()
+	{
         $data2['page'] = 'home';
         $data[ 'include' ] = $this->load->view( 'include', '', true );
         $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
@@ -33,7 +33,8 @@ class Resident extends CI_Controller {
         $this->parser->parse('resident/resident_main', $data);
     }
 
-    function gallery() {
+    function gallery()
+	{
         $data2['page'] = 'gallery';
         $data[ 'include' ] = $this->load->view( 'include', '', true );
         $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
@@ -44,7 +45,8 @@ class Resident extends CI_Controller {
         $this->parser->parse('resident/resident_main', $data);
     }
 
-    function categories() {
+    function categories()
+	{
         $data2['page'] = 'categories';
         $data[ 'include' ] = $this->load->view( 'include', '', true );
         $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
@@ -69,7 +71,8 @@ class Resident extends CI_Controller {
         $this->parser->parse('resident/resident_main', $data);
     }
 
-    function question() {
+    function question()
+	{
         /* ERROR: if user goes to home during questionnaire, variables are not reset
          * 
          * TODO
@@ -152,7 +155,8 @@ class Resident extends CI_Controller {
         $this->parser->parse('resident/resident_main', $data);
     }
 
-    function question_store_answer() {
+    function question_store_answer()
+	{
         // only allow AJAX requests
         if (!$this->input->is_ajax_request()) {
             redirect('404');
@@ -176,7 +180,8 @@ class Resident extends CI_Controller {
         }
     }
 
-    function completed() {
+    function completed()
+	{
         $data2['page'] = 'completed';
         $data[ 'include' ] = $this->load->view( 'include', '', true );
         $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
