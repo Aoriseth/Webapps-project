@@ -1,8 +1,5 @@
 <?php
 
-// common
-$lang[ 'login_login_action' ] = 'Meld je aan';
-
 // facial recognition
 $lang[ 'login_facial_explanation' ] = 'Meld je aan met gezichtsherkenning.';
 $lang[ 'login_facial_scrolldown' ] = 'Scroll naar beneden om je aan te melden.';

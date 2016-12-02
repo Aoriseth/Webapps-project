@@ -1,8 +1,5 @@
 <?php
 
-// common
-$lang[ 'login_login_action' ] = 'Log in';
-
 // facial recognition
 $lang[ 'login_facial_explanation' ] = 'Log in using facial recognition.';
 $lang[ 'login_facial_scrolldown' ] = 'Scroll down for manual login.';

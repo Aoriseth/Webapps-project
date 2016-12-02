@@ -9,6 +9,15 @@ class Resident extends CI_Controller {
 		// redirect to base if the user shouldn't be here
 		if ($this->session->type != 'resident') { redirect(base_url()); }
 
+		// load appropriate language file
+		if ( ! isset( $this->session->language ) ) {
+			// fallback on default
+			$this->session->language = $this->config->item( 'language' );
+		}
+		$this->lang->load( 'common', $this->session->language );
+		$this->lang->load( 'resident', $this->session->language );
+
+		// models
 		$this->load->model('Question_model');
 		$this->load->model('Answer_model');
 		$this->load->model('Resident_model');
