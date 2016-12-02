@@ -86,7 +86,7 @@ class Resident_model extends CI_Model {
 		);
 		$this->db->insert('a16_webapps_3.residents', $array);
 	}
-	
+        
 	/**
 	 * Get all residents that fit the requirements given in an array.
 	 * 

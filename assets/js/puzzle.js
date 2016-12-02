@@ -1,9 +1,27 @@
-function loadPuzzle(base_url) {
+function loadPuzzle(base_url, nr, path, puzzle) {
+    
+//    var url = base_url + 'index.php/Resident/getPuzzle';
+//    $.ajax({
+//		type: "POST",
+//		url: url,
+//		dataType: "text",
+//		cache: false,
+//	})
+//        .done( function (data) {
+//            console.log(data);
+//		var response = JSON.parse( data );
+//
+//
+//	})
+//	.fail( function ( jqXHR, textStatus, errorThrown ) {
+//		// display error message
+//                console.log('error');
+//	});
     var image = new Image();
     var greyImage = new Image();
-    var nrToDisplay = 3;
+    var nrToDisplay = nr;
     var nrDisplayed = 0;
-    image.src = base_url.concat('/assets/imgs/puzzle.jpg');
+    image.src = base_url + path + puzzle;
     
     (image.onload) = function(){
         greyImage.src = base_url.concat('/assets/imgs/grey.jpg');

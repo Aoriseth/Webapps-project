@@ -82,10 +82,29 @@ class Picture_model extends CI_Model {
 		$query = $this->db->query(
 			"SELECT *"
 			. " FROM a16_webapps_3.gallery_pictures"
-			. " WHERE resident_id='$residentID'"
+			. " WHERE id='$residentID'"
 		);
 		return $query->result();
 	}
+        
+        function getTestPuzzle($Id) {
+            $query = $this->db->query(
+			"SELECT picture_name"
+			. " FROM a16_webapps_3.pictures"
+			. " WHERE id='$Id'"
+		);
+		return $query->result();
+        }
+        
+        function getNrCompleted($Id){
+            $query = $this->db->query(
+			"SELECT pieces_collected"
+			. " FROM a16_webapps_3.gallery_pictures"
+			. " WHERE resident_id='$Id' AND in_progress = 1"
+		);
+                
+		return $query->result();
+        }
 	
 	/**
 	 * Get all gallery records.
@@ -115,6 +134,18 @@ class Picture_model extends CI_Model {
 		);
 		return $query->result();
 	}
+        
+        function getPictureTest($residentId) {
+		$query = $this->db->query(
+			"SELECT picture_dir, picture_name"
+			. " FROM a16_webapps_3.pictures"
+			. " WHERE id= (SELECT picture_id "
+                        . "FROM a16_webapps_3.gallery_pictures "
+                        . "WHERE resident_id = '$residentId' AND in_progress = '1')" 
+		);
+		return $query->result();
+	}
+        
 	
 	/**
 	 * Get at most n pictures of the given resident, where n is a given
