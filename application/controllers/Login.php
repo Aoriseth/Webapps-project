@@ -9,16 +9,15 @@ class Login extends CI_Controller {
 		// redirect to base if the user is already logged in
 		if ( $this->session->is_logged_in ) { redirect( base_url() ); }
 
-		$this->load->library( 'parser' );
-		$this->load->model( 'Login_model' );
-		$this->load->model( 'FaceRecKeys_model' );
-		$this->load->helper( 'url' );
-
 		// load appropriate language file
 		if ( ! isset( $this->session->language ) ) {
 			$this->session->language = $this->config->item( 'language' );
 		}
 		$this->lang->load( 'login', $this->session->language );
+
+		// models
+		$this->load->model( 'Login_model' );
+		$this->load->model( 'FaceRecKeys_model' );
 	}
 
 	public function index()
