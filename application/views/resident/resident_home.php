@@ -17,8 +17,7 @@
             </form>
                     
             <canvas class="center-block img-responsive" id="puzzle" style="height: 35vw;width:content-box"></canvas>
-            <script> loadPuzzle( "<?php echo base_url()?>", <?php echo json_encode($nrCompleted); ?>, 
-            <?php echo json_encode($path); ?>, <?php echo json_encode($puzzle); ?> ); </script>
+            <script> loadPuzzle( "<?php echo base_url()?>", <?php echo json_encode($nrCompleted); ?> ); </script>
             
         </div>
 
