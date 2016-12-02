@@ -7,7 +7,14 @@ and open the template in the editor.
     Created on : Nov 12, 2016
     Author     : Robin
 */
-
+#div1 {
+    width: 100%;
+    height: 80px;
+    border: 1px solid #aaaaaa;
+}
+#drag{
+    font-size: 12px;
+}
 body {
     background: #E8F0FE !important;
     padding-top: 70px;
@@ -36,23 +43,23 @@ body {
 }
 
 #col_btn {
-    
+
 }
 
 #button_emotion img{
-    
+
 }
 
 #progress_col{
     transform: translateY(100%);
 }
 table{
-      
+
 }
 
 @media(min-width:768px) {
-    
-    
+
+
 }
 .btn{
     white-space: normal !important;
