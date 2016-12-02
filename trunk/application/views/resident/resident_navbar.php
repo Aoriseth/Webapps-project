@@ -11,12 +11,12 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
-                <li <?php if ( $page == 'home' ) { ?>class="active"<?php } ?> ><a href="<?php echo base_url() . 'index.php/resident/home' ?>">Home</a></li>
-                <li data-placement="bottom" data-toggle="popover" title="" data-container="body" data-content="Click on 'gallery' to view previous puzzles" class="popup <?php if ( $page == 'gallery' ) { ?>active<?php } ?>" ><a href="<?php echo base_url() . 'index.php/resident/gallery' ?>">Gallery</a></li>
+                <li <?php if ( $page == 'home' ) { ?>class="active"<?php } ?> ><a href="<?php echo base_url() . 'index.php/resident/home' ?>"><?= lang( 'resident_navbar_home' ) ?></a></li>
+                <li data-placement="bottom" data-toggle="popover" title="" data-container="body" data-content="<?= lang( 'resident_navbar_gallery_help' ) ?>" class="popup <?php if ( $page == 'gallery' ) { ?>active<?php } ?>" ><a href="<?php echo base_url() . 'index.php/resident/gallery' ?>"><?= lang( 'resident_navbar_gallery' ) ?></a></li>
             </ul>
             
             <ul class="nav navbar-nav navbar-right">
-                    <li><a href="<?php echo base_url() . 'index.php/logout' ?>">LOGOUT</a></li>
+                    <li><a href="<?php echo base_url() . 'index.php/logout' ?>"><?= lang( 'common_logout' ) ?></a></li>
                     <li><a></a></li>
                       
                     <li><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
