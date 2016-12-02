@@ -17,18 +17,11 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-		redirect( 'login/facial_recognition' );
-	}
+		$data[ 'include' ] = $this->load->view( 'include', '', true );
 
-	public function facial_recognition()
-	{
-                $data[ 'include' ] = $this->load->view( 'include', '', true );
-		$data2[ 'page' ] = 'facial_recognition';
-		$data[ 'navigation_buttons' ] = $this->parser->parse( 'login/login_navigation_buttons', $data2, true );
 		$data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
-                $data[ 'facial' ] = $this->load->view( 'login/login_facial_recognition', '', true );
-                $data[ 'manual' ] = $this->load->view( 'login/login_manual', '', true );
-		
+		$data[ 'facial' ] = $this->load->view( 'login/login_facial_recognition', '', true );
+		$data[ 'manual' ] = $this->load->view( 'login/login_manual', '', true );
 
 		$this->parser->parse( 'login/login_main', $data );
 	}
@@ -44,17 +37,6 @@ class Login extends CI_Controller {
 
 	    header( 'Content-Type: application/json' );
 		echo json_encode( $result );
-	}
-
-	public function manual()
-	{
-		$data2[ 'page' ] = 'manual';
-		$data[ 'navigation_buttons' ] = $this->parser->parse( 'login/login_navigation_buttons', $data2, true );
-		$data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
-
-		$data[ 'content' ] = $this->load->view( 'login/login_manual', '', true );
-
-		$this->parser->parse( 'login/login_main', $data );
 	}
 
 	public function ajax()
