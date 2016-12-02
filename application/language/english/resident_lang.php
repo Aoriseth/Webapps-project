@@ -14,3 +14,6 @@ $lang[ 'resident_gallery_explanation' ] = 'Your finished puzzles will be displae
 // categories
 $lang[ 'resident_categories_explanation' ] = 'Select a category';
 $lang[ 'resident_categories_help' ] = 'Choose one of the three visible categories to continue';
+
+// question
+$lang[ 'resident_question_back' ] = 'Go Back';
