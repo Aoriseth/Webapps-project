@@ -59,6 +59,8 @@
         
         function save()
         {
+            var ageMin = 50;
+            var ageMax = 120;
             console.log('function save()');
             ageRange = [
                 document.getElementById('age-min'),
@@ -66,7 +68,9 @@
             ];            
             nonLinearStepSlider.noUiSlider.on('update', function (values, handle) {
                 var return_values = parseInt(values[handle]);
-                console.log(return_values);
+                if(ageMin <= return_values ? ageMin : return_values);
+                if(ageMax >= return_values ? ageMax : return_values);
+                console.log(ageMin, ageMax);
             });
         }
         /*
