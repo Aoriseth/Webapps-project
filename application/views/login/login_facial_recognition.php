@@ -1,6 +1,12 @@
           
-<p>Log in using facial recognition.</p>
-<p class="visible-sm visible-xs">Scroll down for manual login</p>
+<p>
+	<?= lang( 'login_facial_explanation' ) ?>
+</p>
+
+<p class="visible-sm visible-xs">
+	<?= lang( 'login_facial_scrolldown' ) ?>
+</p>
+
 <video id="camfr" width="90%" height="auto" autoplay="true">
 
 </video>
@@ -9,5 +15,5 @@
 <img id="photoFR" width="90%" height="auto" > 
 
 
-<button class="btn-lg btn btn-default btn-raised" id="facialLoginButton">Log in</button>
+<button class="btn-lg btn btn-default btn-raised" id="facialLoginButton"><?= lang( 'login_login_action' ) ?></button>
             
