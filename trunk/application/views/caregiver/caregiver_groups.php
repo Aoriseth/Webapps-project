@@ -90,7 +90,7 @@
 </head>
 
 
-<h2>Group Selection</h2>
+<h2 class="tlScale" >Group Selection</h2>
 <hr>
 <div class="container">
 
