@@ -2,54 +2,54 @@
 
 class Resident extends CI_Controller {
 
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct() {
+        parent::__construct();
 
-		// redirect to base if the user shouldn't be here
-		if ($this->session->type != 'resident') { redirect(base_url()); }
+        // redirect to base if the user shouldn't be here
+        if ($this->session->type != 'resident') {
+            redirect(base_url());
+        }
 
-		// load appropriate language file
-		if ( ! isset( $this->session->language ) ) {
-			// fallback on default
-			$this->session->language = $this->config->item( 'language' );
-		}
-		$this->lang->load( 'common', $this->session->language );
-		$this->lang->load( 'resident', $this->session->language );
+        // load appropriate language file
+        if (!isset($this->session->language)) {
+            // fallback on default
+            $this->session->language = $this->config->item('language');
+        }
+        $this->lang->load('common', $this->session->language);
+        $this->lang->load('resident', $this->session->language);
 
-		// models
-		$this->load->model('Question_model');
-		$this->load->model('Answer_model');
-		$this->load->model('Resident_model');
-	}
-
-	function index()
-	{
-		redirect('resident/home');
-	}
-
-	private function display_common_elements( $page )
-	{
-		$data[ 'include' ] = $this->load->view( 'include', '', true );
-		$data[ 'navbar' ] = $this->parser->parse( 'resident/resident_navbar', array( 'page' => $page ), true );
-		return $data;
-	}
-
-    function home()
-	{
-		$data = $this->display_common_elements( 'home' );
-
-		$data2['name'] = $this->session->first_name;
-		$data2['display_login_notification'] = $this->session->display_login_notification;
-		$this->session->display_login_notification = false;
-		$data['content'] = $this->parser->parse('resident/resident_home', $data2, true);
-
-		$this->parser->parse('resident/resident_main', $data);
+        // models
+        $this->load->model('Question_model');
+        $this->load->model('Answer_model');
+        $this->load->model('Resident_model');
     }
 
-    function gallery()
-	{
-		$data = $this->display_common_elements( 'gallery' );
+    function index() {
+        redirect('resident/home');
+    }
+
+    private function display_common_elements($page) {
+        $data['include'] = $this->load->view('include', '', true);
+        $data['navbar'] = $this->parser->parse('resident/resident_navbar', array('page' => $page), true);
+        return $data;
+    }
+
+    function home() {
+        $data = $this->display_common_elements('home');
+        $data2['nrCompleted'] = $this->Picture_model->getNrCompleted($residentId);
+        $querry = $this->Picture_model->getPictureTest($residentId);
+        $data2['path'] = $querry->picture_dir;
+        $data2['puzzle'] = $querry->picture_name;
+        $data2['name'] = $this->session->first_name;
+        $data2['display_login_notification'] = $this->session->display_login_notification;
+        $this->session->display_login_notification = false;
+        $data['content'] = $this->parser->parse('resident/resident_home', $data2, true);
+
+        $this->parser->parse('resident/resident_main', $data);
+    }
+
+    function gallery() {
+        $data = $this->display_common_elements('gallery');
 
         $data2['name'] = $this->session->first_name;
         $data['content'] = $this->parser->parse('resident/resident_gallery', $data2, true);
@@ -57,9 +57,8 @@ class Resident extends CI_Controller {
         $this->parser->parse('resident/resident_main', $data);
     }
 
-    function categories()
-	{
-		$data = $this->display_common_elements( 'categories' );
+    function categories() {
+        $data = $this->display_common_elements('categories');
 
         // get 3 random categories
         $categories = $this->Question_model->getAllUnfinishedCategories($this->session->id, $this->session->language, ($this->session->completedSessions + 1));
@@ -81,8 +80,7 @@ class Resident extends CI_Controller {
         $this->parser->parse('resident/resident_main', $data);
     }
 
-    function question()
-	{
+    function question() {
         /* ERROR: if user goes to home during questionnaire, variables are not reset
          * 
          * TODO
@@ -100,7 +98,7 @@ class Resident extends CI_Controller {
             redirect('resident/categories');
         }
 
-		$data = $this->display_common_elements( 'question' );
+        $data = $this->display_common_elements('question');
 
         // get category
         $category = $this->input->get('category');
@@ -152,10 +150,10 @@ class Resident extends CI_Controller {
 
         $data2['index'] = htmlspecialchars($index);
         $data2['category_size'] = htmlspecialchars(count($this->session->questions));
-        
+
         $data2['question'] = htmlspecialchars($question->question);
         $data2['questionID'] = htmlspecialchars($question->id);
-        $data2['allUnansweredQuestions'] =   $allUnansweredQuestions;
+        $data2['allUnansweredQuestions'] = $allUnansweredQuestions;
         $data2['options'] = $options;
 
         $data['content'] = $this->parser->parse('resident/resident_question', $data2, true);
@@ -163,8 +161,7 @@ class Resident extends CI_Controller {
         $this->parser->parse('resident/resident_main', $data);
     }
 
-    function question_store_answer()
-	{
+    function question_store_answer() {
         // only allow AJAX requests
         if (!$this->input->is_ajax_request()) {
             redirect('404');
@@ -188,9 +185,8 @@ class Resident extends CI_Controller {
         }
     }
 
-    function completed()
-	{
-		$data = $this->display_common_elements( 'completed' );
+    function completed() {
+        $data = $this->display_common_elements('completed');
 
         if (isset($_GET['category'])) {
             $category = $this->input->get('category');
