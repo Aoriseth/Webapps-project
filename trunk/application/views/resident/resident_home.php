@@ -22,8 +22,9 @@
     </div>
     
     <script> loadPuzzle("<?= base_url() ?>");</script>
-     <canvas class="center-block img-responsive" id="puzzle" style="height: 35vw;width:content-box"></canvas>
-            <script> loadPuzzle( "<?php echo base_url()?>", <?php echo json_encode($nrCompleted); ?> ); </script>
+     <canvas class="center-block img-responsive" id="puzzle" style="height: 32vw;width:content-box"></canvas>
+            <script> loadPuzzle( "<?php echo base_url()?>", <?php echo json_encode($nrCompleted); ?>,
+             <?php echo json_encode($path); ?> , <?php echo json_encode($puzzle); ?>  ); </script>
 </div>
 
 <?php if ($display_login_notification == true) { ?>

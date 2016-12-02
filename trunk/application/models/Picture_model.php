@@ -86,16 +86,7 @@ class Picture_model extends CI_Model {
 		);
 		return $query->result();
 	}
-        
-        function getTestPuzzle($Id) {
-            $query = $this->db->query(
-			"SELECT picture_name"
-			. " FROM a16_webapps_3.pictures"
-			. " WHERE id='$Id'"
-		);
-		return $query->result();
-        }
-        
+                
         function getNrCompleted($Id){
             $query = $this->db->query(
 			"SELECT pieces_collected"
