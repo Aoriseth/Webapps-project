@@ -17,7 +17,7 @@
                     {facial}
                     </div>
                 </div>
-                <div class=" col-md-offset-0 col-md-6">
+                <div class=" col-md-6">
                     <div class="well container-fluid">
                     {manual}
                     </div>
