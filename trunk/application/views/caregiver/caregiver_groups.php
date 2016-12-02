@@ -18,47 +18,58 @@
         }
     </style>
     <script>
+
+        var nonLinearStepSlider;
+        var ageRange;
+        
+        $(function () {
+            <?php foreach ($residents as $resident) { ?>
+                $("#<?php echo ($resident->id); ?>").draggable(); //TODO
+            <?php } ?>
+        });
         
         function add_group()
         {
-            //save_method = 'add';
+            //add_method = 'add';
             $('#form')[0].reset(); // reset form on modals
             $('.form-group').removeClass('has-error'); // clear error class
             $('.help-block').empty(); // clear error string
             $('#modal_form').modal('show'); // show bootstrap modal
-            $('.modal-title').text('Add Group'); // Set Title to Bootstrap modal title    
-        }
+            $('.modal-title').text('Add Group'); // Set Title to Bootstrap modal title
 
-
-<!-- -->
-        $(function () {
-        
-            <?php foreach ($residents as $resident) { ?>
-                $("#<?php echo ($resident->id); ?>").draggable(); //TODO
-            <?php } ?>
-            
-            var nonLinearStepSlider = document.getElementById('slider-non-linear-step');
-                noUiSlider.create(nonLinearStepSlider, {
+            /*var*/ nonLinearStepSlider = document.getElementById('slider-non-linear-step');
+            noUiSlider.create(nonLinearStepSlider, {
                 start: [60, 80],
                 step: 1,
                 range: {
-		'min': [ 50],
-		'max': [120]
+                    'min': [50],
+                    'max': [120]
                 }
             });
-            
-            var ageRange = [
-               document.getElementById('age-min'),
-               document.getElementById('age-max')
-            ]
-        
-            nonLinearStepSlider.noUiSlider.on('update', function( values, handle ) {
+
+            /*var*/ ageRange = [
+                document.getElementById('age-min'),
+                document.getElementById('age-max')
+            ];
+
+            nonLinearStepSlider.noUiSlider.on('update', function (values, handle) {
                 ageRange[handle].innerHTML = parseInt(values[handle]);
             });
+        }
         
-        });
-
-        
+        function save()
+        {
+            console.log('function save()');
+            ageRange = [
+                document.getElementById('age-min'),
+                document.getElementById('age-max')
+            ];            
+            nonLinearStepSlider.noUiSlider.on('update', function (values, handle) {
+                var return_values = parseInt(values[handle]);
+                console.log(return_values);
+            });
+        }
+        /*
         function allowDrop(ev) {
             ev.preventDefault();
         }
@@ -72,7 +83,8 @@
             ev.target.appendChild(document.getElementById(data));
             ev.preventDefault();
         }
-        
+        */
+       
     </script>
 </head>
 
@@ -104,10 +116,9 @@
         <?php } ?>    
     </div>
 
-        <div class ="col-xs-12"
-             <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-        </div>
-        
+    <div class ="col-xs-12"
+         <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    </div>
 
 </div>
 
@@ -121,7 +132,7 @@
             <div class="modal-body form">
                 <form action="#" id="form" class="form-horizontal">
                     <div class="form-body">  
-                        
+
                         <!-- GENDER -->
                         <div class="form-group">
                             <label class="col-md-2">Gender</label>
@@ -156,7 +167,7 @@
                                 <span class="help-block"></span>
                             </div>                            
                         </div>
-                        
+
                         <!-- AGE -->
                         <div class="form-group">
                             <label class="col-md-2">Age</label>
@@ -175,13 +186,12 @@
                                     <span class="age-range" id="age-max"></span>
                                 </div>
                             </div>
-                             
                         </div>
-                        
+
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnSave" onclick="save()" class="btn btn-raised btn-success">Save</button>
+                <button type="button" id="btnAdd" onclick="save()" class="btn btn-raised btn-success">Add</button>
                 <button type="button" class="btn btn-raised btn-danger" data-dismiss="modal">Cancel</button>
             </div>
         </div>
