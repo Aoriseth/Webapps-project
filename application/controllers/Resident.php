@@ -39,7 +39,7 @@ class Resident extends CI_Controller {
         $data = $this->display_common_elements('home');
         $residentId = $this->session->id;
         $data2['nrCompleted'] = $this->Picture_model->getNrCompleted($residentId);
-        $querry = $this->Picture_model->getPictureTest($residentId);
+        $querry = $this->Picture_model->getPictureTest($residentId)->row();
         $data2['path'] = $querry['picture_dir'];
         $data2['puzzle'] = $querry['picture_name'];
         $data2['name'] = $this->session->first_name;
