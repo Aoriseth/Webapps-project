@@ -22,6 +22,7 @@ class Resident extends CI_Controller {
         $this->load->model('Question_model');
         $this->load->model('Answer_model');
         $this->load->model('Resident_model');
+        $this->load->model('Picture_model');
     }
 
     function index() {
