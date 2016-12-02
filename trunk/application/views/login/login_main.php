@@ -5,7 +5,8 @@
     <head>
         <title>Grace Age: Login</title>
         {include}
-        
+        <!--Load unique scripts-->
+        <script src="<?php echo base_url(); ?>assets/js/login.js"></script>
     </head>
     <body>
         {navbar}
