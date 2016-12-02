@@ -55,11 +55,11 @@
                 </div>
             </div>
 
-            <div class="col-sm-2" >
-
-                <button class="btn btn-raised btn-default" type="submit" name="back" value="Go back" onclick="pressGoBack()" style="width:100%; color:LightGray;">Go Back</button>
-
-            </div>
+			<div class="col-sm-2" >
+				<button class="btn btn-raised btn-default" type="submit" name="back" value="Go back" onclick="pressGoBack()" style="width:100%; color:LightGray;">
+						 <?= lang( 'resident_question_back' ) ?>
+				</button>
+			</div>
         </div>
     </div>
 </div>
