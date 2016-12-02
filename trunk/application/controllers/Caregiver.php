@@ -130,7 +130,8 @@ class Caregiver extends CI_Controller {
 
 			$finfo = new finfo(FILEINFO_MIME_TYPE);
 			$img_types = array(
-						'jpg' => 'image/jpeg',
+						'jpeg' => 'image/jpeg',
+						'jpg' => 'image/jpg',
 						'png' => 'image/png'
 						);
 			if(false === $ext = array_search($finfo->file($_FILES["fileToUpload"]["tmp_name"]), $img_types, true)) {
@@ -161,9 +162,7 @@ class Caregiver extends CI_Controller {
 				echo 'File too large. ';
 			}
 			// Allow certain file formats
-			if($imageFileType != "jpg" && $imageFileType != "JPG"
-					&& $imageFileType != "png" && $imageFileType != "PNG"
-					&& $imageFileType != "jpeg" && $imageFileType != "JPEG" ) {
+			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
 				//Something else than a jpg, JPG, png, PNG, jpeg, JPEG cannot be uploaded
 				$uploadOk = 0;
 				echo 'Wrong type. ';
