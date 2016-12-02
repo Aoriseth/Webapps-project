@@ -1,4 +1,4 @@
-function loadPuzzle(base_url, nr, path, puzzle) {
+function loadPuzzle(base_url, nr) {
     
 //    var url = base_url + 'index.php/Resident/getPuzzle';
 //    $.ajax({
