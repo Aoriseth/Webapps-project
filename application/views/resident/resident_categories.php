@@ -1,4 +1,4 @@
-<div class="well popup" data-placement="bottom" data-toggle="popover" title="" data-container="body" data-content="Choose one of the three visible categories to continue">
+<div class="well popup" data-placement="bottom" data-toggle="popover" title="" data-container="body" data-content="<?= lang( 'resident_categories_help' ) ?>">
     <div class="container-fluid">
         <div class="row">
 
@@ -6,7 +6,7 @@
 
             <div class="col-lg-12" >
                 <h2 style="font-size:3vw">
-                    Select a category:
+					<?= lang( 'resident_categories_explanation' ) ?>
                 </h2>
                 <hr/>
                 <?php foreach ($categories as $category) { ?>
