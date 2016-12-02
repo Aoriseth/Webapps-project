@@ -24,7 +24,6 @@ class Caregiver extends CI_Controller {
 	{
 		$data2[ 'page' ] = 'home';
 		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
-		$data[ 'navigation_buttons' ] = $this->parser->parse( 'caregiver/caregiver_navigation_buttons', $data2, true );
 
 		$data2[ 'name' ] = $this->session->first_name;
 		$data2[ 'display_login_notification' ] = $this->session->display_login_notification;
@@ -40,7 +39,7 @@ class Caregiver extends CI_Controller {
 		$residents = $this->Resident_model->getAllResidents();
 		$data2[ 'page' ] = 'groups';
 		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
-		$data[ 'navigation_buttons' ] = $this->parser->parse( 'caregiver/caregiver_navigation_buttons', $data2, true );
+		
 		$data2[ 'residents'] = $residents;
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_groups', $data2, true );
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
@@ -51,7 +50,6 @@ class Caregiver extends CI_Controller {
 		$residents = $this->Resident_model->getAllResidents();
 		$data2[ 'page' ] = 'statistics';
 		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
-		$data[ 'navigation_buttons' ] = $this->parser->parse( 'caregiver/caregiver_navigation_buttons', $data2, true );
 		$data2[ 'categories'] = $categories;
 		$data2[ 'residents'] = $residents;
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_statistics', $data2, true );        
@@ -63,7 +61,6 @@ class Caregiver extends CI_Controller {
 	{
 		$data2[ 'page' ] = 'overview';
 		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
-		$data[ 'navigation_buttons' ] = $this->parser->parse( 'caregiver/caregiver_navigation_buttons', $data2, true );
 
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_overview', '', true );
 		
@@ -74,7 +71,6 @@ class Caregiver extends CI_Controller {
 	{
 		$data2[ 'page' ] = 'resident';
 		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
-		$data[ 'navigation_buttons' ] = $this->parser->parse( 'caregiver/caregiver_navigation_buttons', $data2, true );
 
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_resident', '', true );
 		
