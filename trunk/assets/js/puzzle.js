@@ -19,7 +19,7 @@ function loadPuzzle(base_url, nr) {
 //	});
     var image = new Image();
     var greyImage = new Image();
-    var nrToDisplay = nr;
+    var nrToDisplay = 3;
     var nrDisplayed = 0;
     image.src = base_url.concat('/assets/imgs/puzzle.jpg');
     
