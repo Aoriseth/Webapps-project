@@ -1,4 +1,4 @@
-function loadPuzzle(base_url, nr) {
+function loadPuzzle(base_url, nr, path, name) {
     
 //    var url = base_url + 'index.php/Resident/getPuzzle';
 //    $.ajax({
@@ -22,7 +22,7 @@ function loadPuzzle(base_url, nr) {
     var greyImage = new Image();
     var nrToDisplay = nr[0].pieces_collected;
     var nrDisplayed = 0;
-    image.src = base_url.concat('/assets/imgs/puzzle.jpg');
+    image.src = base_url + path + name;
     
     (image.onload) = function(){
         greyImage.src = base_url.concat('/assets/imgs/grey.jpg');
