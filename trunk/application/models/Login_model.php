@@ -50,7 +50,7 @@ class Login_model extends CI_Model {
 			if ( $data[ 'type' ] == 'resident' ) {
 				$this->session->id = $person->id;
 				$this->session->completedSessions = $person->completed_sessions;
-				$this->session->language = $person->language;
+				$this->session->language = strtolower( $person->language );
 			}
 		} else {
 			$data[ 'error' ] = 'Incorrect password.';
