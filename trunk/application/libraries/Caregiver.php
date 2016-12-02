@@ -23,7 +23,7 @@ class Caregiver extends Person {
 		if($caregiver_db_record != null) {
 			parent::__construct(
 					$caregiver_db_record->first_name,
-					$caregiver_db_record->lasst_name,
+					$caregiver_db_record->last_name,
 					$caregiver_db_record->id,
 					$caregiver_db_record->gender,
 					$caregiver_db_record->date_of_birth,
