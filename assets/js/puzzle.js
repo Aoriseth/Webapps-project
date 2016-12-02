@@ -21,7 +21,7 @@ function loadPuzzle(base_url, nr, path, puzzle) {
     var greyImage = new Image();
     var nrToDisplay = nr;
     var nrDisplayed = 0;
-    image.src = base_url + path + puzzle;
+    image.src = base_url.concat('/assets/imgs/puzzle.jpg');
     
     (image.onload) = function(){
         greyImage.src = base_url.concat('/assets/imgs/grey.jpg');
