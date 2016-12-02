@@ -32,7 +32,7 @@ class Picture_model extends CI_Model {
 		$updateData = array('profile_picture_id' => $pictureID);
 		$whereArray = array('id' => $residentID);
 		$this->db->where($whereArray);
-		$this->db->update('a16_webapps_3.answers', $updateData);
+		$this->db->update('a16_webapps_3.residents', $updateData);
 	}
 	
 	/**
