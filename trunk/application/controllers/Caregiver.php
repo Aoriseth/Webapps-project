@@ -185,6 +185,8 @@ class Caregiver extends CI_Controller {
 					echo '<img src=/'. $target_file .' />';
 					$fullname = '/assets/imgs/Lilliane.PNG';
 					echo '<img src=' . $fullname . ' />';
+					$fullname = '/assets/imgs/puzzle.jpg';
+					echo '<img src=' . $fullname . ' />';
 				}
 				else {
 					echo 'File is not uploaded';
