@@ -10,3 +10,7 @@ $lang[ 'resident_puzzle_help' ] = '<-- You can see your progress on the puzzle h
 
 // gallery
 $lang[ 'resident_gallery_explanation' ] = 'Your finished puzzles will be displaeyd here.';
+
+// categories
+$lang[ 'resident_categories_explanation' ] = 'Select a category';
+$lang[ 'resident_categories_help' ] = 'Choose one of the three visible categories to continue';

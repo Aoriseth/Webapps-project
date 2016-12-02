@@ -10,3 +10,7 @@ $lang[ 'resident_puzzle_help' ] = '<-- Je kunt je vooruitgang zien op de puzzel 
 
 // gallery
 $lang[ 'resident_gallery_explanation' ] = 'Hier komen je afgewerkte puzzels te staan.';
+
+// categories
+$lang[ 'resident_categories_explanation' ] = 'Kies een categorie';
+$lang[ 'resident_categories_help' ] = 'Kies één van de drie zichtbare categorieën om verder te gaan.';
