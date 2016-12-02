@@ -17,9 +17,10 @@ function loadPuzzle(base_url, nr) {
 //		// display error message
 //                console.log('error');
 //	});
+
     var image = new Image();
     var greyImage = new Image();
-    var nrToDisplay = 3;
+    var nrToDisplay = nr[0].pieces_collected;
     var nrDisplayed = 0;
     image.src = base_url.concat('/assets/imgs/puzzle.jpg');
     
