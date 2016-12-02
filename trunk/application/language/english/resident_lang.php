@@ -17,3 +17,7 @@ $lang[ 'resident_categories_help' ] = 'Choose one of the three visible categorie
 
 // question
 $lang[ 'resident_question_back' ] = 'Go Back';
+
+// completed
+$lang[ 'resident_completed_explanation' ] = 'Congratulations, you\'ve just completed the category {category}.';
+$lang[ 'resident_completed_start_new' ] = 'Do a new category!';

@@ -17,3 +17,7 @@ $lang[ 'resident_categories_help' ] = 'Kies één van de drie zichtbare categori
 
 // question
 $lang[ 'resident_question_back' ] = 'Ga terug';
+
+// completed
+$lang[ 'resident_completed_explanation' ] = 'Proficiat, je hebt juist de categorie {category} afgewerkt.';
+$lang[ 'resident_completed_start_new' ] = 'Doe een nieuwe categorie!';
