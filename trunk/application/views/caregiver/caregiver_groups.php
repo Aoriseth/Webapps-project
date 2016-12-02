@@ -11,7 +11,9 @@
 
         var nonLinearStepSlider;
         var ageRange;
-
+        var ageMin ;
+        var ageMax ;
+        
         $(function () {
 <?php foreach ($residents as $resident) { ?>
                 $("#<?php echo ($resident->id); ?>").draggable(); //TODO
@@ -54,19 +56,18 @@
 
         function save()
         {
-            var ageMin = 50;
-            var ageMax = 120;
             console.log('function save()');
             ageRange = [
                 document.getElementById('age-min'),
                 document.getElementById('age-max')
             ];
-            nonLinearStepSlider.noUiSlider.on('update', function (values, handle) {
-                var return_values = parseInt(values[handle]);
-                if (ageMin <= return_values ? ageMin : return_values)
-                    ;
-                if (ageMax >= return_values ? ageMax : return_values)
-                    ;
+            nonLinearStepSlider.noUiSlider.on('update', function ( values, handle ) {
+                if ( handle === 0 ) {
+                    ageMin = parseInt(values[handle]);
+                }
+                else if ( handle === 1 ) {
+                    ageMax = parseInt(values[handle]);
+                }
                 console.log(ageMin, ageMax);
             });
         }
