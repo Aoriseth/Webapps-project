@@ -89,12 +89,6 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-
-/*
- * TODO
- * 
- * add support for dutch and french?
- */
 $config['language']	= 'english';
 
 /*
