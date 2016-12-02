@@ -40,7 +40,8 @@ class Resident extends CI_Controller {
 	{
         $data = $this->display_common_elements('home');
         $residentId = $this->session->id;
-        $data2['nrCompleted'] = $this->Picture_model->getNrCompleted($residentId);
+        $querry2 =  $this->Picture_model->getNrCompleted($residentId);
+        $data2['nrCompleted'] = $querry2[0]->pieces_collected;
         $querry = $this->Picture_model->getPictureTest($residentId);
         $data2['path'] = $querry[0]->picture_dir;
         $data2['puzzle'] = $querry[0]->picture_name;
@@ -147,7 +148,7 @@ class Resident extends CI_Controller {
         if ($index >= count($this->session->questions)) {
             // clear array of questions
             $this->session->questions = array();
-            $this->Picture_model->incementPiecesCollected();
+            $this->Picture_model->incementPiecesCollected($residentID);
             redirect('resident/completed?category=' . $category);
         }
 
