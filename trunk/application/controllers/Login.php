@@ -13,6 +13,12 @@ class Login extends CI_Controller {
 		$this->load->model( 'Login_model' );
 		$this->load->model( 'FaceRecKeys_model' );
 		$this->load->helper( 'url' );
+
+		// load appropriate language file
+		if ( ! isset( $this->session->language ) ) {
+			$this->session->language = $this->config->item( 'language' );
+		}
+		$this->lang->load( 'login', $this->session->language );
 	}
 
 	public function index()
@@ -24,6 +30,18 @@ class Login extends CI_Controller {
 		$data[ 'manual' ] = $this->load->view( 'login/login_manual', '', true );
 
 		$this->parser->parse( 'login/login_main', $data );
+	}
+
+	public function en()	// temporary test function
+	{
+		$this->session->language = 'english';
+		redirect( base_url() );
+	}
+
+	public function nl()	// temporary test function
+	{
+		$this->session->language = 'nederlands';
+		redirect( base_url() );
 	}
 
 	public function get_facial_recognition_tokens()
