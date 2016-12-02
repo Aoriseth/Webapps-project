@@ -5,7 +5,7 @@ var max;
 
 
 // User has to be logged in as resident to be able to do this!
-function storeAnswer(chosenOption, base_url) {
+function storeAnswer(chosenOption, base_url, categoryName) {
 
     var url = base_url + 'index.php/resident/question_store_answer';
     console.log("chosenoption = " + chosenOption);
@@ -38,7 +38,7 @@ function storeAnswer(chosenOption, base_url) {
         //$("#progresBar").progressbar({"value": index / max});
 
     } else {
-        window.location.href = base_url + "index.php/resident/completed";
+        window.location.href = base_url + "index.php/resident/completed?category=" + categoryName;
     }
 }
 function loadQuestion(i) {
