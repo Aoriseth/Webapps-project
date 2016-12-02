@@ -1,5 +1,13 @@
 <?php
 
+// main
+$lang[ 'resident_button_help' ] = 'HELP';
+
+// navbar
+$lang[ 'resident_navbar_home' ] = 'Home';
+$lang[ 'resident_navbar_gallery' ] = 'Gallery';
+$lang[ 'resident_navbar_gallery_help' ] = 'Click on \'gallery\' to view previous puzzles.';
+
 // home
 $lang[ 'resident_welcome_snackbar' ] = 'Hello {name}, you succesfully logged in!';
 

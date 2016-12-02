@@ -1,5 +1,13 @@
 <?php
 
+// main
+$lang[ 'resident_button_help' ] = 'HELP';
+
+// navbar
+$lang[ 'resident_navbar_home' ] = 'Thuis';
+$lang[ 'resident_navbar_gallery' ] = 'Galerij';
+$lang[ 'resident_navbar_gallery_help' ] = 'Klik op \'galerij\' om de afgwerkte puzzels te zien.';
+
 // home
 $lang[ 'resident_welcome_snackbar' ] = 'Hallo {name}, je bent correct aangemald!';
 
@@ -19,5 +27,5 @@ $lang[ 'resident_categories_help' ] = 'Kies één van de drie zichtbare categori
 $lang[ 'resident_question_back' ] = 'Ga terug';
 
 // completed
-$lang[ 'resident_completed_explanation' ] = 'Proficiat, je hebt juist de categorie {category} afgewerkt.';
+$lang[ 'resident_completed_explanation' ] = 'Proficiat, je hebt de categorie <i>{category}</i> afgewerkt.';
 $lang[ 'resident_completed_start_new' ] = 'Doe een nieuwe categorie!';
