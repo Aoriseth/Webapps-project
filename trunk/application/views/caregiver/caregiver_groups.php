@@ -6,28 +6,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.css"></script>
     <!--script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.3/bootstrap-slider.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.3/css/bootstrap-slider.min.css"></script-->
-
-    <style>
-        #div1 {
-            width: 100%;
-            height: 80px;
-            border: 1px solid #aaaaaa;
-        }
-        #drag{
-            font-size: 12px;
-        }
-    </style>
     <script>
+
 
         var nonLinearStepSlider;
         var ageRange;
-        
+
         $(function () {
-            <?php foreach ($residents as $resident) { ?>
+<?php foreach ($residents as $resident) { ?>
                 $("#<?php echo ($resident->id); ?>").draggable(); //TODO
-            <?php } ?>
+<?php } ?>
         });
-        
+
+
         function add_group()
         {
             //add_method = 'add';
@@ -36,6 +27,7 @@
             $('.help-block').empty(); // clear error string
             $('#modal_form').modal('show'); // show bootstrap modal
             $('.modal-title').text('Add Group'); // Set Title to Bootstrap modal title
+
 
             /*var*/ nonLinearStepSlider = document.getElementById('slider-non-linear-step');
             noUiSlider.create(nonLinearStepSlider, {
@@ -54,9 +46,12 @@
 
             nonLinearStepSlider.noUiSlider.on('update', function (values, handle) {
                 ageRange[handle].innerHTML = parseInt(values[handle]);
+
             });
+
         }
-        
+
+
         function save()
         {
             var ageMin = 50;
@@ -65,30 +60,32 @@
             ageRange = [
                 document.getElementById('age-min'),
                 document.getElementById('age-max')
-            ];            
+            ];
             nonLinearStepSlider.noUiSlider.on('update', function (values, handle) {
                 var return_values = parseInt(values[handle]);
-                if(ageMin <= return_values ? ageMin : return_values);
-                if(ageMax >= return_values ? ageMax : return_values);
+                if (ageMin <= return_values ? ageMin : return_values)
+                    ;
+                if (ageMax >= return_values ? ageMax : return_values)
+                    ;
                 console.log(ageMin, ageMax);
             });
         }
         /*
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
+         function allowDrop(ev) {
+         ev.preventDefault();
+         }
+         
+         function drag(ev) {
+         ev.dataTransfer.setData("Text", ev.target.id);
+         }
+         
+         function drop(ev) {
+         var data = ev.dataTransfer.getData("Text");
+         ev.target.appendChild(document.getElementById(data));
+         ev.preventDefault();
+         }
+         */
 
-        function drag(ev) {
-            ev.dataTransfer.setData("Text", ev.target.id);
-        }
-
-        function drop(ev) {
-            var data = ev.dataTransfer.getData("Text");
-            ev.target.appendChild(document.getElementById(data));
-            ev.preventDefault();
-        }
-        */
-       
     </script>
 </head>
 
@@ -97,7 +94,7 @@
 <hr>
 <div class="container">
 
-    <button class="btn btn-raised btn-success" onclick="add_group()"><i class="glyphicon glyphicon-plus"></i> Add Group</button>
+    <button class="btn btn-raised btn-success"onclick="add_group()"><i class="glyphicon glyphicon-plus"></i> Add Group</button>
 
     <!-- -->
 
@@ -119,6 +116,7 @@
             </div>
         <?php } ?>    
     </div>
+
 
     <div class ="col-xs-12"
          <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
@@ -190,6 +188,7 @@
                                     <span class="age-range" id="age-max"></span>
                                 </div>
                             </div>
+
                         </div>
 
                 </form>
