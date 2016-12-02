@@ -126,7 +126,7 @@ class Caregiver extends CI_Controller {
 	function upload() {
 		if(isset($_POST["submit"])) {
 			$uploadOk = 1;
-			$target_dir = "assets/imgs/pictures/";
+			$target_dir = "assets/imgs/";
 
 			$finfo = new finfo(FILEINFO_MIME_TYPE);
 			$img_types = array(
