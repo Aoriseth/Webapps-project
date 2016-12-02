@@ -1,8 +1,9 @@
-<h2>Home page for the caregivers</h2>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
+<h2 class="tlScale">Home page for the caregivers</h2>
 
 <hr />
 
-<p>
+<p class="txScale">
     Hello {name}.
 </p>
 
@@ -10,10 +11,10 @@
     <!-- TODO replace this obvisously... -->
     <script type="text/javascript">
         $(document).ready(function () {
-                $.snackbar({content: 'Hello {name}, you succesfully logged in!'});
+            $.snackbar({content: 'Hello {name}, you succesfully logged in!'});
         });
     </script>
-    
+
     <!--<br/>
     <br/>
     <br/>
