@@ -13,10 +13,12 @@
             </div>
 
             <div class="row"  id="jumbotron_answer">
+                <div class="visible-md visible-sm visible-lg col-sm-1"></div>
                 <?php
                 $emotion_index = 0;
                 foreach ($options as $option) {
                     ?>
+               
                     <div class=" col-sm-offset-0 col-sm-2 col-md-offset-0 col-md-2 col-xs-5" id="col_btn">
                         <div style="width:100%;text-align: center;margin:auto;">
 
