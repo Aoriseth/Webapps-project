@@ -21,7 +21,7 @@
                         <div style="width:100%;text-align: center;margin:auto;">
 
                             <button style="width:100%;height:100%;" class="btn btn-raised btn-default" id="button_emotion<?php $emotion_index ?>" 
-                                    onclick="(storeAnswer(<?php echo $emotion_index ?>, ' <?php echo base_url() ?>'));"
+                                    onclick="(storeAnswer(<?php echo $emotion_index ?>, ' <?php echo base_url() ?>', '{category}'));"
                                     value="<?php echo htmlspecialchars($option->option) ?>">
 
                                 <img style="width:100%;height:100%;" src=<?php echo base_url() . 'assets/imgs/emotions/' . $emotion_index . ".png" ?> >                                   
