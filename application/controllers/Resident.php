@@ -28,25 +28,28 @@ class Resident extends CI_Controller {
 		redirect('resident/home');
 	}
 
+	private function display_common_elements( $page )
+	{
+		$data[ 'include' ] = $this->load->view( 'include', '', true );
+		$data[ 'navbar' ] = $this->parser->parse( 'resident/resident_navbar', array( 'page' => $page ), true );
+		return $data;
+	}
+
     function home()
 	{
-        $data2['page'] = 'home';
-        $data[ 'include' ] = $this->load->view( 'include', '', true );
-        $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
+		$data = $this->display_common_elements( 'home' );
 
-        $data2['name'] = $this->session->first_name;
-        $data2['display_login_notification'] = $this->session->display_login_notification;
-        $this->session->display_login_notification = false;
-        $data['content'] = $this->parser->parse('resident/resident_home', $data2, true);
+		$data2['name'] = $this->session->first_name;
+		$data2['display_login_notification'] = $this->session->display_login_notification;
+		$this->session->display_login_notification = false;
+		$data['content'] = $this->parser->parse('resident/resident_home', $data2, true);
 
-        $this->parser->parse('resident/resident_main', $data);
+		$this->parser->parse('resident/resident_main', $data);
     }
 
     function gallery()
 	{
-        $data2['page'] = 'gallery';
-        $data[ 'include' ] = $this->load->view( 'include', '', true );
-        $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
+		$data = $this->display_common_elements( 'gallery' );
 
         $data2['name'] = $this->session->first_name;
         $data['content'] = $this->parser->parse('resident/resident_gallery', $data2, true);
@@ -56,9 +59,7 @@ class Resident extends CI_Controller {
 
     function categories()
 	{
-        $data2['page'] = 'categories';
-        $data[ 'include' ] = $this->load->view( 'include', '', true );
-        $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
+		$data = $this->display_common_elements( 'categories' );
 
         // get 3 random categories
         $categories = $this->Question_model->getAllUnfinishedCategories($this->session->id, $this->session->language, ($this->session->completedSessions + 1));
@@ -99,9 +100,7 @@ class Resident extends CI_Controller {
             redirect('resident/categories');
         }
 
-        $data2['page'] = 'question';
-        $data[ 'include' ] = $this->load->view( 'include', '', true );
-        $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
+		$data = $this->display_common_elements( 'question' );
 
         // get category
         $category = $this->input->get('category');
@@ -191,9 +190,7 @@ class Resident extends CI_Controller {
 
     function completed()
 	{
-        $data2['page'] = 'completed';
-        $data[ 'include' ] = $this->load->view( 'include', '', true );
-        $data['navbar'] = $this->parser->parse('resident/resident_navbar', $data2, true);
+		$data = $this->display_common_elements( 'completed' );
 
         if (isset($_GET['category'])) {
             $category = $this->input->get('category');
