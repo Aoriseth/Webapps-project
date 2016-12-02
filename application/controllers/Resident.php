@@ -147,6 +147,7 @@ class Resident extends CI_Controller {
         if ($index >= count($this->session->questions)) {
             // clear array of questions
             $this->session->questions = array();
+            $this->Picture_model->incementPiecesCollected();
             redirect('resident/completed?category=' . $category);
         }
 
