@@ -44,6 +44,15 @@ class Resident_model extends CI_Model {
 		return $query->result();
 	}
 	
+        
+        function getAllResidentsByLanguage($language) {
+		$query = $this->db->query(
+			"SELECT * "
+			. "FROM a16_webapps_3.residents "
+			. "WHERE language='$language'"
+		);
+		return $query->result();
+	}
 	/**
 	 * Update the last completed field with the current time and date
 	 * for a given resident (by ID).

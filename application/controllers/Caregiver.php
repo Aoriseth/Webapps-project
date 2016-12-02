@@ -83,34 +83,59 @@ class Caregiver extends CI_Controller {
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
         
-	function load_charts(){
+function load_charts(){
 			// only allow AJAX requests
 //		if ( ! $this->input->is_ajax_request() ) {
 //			//redirect('404');
 //		}
-
+                $resultArray = [];
+                $chart1 = [];
+                $chart2 = [];
 		if ( isset( $_POST[ 'resident' ] ) ) {
-
-			$categories = $this->Question_model->getAllCategories( 'English');
+                        $language = $_POST[ 'language'];
+			$categories = $this->Question_model->getAllCategories($language);
 			$resident = $_POST[ 'resident' ];
-			$resultArray = [];
+                        //array of strings
+                        $Yarray = [];
+                        //array of ints
+                        $Xarray = [];
+			
 
-			array_push($resultArray, $categories);
 			foreach($categories as $category){
 
-				$result = $this->Statistics_model->getScoreCategory($resident, (int)$category->id);
-				array_push($resultArray, $result);
+				$result = $this->Statistics_model->getScoreCategory($resident, (int)$category->id, $language);
+                                array_push($Yarray, $category->category);
+				array_push($Xarray, $result);
 			}
+                        array_push($chart1, $Xarray);
+                        array_push($chart1, $Yarray);
+			
+		}
+                if ( isset( $_POST[ 'category' ] ) ) {
+                        $language = $_POST[ 'language'];
+			$category = $_POST[ 'category' ];
+                        $residents = $this->Resident_model->getAllResidentsByLanguage($language);
+			
+                        //array of strings
+                        $Yarray = [];
+                        //array of ints
+                        $Xarray = [];
+			
 
+			foreach($residents as $resident){
 
-			echo json_encode($resultArray);
+				$result = $this->Statistics_model->getScoreCategory($resident->id, $category, $language);
+                                array_push($Yarray, $resident->first_name);
+				array_push($Xarray, $result);
+			}
+                        array_push($chart2, $Xarray);
+                        array_push($chart2, $Yarray);
+			
 		}
 
-		else{
-			header( 'Content-Type: application/json' );
-			echo json_encode( array( 'resident' => 'undefined', 'category' => 'undefined' ) );
-			return;
-		}  
+                array_push($resultArray, $chart1);
+                array_push($resultArray, $chart2);
+                echo json_encode($resultArray);
 		  //header( 'Content-Type: application/json' );     
 	}
 		
