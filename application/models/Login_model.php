@@ -6,7 +6,8 @@ class Login_model extends CI_Model {
 		parent::__construct();
 
 		require 'lib/password.php';
-		$this->load->library('Resident');
+		$this->load->library( 'Caregiver' );
+		$this->load->library( 'Resident' );
 	}
 	
 	/* Returns an array with
@@ -37,7 +38,6 @@ class Login_model extends CI_Model {
 		
 		//Get this person's data from the database
 		$person = $query->row();
-		$data[ 'type' ] = $person->type;
 		$person = $this->db->query("SELECT * FROM a16_webapps_3."
 				. "$person->type"
 				. "s WHERE id='$username'")->row();
@@ -45,12 +45,11 @@ class Login_model extends CI_Model {
 		//Verify password
 		if ( password_verify( $password, $person->password ) ) {
 			$data[ 'succeeded' ] = true;
-			$data[ 'name' ] = $person->first_name;
 
-			if ( $data[ 'type' ] == 'resident' ) {
-				$this->session->id = $person->id;
-				$this->session->completedSessions = $person->completed_sessions;
-				$this->session->language = strtolower( $person->language );
+			if ( $person->type == 'resident' ) {
+				$data[ 'person' ] = new Resident( $person );
+			} else if ( $person->type == 'caregiver' ) {
+				$data[ 'person' ] = new Caregiver( $person );
 			}
 		} else {
 			$data[ 'error' ] = 'Incorrect password.';

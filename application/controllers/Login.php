@@ -78,7 +78,7 @@ class Login extends CI_Controller {
 		$result = $this->Login_model->login( $username, $password );
 
 		if ( $result[ 'succeeded' ] == true ) {
-			$this->setup_login( $result[ 'name' ], $result[ 'type' ] );
+			$this->setup_login( $result[ 'person' ] );
 
 		    header( 'Content-Type: application/json' );
 			echo json_encode( array( "success" => true ) );
@@ -88,14 +88,22 @@ class Login extends CI_Controller {
 		}
 	}
 	
-	private function setup_login( $name, $type )
+	private function setup_login( $person )
 	{
 		$this->session->is_logged_in = true;
 		$this->session->display_login_notification = true;
-		/*
-		 * TODO replace by Person class
-		 */
-		$this->session->first_name = $name;
-		$this->session->type = $type;
+
+		$this->session->language = strtolower( $person->getLanguage() );
+		$this->session->person = $person;
+
+		// *** TODO *** remove dependancies on this
+		if ( $person->getType() == 'resident' ) {
+			$this->session->id = $person->getId();
+			$this->session->completedSessions = $person->getCompletedSessions();
+		}
+
+		$this->session->first_name = $person->getFirstName();
+		$this->session->type = $person->getType();
+		//*** TODO ***
 	}
 }
