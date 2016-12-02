@@ -30,7 +30,7 @@
                                     <span style='font-size:10vw' class="glyphicon glyphicon-edit"></span>
                                 <?php } ?>
                             </button></br>
-                            <p style="font-size:2vw"><?php echo $category->category ?></p>
+                            <p style="font-size:2vmax"><?php echo $category->category ?></p>
 
 
                         </form>
