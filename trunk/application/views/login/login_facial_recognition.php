@@ -15,5 +15,5 @@
 <img id="photoFR" width="90%" height="auto" > 
 
 
-<button class="btn-lg btn btn-default btn-raised" id="facialLoginButton"><?= lang( 'login_login_action' ) ?></button>
+<button class="btn-lg btn btn-default btn-raised" id="facialLoginButton"><?= lang( 'common_login' ) ?></button>
             

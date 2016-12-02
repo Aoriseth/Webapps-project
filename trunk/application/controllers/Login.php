@@ -11,8 +11,10 @@ class Login extends CI_Controller {
 
 		// load appropriate language file
 		if ( ! isset( $this->session->language ) ) {
+			// fallback on default
 			$this->session->language = $this->config->item( 'language' );
 		}
+		$this->lang->load( 'common', $this->session->language );
 		$this->lang->load( 'login', $this->session->language );
 
 		// models
