@@ -5,7 +5,7 @@
 
 
             <div class="col-lg-12" >
-                <h2 style="font-size:3vw">
+                <h2 style="font-size:3vmax">
 					<?= lang( 'resident_categories_explanation' ) ?>
                 </h2>
                 <hr/>
