@@ -2,13 +2,12 @@
 
 class Resident extends CI_Controller {
 
-    public function __construct() {
+    public function __construct()
+	{
         parent::__construct();
 
         // redirect to base if the user shouldn't be here
-        if ($this->session->type != 'resident') {
-            redirect(base_url());
-        }
+        if ($this->session->type != 'resident') { redirect(base_url()); }
 
         // load appropriate language file
         if (!isset($this->session->language)) {
@@ -25,17 +24,20 @@ class Resident extends CI_Controller {
         $this->load->model('Picture_model');
     }
 
-    function index() {
+    function index()
+	{
         redirect('resident/home');
     }
 
-    private function display_common_elements($page) {
+    private function display_common_elements( $page )
+	{
         $data['include'] = $this->load->view('include', '', true);
         $data['navbar'] = $this->parser->parse('resident/resident_navbar', array('page' => $page), true);
         return $data;
     }
 
-    function home() {
+    function home()
+	{
         $data = $this->display_common_elements('home');
         $residentId = $this->session->id;
         $data2['nrCompleted'] = $this->Picture_model->getNrCompleted($residentId);
@@ -50,7 +52,8 @@ class Resident extends CI_Controller {
         $this->parser->parse('resident/resident_main', $data);
     }
 
-    function gallery() {
+    function gallery()
+	{
         $data = $this->display_common_elements('gallery');
 
         $data2['name'] = $this->session->first_name;
@@ -59,7 +62,8 @@ class Resident extends CI_Controller {
         $this->parser->parse('resident/resident_main', $data);
     }
 
-    function categories() {
+    function categories()
+	{
         $data = $this->display_common_elements('categories');
 
         // get 3 random categories
@@ -82,7 +86,8 @@ class Resident extends CI_Controller {
         $this->parser->parse('resident/resident_main', $data);
     }
 
-    function question() {
+    function question()
+	{
         /* ERROR: if user goes to home during questionnaire, variables are not reset
          * 
          * TODO
@@ -163,7 +168,8 @@ class Resident extends CI_Controller {
         $this->parser->parse('resident/resident_main', $data);
     }
 
-    function question_store_answer() {
+    function question_store_answer()
+	{
         // only allow AJAX requests
         if (!$this->input->is_ajax_request()) {
             redirect('404');
@@ -187,7 +193,8 @@ class Resident extends CI_Controller {
         }
     }
 
-    function completed() {
+    function completed()
+	{
         $data = $this->display_common_elements('completed');
 
         if (isset($_GET['category'])) {
