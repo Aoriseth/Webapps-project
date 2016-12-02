@@ -12,11 +12,15 @@
         {navbar}
         <div class="container">
             <div class="row">
-                <div class="well col-md-6 text-center">
+                <div class=" col-md-6 text-center">
+                    <div class=" well container-fluid">
                     {facial}
+                    </div>
                 </div>
-                <div class="well col-md-offset-1 col-md-5">
+                <div class=" col-md-offset-0 col-md-6">
+                    <div class="well container-fluid">
                     {manual}
+                    </div>
                 </div>
             </div>
         </div>
