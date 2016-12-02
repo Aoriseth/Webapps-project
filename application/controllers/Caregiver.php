@@ -126,15 +126,12 @@ class Caregiver extends CI_Controller {
 	function upload() {
 		if(isset($_POST["submit"])) {
 			$uploadOk = 1;
-			$target_dir = "assets/imgs/";
-			//$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+			$target_dir = "images/";
 
 			$finfo = new finfo(FILEINFO_MIME_TYPE);
 			$img_types = array(
 						'jpg' => 'image/jpeg',
-						'png' => 'image/png',
-						'JPG' => 'image/JPEG',
-						'PNG' => 'image/PNG'
+						'png' => 'image/png'
 						);
 			if(false === $ext = array_search($finfo->file($_FILES["fileToUpload"]["tmp_name"]), $img_types, true)) {
 				$uploadOk = 0;
@@ -158,7 +155,7 @@ class Caregiver extends CI_Controller {
 				echo 'File already exists. ';
 			}
 			// Check file size
-			if ($_FILES["fileToUpload"]["size"] > 800000) {
+			if ($_FILES["fileToUpload"]["size"] > 700000) {
 				//File is too large
 				$uploadOk = 0;
 				echo 'File too large. ';
@@ -179,15 +176,7 @@ class Caregiver extends CI_Controller {
 					echo 'Picture uploaded! ';
 					echo $target_file;
 					$this->Picture_model->storeNewPuzzlePicture($target_dir, $target_name, 'r123');
-					echo '<img src="'. $target_file .'" />';
-					echo '<img src=' . $target_file . ' />';
-					echo '<img src=/'. $target_file .' />';
-					$fullname = '/images/Lilliane.png';
-					echo '<img src=' . $fullname . ' />';
-					$fullname = '/images/Lilliane.PNG';
-					echo '<img src=' . $fullname . ' />';
-					$fullname = '/assets/imgs/puzzle.jpg';
-					echo '<img src=' . $fullname . ' />';
+					echo '<img src=' . $target_dir . $target_name . ' />';
 				}
 				else {
 					echo 'File is not uploaded';

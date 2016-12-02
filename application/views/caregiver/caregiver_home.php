@@ -39,7 +39,7 @@
     Pretend you didn't see this. Just needed a place to test on the live site. After these tests are done, all of this can be removed.
     <form action=<?php echo base_url() . 'index.php/caregiver/upload' ?> method="post" enctype="multipart/form-data">
             Select image to upload:
-            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="file" name="fileToUpload" id="fileToUpload" required>
             <input type="submit" value="Upload Image" name="submit">
     </form>
 <?php } ?>
