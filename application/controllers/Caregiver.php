@@ -171,6 +171,7 @@ class Caregiver extends CI_Controller {
 			if ($uploadOk != 0) {
 				if (is_uploaded_file($_FILES["fileToUpload"]["tmp_name"])) {
 					move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+					chmod("/" . $target_file . "", 0644); //Change the permission of the uploaded file, otherwise you can't open it.
 					//If this line is reached, the upload was successful
 					echo 'Picture uploaded! ';
 					echo $target_file;
