@@ -1,7 +1,7 @@
 <?php
 
 // main
-$lang[ 'resident_button_help' ] = 'HELP';
+$lang[ 'resident_button_help' ] = 'HULP';
 
 // navbar
 $lang[ 'resident_navbar_home' ] = 'Thuis';
