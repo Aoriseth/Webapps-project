@@ -58,7 +58,7 @@
             </div>
 
 			<div class="col-sm-2" >
-				<button class="btn btn-raised btn-default" type="submit" name="back" value="Go back" onclick="pressGoBack()" style="width:100%; color:LightGray;">
+				<button class="btn btn-raised btn-default" type="submit" name="back" value="Go back" onclick="pressGoBack()" style="width:100%; color:Gray;">
 						 <?= lang( 'resident_question_back' ) ?>
 				</button>
 			</div>

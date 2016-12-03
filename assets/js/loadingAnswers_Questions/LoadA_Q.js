@@ -3,6 +3,7 @@ var questionId;
 var index = 0;
 var max;
 var progress;
+var timeout;
 
 
 // User has to be logged in as resident to be able to do this!
@@ -30,17 +31,24 @@ function storeAnswer(chosenOption, base_url, categoryName) {
          */
 
     });
+
     // modify the question
-    if (index < max - 1) {
-        index++;
+    index++;
+    width = index / max * 100;
+    console.log("width: " + width)
+    $('#progressBar').css('width', width + "%");
+    if (index < max ) {
+        
         $("#question_text").text("");
         $("#question_text").text(questions[index].question);
         questionId = questions[index].id;
-        width = index / max * 100;
-        console.log("width: " + width)
-        $('#progressBar').css('width', width + "%");
+
     } else {
-        window.location.href = base_url + "index.php/resident/completed?category=" + categoryName;
+
+        timeout = setTimeout(function () {
+            window.location.href = base_url + "index.php/resident/completed?category=" + categoryName;
+
+        }, 2000);
     }
 }
 function loadQuestion(i) {
@@ -64,7 +72,7 @@ function loadQuestion(i) {
 function pressGoBack() {
     if (index > 0) {
         index--;
-
+        window.clearTimeout(timeout)
         $("#question_text").text("");
         $("#question_text").text(questions[index].question);
         questionId = questions[index].id;
