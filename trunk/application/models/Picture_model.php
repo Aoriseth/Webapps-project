@@ -145,11 +145,11 @@ class Picture_model extends CI_Model {
         
     }
 
-    function incrementPiecesCollected($residentId) {
-		$query = $this->db->query(
-				 "UPDATE a16_webapps_3.gallery_pictures"
-				. "SET pieces_collected = pieces_collected + 1 "
-				. "WHERE resident_id='$residentId' AND in_progress = '1';"
-		 );
+    function incrementPiecesCollected($residentID) {
+		$this->db->where('resident_id', $residentID);
+		$this->db->where('in_progress', 1);
+		$this->db->set('pieces_collected', 'pieces_collected+1', FALSE);
+		$this->db->update('a16_webapps_3.gallery_pictures');
+		
     }
 }
