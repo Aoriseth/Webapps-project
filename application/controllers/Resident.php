@@ -126,7 +126,6 @@ class Resident extends CI_Controller {
 
         // store the chosen option (if any)
         if (isset($_POST['option'])) {
-            $residentID = $this->session->id;
             if ($index > 0) {
                 $questionID = $this->session->questions[$index - 1]->id;
             } else {
@@ -140,15 +139,7 @@ class Resident extends CI_Controller {
                     break;
                 }
             }
-            $this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption);
-        }
-        // check if category is done
-		// EVERYTHING INSIDE THIS IF BLOCK IS NEVER EXECUTED!
-        if ($index >= count($this->session->questions)) {
-            // clear array of questions
-			$this->session->questions = array();
-            $this->Picture_model->incrementPiecesCollected($residentID);
-            redirect('resident/completed?category=' . $category);
+            $this->Answer_model->storeAnswer($this->session->id, $questionID, $chosenOption);
         }
 
         $question = $this->session->questions[$index];
@@ -198,6 +189,11 @@ class Resident extends CI_Controller {
 	{
         $data = $this->display_common_elements('completed');
 
+		//When category is completed, clear the array with questions...
+		$this->session->questions = array();
+		//and increase the number of collected puzzle pieces by 1.
+        $this->Picture_model->incrementPiecesCollected($this->session->id);
+		
         if (isset($_GET['category'])) {
             $category = $this->input->get('category');
         } else {
