@@ -48,7 +48,7 @@ function storeAnswer(chosenOption, base_url, categoryName) {
         timeout = setTimeout(function () {
             window.location.href = base_url + "index.php/resident/completed?category=" + categoryName;
 
-        }, 2000);
+        }, 1500);
     }
 }
 function loadQuestion(i) {
