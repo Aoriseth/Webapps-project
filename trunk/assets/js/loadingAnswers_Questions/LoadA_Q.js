@@ -2,15 +2,16 @@ var questions;
 var questionId;
 var index = 0;
 var max;
+var progress;
 
 
 // User has to be logged in as resident to be able to do this!
 function storeAnswer(chosenOption, base_url, categoryName) {
 
     var url = base_url + 'index.php/resident/question_store_answer';
-    console.log("chosenoption = " + chosenOption);
-    console.log("questionid:" + questionId);
-    console.log("baseurl:" + base_url);
+    //console.log("chosenoption = " + chosenOption);
+    //console.log("questionid:" + questionId);
+    //console.log("baseurl:" + base_url);
     var data = {question_id: questionId,
         chosen_option: chosenOption};
     $.ajax({
@@ -35,8 +36,9 @@ function storeAnswer(chosenOption, base_url, categoryName) {
         $("#question_text").text("");
         $("#question_text").text(questions[index].question);
         questionId = questions[index].id;
-        //$("#progresBar").progressbar({"value": index / max});
-
+        width = index / max * 100;
+        console.log("width: " + width)
+        $('#progressBar').css('width', width + "%");
     } else {
         window.location.href = base_url + "index.php/resident/completed?category=" + categoryName;
     }
@@ -54,17 +56,20 @@ function loadQuestion(i) {
 
     window.addEventListener("load", function () {
         $("#question_text").text(questions[index].question);
-        console.log($("#question_text").text());
-        //$("#progresBar").progressbar({"value": index / max});
+        //console.log($("#question_text").text());
+        width = index / max * 100;
+        $('#progressBar').css('width', width + "%");
     }, false);
 }
 function pressGoBack() {
     if (index > 0) {
         index--;
+
         $("#question_text").text("");
         $("#question_text").text(questions[index].question);
         questionId = questions[index].id;
-        //$("#progresBar").progressbar({"value": index / max});
+        width = index / max * 100;
+        $('#progressBar').css('width', width + "%");
 
     }
 }
