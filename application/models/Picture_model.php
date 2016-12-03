@@ -146,13 +146,10 @@ class Picture_model extends CI_Model {
     }
 
     function incrementPiecesCollected($residentId) {
-		echo $residentId;
 		$query = $this->db->query(
 				 "UPDATE a16_webapps_3.gallery_pictures"
 				. "SET pieces_collected = pieces_collected + 1 "
 				. "WHERE resident_id='$residentId' AND in_progress = '1';"
 		 );
-		
     }
-
 }

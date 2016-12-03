@@ -95,8 +95,7 @@ class Resident extends CI_Controller {
          * 	- reload questions from database
          * FUTURE
          * 	- detect if session in progress
-         */
-        /*
+         *
          * TODO
          * confirmation screen should also show progress bar
          * 
@@ -141,13 +140,13 @@ class Resident extends CI_Controller {
                     break;
                 }
             }
-            $this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption, $categoryID);
+            $this->Answer_model->storeAnswer($residentID, $questionID, $chosenOption);
         }
-
         // check if category is done
+		// EVERYTHING INSIDE THIS IF BLOCK IS NEVER EXECUTED!
         if ($index >= count($this->session->questions)) {
             // clear array of questions
-            $this->session->questions = array();
+			$this->session->questions = array();
             $this->Picture_model->incrementPiecesCollected($residentID);
             redirect('resident/completed?category=' . $category);
         }
