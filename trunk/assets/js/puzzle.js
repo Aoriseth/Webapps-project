@@ -51,5 +51,5 @@ function loadPuzzle(base_url, nr, path, name) {
                 }
             }
         }
-    };
+    }
 }
