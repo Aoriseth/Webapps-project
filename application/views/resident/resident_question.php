@@ -2,6 +2,7 @@
 
 <div class="container" id="container_resident">
     <script src="<?php echo base_url(); ?>assets/js/loadingAnswers_Questions/LoadA_Q.js" type="text/javascript"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 
     <div class="well row">
 
@@ -18,7 +19,7 @@
                 $emotion_index = 0;
                 foreach ($options as $option) {
                     ?>
-               
+
                     <div class=" col-sm-offset-0 col-sm-2 col-md-offset-0 col-md-2 col-xs-5" id="col_btn">
                         <div style="width:100%;text-align: center;margin:auto;">
 
@@ -50,18 +51,19 @@
         <div class="row">
 
             <div class="col-sm-10" id="progress_col">
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progressBar"
-                         >
+                <div class="progress" id="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progressBar" style="min-width: 2em;">
+                        
+
                     </div>
                 </div>
             </div>
 
-			<div class="col-sm-2" >
-				<button class="btn btn-raised btn-default" type="submit" name="back" value="Go back" onclick="pressGoBack()" style="width:100%; color:Gray;">
-						 <?= lang( 'resident_question_back' ) ?>
-				</button>
-			</div>
+            <div class="col-sm-2" >
+                <button class="btn btn-raised btn-default" type="submit" name="back" value="Go back" onclick="pressGoBack()" style="width:100%; color:Gray;">
+                    <?= lang('resident_question_back') ?>
+                </button>
+            </div>
         </div>
     </div>
 </div>

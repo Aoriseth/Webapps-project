@@ -2806,7 +2806,7 @@ fieldset[disabled] .navbar .btn-link:focus {
   color: rgba(0,0,0, 0.87);
 }
 .progress {
-  height: 4px;
+  height: 20px;
   border-radius: 0;
   -webkit-box-shadow: none;
           box-shadow: none;
