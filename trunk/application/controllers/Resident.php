@@ -68,7 +68,7 @@ class Resident extends CI_Controller {
         $data = $this->display_common_elements('categories');
 
         // get 3 random categories
-        $categories = $this->Question_model->getAllUnfinishedCategories($this->session->id, $this->session->language, ($this->session->completedSessions + 1));
+        $categories = $this->Question_model->getAllUnfinishedCategories($this->session->id);
         if (count($categories) == 0) {
             //If all categories are done, increment the session number
             $this->Resident_model->incrementSession($this->session->id);
@@ -148,7 +148,7 @@ class Resident extends CI_Controller {
         if ($index >= count($this->session->questions)) {
             // clear array of questions
             $this->session->questions = array();
-            $this->Picture_model->incementPiecesCollected($residentID);
+            $this->Picture_model->incrementPiecesCollected($residentID);
             redirect('resident/completed?category=' . $category);
         }
 

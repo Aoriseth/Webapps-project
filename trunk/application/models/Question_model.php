@@ -24,8 +24,9 @@ class Question_model extends CI_Model {
 	 * Members:
 	 *	- id		(int)
 	 */
-	function getAllUnfinishedCategories( $residentID, $languageX, $currentSession ) {
+	function getAllUnfinishedCategories( $residentID ) {
 		$language = $this->Resident_model->getResidentLanguage($residentID);
+		$currentSession = ($this->Resident_model->getSessionsCompleted($residentID)) + 1;
 		$all_categories = $this->db->query(
 			"SELECT id"
 			. " FROM a16_webapps_3.categories"
@@ -44,8 +45,7 @@ class Question_model extends CI_Model {
 	 * Check if a given category (by ID) is completed finished by a
 	 * given resident (by ID) with a given session count in a given language.
 	 */
-	private function isFinishedCategory( $residentID, $languageX, $currentSession, $categoryID ) {
-		$language = $this->Resident_model->getResidentLanguage($residentID);
+	private function isFinishedCategory( $residentID, $language, $currentSession, $categoryID ) {
 		$category = $this->db->query(
 			"SELECT id, question_count"
 			. " FROM a16_webapps_3.categories"
