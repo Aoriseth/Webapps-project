@@ -2,7 +2,7 @@ var questions;
 var questionId;
 var index = 0;
 var max;
-var progress;
+var width;
 var timeout;
 
 
@@ -37,14 +37,16 @@ function storeAnswer(chosenOption, base_url, categoryName) {
     width = index / max * 100;
     console.log("width: " + width)
     $('#progressBar').css('width', width + "%");
-    if (index < max ) {
-        
+    $('#progressBar').text(Math.ceil(width) + "%")
+
+    if (index < max) {
+
         $("#question_text").text("");
         $("#question_text").text(questions[index].question);
         questionId = questions[index].id;
 
     } else {
-
+        //$("#progress").effect( "bounce", {times:5,distance: 50}, 3 );
         timeout = setTimeout(function () {
             window.location.href = base_url + "index.php/resident/completed?category=" + categoryName;
 
@@ -67,6 +69,8 @@ function loadQuestion(i) {
         //console.log($("#question_text").text());
         width = index / max * 100;
         $('#progressBar').css('width', width + "%");
+        $('#progressBar').text(Math.ceil(width) + "%")
+
     }, false);
 }
 function pressGoBack() {
@@ -78,6 +82,7 @@ function pressGoBack() {
         questionId = questions[index].id;
         width = index / max * 100;
         $('#progressBar').css('width', width + "%");
+        $('#progressBar').text(Math.ceil(width) + "%")
 
     }
 }
