@@ -10,8 +10,8 @@
     
     
     
-    <form method="POST" id="chart1_form" name="chart1Form">
-        <select name="residents" id="residents_select" onchange="chart1function()" onload="chart1function()">
+    <form class="form-group" method="POST" id="chart1_form" name="chart1Form">
+        <select class="form-control" name="residents" id="residents_select" onchange="chart1function()" onload="chart1function()">
             <?php foreach ($residents as $resident){ ?>   
                    <option value=<?php echo json_encode($resident->id); ?>> <?php echo json_encode($resident->first_name); ?> </option>
             <?php } ?>                    
@@ -21,8 +21,8 @@
     
     
     
-    <form method="POST" id="chart2_form" name="chart2Form">
-        <select name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
+    <form class="form-group" method="POST" id="chart2_form" name="chart2Form">
+        <select class="form-control" name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
             <?php foreach ($categories as $category){ ?>   
                         <option value=<?php echo json_encode($category->id); ?>> <?php echo json_encode($category->category); ?> </option>
             <?php } ?>           
@@ -71,7 +71,7 @@
                     function drawChart() {
 
                         var data = new google.visualization.DataTable();
-                        dataChart(Yaxis, Xaxis, data, "chart1_div", resident);
+                        dataChart(Yaxis, Xaxis, data, "chart1_div", "");
                     }
 
                     
@@ -115,7 +115,7 @@
                     function drawChart2() {
 
                         var data = new google.visualization.DataTable();
-                        dataChart(Yaxis, Xaxis, data, "chart2_div", selects[0].value);
+                        dataChart(Yaxis, Xaxis, data, "chart2_div", "");
                     }
                     
                 }
