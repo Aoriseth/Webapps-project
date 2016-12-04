@@ -13,20 +13,22 @@
     <form class="form-group" method="POST" id="chart1_form" name="chart1Form">
         <select class="form-control" name="residents" id="residents_select" onchange="chart1function()" onload="chart1function()">
             <?php foreach ($residents as $resident){ ?>   
-                   <option value=<?php echo json_encode($resident->id); ?>> <?php echo json_encode($resident->first_name); ?> </option>
+                   <option value=<?php echo json_encode($resident->id); ?>> <?php echo $resident->first_name; ?> </option>
             <?php } ?>                    
         </select>
     </form>
+    
     <div id="chart1_div"></div>
     
     
-    
+
     <form class="form-group" method="POST" id="chart2_form" name="chart2Form">
         <select class="form-control" name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
             <?php foreach ($categories as $category){ ?>   
-                        <option value=<?php echo json_encode($category->id); ?>> <?php echo json_encode($category->category); ?> </option>
+                        <option value=<?php echo json_encode($category->id); ?>> <?php echo $category->category; ?> </option>
             <?php } ?>           
         </select>
+
 
     </form>
     <div id="chart2_div"></div>
