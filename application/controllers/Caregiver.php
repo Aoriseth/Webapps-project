@@ -92,7 +92,7 @@ function load_charts(){
                 $chart1 = [];
                 $chart2 = [];
 		if ( isset( $_POST[ 'resident' ] ) ) {
-                        $language = $_POST[ 'language'];
+                        $language = 'English';
 			$categories = $this->Question_model->getAllCategories($language);
 			$resident = $_POST[ 'resident' ];
                         //array of strings
@@ -107,12 +107,13 @@ function load_charts(){
                                 array_push($Yarray, $category->category);
 				array_push($Xarray, $result);
 			}
-                        array_push($chart1, $Xarray);
-                        array_push($chart1, $Yarray);
-			
-		}
+                        //array_push($chart1, $Xarray);
+                        //array_push($chart1, $Yarray);
+                        array_push($resultArray, $Xarray);
+                        array_push($resultArray, $Yarray);
+                }	
                 if ( isset( $_POST[ 'category' ] ) ) {
-                        $language = $_POST[ 'language'];
+                        $language = 'English';
 			$category = $_POST[ 'category' ];
                         $residents = $this->Resident_model->getAllResidentsByLanguage($language);
 			
@@ -128,13 +129,14 @@ function load_charts(){
                                 array_push($Yarray, $resident->first_name);
 				array_push($Xarray, $result);
 			}
-                        array_push($chart2, $Xarray);
-                        array_push($chart2, $Yarray);
-			
+                        //array_push($chart2, $Xarray);
+                        //array_push($chart2, $Yarray);
+			array_push($resultArray, $Xarray);
+                        array_push($resultArray, $Yarray);
 		}
 
-                array_push($resultArray, $chart1);
-                array_push($resultArray, $chart2);
+                //array_push($resultArray, $chart1);
+                //array_push($resultArray, $chart2);
                 echo json_encode($resultArray);
 		  //header( 'Content-Type: application/json' );     
 	}
