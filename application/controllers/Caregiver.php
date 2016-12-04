@@ -48,8 +48,11 @@ class Caregiver extends CI_Controller {
 	}
 	
 	function statistics() {
-		$categories = $this->Question_model->getAllCategories( 'English' );
+                $language = 'English';
+		$categories = $this->Question_model->getAllCategories($language);
 		$residents = $this->Resident_model->getAllResidents();
+
+
 		$data2[ 'page' ] = 'statistics';
 		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
                 $data[ 'include' ] = $this->parser->parse( 'include',$data2, true );
@@ -88,11 +91,12 @@ function load_charts(){
 //		if ( ! $this->input->is_ajax_request() ) {
 //			//redirect('404');
 //		}
+                $language = 'English';
                 $resultArray = [];
                 $chart1 = [];
                 $chart2 = [];
 		if ( isset( $_POST[ 'resident' ] ) ) {
-                        $language = 'English';
+                        
 			$categories = $this->Question_model->getAllCategories($language);
 			$resident = $_POST[ 'resident' ];
                         //array of strings
@@ -113,7 +117,7 @@ function load_charts(){
                         array_push($resultArray, $Yarray);
                 }	
                 if ( isset( $_POST[ 'category' ] ) ) {
-                        $language = 'English';
+                        
 			$category = $_POST[ 'category' ];
                         $residents = $this->Resident_model->getAllResidentsByLanguage($language);
 			

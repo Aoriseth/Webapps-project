@@ -8,19 +8,18 @@
 <body>
     <!--Div that will hold the pie chart-->
     
-    <div id="chart1_div"></div>
+    
     
     <form method="POST" id="chart1_form" name="chart1Form">
-
         <select name="residents" id="residents_select" onchange="chart1function()" onload="chart1function()">
             <?php foreach ($residents as $resident){ ?>   
                    <option value=<?php echo json_encode($resident->id); ?>> <?php echo json_encode($resident->first_name); ?> </option>
             <?php } ?>                    
         </select>
-
     </form>
+    <div id="chart1_div"></div>
     
-    <div id="chart2_div"></div>
+    
     
     <form method="POST" id="chart2_form" name="chart2Form">
         <select name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
@@ -30,6 +29,7 @@
         </select>
 
     </form>
+    <div id="chart2_div"></div>
     
     
 <script type="text/javascript">
