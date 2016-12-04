@@ -19,15 +19,21 @@ class Statistics_model extends CI_Model{
 		return $query->result();
     }
     
-    function getScoreCategory($residentID, $categoryID) {
+    function getScoreCategory($residentID, $categoryID, $language) {
 
         $answers = $this->getResidentAnswersFromCategory( $residentID, $categoryID);
         $categoryScore = 0;
-        $categoryAverageScore = 1;
+        $categoryAverageScore = 0;
 
         //for all questions
 		foreach ($answers as $answer) {
+                    if($language == "English"){
 				$categoryScore += $answer->option_id/5*100*$this->getWeightFor($answer->question_id);
+                    }
+                    elseif ($language == "Nederlands") {
+                                $categoryScore += ($answer->option_id - 4)/5*100*$this->getWeightFor($answer->question_id);
+                    
+                    }
 		}
         if(count($answers) > 0) {
 			$categoryAverageScore = $categoryScore/count($answers);
