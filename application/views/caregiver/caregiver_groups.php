@@ -4,22 +4,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.css"></script>
-    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.3/bootstrap-slider.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.5.3/css/bootstrap-slider.min.css"></script-->
     <script>
-
-
         var nonLinearStepSlider;
         var ageRange;
-        var ageMin ;
-        var ageMax ;
+        var ageMin;
+        var ageMax;
+        var gender;
         
         $(function () {
-<?php foreach ($residents as $resident) { ?>
+            <?php foreach ($residents as $resident) { ?>
                 $("#<?php echo ($resident->id); ?>").draggable(); //TODO
-<?php } ?>
+            <?php } ?>
         });
-
 
         function add_group()
         {
@@ -31,7 +27,7 @@
             $('.modal-title').text('Add Group'); // Set Title to Bootstrap modal title
 
 
-            /*var*/ nonLinearStepSlider = document.getElementById('slider-non-linear-step');
+            nonLinearStepSlider = document.getElementById('slider-non-linear-step');
             noUiSlider.create(nonLinearStepSlider, {
                 start: [60, 80],
                 step: 1,
@@ -41,26 +37,20 @@
                 }
             });
 
-            /*var*/ ageRange = [
+            ageRange = [
                 document.getElementById('age-min'),
                 document.getElementById('age-max')
             ];
 
             nonLinearStepSlider.noUiSlider.on('update', function (values, handle) {
                 ageRange[handle].innerHTML = parseInt(values[handle]);
-
             });
-
         }
-
 
         function save()
         {
             console.log('function save()');
-            ageRange = [
-                document.getElementById('age-min'),
-                document.getElementById('age-max')
-            ];
+            
             nonLinearStepSlider.noUiSlider.on('update', function ( values, handle ) {
                 if ( handle === 0 ) {
                     ageMin = parseInt(values[handle]);
@@ -68,8 +58,15 @@
                 else if ( handle === 1 ) {
                     ageMax = parseInt(values[handle]);
                 }
-                console.log(ageMin, ageMax);
             });
+            
+            if(document.getElementById('optionMale').checked) {
+                gender = "male";
+            } else if(document.getElementById('optionFemale').checked) {
+                gender = "female";
+            }
+            
+            console.log(ageMin, ageMax, gender);
         }
         /*
          function allowDrop(ev) {
@@ -139,20 +136,22 @@
                         <!-- GENDER -->
                         <div class="form-group">
                             <label class="col-md-2">Gender</label>
-                            <div class="col-md-2">
-                                <div class="radio radio-primary">
-                                    <label>
-                                        Male
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"<!--checked=""--><span class="circle"></span><span class="check"></span>
-                                    </label>
+                            <div class="raios">
+                                <div class="col-md-2">
+                                    <div class="radio radio-primary">
+                                        <label>
+                                            Male
+                                            <input type="radio" name="optionsRadios" id="optionMale" value="option1"<!--checked=""--><span class="circle"></span><span class="check"></span>
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="radio radio-primary">
-                                    <label>
-                                        Female
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"><span class="circle"></span><span class="check"></span>
-                                    </label>
+                                <div class="col-md-2">
+                                    <div class="radio radio-primary">
+                                        <label>
+                                            Female
+                                            <input type="radio" name="optionsRadios" id="optionFemale" value="option2"><span class="circle"></span><span class="check"></span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
