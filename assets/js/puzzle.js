@@ -20,7 +20,7 @@ function loadPuzzle(base_url, nr, path, name) {
 
     var image = new Image();
     var greyImage = new Image();
-    var nrToDisplay = nr[0].pieces_collected;
+    var nrToDisplay = nr;
     var nrDisplayed = 0;
     image.src = base_url + path + name;
     
@@ -37,16 +37,16 @@ function loadPuzzle(base_url, nr, path, name) {
         var centerShift_x = ( canvas.width - image.width*ratio ) / 2;
         var centerShift_y = ( canvas.height - image.height*ratio ) / 2;
 
-        for(var y = 0; y < 3; ++y) {
+        for(var y = 0; y < 4; ++y) {
             for(var x = 0; x < 3; ++x) {
-                if((Math.random() <= nrToDisplay/9 && nrDisplayed < nrToDisplay) || (9-(3*y+x)) <= nrToDisplay - (nrDisplayed)){
-                    context.drawImage(image, x * (image.width / 3), y * (image.height / 3), (image.width / 3), (image.height / 3),
-                    centerShift_x +( x * image.width * ratio)/3, centerShift_y + (y * image.height * ratio)/3, (image.width * ratio)/3, (image.height * ratio)/3);
+                if((Math.random() <= nrToDisplay/12 && nrDisplayed < nrToDisplay) || (12-(3*y+x)) <= nrToDisplay - (nrDisplayed)){
+                    context.drawImage(image, x * (image.width / 3), y * (image.height / 4), (image.width / 3), (image.height / 4),
+                    centerShift_x +( x * image.width * ratio)/3, centerShift_y + (y * image.height * ratio)/4, (image.width * ratio)/3, (image.height * ratio)/4);
                     nrDisplayed++;
                     //console.log("piece drawn" + y + x);
                 }else{
                     context.drawImage(greyImage,
-                    centerShift_x +( x * image.width * ratio)/3, centerShift_y + (y * image.height * ratio)/3, (image.width * ratio)/3, (image.height * ratio)/3);
+                    centerShift_x +( x * image.width * ratio)/3, centerShift_y + (y * image.height * ratio)/4, (image.width * ratio)/3, (image.height * ratio)/4);
                     //console.log("grey drawn "+ (9-(3*y+x)) + " " + nrToDisplay + " " + nrDisplayed);
                 }
             }
