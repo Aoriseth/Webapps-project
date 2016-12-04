@@ -11,6 +11,7 @@
         
         <!-- Load unique scripts -->
         <script src="<?php echo base_url(); ?>assets/js/statistics/chartCallbacks.js"></script>
+        
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         {include}
         
