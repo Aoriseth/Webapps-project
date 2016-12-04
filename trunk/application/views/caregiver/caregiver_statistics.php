@@ -37,7 +37,8 @@
         var formChart2 = document.getElementById('chart2_form');
         
         google.charts.load('current', {'packages':['corechart']});
-        
+        chart1function();
+        chart2function();
         //formChart1.addEventListener('submit', function(e) {
         function chart1function(){
             console.log('chart 1 submitted');
