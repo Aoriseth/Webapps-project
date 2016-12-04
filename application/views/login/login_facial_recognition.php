@@ -1,5 +1,5 @@
 <script src="<?= base_url();?>assets/js/QR-code/qcode-decoder.min.js" type="text/javascript"></script>
-<script src="<?= base_url();?>assets/js/QR-code/QRcodeRecog..js" type="text/javascript"></script>
+<script src="<?= base_url();?>assets/js/QR-code/QRcodeRecog.js" type="text/javascript"></script>
 <p>
 	<?= lang( 'login_facial_explanation' ) ?>
 </p>
