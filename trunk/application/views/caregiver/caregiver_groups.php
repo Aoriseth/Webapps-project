@@ -4,13 +4,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.css"></script>
-    <script>
+    
+    <script type="text/javascript">
         var nonLinearStepSlider;
         var ageRange;
         var ageMin;
         var ageMax;
         var gender;
-        
+        var floor = [];
         $(function () {
             <?php foreach ($residents as $resident) { ?>
                 $("#<?php echo ($resident->id); ?>").draggable(); //TODO
@@ -49,8 +50,26 @@
 
         function save()
         {
+            // TODO: warning if empty
             console.log('function save()');
+            // GENDER
+            if(document.getElementById('optionMale').checked) {
+                gender = "male";
+            } else if(document.getElementById('optionFemale').checked) {
+                gender = "female";
+            }
             
+            // FLOOR
+            var f = document.getElementById("floor");
+            for (var i = 0; i < f.options.length; i++) {
+                if(f.options[i].selected){
+                    if ( !( f.options[i].value in floor ) ) {
+                        floor.push(f.options[i].value);
+                    }
+                }
+            }
+  
+            // AGE
             nonLinearStepSlider.noUiSlider.on('update', function ( values, handle ) {
                 if ( handle === 0 ) {
                     ageMin = parseInt(values[handle]);
@@ -60,13 +79,7 @@
                 }
             });
             
-            if(document.getElementById('optionMale').checked) {
-                gender = "male";
-            } else if(document.getElementById('optionFemale').checked) {
-                gender = "female";
-            }
-            
-            console.log(ageMin, ageMax, gender);
+            console.log(ageMin, ageMax, gender, floor);
         }
         /*
          function allowDrop(ev) {
@@ -136,7 +149,7 @@
                         <!-- GENDER -->
                         <div class="form-group">
                             <label class="col-md-2">Gender</label>
-                            <div class="raios">
+                            <div class="radios">
                                 <div class="col-md-2">
                                     <div class="radio radio-primary">
                                         <label>
@@ -160,7 +173,7 @@
                         <div class="form-group">
                             <label class="col-md-2">Floor</label>
                             <div class="col-md-10">
-                                <select name="floor" multiple="" class="form-control">
+                                <select id="floor" multiple="multiple" class="form-control">
                                     <!-- TODO: floor numbers from database -->
                                     <option value="0">0</option>
                                     <option value="1">1</option>
