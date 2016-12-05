@@ -8,49 +8,52 @@ var timeout;
 
 // User has to be logged in as resident to be able to do this!
 function storeAnswer(chosenOption, base_url, categoryName) {
-
-    var url = base_url + 'index.php/resident/question_store_answer';
-    //console.log("chosenoption = " + chosenOption);
-    //console.log("questionid:" + questionId);
-    //console.log("baseurl:" + base_url);
-    var data = {question_id: questionId,
-        chosen_option: chosenOption};
-    $.ajax({
-        url: url,
-        type: 'POST',
-        data: JSON.stringify(data),
-        dataType: "text",
-        cache: false,
-        processData: false
-    }).always(function (result) {
-        //console.log(JSON.stringify(result));
-        /**
-         * {category_id: categoryId,
-         question_id: questionId,
-         chosen_option: chosenOption}
-         */
-
-    });
-
-    // modify the question
-    index++;
-    width = index / max * 100;
-    console.log("width: " + width)
-    $('#progressBar').css('width', width + "%");
-    $('#progressBar').text(Math.ceil(width) + "%")
-
     if (index < max) {
+        var url = base_url + 'index.php/resident/question_store_answer';
+        //console.log("chosenoption = " + chosenOption);
+        //console.log("questionid:" + questionId);
+        //console.log("baseurl:" + base_url);
+        var data = {question_id: questionId,
+            chosen_option: chosenOption};
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: JSON.stringify(data),
+            dataType: "text",
+            cache: false,
+            processData: false
+        }).always(function (result) {
+            //console.log(JSON.stringify(result));
+            /**
+             * {category_id: categoryId,
+             question_id: questionId,
+             chosen_option: chosenOption}
+             */
 
-        $("#question_text").text("");
-        $("#question_text").text(questions[index].question);
-        questionId = questions[index].id;
+        });
 
-    } else {
-        //$("#progress").effect( "bounce", {times:5,distance: 50}, 3 );
-        timeout = setTimeout(function () {
-            window.location.href = base_url + "index.php/resident/completed?category=" + categoryName;
+        // modify the question
+        index++;
+        width = index / max * 100;
+        console.log("width: " + width)
+        $('#progressBar').css('width', width + "%");
+        $('#progressBar').text(Math.ceil(width) + "%")
 
-        }, 1500);
+        if (index < max) {
+
+            $("#question_text").text("");
+            $("#question_text").text(questions[index].question);
+            questionId = questions[index].id;
+
+        } else {
+            //$("#progress").effect( "bounce", {times:5,distance: 50}, 3 );
+            timeout = setTimeout(function () {
+                window.location.href = base_url + "index.php/resident/completed?category=" + categoryName;
+
+            }, 1500);
+        }
+    }else{
+        window.location.href = base_url + "index.php/resident/completed?category=" + categoryName;
     }
 }
 function loadQuestion(i) {
