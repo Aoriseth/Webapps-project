@@ -109,12 +109,12 @@ class Resident extends CI_Controller {
 
         // get category
         $category = $this->input->get('category');
-        $categoryID = $this->Question_model->getCategoryIdFrom($this->session->language, $category); //TODO: use real language setting
+        $categorySetID = $this->Question_model->getCategorySetIdFrom($this->session->language, $category);
         // grab questions from database
         if (count($this->session->questions) == 0) {
-            $this->session->questions = $this->Question_model->getAllUnansweredQuestionsFrom($this->session->id, $categoryID);
+            $this->session->questions = $this->Question_model->getAllUnansweredQuestionsFrom($this->session->id, $categorySetID);
         }
-        $allUnansweredQuestions = $this->Question_model->getAllUnansweredQuestionsFrom($this->session->id, $categoryID);
+        $allUnansweredQuestions = $this->Question_model->getAllUnansweredQuestionsFrom($this->session->id, $categorySetID);
 
 
         // get index of current question
@@ -127,15 +127,15 @@ class Resident extends CI_Controller {
         // store the chosen option (if any)
         if (isset($_POST['option'])) {
             if ($index > 0) {
-                $questionID = $this->session->questions[$index - 1]->id;
+                $questionID = $this->session->questions[$index - 1]->question_set;
             } else {
-                $questionID = $this->session->questions[$index]->id;
+                $questionID = $this->session->questions[$index]->question_set;
             }
 
-            $options = $this->Question_model->getOptionsFor($questionID);
+            $options = $this->Question_model->getOptionsFor($questionID, $this->session->language);
             foreach ($options as $option) {
                 if ($option->option == filter_input(INPUT_POST, 'option')) {
-                    $chosenOption = $option->id;
+                    $chosenOption = $option->option_set;
                     break;
                 }
             }
@@ -143,7 +143,7 @@ class Resident extends CI_Controller {
         }
 
         $question = $this->session->questions[$index];
-        $options = $this->Question_model->getOptionsFor($question->id);
+        $options = $this->Question_model->getOptionsFor($question->question_set, $this->session->language);
 
         $data2['category'] = htmlspecialchars($category);
 
@@ -151,7 +151,7 @@ class Resident extends CI_Controller {
         $data2['category_size'] = htmlspecialchars(count($this->session->questions));
 
         $data2['question'] = htmlspecialchars($question->question);
-        $data2['questionID'] = htmlspecialchars($question->id);
+        $data2['questionID'] = htmlspecialchars($question->question_set);
         $data2['allUnansweredQuestions'] = $allUnansweredQuestions;
         $data2['options'] = $options;
 
@@ -171,13 +171,13 @@ class Resident extends CI_Controller {
         $jsonDecoded = json_decode($this->security->xss_clean($this->input->raw_input_stream));
         // check if POST is set correct (at least kind of)
 
-        $questionId = $jsonDecoded->question_id;
-        $chosenOption = $jsonDecoded->chosen_option;
+        $questionSet = $jsonDecoded->question_id;
+        $chosenOptionSet = $jsonDecoded->chosen_option;
 
         $residentId = $this->session->id;
 
-        if ($questionId != "" && $chosenOption != "" && $residentId != "") {
-            $this->Answer_model->storeAnswer($residentId, $questionId, $chosenOption);
+        if ($questionSet != "" && $chosenOptionSet != "" && $residentId != "") {
+            $this->Answer_model->storeAnswer($residentId, $questionSet, $chosenOptionSet);
 
             echo 'Answer stored succesfully.';
         } else {
