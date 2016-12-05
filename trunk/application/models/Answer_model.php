@@ -18,24 +18,27 @@ class Answer_model extends CI_Model {
      *      - answer            (int)       The entered answer.
      *      - currentSession    (int)       The number of the session in progress, meaning that (currentSession-1) questionnaires are completed by the given resident.
      */
-    function storeAnswer($residentID, $questionID, $chosenOption) {
+    function storeAnswer($residentID, $questionSetID, $chosenOptionSet) {
 		$currentSession = ($this->Resident_model->getSessionsCompleted($residentID)) + 1;
-
+		$language = $this->Resident_model->getResidentLanguage($residentID);
+		
 		//Ready the array with the answers
 		$answerData = array(
 			'resident_id' => $residentID,
-			'question_id' => $questionID,
-			'option_id' => $chosenOption,
+			'question_set' => $questionSetID,
+			'option_set' => $chosenOptionSet,
 			'session' => $currentSession,
-			'datetime_answered' => date('Y-m-d H:i:s'));
+			'answered_on' => date('Y-m-d H:i:s'),
+			'answered_in' => $language
+		);
 		
 		//Check if the resident already answered this question (needed when going back to the previous question).
-		if(! $this->hasQuestionAlreadyBeenAnswered($residentID, $questionID, $currentSession)) {
+		if(! $this->hasQuestionAlreadyBeenAnswered($residentID, $questionSetID, $currentSession)) {
 			$this->db->insert('a16_webapps_3.answers', $answerData);
 		} else {
 			$whereArray = array(
 				'resident_id' => $residentID,
-				'question_id' => $questionID,
+				'question_set' => $questionSetID,
 				'session' => $currentSession);
 			$this->db->where($whereArray);
 			$this->db->update('a16_webapps_3.answers', $answerData);
@@ -53,11 +56,11 @@ class Answer_model extends CI_Model {
      *      - questionID        (int)       The id of the question answered.
      *      - currentSession    (int)       The number of the session in progress, meaning that (currentSession-1) questionnaires are completed by the given resident.
 	 */
-	private function hasQuestionAlreadyBeenAnswered($residentID, $questionID, $currentSession) {
+	private function hasQuestionAlreadyBeenAnswered($residentID, $questionSetID, $currentSession) {
 		$query_answers = $this->db->query(
 				"SELECT id "
 				. "FROM a16_webapps_3.answers "
-				. "WHERE resident_id='$residentID' AND question_id='$questionID' AND session='$currentSession'");
+				. "WHERE resident_id='$residentID' AND question_set='$questionSetID' AND session='$currentSession'");
 		if($query_answers->num_rows() == 0) {
 			return FALSE;
 		}

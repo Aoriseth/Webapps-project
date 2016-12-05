@@ -6,58 +6,52 @@ class Statistics_model extends CI_Model{
 		parent::__construct();
 	}
         
-    function getWeightFor( $question_id ) {
-		return $this->Question_model->getQuestionsByID([$question_id])[0]->score_weight;
+    function getWeightFor( $questionSetID ) {
+		return $this->Question_model->getQuestionsBySetID([$questionSetID])[0]->question_weight;
     }  
         
-    function getResidentAnswersFromCategory( $residentID, $categoryID) {
+    function getResidentAnswersFromCategory( $residentID, $categorySetID) {
 		$query = $this->db->query(
-			"SELECT option_id, question_id"
+			"SELECT option_set, question_set"
 			. " FROM a16_webapps_3.answer_view"
-			. " WHERE resident_id='$residentID' AND category_id='$categoryID'"
+			. " WHERE resident_id='$residentID' AND category_set='$categorySetID'"
 		);
 		return $query->result();
     }
     
-    function getScoreCategory($residentID, $categoryID, $language) {
+    function getScoreCategory($residentID, $categorySetID, $language) {
 
-        $answers = $this->getResidentAnswersFromCategory( $residentID, $categoryID);
+        $answers = $this->getResidentAnswersFromCategory( $residentID, $categorySetID);
         $categoryScore = 0;
         $categoryAverageScore = 0;
 
         //for all questions
 		foreach ($answers as $answer) {
-                    if($language == "English"){
-				$categoryScore += $answer->option_id/5*100*$this->getWeightFor($answer->question_id);
-                    }
-                    elseif ($language == "Nederlands") {
-                                $categoryScore += ($answer->option_id - 4)/5*100*$this->getWeightFor($answer->question_id);
-                    
-                    }
+			$categoryScore += $answer->option_set/5*100*$this->getWeightFor($answer->question_set);
 		}
         if(count($answers) > 0) {
-			$categoryAverageScore = $categoryScore/count($answers);
+			$categoryAverageScore = $categoryScore/count($answers); //Change count($answers) to sum of weights
 		}
         return $categoryAverageScore;
     }
 
-    function getAvarageScoreCategory($category) {
+    function getAvarageScoreCategory($categorySetID) {
         $totalScore = 0;
         $residents = $this->Resident_model->getAllResidents();
         //for all residents
-        foreach($residents as $resident){
-            $totalScore += $this->getScoreCategory($resident->id, $category);
+        foreach($residents as $resident) {
+            $totalScore += $this->getScoreCategory($resident->id, $categorySetID);
         }
 
         $avarageScore = $totalScore/count($residents);
         return $avarageScore;
     }
 
-    function getTotalScoreResident($resident, $categories){
+    function getTotalScoreResident($resident, $categorieSets){
         $totalScore = 0;
         //for all categories
-        foreach($categories as $category) {
-            $totalScore += getScoreCategory($resident, $category);
+        foreach($categorieSets as $categorySet) {
+            $totalScore += getScoreCategory($resident, $categorySet);
         }
         return $totalScore;
     }
