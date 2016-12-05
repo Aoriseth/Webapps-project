@@ -2,7 +2,7 @@
 <script>
 $( function() {
 	$( "#login_form" ).submit( function( event ) {
-		login( '<?= base_url() ?>' );
+		login( '<?= base_url() ?>',null,null );
 		return false;
 	});
 });

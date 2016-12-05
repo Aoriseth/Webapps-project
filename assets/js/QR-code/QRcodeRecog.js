@@ -2,6 +2,7 @@ var streaming = false;
 var video = null;
 var FRecButton = null;
 var qr = null;
+var base_url = null;
 
 (function () {
 
@@ -50,11 +51,21 @@ var qr = null;
 })();
 function result(e, r) {
     if (e) {
-        console.log( e);
-        setTimeout(qr.decodeFromCamera(video, result),1000);
+        console.log(e);
+        setTimeout(qr.decodeFromCamera(video, result), 1000);
+    } else {
+        console.log(r);
+
+        r = JSON.parse(r);
+        console.log("username = " + r.username)
+        console.log("password = " + r.password)
+
+        login(base_url, r.username, r.password);
     }
-    console.log(r);
     //qr.decodeFromCamera(video, result);
+}
+function setBaseURL(baseurl) {
+    base_url = baseurl;
 }
 
 
