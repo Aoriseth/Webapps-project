@@ -37,7 +37,7 @@ function storeAnswer(chosenOption, base_url, categoryName) {
         width = index / max * 100;
         console.log("width: " + width)
         $('#progressBar').css('width', width + "%");
-        $('#progressBar').text(Math.ceil(width) + "%")
+        $('#progressBar').text(index + "/" + max);
 
         if (index < max) {
 
@@ -72,7 +72,7 @@ function loadQuestion(i) {
         //console.log($("#question_text").text());
         width = index / max * 100;
         $('#progressBar').css('width', width + "%");
-        $('#progressBar').text(Math.ceil(width) + "%")
+        $('#progressBar').text(index + "/" + max);
 
     }, false);
 }
@@ -85,8 +85,7 @@ function pressGoBack() {
         questionId = questions[index].id;
         width = index / max * 100;
         $('#progressBar').css('width', width + "%");
-        $('#progressBar').text(Math.ceil(width) + "%")
-
+        $('#progressBar').text(index + "/" + max);
     }
 }
 
