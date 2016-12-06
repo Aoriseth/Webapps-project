@@ -171,7 +171,7 @@ class Resident extends CI_Controller {
         $jsonDecoded = json_decode($this->security->xss_clean($this->input->raw_input_stream));
         // check if POST is set correct (at least kind of)
 
-        $questionSet = $jsonDecoded->question_id;
+        $questionSet = $jsonDecoded->question_set;
         $chosenOptionSet = $jsonDecoded->chosen_option;
 
         $residentId = $this->session->id;
