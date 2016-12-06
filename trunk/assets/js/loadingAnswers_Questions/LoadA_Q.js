@@ -1,5 +1,5 @@
 var questions;
-var questionId;
+var questionSet;
 var index = 0;
 var max;
 var width;
@@ -13,8 +13,8 @@ function storeAnswer(chosenOption, base_url, categoryName) {
         //console.log("chosenoption = " + chosenOption);
         //console.log("questionid:" + questionId);
         //console.log("baseurl:" + base_url);
-        var data = {question_id: questionId,
-            chosen_option: chosenOption};
+        var data = {question_set: questionSet,
+            chosen_option: chosenOption+1};/* In the database the chosenoptions start from 1 not from 0 */
         $.ajax({
             url: url,
             type: 'POST',
@@ -43,7 +43,7 @@ function storeAnswer(chosenOption, base_url, categoryName) {
 
             $("#question_text").text("");
             $("#question_text").text(questions[index].question);
-            questionId = questions[index].id;
+            questionSet = questions[index].question_set;
 
         } else {
             //$("#progress").effect( "bounce", {times:5,distance: 50}, 3 );
@@ -60,7 +60,7 @@ function loadQuestion(i) {
     // put all the questions in a variable and put them in the view
     questions = i;
 
-    questionId = questions[index].id;
+    questionSet = questions[index].question_set;
 
 
     //question_text.innerHTML = questions[index].question;
@@ -82,7 +82,7 @@ function pressGoBack() {
         window.clearTimeout(timeout)
         $("#question_text").text("");
         $("#question_text").text(questions[index].question);
-        questionId = questions[index].id;
+        questionSet = questions[index].question_set;
         width = index / max * 100;
         $('#progressBar').css('width', width + "%");
         $('#progressBar').text(index + "/" + max);
