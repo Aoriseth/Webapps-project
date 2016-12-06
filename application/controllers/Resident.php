@@ -93,70 +93,21 @@ class Resident extends CI_Controller {
          * 
          * TODO
          * 	- reload questions from database
-         * FUTURE
-         * 	- detect if session in progress
-         *
-         * TODO
-         * confirmation screen should also show progress bar
-         * 
-         * Work with AJAX?
          */
         if (!isset($_GET['category'])) {
             redirect('resident/categories');
         }
-
+		
         $data = $this->display_common_elements('question');
 
-        // get category
-        $category = $this->input->get('category');
-        $categorySetID = $this->Question_model->getCategorySetIdFrom($this->session->language, $category);
-        // grab questions from database
-        if (count($this->session->questions) == 0) {
-            $this->session->questions = $this->Question_model->getAllUnansweredQuestionsFrom($this->session->id, $categorySetID);
-        }
+        $categorySetID = $this->Question_model->getCategorySetIdFrom($this->session->language, $this->input->get('category'));
         $allUnansweredQuestions = $this->Question_model->getAllUnansweredQuestionsFrom($this->session->id, $categorySetID);
+        $options = $this->Question_model->getOptionsFor($allUnansweredQuestions[0]->question_set, $this->session->language);
 
-
-        // get index of current question
-        if (isset($_GET['index'])) {
-            $index = $this->input->get('index');
-        } else {
-            $index = 0;
-        }
-
-        // store the chosen option (if any)
-        if (isset($_POST['option'])) {
-            if ($index > 0) {
-                $questionID = $this->session->questions[$index - 1]->question_set;
-            } else {
-                $questionID = $this->session->questions[$index]->question_set;
-            }
-
-            $options = $this->Question_model->getOptionsFor($questionID, $this->session->language);
-            foreach ($options as $option) {
-                if ($option->option == filter_input(INPUT_POST, 'option')) {
-                    $chosenOption = $option->option_set;
-                    break;
-                }
-            }
-            $this->Answer_model->storeAnswer($this->session->id, $questionID, $chosenOption);
-        }
-
-        $question = $this->session->questions[$index];
-        $options = $this->Question_model->getOptionsFor($question->question_set, $this->session->language);
-
-        $data2['category'] = htmlspecialchars($category);
-
-        $data2['index'] = htmlspecialchars($index);
-        $data2['category_size'] = htmlspecialchars(count($this->session->questions));
-
-        $data2['question'] = htmlspecialchars($question->question);
-        $data2['questionID'] = htmlspecialchars($question->question_set);
         $data2['allUnansweredQuestions'] = $allUnansweredQuestions;
         $data2['options'] = $options;
-
+		
         $data['content'] = $this->parser->parse('resident/resident_question', $data2, true);
-
         $this->parser->parse('resident/resident_main', $data);
     }
 
