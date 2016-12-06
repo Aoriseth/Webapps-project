@@ -10,12 +10,11 @@ class Question_model extends CI_Model {
      * Members:
      * 	- category		(string)
      */
-
     function getAllCategories($language) {
         $query = $this->db->query(
-                "SELECT category_set, category"
-                . " FROM a16_webapps_3.categories"
-                . " WHERE language='$language'"
+			"SELECT category_set, category"
+			. " FROM a16_webapps_3.categories"
+			. " WHERE language='$language'"
         );
         return $query->result();
     }
@@ -23,14 +22,13 @@ class Question_model extends CI_Model {
     /* Returns all categories of the given language and within the current session
      * that are not yet completed.
      */
-
     function getAllUnfinishedCategories($residentID) {
         $language = $this->Resident_model->getResidentLanguage($residentID);
         $currentSession = ($this->Resident_model->getSessionsCompleted($residentID)) + 1;
 
         $all_category_sets = $this->db->query(
-                "SELECT id"
-                . " FROM a16_webapps_3.category_sets"
+			"SELECT id"
+			. " FROM a16_webapps_3.category_sets"
         );
         $unfinished_categories = array();
         foreach ($all_category_sets->result_array() as $category) {
@@ -48,9 +46,9 @@ class Question_model extends CI_Model {
     private function isFinishedCategory($residentID, $currentSession, $categorySet) {
         //Get the number of questions in this category (sets)
         $category = $this->db->query(
-                "SELECT question_count"
-                . " FROM a16_webapps_3.category_sets"
-                . " WHERE id='$categorySet'"
+			"SELECT question_count"
+			. " FROM a16_webapps_3.category_sets"
+			. " WHERE id='$categorySet'"
         );
         $questions_in_category_set = $category->row()->question_count;
 
@@ -69,95 +67,92 @@ class Question_model extends CI_Model {
         return FALSE;
     }
 
-    function getFinishedCategory($residentID) {
-        //Get the number of questions in this category (sets)
+    function getFinishedCategorySets($residentID) {
         $currentSession = ($this->Resident_model->getSessionsCompleted($residentID)) + 1;
 
         $all_category_sets = $this->db->query(
-                "SELECT id"
-                . " FROM a16_webapps_3.category_sets"
+			"SELECT id"
+			. " FROM a16_webapps_3.category_sets"
         );
-        $categories = array();
+		
+		$categories = array();
         foreach ($all_category_sets->result_array() as $category) {
-            if (!$this->isFinishedCategory($residentID, $currentSession, $category['id'])) {
-                $categories[] = true;
+            if ($this->isFinishedCategory($residentID, $currentSession, $category['id'])) {
+                $categories[] = 1;
             } else {
-                $categories[] = false;
+                $categories[] = 0;
             }
         }
         return $categories;
     }
 
-/*
- * Get the category set ID by a given category (string description)
- * in a given language.
- */
+	/*
+	 * Get the category set ID by a given category (string description)
+	 * in a given language.
+	 */
+	function getCategorySetIdFrom($language, $category) {
+		$query = $this->db->query(
+			"SELECT category_set"
+			. " FROM a16_webapps_3.categories"
+			. " WHERE language='$language' AND category='$category'"
+		);
+		return $query->row()->category_set;
+	}
 
-//TODO
-function getCategorySetIdFrom($language, $category) {
-    $query = $this->db->query(
-            "SELECT category_set"
-            . " FROM a16_webapps_3.categories"
-            . " WHERE language='$language' AND category='$category'"
-    );
-    return $query->row()->category_set;
-}
+	/*
+	 * Get an array with categories (both ID and name of the category)
+	 * given an array with just the category IDs.
+	 */
+	function getCategoriesById($array_with_category_sets, $language) {
+		if (count($array_with_category_sets) == 0) {
+			return array();
+		}
+		$query = $this->db->query(
+			"SELECT id, category"
+			. " FROM a16_webapps_3.categories"
+			. " WHERE language='$language' AND "
+			. "category_set IN (" . implode(',', $array_with_category_sets) . ")"
+		);
+		return $query->result();
+	}
 
-/*
- * Get an array with categories (both ID and name of the category)
- * given an array with just the category IDs.
- */
+	/**
+	 * Get the question IDs of all questions within a given category (by ID) 
+	 * that still need to be answered by a resident (by ID) within his
+	 * current session.
+	 */
+	function getAllUnansweredQuestionsFrom($residentID, $categorySetID) {
+		$language = $this->Resident_model->getResidentLanguage($residentID);
+		$currentSession = ($this->Resident_model->getSessionsCompleted($residentID)) + 1;
 
-function getCategoriesById($array_with_category_sets, $language) {
-    if (count($array_with_category_sets) == 0) {
-        return array();
-    }
-    $query = $this->db->query(
-            "SELECT id, category"
-            . " FROM a16_webapps_3.categories"
-            . " WHERE language='$language' AND category_set IN (" . implode(',', $array_with_category_sets) . ")"
-    );
-    return $query->result();
-}
+		$all_questions = $this->getAllQuestionSetsFrom($categorySetID);
+		$answered_questions = $this->getAllAnsweredQuestionSetsFrom($residentID, $categorySetID, $currentSession);
 
-/**
- * Get the question IDs of all questions within a given category (by ID) 
- * that still need to be answered by a resident (by ID) within his
- * current session.
- */
-function getAllUnansweredQuestionsFrom($residentID, $categorySetID) {
-    $language = $this->Resident_model->getResidentLanguage($residentID);
-    $currentSession = ($this->Resident_model->getSessionsCompleted($residentID)) + 1;
+		$stored = array();
+		foreach ($answered_questions as $question) {
+			$stored[] = $question->question_set;
+		}
 
-    $all_questions = $this->getAllQuestionSetsFrom($categorySetID);
-    $answered_questions = $this->getAllAnsweredQuestionSetsFrom($residentID, $categorySetID, $currentSession);
+		$unanswered_questions = array();
+		foreach ($all_questions as $question) {
+			if (!in_array($question->id, $stored)) {
+				$unanswered_questions[] = $question->id;
+			}
+		}
+		return $this->getQuestionsBySetID($unanswered_questions, $language);
+	}
 
-    $stored = array();
-    foreach ($answered_questions as $question) {
-        $stored[] = $question->question_set;
-    }
-
-    $unanswered_questions = array();
-    foreach ($all_questions as $question) {
-        if (!in_array($question->id, $stored)) {
-            $unanswered_questions[] = $question->id;
-        }
-    }
-    return $this->getQuestionsBySetID($unanswered_questions, $language);
-}
-
-/* Returns all question sets of the given category set.
- * Members:
- * 	- id			(unique number)
- */
-
-function getAllQuestionSetsFrom($categorySet) {
-    $query = $this->db->query(
-            "SELECT id"
-            . " FROM a16_webapps_3.question_sets"
-            . " WHERE category_set='$categorySet'"
-    );
-    return $query->result();
+	/* Returns all question sets of the given category set.
+	 * Members:
+	 * 	- id			(unique number)
+	 */
+	function getAllQuestionSetsFrom($categorySet) {
+		$query = $this->db->query(
+			"SELECT id"
+			. " FROM a16_webapps_3.question_sets"
+			. " WHERE category_set='$categorySet'"
+		);
+		return $query->result();
     }
 
     /**
@@ -166,9 +161,9 @@ function getAllQuestionSetsFrom($categorySet) {
      */
     private function getAllAnsweredQuestionSetsFrom($residentID, $categorySetID, $currentSession) {
         $query = $this->db->query(
-                "SELECT question_set"
-                . " FROM a16_webapps_3.answer_view"
-                . " WHERE resident_id='$residentID' AND category_set='$categorySetID' AND current_session='$currentSession'"
+			"SELECT question_set"
+			. " FROM a16_webapps_3.answer_view"
+			. " WHERE resident_id='$residentID' AND category_set='$categorySetID' AND current_session='$currentSession'"
         );
         return $query->result();
     }
@@ -178,9 +173,9 @@ function getAllQuestionSetsFrom($categorySet) {
      */
     function getOptionsFor($questionSetID, $language) {
         $query = $this->db->query(
-                "SELECT  option_set, option"
-                . " FROM a16_webapps_3.option_view"
-                . " WHERE question_set='$questionSetID' AND language='$language'"
+			"SELECT  option_set, option"
+			. " FROM a16_webapps_3.option_view"
+			. " WHERE question_set='$questionSetID' AND language='$language'"
         );
         return $query->result();
     }
@@ -194,9 +189,9 @@ function getAllQuestionSetsFrom($categorySet) {
             return array();
         }
         $query = $this->db->query(
-                "SELECT question_set, question_weight, question"
-                . " FROM a16_webapps_3.question_view"
-                . " WHERE language='$language' AND question_set IN (" . implode(',', $arrayWithQuestionSetIDs) . ")"
+			"SELECT question_set, question_weight, question"
+			. " FROM a16_webapps_3.question_view"
+			. " WHERE language='$language' AND question_set IN (" . implode(',', $arrayWithQuestionSetIDs) . ")"
         );
         return $query->result();
     }
