@@ -45,7 +45,7 @@ class Resident extends CI_Controller {
         $querry = $this->Picture_model->getPictureTest($residentId);
         $data2['path'] = $querry[0]->picture_dir;
         $data2['puzzle'] = $querry[0]->picture_name;
-        $querry3 = $this->Question_model->getFinishedCategory($residentId);
+        $querry3 = $this->Question_model->getFinishedCategorySets($residentId);
         $data2['categories'] = $querry3;
         $data2['name'] = $this->session->first_name;
         $data2['display_login_notification'] = $this->session->display_login_notification;
@@ -142,7 +142,7 @@ class Resident extends CI_Controller {
 	{
         $data = $this->display_common_elements('completed');
 
-		//When category is completed, clear the array with questions...
+		//When category is completed, clear the array with questions.
 		$this->session->questions = array();
 		//and increase the number of collected puzzle pieces by 1.
         $this->Picture_model->incrementPiecesCollected($this->session->id);
