@@ -45,6 +45,8 @@ class Resident extends CI_Controller {
         $querry = $this->Picture_model->getPictureTest($residentId);
         $data2['path'] = $querry[0]->picture_dir;
         $data2['puzzle'] = $querry[0]->picture_name;
+        $querry3 = $this->Question_model->getFinishedCategory($residentId);
+        $data2['categories'] = $querry3;
         $data2['name'] = $this->session->first_name;
         $data2['display_login_notification'] = $this->session->display_login_notification;
         $this->session->display_login_notification = false;

@@ -67,6 +67,4 @@
         </div>
     </div>
 </div>
-
-</div>
 <script> loadQuestion(<?php echo json_encode($allUnansweredQuestions); ?>);</script>
