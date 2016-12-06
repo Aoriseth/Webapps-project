@@ -6,7 +6,7 @@ $lang[ 'resident_button_help' ] = 'HELP';
 // navbar
 $lang[ 'resident_navbar_home' ] = 'Home';
 $lang[ 'resident_navbar_gallery' ] = 'Gallery';
-$lang[ 'resident_navbar_gallery_help' ] = 'Click on \'home\' to go back to the home page.\nClick on \'gallery\' to view previous puzzles.';
+$lang[ 'resident_navbar_gallery_help' ] = 'Click on \'home\' to go back to the home page.\n Click on \'gallery\' to view previous puzzles.';
 
 // home
 $lang[ 'resident_welcome_snackbar' ] = 'Hello {name}, you succesfully logged in.';
