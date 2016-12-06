@@ -1,4 +1,4 @@
-function loadPuzzle(base_url, nr, path, name) {
+function loadPuzzle(base_url, nr, path, name, categories) {
     
 //    var url = base_url + 'index.php/Resident/getPuzzle';
 //    $.ajax({
@@ -39,7 +39,8 @@ function loadPuzzle(base_url, nr, path, name) {
 
         for(var y = 0; y < 4; ++y) {
             for(var x = 0; x < 3; ++x) {
-                if((Math.random() <= nrToDisplay/12 && nrDisplayed < nrToDisplay) || (12-(3*y+x)) <= nrToDisplay - (nrDisplayed)){
+                //if((Math.random() <= nrToDisplay/12 && nrDisplayed < nrToDisplay) || (12-(3*y+x)) <= nrToDisplay - (nrDisplayed)){
+                if(categories[3*y + x + 1] === true){
                     context.drawImage(image, x * (image.width / 3), y * (image.height / 4), (image.width / 3), (image.height / 4),
                     centerShift_x +( x * image.width * ratio)/3, centerShift_y + (y * image.height * ratio)/4, (image.width * ratio)/3, (image.height * ratio)/4);
                     nrDisplayed++;
