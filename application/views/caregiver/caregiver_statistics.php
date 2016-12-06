@@ -25,7 +25,7 @@
     <form class="form-group" method="POST" id="chart2_form" name="chart2Form">
         <select class="form-control" name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
             <?php foreach ($categories as $category){ ?>   
-                        <option value=<?php echo json_encode($category->id); ?>> <?php echo $category->category; ?> </option>
+                        <option value=<?php echo json_encode($category->category_set); ?>> <?php echo $category->category; ?> </option>
             <?php } ?>           
         </select>
 
