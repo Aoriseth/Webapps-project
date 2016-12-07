@@ -1,11 +1,11 @@
 <script src="<?= base_url();?>assets/js/QR-code/qcode-decoder.min.js" type="text/javascript"></script>
 <script src="<?= base_url();?>assets/js/QR-code/QRcodeRecog.js" type="text/javascript"></script>
 <script> setBaseURL("<?= base_url();?>");</script>
-<p>
+<p class="txScale">
 	<?= lang( 'login_facial_explanation' ) ?>
 </p>
 
-<p class="visible-sm visible-xs">
+<p class="visible-sm visible-xs txScale">
 	<?= lang( 'login_facial_scrolldown' ) ?>
 </p>
 
