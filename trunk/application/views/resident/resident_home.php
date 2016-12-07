@@ -1,12 +1,3 @@
-<script>
-    $(document).ready(function () {
-        $('#popover').popover({
-            content: 'Popover content',
-            trigger: 'manual'
-        });
-    });
-</script>
-
 <div class="panel">
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
