@@ -102,10 +102,9 @@
 
                 success: function( data ) {
                     var Yaxis = [];
-
                     var Xaxis = [];
                     console.log(data);
-                    var response = JSON.parse( data);
+                    var response = JSON.parse(data);
                     console.log(response);
                     
                     Xaxis = response[0];

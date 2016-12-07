@@ -6,20 +6,20 @@ class Statistics_model extends CI_Model{
 		parent::__construct();
 	}
         
-    function getWeightFor( $questionSetID ) {
-		return $this->Question_model->getQuestionsBySetID([$questionSetID])[0]->question_weight;
-    }  
+  
         
     function getResidentAnswersFromCategory( $residentID, $categorySetID) {
 		$query = $this->db->query(
-			"SELECT option_set, question_set"
-			. " FROM a16_webapps_3.answer_view"
-			. " WHERE resident_id='$residentID' AND category_set='$categorySetID'"
+			"SELECT option_set, question_weight"
+			. " FROM a16_webapps_3.answers"
+                        . " INNER JOIN a16_webapps_3.question_sets"
+                        . " ON a16_webapps_3.answers.question_set = a16_webapps_3.question_sets.id"
+			. " WHERE resident_id = '$residentID' AND category_set = '$categorySetID'"
 		);
 		return $query->result();
     }
     
-    function getScoreCategory($residentID, $categorySetID, $language) {
+    function getScoreCategory($residentID, $categorySetID) {
 
         $answers = $this->getResidentAnswersFromCategory( $residentID, $categorySetID);
         $categoryScore = 0;
@@ -27,7 +27,9 @@ class Statistics_model extends CI_Model{
 
         //for all questions
 		foreach ($answers as $answer) {
-			$categoryScore += $answer->option_set/5*100*$this->getWeightFor($answer->question_set);
+                        $option = $answer->option_set;
+                        $weight = $answer->question_weight;
+			$categoryScore += $option/5*100*$weight;
 		}
         if(count($answers) > 0) {
 			$categoryAverageScore = $categoryScore/count($answers); //Change count($answers) to sum of weights

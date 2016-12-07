@@ -10,11 +10,31 @@ class Question_model extends CI_Model {
      * Members:
      * 	- category		(string)
      */
-    function getAllCategories($language) {
+    function getAllCategories() {
+        $query = $this->db->query(
+			"SELECT id"
+			. " FROM a16_webapps_3.category_sets"
+
+        );
+        return $query->result();
+    }
+    
+    function getAllCategoryNames($language) {
         $query = $this->db->query(
 			"SELECT category_set, category"
 			. " FROM a16_webapps_3.categories"
-			. " WHERE language='$language'"
+                        . " WHERE language = '$language'"
+
+        );
+        return $query->result();
+    }
+    
+    function getCategoryName($id, $language) {
+        $query = $this->db->query(
+			"SELECT category"
+			. " FROM a16_webapps_3.categories"
+                        . " WHERE category_set = '$id' AND language = '$language'"
+
         );
         return $query->result();
     }

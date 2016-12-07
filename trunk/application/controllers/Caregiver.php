@@ -48,8 +48,8 @@ class Caregiver extends CI_Controller {
 	}
 	
 	function statistics() {
-                $language = 'English';
-		$categories = $this->Question_model->getAllCategories($language);
+                $language = 'Nederlands';
+		$categories = $this->Question_model->getAllCategoryNames($language);
 		$residents = $this->Resident_model->getAllResidents();
 
 
@@ -91,13 +91,12 @@ function load_charts(){
 //		if ( ! $this->input->is_ajax_request() ) {
 //			//redirect('404');
 //		}
-                $language = 'English';
+                $language = 'Nederlands';
                 $resultArray = [];
-                $chart1 = [];
-                $chart2 = [];
+
 		if ( isset( $_POST[ 'resident' ] ) ) {
                         
-			$categories = $this->Question_model->getAllCategories($language);
+			$categories = $this->Question_model->getAllCategories();// as ID
 			$resident = $_POST[ 'resident' ];
                         //array of strings
                         $Yarray = [];
@@ -107,8 +106,9 @@ function load_charts(){
 
 			foreach($categories as $category){
 
-				$result = $this->Statistics_model->getScoreCategory($resident, (int)$category->id, $language);
-                                array_push($Yarray, $category->category);
+				$result = $this->Statistics_model->getScoreCategory($resident, $category->id);
+                                $categoryName = $this->Question_model->getCategoryName($category->id, $language);
+                                array_push($Yarray, $categoryName[0]->category);
 				array_push($Xarray, $result);
 			}
                         //array_push($chart1, $Xarray);
@@ -119,7 +119,7 @@ function load_charts(){
                 if ( isset( $_POST[ 'category' ] ) ) {
                         
 			$category = $_POST[ 'category' ];
-                        $residents = $this->Resident_model->getAllResidentsByLanguage($language);
+                        $residents = $this->Resident_model->getAllResidents();
 			
                         //array of strings
                         $Yarray = [];
@@ -129,7 +129,7 @@ function load_charts(){
 
 			foreach($residents as $resident){
 
-				$result = $this->Statistics_model->getScoreCategory($resident->id, $category, $language);
+				$result = $this->Statistics_model->getScoreCategory($resident->id, $category);
                                 array_push($Yarray, $resident->first_name);
 				array_push($Xarray, $result);
 			}
