@@ -9,7 +9,7 @@ $( function() {
 </script>
 
 <div>
-	<p>
+    <p class="txScale">
 		<?= lang( 'login_manual_explanation' )?>
 	</p>
 
