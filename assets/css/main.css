@@ -68,7 +68,7 @@ table{
     white-space: normal !important;
 }
 .btn-info, .btn-info:hover, .btn-info:active, .btn-info:visited {
-    background-color: #3f51b5 !important;
+    /*background-color: #3f51b5 !important;*/
 }
 .tlScale{
     font-size:2.5vmax !important;
