@@ -19,13 +19,13 @@
 
 <h2>Resident overview page for the caregivers</h2>
 <hr>
-<div class="container">
+<div class="container-fluid">
     <h1 style="font-size:20pt">Health care Patients</h1>
 
     <h3>Person Data</h3>
     <br />
-    <button class="btn btn-raised btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i> Add Person</button>
-    <button class="btn btn-raised btn-info" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> Reload</button>
+    <button class="btn btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i> Add Person</button>
+    <button class="btn btn-info" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> Reload</button>
     <br />
     <br />
     <div class="table-responsive">
