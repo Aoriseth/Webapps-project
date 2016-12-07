@@ -7,7 +7,7 @@
     });
 </script>
 
-<div class="well">
+<div class="panel">
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
             <form>
