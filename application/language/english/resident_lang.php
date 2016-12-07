@@ -26,6 +26,7 @@ $lang[ 'resident_categories_help' ] = 'Choose one of the visible categories to c
 
 // question
 $lang[ 'resident_question_back' ] = 'Go Back';
+$lang[ 'resident_question_help' ] = 'Click on one of the faces to answer the question stated above.';
 
 // completed
 $lang[ 'resident_completed_explanation' ] = 'Congratulations, you\'ve just completed the category <i>{category}</i>.';
