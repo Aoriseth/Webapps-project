@@ -1,12 +1,13 @@
 
 
-<div class="container" id="container_resident">
+<div class="container-fluid" id="container_resident">
     <script src="<?php echo base_url(); ?>assets/js/loadingAnswers_Questions/LoadA_Q.js" type="text/javascript"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 
-    <div class="well row">
+    <div class="panel row">
 
         <div class="col-12">
+            <br>
             <div class="" id="jumbotron_question">
                 <p class="text-center" id="question_text">
                     fdqs
@@ -48,7 +49,7 @@
 
         <p style="margin-top:10px;">
 
-        <div class="row">
+        <div class="row container-fluid">
 
             <div class="col-sm-10" id="progress_col">
                 <div class="progress" id="progress">
@@ -63,8 +64,12 @@
                 <button class="btn btn-raised btn-default" type="submit" name="back" value="Go back" onclick="pressGoBack()" style="width:100%; color:Gray;">
                     <?= lang('resident_question_back') ?>
                 </button>
+                
             </div>
+            <p style="margin-bottom:85px;">
         </div>
     </div>
+    <br>
+    <br>
 </div>
 <script> loadQuestion(<?php echo json_encode($allUnansweredQuestions); ?>);</script>
