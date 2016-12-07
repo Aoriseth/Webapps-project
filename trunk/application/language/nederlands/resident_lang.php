@@ -25,6 +25,7 @@ $lang[ 'resident_categories_help' ] = 'Kies één van de drie zichtbare categori
 
 // question
 $lang[ 'resident_question_back' ] = 'Ga terug';
+$lang[ 'resident_question_help' ] = 'Klik op een van de gezichten om de bovenstaande vraag te beantwoorden.';
 
 // completed
 $lang[ 'resident_completed_explanation' ] = 'Proficiat, je hebt de categorie <i>{category}</i> afgewerkt.';
