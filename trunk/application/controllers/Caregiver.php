@@ -105,8 +105,13 @@ class Caregiver extends CI_Controller {
 
 	function saveGroup() {
 		// TODO is this an AJAX call? block direct access then
-		$result = $this->Group_model->addGroup( $filter, $caregiverID, $residentIDs );
-	}
+                $resultArray = [];
+                if (isset($_POST['ageMin'], $_POST['ageMax'], $_POST['gender'], $_POST['floors'])) {
+                        $result = $this->Group_model->addGroup( $filter, $caregiverID, $residentIDs );
+                        array_push( $resultArray, $result );                
+                }
+                echo json_encode( $resultArray );
+        }
         
 	function load_charts()
 	{

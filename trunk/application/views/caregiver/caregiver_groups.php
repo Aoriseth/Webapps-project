@@ -25,7 +25,7 @@
             //add_method = 'add';
             $('#form')[0].reset(); // reset form on modals
             $('.form-group').removeClass('has-error'); // clear error class
-            $('.help-block').empty(); // clear error string, TODO
+            //$('.help-block').empty(); // clear error string, TODO
             $('#modal_form').modal('show'); // show bootstrap modal
             $('.modal-title').text('Add Group'); // Set Title to Bootstrap modal title
 
@@ -83,35 +83,30 @@
             console.log(ageMin, ageMax, gender, floors);
             //addGroup(ageMin, ageMax, gender, floor);
             // clear global array
-            floors = [];
             //
-	    $array_requirements = array('floor_number' => floors, 'gender' => gender);
-            getResidentsWith( $array_requirements ) ;
-            
-            
-            
+	    //$array_requirements = array('floor_number' => floors, 'gender' => gender);
+            //getResidentsWith( $array_requirements ) ;
+                        
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url() ?>index.php/caregiver/saveGroup",
+                url: "<?php echo base_url() ?>index.php/caregiver/saveGroup", //saveGroup
                 data: {
-                    ageMin: ageMin,
-                    ageMax: ageMax,
-                    gender: gender,
-                    floors: floors,
-                    action: 'test'
+                    "ageMin": ageMin,
+                    "ageMax": ageMax,
+                    "gender": gender,
+                    "floors": floors,
                 },
                 dataType: "text",
                 cache: false,
 
                 success: function (data) {
-                    alert(output);
                     console.log(data);
                     var response = JSON.parse(data);
                     console.log(response);
                 }
             });
-            return false;            
-        }
+
+}
         /*
          function allowDrop(ev) {
          ev.preventDefault();
@@ -127,13 +122,16 @@
          ev.preventDefault();
          }
          */
+        //
+        floors = [];
+
 
     </script>
 </head>
 
 <div class="container-fluid">
 
-    <button class="btn btn-raised btn-success"onclick="add_group()"><i class="glyphicon glyphicon-plus"></i> Add Group</button>
+    <button class="btn btn-success" onclick="add_group()"><i class="glyphicon glyphicon-plus"></i> Add Group</button>
 
     <!-- -->
 
