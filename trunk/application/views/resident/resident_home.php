@@ -21,7 +21,7 @@
 <?php if ($display_login_notification == true) { ?>
     <script type="text/javascript">
         $(document).ready(function () {
-            $.snackbar({content: '<?= lang('resident_welcome_snackbar') ?>'});
+            $.snackbar({content: '<?= lang('common_welcome_snackbar') ?>'});
         });
     </script>
 <?php } ?>
