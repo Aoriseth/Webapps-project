@@ -68,15 +68,14 @@ class Caregiver extends CI_Controller {
 
 	function groups()
 	{
-			
-                $data = $this->display_common_elements( 'groups' );
-                $data2[ 'residents' ] = $this->Resident_model->getAllResidents();
-                $data[ 'content' ] = $this->load->view( 'caregiver/caregiver_groups', $data2, true );
-                //
-                $data2[ 'floors'] = $this->Resident_model->getAllFloors();
+		$data = $this->display_common_elements( 'groups' );
+
+		$data2[ 'residents' ] = $this->Resident_model->getAllResidents();
+		$data2[ 'floors'] = $this->Resident_model->getAllFloors();
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_groups', $data2, true );
-                //
-		$this->parser->parse( 'caregiver/caregiver_main.php', $data );	}
+
+		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
+	}
 
 	function statistics()
 	{
@@ -99,9 +98,9 @@ class Caregiver extends CI_Controller {
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
 
-        function saveGroup(){
-                $result = $this->Group_model->addGroup($filter, $caregiverID, $residentIDs);
-        }
+	function saveGroup(){
+		$result = $this->Group_model->addGroup($filter, $caregiverID, $residentIDs);
+	}
         
 	function load_charts()
 	{
