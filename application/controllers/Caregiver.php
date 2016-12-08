@@ -7,8 +7,12 @@ class Caregiver extends CI_Controller {
 		parent::__construct();
 
 		// redirect to base if the user shouldn't be here
-		if ( $this->session->type != 'caregiver' ) { redirect( base_url() ); }
+		if ( $this->session->type != 'caregiver' ) {
+			redirect( base_url() );
+		}
 
+		$this->session->language = 'nederlands';
+		
 		// load appropriate language file
 		if ( !isset( $this->session->language ) ) {
 			// fallback on default
@@ -17,6 +21,7 @@ class Caregiver extends CI_Controller {
 		$this->lang->load( 'common', $this->session->language );
 		$this->lang->load( 'caregiver', $this->session->language );
 
+		// models
 		$this->load->model( 'Picture_model' );
 		$this->load->model( 'Question_model' );
 		$this->load->model( 'Resident_model' );
@@ -31,9 +36,11 @@ class Caregiver extends CI_Controller {
 	private function display_common_elements( $page )
 	{
 		$data[ 'include' ] = $this->load->view( 'include', '', true );
+
 		$data2[ 'pages' ] = [ 'home', 'overview', 'groups', 'statistics' ];
 		$data2[ 'page_active' ] = $page;
 		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
+
 		return $data;
 	}
 
@@ -42,33 +49,11 @@ class Caregiver extends CI_Controller {
 		$data = $this->display_common_elements( 'home' );
 
 		$data2[ 'name' ] = $this->session->first_name;
+
 		$data2[ 'display_login_notification' ] = $this->session->display_login_notification;
 		$this->session->display_login_notification = false;
+
 		$data[ 'content' ] = $this->parser->parse( 'caregiver/caregiver_home', $data2, true );
-
-		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
-	}
-
-	function groups()
-	{
-		$data = $this->display_common_elements( 'groups' );
-
-		$residents = $this->Resident_model->getAllResidents();
-
-		$data2[ 'residents' ] = $residents;
-		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_groups', $data2, true );
-		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
-	}
-
-	function statistics()
-	{
-		$data = $this->display_common_elements( 'statistics' );
-
-		$language = 'Nederlands';	// TODO remove hard-coded value
-		$data2[ 'categories' ] = $this->Question_model->getAllCategoryNames( $language );
-		$data2[ 'residents' ] = $this->Resident_model->getAllResidents();
-
-		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_statistics', $data2, true );
 
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
@@ -78,6 +63,27 @@ class Caregiver extends CI_Controller {
 		$data = $this->display_common_elements( 'overview' );
 
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_overview', '', true );
+
+		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
+	}
+
+	function groups()
+	{
+		$data = $this->display_common_elements( 'groups' );
+
+		$data2[ 'residents' ] = $this->Resident_model->getAllResidents();
+		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_groups', $data2, true );
+
+		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
+	}
+
+	function statistics()
+	{
+		$data = $this->display_common_elements( 'statistics' );
+
+		$data2[ 'residents' ] = $this->Resident_model->getAllResidents();
+		$data2[ 'categories' ] = $this->Question_model->getAllCategoryNames( $this->session->language );
+		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_statistics', $data2, true );
 
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
@@ -94,15 +100,16 @@ class Caregiver extends CI_Controller {
 	function load_charts()
 	{
 		// only allow AJAX requests
-//		if ( ! $this->input->is_ajax_request() ) {
-//			//redirect('404');
-//		}
-		$language = 'Nederlands';	// TODO recmove hard-coded value
+		if ( ! $this->input->is_ajax_request() ) {
+			redirect( '404' );
+		}
+
 		$resultArray = [];
 
 		if ( isset( $_POST[ 'resident' ] ) ) {
+			$resident = $this->input->post( 'resident' );
 			$categories = $this->Question_model->getAllCategories(); // as ID
-			$resident = $_POST[ 'resident' ];
+
 			//array of strings
 			$Yarray = [];
 			//array of ints
@@ -110,17 +117,16 @@ class Caregiver extends CI_Controller {
 
 			foreach ( $categories as $category ) {
 				$result = $this->Statistics_model->getScoreCategory( $resident, $category->id );
-				$categoryName = $this->Question_model->getCategoryName( $category->id, $language );
+				$categoryName = $this->Question_model->getCategoryName( $category->id, $this->session->language );
 				array_push( $Yarray, $categoryName[ 0 ]->category );
 				array_push( $Xarray, $result );
 			}
-			//array_push($chart1, $Xarray);
-			//array_push($chart1, $Yarray);
 			array_push( $resultArray, $Xarray );
 			array_push( $resultArray, $Yarray );
 		}
+		
 		if ( isset( $_POST[ 'category' ] ) ) {
-			$category = $_POST[ 'category' ];
+			$category = $this->input->post( 'category' );
 			$residents = $this->Resident_model->getAllResidents();
 
 			//array of strings
@@ -133,15 +139,12 @@ class Caregiver extends CI_Controller {
 				array_push( $Yarray, $resident->first_name );
 				array_push( $Xarray, $result );
 			}
-			//array_push($chart2, $Xarray);
-			//array_push($chart2, $Yarray);
 			array_push( $resultArray, $Xarray );
 			array_push( $resultArray, $Yarray );
 		}
-		//array_push($resultArray, $chart1);
-		//array_push($resultArray, $chart2);
+
+		header( 'Content-Type: application/json' );     
 		echo json_encode( $resultArray );
-		//header( 'Content-Type: application/json' );     
 	}
 
 	/**
@@ -156,6 +159,11 @@ class Caregiver extends CI_Controller {
 	 */
 	function upload()
 	{
+		// only allow AJAX requests
+		if ( ! $this->input->is_ajax_request() ) {
+			redirect( '404' );
+		}
+
 		if ( isset( $_POST[ "submit" ] ) ) {
 			$uploadOk = 1;
 			$target_dir = "assets/pictures/";
@@ -166,49 +174,51 @@ class Caregiver extends CI_Controller {
 				'jpg' => 'image/jpg',
 				'png' => 'image/png'
 			);
+
 			if ( false === $ext = array_search( $finfo->file( $_FILES[ "fileToUpload" ][ "tmp_name" ] ), $img_types, true ) ) {
 				$uploadOk = 0;
 			}
 
 			$target_name = basename( sprintf( './uploads/%s.%s', sha1_file( $_FILES[ "fileToUpload" ][ "tmp_name" ] ), $ext ) );
-			$target_file = $target_dir . $target_name;
+			$target_file = $target_dir.$target_name;
 			$imageFileType = pathinfo( $target_file, PATHINFO_EXTENSION );
 
-			// Check if image file is a actual image or fake image
+			// check if image file is an actual image
 			$check = getimagesize( $_FILES[ "fileToUpload" ][ "tmp_name" ] );
 			if ( $check == false ) {
 				$uploadOk = 0;
-				echo 'Fake image. ';
+				echo 'Fake image.';
 			}
 
-			// Check if file already exists
+			// check if file already exists
 			if ( file_exists( $target_file ) ) {
-				//File already exists
 				$uploadOk = 0;
 				echo 'File already exists. ';
 			}
-			// Check file size
+
+			// check file size
 			if ( $_FILES[ "fileToUpload" ][ "size" ] > 700000 ) {
-				//File is too large
 				$uploadOk = 0;
 				echo 'File too large. ';
 			}
-			// Allow certain file formats
+			
+			// allow certain file formats
 			if ( $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ) {
 				//Something else than a jpg, JPG, png, PNG, jpeg, JPEG cannot be uploaded
 				$uploadOk = 0;
 				echo 'Wrong type. ';
 			}
-			// Check if $uploadOk is set to 0 by an error
+			
+			// check if $uploadOk is set to 0 by an error
 			if ( $uploadOk != 0 ) {
 				if ( is_uploaded_file( $_FILES[ "fileToUpload" ][ "tmp_name" ] ) ) {
 					move_uploaded_file( $_FILES[ "fileToUpload" ][ "tmp_name" ], $target_file );
-					chmod( $target_file, 0644 ); //Change the permission of the uploaded file, otherwise you can't open it.
-					//If this line is reached, the upload was successful
-					echo 'Picture uploaded! ';
-					echo $target_file;
-					echo '<br/>';
+					chmod( $target_file, 0644 ); // change the permission of the uploaded file, otherwise you can't open it.
+
+					// TODO hard-coded resident ID --> replace by parameter in AJAX call?
 					$this->Picture_model->storeNewPuzzlePicture( $target_dir, $target_name, 'r123' );
+
+					echo 'Picture uploaded! ' . $target_file . '<br/>';
 					echo '<img src=/' . $target_dir . $target_name . ' />';
 				} else {
 					echo 'File is not uploaded';
