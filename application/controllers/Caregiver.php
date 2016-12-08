@@ -88,11 +88,11 @@ class Caregiver extends CI_Controller {
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
 
-	function resident()
+	function resident( $resident)
 	{
 		$data = $this->display_common_elements( 'resident' );
 
-		$data2[ 'name' ] = 'test';
+		$data2[ 'name' ] = $resident;
 		$data[ 'content' ] = $this->parser->parse( 'caregiver/caregiver_resident', $data2, true );
 
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
