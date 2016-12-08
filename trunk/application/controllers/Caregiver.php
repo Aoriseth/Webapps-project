@@ -171,7 +171,6 @@ class Caregiver extends CI_Controller {
 		}
 
 		if ( isset( $_POST[ "submit" ] ) ) {
-			$uploadOk = 1;
 			$target_dir = "assets/pictures/";
 
 			$finfo = new finfo( FILEINFO_MIME_TYPE );
@@ -182,7 +181,7 @@ class Caregiver extends CI_Controller {
 			);
 
 			if ( false === $ext = array_search( $finfo->file( $_FILES[ "fileToUpload" ][ "tmp_name" ] ), $img_types, true ) ) {
-				$uploadOk = 0;
+				return;
 			}
 
 			$target_name = basename( sprintf( './uploads/%s.%s', sha1_file( $_FILES[ "fileToUpload" ][ "tmp_name" ] ), $ext ) );
@@ -192,45 +191,41 @@ class Caregiver extends CI_Controller {
 			// check if image file is an actual image
 			$check = getimagesize( $_FILES[ "fileToUpload" ][ "tmp_name" ] );
 			if ( $check == false ) {
-				$uploadOk = 0;
 				echo 'Fake image.';
+				return;
 			}
 
 			// check if file already exists
 			if ( file_exists( $target_file ) ) {
-				$uploadOk = 0;
 				echo 'File already exists. ';
+				return;
 			}
 
 			// check file size
 			if ( $_FILES[ "fileToUpload" ][ "size" ] > 700000 ) {
-				$uploadOk = 0;
 				echo 'File too large. ';
+				return;
 			}
 			
 			// allow certain file formats
 			if ( $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ) {
-				//Something else than a jpg, JPG, png, PNG, jpeg, JPEG cannot be uploaded
-				$uploadOk = 0;
-				echo 'Wrong type. ';
+				//Something else than a jpg, png or jpeg cannot be uploaded
+				echo 'This type of images is not supported. ';
+				return;
 			}
 			
-			// check if $uploadOk is set to 0 by an error
-			if ( $uploadOk != 0 ) {
-				if ( is_uploaded_file( $_FILES[ "fileToUpload" ][ "tmp_name" ] ) ) {
-					move_uploaded_file( $_FILES[ "fileToUpload" ][ "tmp_name" ], $target_file );
-					chmod( $target_file, 0644 ); // change the permission of the uploaded file, otherwise you can't open it.
+			//Now that all checks are done, really upload the file.
+			if ( is_uploaded_file( $_FILES[ "fileToUpload" ][ "tmp_name" ] ) ) {
+				move_uploaded_file( $_FILES[ "fileToUpload" ][ "tmp_name" ], $target_file );
+				chmod( $target_file, 0644 ); //Change the permissions of the uploaded file, otherwise you can't open it.
 
-					// TODO hard-coded resident ID --> replace by parameter in AJAX call?
-					$this->Picture_model->storeNewPuzzlePicture( $target_dir, $target_name, 'r123' );
+				// TODO hard-coded resident ID --> replace by parameter in AJAX call?
+				$this->Picture_model->storeNewPuzzlePicture( $target_dir, $target_name, 'r123' );
 
-					echo 'Picture uploaded! ' . $target_file . '<br/>';
-					echo '<img src=/' . $target_dir . $target_name . ' />';
-				} else {
-					echo 'File is not uploaded';
-				}
+				echo 'Picture uploaded! ' . $target_file . '<br/>';
+				echo '<img src=/' . $target_dir . $target_name . ' />';
 			} else {
-				echo 'Upload failed';
+				echo 'File is not uploaded';
 			}
 		}
 	}
