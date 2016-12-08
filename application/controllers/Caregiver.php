@@ -11,8 +11,6 @@ class Caregiver extends CI_Controller {
 			redirect( base_url() );
 		}
 
-		$this->session->language = 'nederlands';
-		
 		// load appropriate language file
 		if ( !isset( $this->session->language ) ) {
 			// fallback on default
@@ -92,7 +90,8 @@ class Caregiver extends CI_Controller {
 	{
 		$data = $this->display_common_elements( 'resident' );
 
-		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_resident', '', true );
+		$data2[ 'name' ] = 'test';
+		$data[ 'content' ] = $this->parser->parse( 'caregiver/caregiver_resident', $data2, true );
 
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
