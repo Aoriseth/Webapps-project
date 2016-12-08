@@ -100,9 +100,6 @@
     </script>
 </head>
 
-
-<h2 class="tlScale" >Group Selection</h2>
-<hr>
 <div class="container-fluid">
 
     <button class="btn btn-raised btn-success"onclick="add_group()"><i class="glyphicon glyphicon-plus"></i> Add Group</button>
