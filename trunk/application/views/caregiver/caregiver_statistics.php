@@ -1,8 +1,8 @@
 <!--Div that will hold the pie chart-->
 <div class="container-fluid">
+
 	<div class="row">
 		<div class="col-md-6">
-			<p class="txScale"><?= lang( 'c_statistics_all_category_individual' ) ?><p>
 			<form class="form-group" method="POST" id="chart1_form" name="chart1Form">
 				<select class="form-control" name="residents" id="residents_select" onchange="chart1function()" onload="chart1function()">
 					<?php foreach ($residents as $resident) { ?>   
@@ -15,7 +15,6 @@
 		</div>
 
 		<div class="col-md-6">
-			<p class="txScale"><?= lang( 'c_statistics_category_all_individual' ) ?><p>
 			<form class="form-group" method="POST" id="chart2_form" name="chart2Form">
 				<select class="form-control" name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
 					<?php foreach ($categories as $category) { ?>   
@@ -28,6 +27,9 @@
 			<div id="chart2_div"></div>
 		</div>
 	</div>
+        <div class="row">
+            <div id="chart3_div"></div>
+        </div>
 </div>
 
 
@@ -45,6 +47,7 @@
 	google.charts.load('current', {'packages': ['corechart']});
 	chart1function();
 	chart2function();
+        chart3function();
 	//formChart1.addEventListener('submit', function(e) {
 	function chart1function() {
 		console.log('chart 1 submitted');
@@ -78,7 +81,7 @@
 				function drawChart() {
 
 					var data = new google.visualization.DataTable();
-					dataChart(Yaxis, Xaxis, data, "chart1_div", "");
+					dataChart(Yaxis, Xaxis, data, "chart1_div", '<?= lang( 'c_statistics_all_category_individual' ) ?>');
 				}
 
 
@@ -121,7 +124,41 @@
 				function drawChart2() {
 
 					var data = new google.visualization.DataTable();
-					dataChart(Yaxis, Xaxis, data, "chart2_div", "");
+					dataChart(Yaxis, Xaxis, data, "chart2_div", '<?= lang( 'c_statistics_category_all_individual' ) ?>');
+				}
+
+			}
+		});
+		return false;
+	}
+        
+        function chart3function() {
+		console.log('chart 3 submitted');
+
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url() ?>index.php/caregiver/load_avarage_score_chart",
+			data: {},
+			dataType: "text",
+			cache: false,
+
+			success: function (data) {
+				var Yaxis = [];
+				var Xaxis = [];
+				var response = JSON.parse(data);
+				console.log(response);
+
+				Xaxis = response[0];
+				Yaxis = response[1];
+
+
+				google.charts.setOnLoadCallback(drawChart3);
+
+
+				function drawChart3() {
+
+					var data = new google.visualization.DataTable();
+					dataChart(Yaxis, Xaxis, data, "chart3_div", 'avarage scores of all residents');
 				}
 
 			}
