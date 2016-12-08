@@ -24,6 +24,7 @@ class Resident extends CI_Controller {
 		$this->load->model( 'Picture_model' );
 		$this->load->model( 'Question_model' );
 		$this->load->model( 'Resident_model' );
+		$this->load->model( 'Hint_model' );
 	}
 
 	function index()
@@ -152,11 +153,14 @@ class Resident extends CI_Controller {
 		}
 
 		$data = $this->display_common_elements( 'completed' );
-
+		
 		// increase the number of collected puzzle pieces
 		$this->Picture_model->incrementPiecesCollected( $this->session->id );
 
 		$data2[ 'category' ] = htmlspecialchars( $category );
+		$categorySetID = $this->Question_model->getCategorySetIdFrom( $this->session->language, $category );
+		$hint = $this->Hint_model->getHintFromCategorySet( $categorySetID )->hint;
+		$data2[ 'hint' ] = htmlspecialchars($hint);
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_completed', $data2, true );
 
 		$this->parser->parse( 'resident/resident_main', $data );
