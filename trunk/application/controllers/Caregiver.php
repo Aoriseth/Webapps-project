@@ -88,8 +88,13 @@ class Caregiver extends CI_Controller {
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
 
-	function resident( $resident)
+	function resident( $resident = '' )
 	{
+		// redirect to overview page if no resident given
+		if ( empty( $resident ) ) {
+			redirect( 'caregiver/overview' );
+		}
+
 		$data = $this->display_common_elements( 'resident' );
 
 		$data2[ 'name' ] = $resident;
