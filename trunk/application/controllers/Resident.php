@@ -2,162 +2,163 @@
 
 class Resident extends CI_Controller {
 
-    public function __construct()
+	public function __construct()
 	{
-        parent::__construct();
+		parent::__construct();
 
-        // redirect to base if the user shouldn't be here
-        if ($this->session->type != 'resident') { redirect(base_url()); }
+		// redirect to base if the user shouldn't be here
+		if ( $this->session->type != 'resident' ) {
+			redirect( base_url() );
+		}
 
-        // load appropriate language file
-        if (!isset($this->session->language)) {
-            // fallback on default
-            $this->session->language = $this->config->item('language');
-        }
-        $this->lang->load('common', $this->session->language);
-        $this->lang->load('resident', $this->session->language);
+		// load appropriate language file
+		if ( !isset( $this->session->language ) ) {
+			// fallback on default
+			$this->session->language = $this->config->item( 'language' );
+		}
+		$this->lang->load( 'common', $this->session->language );
+		$this->lang->load( 'resident', $this->session->language );
 
-        // models
-        $this->load->model('Question_model');
-        $this->load->model('Answer_model');
-        $this->load->model('Resident_model');
-        $this->load->model('Picture_model');
-    }
+		// models
+		$this->load->model( 'Answer_model' );
+		$this->load->model( 'Picture_model' );
+		$this->load->model( 'Question_model' );
+		$this->load->model( 'Resident_model' );
+	}
 
-    function index()
+	function index()
 	{
-        redirect('resident/home');
-    }
+		redirect( 'resident/home' );
+	}
 
-    private function display_common_elements( $page )
+	private function display_common_elements( $page )
 	{
-        $data['include'] = $this->load->view('include', '', true);
-        $data['navbar'] = $this->parser->parse('resident/resident_navbar', array('page' => $page), true);
-        return $data;
-    }
+		$data[ 'include' ] = $this->load->view( 'include', '', true );
+		$data[ 'navbar' ] = $this->parser->parse( 'resident/resident_navbar', array( 'page' => $page ), true );
+		return $data;
+	}
 
-    function home()
+	function home()
 	{
-        $data = $this->display_common_elements('home');
-        $residentId = $this->session->id;
-        $querry2 =  $this->Picture_model->getNrCompleted($residentId);
-        $data2['nrCompleted'] = $querry2[0]->pieces_collected;
-        $querry = $this->Picture_model->getPictureTest($residentId);
-        $data2['path'] = $querry[0]->picture_dir;
-        $data2['puzzle'] = $querry[0]->picture_name;
-        $querry3 = $this->Question_model->getFinishedCategorySets($residentId);
-        $data2['categories'] = $querry3;
-        $data2['name'] = $this->session->first_name;
-        $data2['display_login_notification'] = $this->session->display_login_notification;
-        $this->session->display_login_notification = false;
-        $data['content'] = $this->parser->parse('resident/resident_home', $data2, true);
+		$data = $this->display_common_elements( 'home' );
 
-        $this->parser->parse('resident/resident_main', $data);
-    }
+		$residentId = $this->session->id;
 
-    function gallery()
+		$query1 = $this->Picture_model->getNrCompleted( $residentId );
+		$data2[ 'nrCompleted' ] = $query1[ 0 ]->pieces_collected;
+
+		$query2 = $this->Picture_model->getPictureTest( $residentId );
+		$data2[ 'path' ] = $query2[ 0 ]->picture_dir;
+		$data2[ 'puzzle' ] = $query2[ 0 ]->picture_name;
+
+		$data2[ 'categories' ] = $this->Question_model->getFinishedCategorySets( $residentId );
+		$data2[ 'name' ] = $this->session->first_name;
+
+		$data2[ 'display_login_notification' ] = $this->session->display_login_notification;
+		$this->session->display_login_notification = false;
+
+		$data[ 'content' ] = $this->parser->parse( 'resident/resident_home', $data2, true );
+
+		$this->parser->parse( 'resident/resident_main', $data );
+	}
+
+	function gallery()
 	{
-        $data = $this->display_common_elements('gallery');
+		$data = $this->display_common_elements( 'gallery' );
 
-        $data2['name'] = $this->session->first_name;
-        $data['content'] = $this->parser->parse('resident/resident_gallery', $data2, true);
+		$data[ 'content' ] = $this->load->view( 'resident/resident_gallery', '', true );
 
-        $this->parser->parse('resident/resident_main', $data);
-    }
+		$this->parser->parse( 'resident/resident_main', $data );
+	}
 
-    function categories()
+	function categories()
 	{
-        $data = $this->display_common_elements('categories');
+		$data = $this->display_common_elements( 'categories' );
 
-        // get 3 random categories
-        $categories = $this->Question_model->getAllUnfinishedCategories($this->session->id);
-        if (count($categories) == 0) {
-            //If all categories are done, increment the session number
-            $this->Resident_model->incrementSession($this->session->id);
-            $this->session->completedSessions = $this->session->completedSessions + 1;
+		// get 3 random categories
+		$categories = $this->Question_model->getAllUnfinishedCategories( $this->session->id );
 
-            //TODO DO SOMETHING WHEN ALL CATEGORIES ARE FINISHED
-            //Possible to put the $category fetch and this condition before the narbar, button,... loading to prevent unnecessary loading
-            //Or move this if statement block + $category fetch to somewhere more appropriate.
-        }
-        shuffle($categories);
-        $categories = array_splice($categories, 0, 3);
+		if ( count( $categories ) == 0 ) {
+			// all categories are done --> increment session number
+			$this->Resident_model->incrementSession( $this->session->id );
+			$this->session->completedSessions = $this->session->completedSessions + 1;
 
-        $data2['categories'] = $categories;
-        $data['content'] = $this->parser->parse('resident/resident_categories', $data2, true);
+			// TODO: something when all categories are finished
+			/*
+			 * Possible to put the $category fetch and this condition before the
+			 * navbar, button,... loading to prevent unnecessary loading.
+			 * Or move this if statement block + $category fetch to somewhere
+			 * more appropriate.
+			 */
+		}
 
-        $this->parser->parse('resident/resident_main', $data);
-    }
+		shuffle( $categories );
+		$data2[ 'categories' ] = array_splice( $categories, 0, 3 );
 
-    function question()
+		$data[ 'content' ] = $this->parser->parse( 'resident/resident_categories', $data2, true );
+
+		$this->parser->parse( 'resident/resident_main', $data );
+	}
+
+	function question()
 	{
-        /* ERROR: if user goes to home during questionnaire, variables are not reset
-         * 
-         * TODO
-         * 	- reload questions from database
-         */
-        if (!isset($_GET['category'])) {
-            redirect('resident/categories');
-        }
-		
-        $data = $this->display_common_elements('question');
+		if ( !isset( $_GET[ 'category' ] ) ) {
+			redirect( 'resident/categories' );
+		}
+		$category = $this->input->get( 'category' );
 
-        $categorySetID = $this->Question_model->getCategorySetIdFrom($this->session->language, $this->input->get('category'));
-        $allUnansweredQuestions = $this->Question_model->getAllUnansweredQuestionsFrom($this->session->id, $categorySetID);
-        $options = $this->Question_model->getOptionsFor($allUnansweredQuestions[0]->question_set, $this->session->language);
+		$data = $this->display_common_elements( 'question' );
 
-        $data2['allUnansweredQuestions'] = $allUnansweredQuestions;
-        $data2['options'] = $options;
-		
-        $data['content'] = $this->parser->parse('resident/resident_question', $data2, true);
-        $this->parser->parse('resident/resident_main', $data);
-    }
+		$categorySetID = $this->Question_model->getCategorySetIdFrom( $this->session->language, $category );
+		$allUnansweredQuestions = $this->Question_model->getAllUnansweredQuestionsFrom( $this->session->id, $categorySetID );
+		$options = $this->Question_model->getOptionsFor( $allUnansweredQuestions[ 0 ]->question_set, $this->session->language );
 
-    function question_store_answer()
+		$data2[ 'category' ] = $category;
+		$data2[ 'allUnansweredQuestions' ] = $allUnansweredQuestions;
+		$data2[ 'options' ] = $options;
+
+		$data[ 'content' ] = $this->parser->parse( 'resident/resident_question', $data2, true );
+
+		$this->parser->parse( 'resident/resident_main', $data );
+	}
+
+	function question_store_answer()
 	{
-        // only allow AJAX requests
-        if (!$this->input->is_ajax_request()) {
-            redirect('404');
-        }
+		// only allow AJAX requests
+		if ( !$this->input->is_ajax_request() ) {
+			redirect( '404' );
+		}
 
-        echo "first echo: " . $this->input->raw_input_stream;
-        $jsonDecoded = json_decode($this->security->xss_clean($this->input->raw_input_stream));
-        // check if POST is set correct (at least kind of)
+		$jsonDecoded = json_decode( $this->security->xss_clean( $this->input->raw_input_stream ) );
 
-        $questionSet = $jsonDecoded->question_set;
-        $chosenOptionSet = $jsonDecoded->chosen_option;
+		$questionSet = $jsonDecoded->question_set;
+		$chosenOptionSet = $jsonDecoded->chosen_option;
 
-        $residentId = $this->session->id;
+		if ( $questionSet != "" && $chosenOptionSet != "" ) {
+			$this->Answer_model->storeAnswer( $this->session->id, $questionSet, $chosenOptionSet );
 
-        if ($questionSet != "" && $chosenOptionSet != "" && $residentId != "") {
-            $this->Answer_model->storeAnswer($residentId, $questionSet, $chosenOptionSet);
+			echo 'Answer stored succesfully.';
+		} else {
+			echo 'Error: questionId or chosenoption empty.';
+		}
+	}
 
-            echo 'Answer stored succesfully.';
-        } else {
-            echo 'Error: questionId or chosenoption empty or cannot find residentId';
-        }
-    }
-
-    function completed()
+	function completed()
 	{
-        $data = $this->display_common_elements('completed');
+		if ( isset( $_GET[ 'category' ] ) ) {
+			$category = $this->input->get( 'category' );
+		} else {
+			$category = '';	// error condition
+		}
 
-		//When category is completed, clear the array with questions.
-		$this->session->questions = array();
-		//and increase the number of collected puzzle pieces by 1.
-        $this->Picture_model->incrementPiecesCollected($this->session->id);
-		
-        if (isset($_GET['category'])) {
-            $category = $this->input->get('category');
-        } else {
-            // TODO error message? ignored for now
-            $category = '';
-        }
+		$data = $this->display_common_elements( 'completed' );
 
-        $data2['category'] = htmlspecialchars($category);
-        $data['content'] = $this->parser->parse('resident/resident_completed', $data2, true);
+		// increase the number of collected puzzle pieces
+		$this->Picture_model->incrementPiecesCollected( $this->session->id );
 
-        $this->parser->parse('resident/resident_main', $data);
-    }
+		$data2[ 'category' ] = htmlspecialchars( $category );
+		$data[ 'content' ] = $this->parser->parse( 'resident/resident_completed', $data2, true );
 
+		$this->parser->parse( 'resident/resident_main', $data );
+	}
 }
