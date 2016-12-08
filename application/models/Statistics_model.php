@@ -49,12 +49,22 @@ class Statistics_model extends CI_Model{
         return $avarageScore;
     }
 
-    function getTotalScoreResident($resident, $categorieSets){
+    function getTotalScoreResident($resident, $categorySets){
         $totalScore = 0;
+        $nonZeroCategories = 0;
+        $totalAvarageScore = 0;
         //for all categories
-        foreach($categorieSets as $categorySet) {
-            $totalScore += getScoreCategory($resident, $categorySet);
+        foreach($categorySets as $categorySet) {
+            $scoreCategory = $this->getScoreCategory($resident, $categorySet->id);
+            $totalScore += $scoreCategory;
+            if($scoreCategory > 0){
+                $nonZeroCategories++;
+            }
         }
-        return $totalScore;
+//      
+        if($nonZeroCategories > 0){
+            $totalAvarageScore = $totalScore/$nonZeroCategories;
+        }
+        return $totalAvarageScore;
     }
 }
