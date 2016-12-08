@@ -32,7 +32,19 @@ class Resident_model extends CI_Model {
 		return $query->result();
 	}
 	
-	/**
+        /**
+	 * Get all floors that are stored in the database.
+	 */
+	function getAllFloors() {
+                $query = $this->db->query(
+                        "SELECT DISTINCT floor_number "
+                        . "FROM a16_webapps_3.residents "
+                        . "ORDER BY floor_number"
+                );
+                return $query->result();
+        }
+
+    /**
 	 * Get the resident with the given ID.
 	 */
 	function getResidentById( $residentID ) {
