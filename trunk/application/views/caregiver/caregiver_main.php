@@ -3,7 +3,7 @@
     <head> 
         <meta charset="utf-8">
         
-        <title>Grace-Age : Caregiver Home</title>
+        <title><?= lang( 'caregiver_title' ) ?></title>
         
         <!--Load unique css-->
         <link href="<?php echo base_url(); ?>assets/datatables/css/dataTables.bootstrap.css" rel="stylesheet">
@@ -30,7 +30,6 @@
             <div class="row">
                 <div class="col-md-offset-1 col-md-10">
                     <div class="panel container-fluid">
-                        
                         {content}
                     </div>
                 </div>
