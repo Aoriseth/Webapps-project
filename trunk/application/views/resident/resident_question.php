@@ -24,7 +24,7 @@
                     <div class=" col-sm-offset-0 col-sm-2 col-md-offset-0 col-md-2 col-xs-5" id="col_btn">
                         <div style="width:100%;text-align: center;margin:auto;">
 
-                            <button style="width:100%;height:100%;" class="btn btn-raised btn-default" id="button_emotion<?php $emotion_index ?>" 
+                            <button style="width:100%;height:100%;" class="btn btn-default" id="button_emotion<?php $emotion_index ?>" 
                                     onclick="(storeAnswer(<?php echo $emotion_index ?>, ' <?php echo base_url() ?>', '{category}'));"
                                     value="<?php echo htmlspecialchars($option->option) ?>">
 
@@ -53,7 +53,7 @@
 
             <div class="col-sm-10" id="progress_col">
                 <div class="progress" id="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progressBar" style="min-width: 2em;">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progressBar" style="background-color: #3f51b5;min-width: 2em;">
                         
 
                     </div>
