@@ -8,9 +8,8 @@ $lang[ 'resident_navbar_home' ] = 'Thuis';
 $lang[ 'resident_navbar_gallery' ] = 'Galerij';
 $lang[ 'resident_navbar_gallery_help' ] = 'Klik op \'galerij\' om de afgwerkte puzzels te zien.';
 
-// home
-$lang[ 'resident_welcome_snackbar' ] = 'Hallo {name}, je bent correct aangemeld.';
 
+// home
 $lang[ 'resident_button_test' ] = 'Start een nieuwe test!';
 $lang[ 'resident_button_test_help' ] = 'Klik op \'Start een nieuwe test\' om feedback te geven.';
 

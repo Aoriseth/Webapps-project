@@ -10,8 +10,6 @@ $lang[ 'resident_navbar_gallery_help' ] = 'Click on \'home\' to go back to the h
         . ' Click on \'gallery\' to view previous puzzles.';
 
 // home
-$lang[ 'resident_welcome_snackbar' ] = 'Hello {name}, you succesfully logged in.';
-
 $lang[ 'resident_button_test' ] = 'Start a new test!';
 $lang[ 'resident_button_test_help' ] = 'Click on \'Start a new test!\' to start giving feedback.';
 
