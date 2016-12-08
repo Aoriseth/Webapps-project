@@ -23,7 +23,7 @@ function loadPuzzle(base_url, nr, path, name, categories) {
     var nrToDisplay = nr;
     var nrDisplayed = 0;
     image.src = base_url + path + name;
-    
+	
     (image.onload) = function(){
         greyImage.src = base_url.concat('/assets/imgs/grey.jpg');
     };
@@ -40,7 +40,7 @@ function loadPuzzle(base_url, nr, path, name, categories) {
         for(var y = 0; y < 4; ++y) {
             for(var x = 0; x < 3; ++x) {
                 //if((Math.random() <= nrToDisplay/12 && nrDisplayed < nrToDisplay) || (12-(3*y+x)) <= nrToDisplay - (nrDisplayed)){
-                if(categories[3*y + x + 1] === true){
+                if(categories[3*y + x + 1] === 1){
                     context.drawImage(image, x * (image.width / 3), y * (image.height / 4), (image.width / 3), (image.height / 4),
                     centerShift_x +( x * image.width * ratio)/3, centerShift_y + (y * image.height * ratio)/4, (image.width * ratio)/3, (image.height * ratio)/4);
                     nrDisplayed++;
@@ -52,5 +52,5 @@ function loadPuzzle(base_url, nr, path, name, categories) {
                 }
             }
         }
-    }
+    };
 }
