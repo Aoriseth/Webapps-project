@@ -17,6 +17,7 @@
             <script> loadPuzzle( "<?php echo base_url()?>", <?php echo json_encode($nrCompleted); ?>,
              <?php echo json_encode($path); ?> , <?php echo json_encode($puzzle); ?> , <?php echo json_encode($categories); ?>); </script>
 </div>
+<br>
 
 <?php if ($display_login_notification == true) { ?>
     <script type="text/javascript">
