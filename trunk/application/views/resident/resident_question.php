@@ -4,7 +4,7 @@
     <script src="<?php echo base_url(); ?>assets/js/loadingAnswers_Questions/LoadA_Q.js" type="text/javascript"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 
-    <div data-placement="bottom" data-toggle="popover" title="" data-content="<?= lang( 'resident_question_help' ) ?>" data-container="body" class="popup panel row">
+    <div data-placement="bottom" data-toggle="popover" title="" data-content="<?= lang( 'r_question_help' ) ?>" data-container="body" class="popup panel row">
 
         <div class="col-12">
             <br>
@@ -62,7 +62,7 @@
 
             <div class="col-sm-2" >
                 <button class="btn btn-raised btn-default" type="submit" name="back" value="Go back" onclick="pressGoBack()" style="width:100%; color:Gray;">
-                    <?= lang('resident_question_back') ?>
+                    <?= lang('r_question_back') ?>
                 </button>
                 
             </div>

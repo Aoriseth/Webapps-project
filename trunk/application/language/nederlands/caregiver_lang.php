@@ -1,17 +1,17 @@
 <?php
 
 // main
-$lang[ 'caregiver_title' ] = 'Grace-Age: Verzorger';
+$lang[ 'c_title' ] = 'Grace-Age: Verzorger';
 
 // navbar
-$lang[ 'caregiver_home' ] = 'Thuis';
-$lang[ 'caregiver_overview' ] = 'Overzicht residenten';
-$lang[ 'caregiver_groups' ] = 'Groep selectie';
-$lang[ 'caregiver_statistics' ] = 'Statistieken';
+$lang[ 'c_home' ] = 'Thuis';
+$lang[ 'c_overview' ] = 'Overzicht residenten';
+$lang[ 'c_groups' ] = 'Groep selectie';
+$lang[ 'c_statistics' ] = 'Statistieken';
 
 // home
-$lang[ 'caregiver_home_body' ] = 'Hallo {name}.';
+$lang[ 'c_home_body' ] = 'Hallo {name}.';
 
 // statistics
-$lang[ 'caregiver_statistics_all_category_individual' ] = 'Alle categoriën per resident';
-$lang[ 'caregiver_statistics_category_all_individual' ] = 'Alle residenten per categorie';
+$lang[ 'c_statistics_all_category_individual' ] = 'Alle categoriën per resident';
+$lang[ 'c_statistics_category_all_individual' ] = 'Alle residenten per categorie';

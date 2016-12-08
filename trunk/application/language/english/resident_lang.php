@@ -1,31 +1,31 @@
 <?php
 
 // main
-$lang[ 'resident_button_help' ] = 'HELP';
+$lang[ 'r_button_help' ] = 'HELP';
 
 // navbar
-$lang[ 'resident_navbar_home' ] = 'Home';
-$lang[ 'resident_navbar_gallery' ] = 'Gallery';
-$lang[ 'resident_navbar_gallery_help' ] = 'Click on \'home\' to go back to the home page.  '
+$lang[ 'r_navbar_home' ] = 'Home';
+$lang[ 'r_navbar_gallery' ] = 'Gallery';
+$lang[ 'r_navbar_gallery_help' ] = 'Click on \'home\' to go back to the home page.  '
         . ' Click on \'gallery\' to view previous puzzles.';
 
 // home
-$lang[ 'resident_button_test' ] = 'Start a new test!';
-$lang[ 'resident_button_test_help' ] = 'Click on \'Start a new test!\' to start giving feedback.';
+$lang[ 'r_button_test' ] = 'Start a new test!';
+$lang[ 'r_button_test_help' ] = 'Click on \'Start a new test!\' to start giving feedback.';
 
-$lang[ 'resident_puzzle_help' ] = 'You can see your progress on the puzzle here.';
+$lang[ 'r_puzzle_help' ] = 'You can see your progress on the puzzle here.';
 
 // gallery
-$lang[ 'resident_gallery_explanation' ] = 'Your finished puzzles will be displayed here.';
+$lang[ 'r_gallery_explanation' ] = 'Your finished puzzles will be displayed here.';
 
 // categories
-$lang[ 'resident_categories_explanation' ] = 'Select a category';
-$lang[ 'resident_categories_help' ] = 'Choose one of the visible categories to continue.';
+$lang[ 'r_categories_explanation' ] = 'Select a category';
+$lang[ 'r_categories_help' ] = 'Choose one of the visible categories to continue.';
 
 // question
-$lang[ 'resident_question_back' ] = 'Go Back';
-$lang[ 'resident_question_help' ] = 'Click on one of the faces to answer the question stated above.';
+$lang[ 'r_question_back' ] = 'Go Back';
+$lang[ 'r_question_help' ] = 'Click on one of the faces to answer the question stated above.';
 
 // completed
-$lang[ 'resident_completed_explanation' ] = 'Congratulations, you\'ve just completed the category <i>{category}</i>.';
-$lang[ 'resident_completed_start_new' ] = 'Choose a new category!';
+$lang[ 'r_completed_explanation' ] = 'Congratulations, you\'ve just completed the category <i>{category}</i>.';
+$lang[ 'r_completed_start_new' ] = 'Choose a new category!';
