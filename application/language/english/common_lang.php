@@ -1,5 +1,7 @@
 <?php
 
+$lang[ 'common_app' ] = 'Grace Age';
+
 $lang[ 'common_login' ] = 'Log in';
 $lang[ 'common_logout' ] = 'Log out';
 
