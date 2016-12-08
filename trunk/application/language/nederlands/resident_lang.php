@@ -20,6 +20,7 @@ $lang[ 'r_puzzle_help' ] = 'Je kunt je vooruitgang zien op de puzzel hier.';
 
 // gallery
 $lang[ 'r_gallery_explanation' ] = 'Hier komen je afgewerkte puzzels te staan.';
+$lang[ 'r_gallery_help' ] = 'Klik op een vorige puzzle om het te vergroten.';
 
 // categories
 $lang[ 'r_categories_explanation' ] = 'Kies een categorie';
