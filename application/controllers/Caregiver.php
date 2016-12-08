@@ -24,6 +24,7 @@ class Caregiver extends CI_Controller {
 		$this->load->model( 'Question_model' );
 		$this->load->model( 'Resident_model' );
 		$this->load->model( 'Statistics_model' );
+		$this->load->model( 'Group_model' );
 	}
 
 	function index()
@@ -67,13 +68,19 @@ class Caregiver extends CI_Controller {
 
 	function groups()
 	{
-		$data = $this->display_common_elements( 'groups' );
-
-		$data2[ 'residents' ] = $this->Resident_model->getAllResidents();
+		$residents = $this->Resident_model->getAllResidents();
+		$data2[ 'page' ] = 'groups';
+		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
+                $data[ 'include' ] = $this->parser->parse( 'include',$data2, true );
+		
+		$data2[ 'residents'] = $residents;
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_groups', $data2, true );
-
-		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
-	}
+                //
+                $floors = $this->Resident_model->getAllFloors();
+                $data2[ 'floors'] = $floors;
+		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_groups', $data2, true );
+                //
+		$this->parser->parse( 'caregiver/caregiver_main.php', $data );	}
 
 	function statistics()
 	{
@@ -96,6 +103,10 @@ class Caregiver extends CI_Controller {
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
 
+        function saveGroup(){
+                $result = $this->Group_model->addGroup($filter, $caregiverID, $residentIDs);
+        }
+        
 	function load_charts()
 	{
 		// only allow AJAX requests
