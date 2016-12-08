@@ -85,18 +85,31 @@
             // clear global array
             floors = [];
             //
+	    $array_requirements = array('floor_number' => floors, 'gender' => gender);
+            getResidentsWith( $array_requirements ) ;
+            
+            
+            
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url() ?>index.php/caregiver/saveGroup",
-                data: {resident: resident},
+                data: {
+                    ageMin: ageMin,
+                    ageMax: ageMax,
+                    gender: gender,
+                    floors: floors,
+                    action: 'test'
+                },
                 dataType: "text",
                 cache: false,
 
                 success: function (data) {
+                    alert(output);
+                    console.log(data);
+                    var response = JSON.parse(data);
+                    console.log(response);
                 }
             });
-            
-            
             return false;            
         }
         /*
