@@ -2,13 +2,14 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Grace Age: Resident</title>
+        <title><?= lang( 'r_title' ) ?></title>
+
         <!--Include common scripts and css-->
         {include}
+
         <!-- Load  Unique scripts -->
         <script src="<?php echo base_url(); ?>assets/js/puzzle.js"></script>
     </head>
-
     <body>
         <!--Navigation bar of this page-->
         {navbar}
@@ -18,7 +19,6 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <div>
-                        
                         {content}	
                     </div> 
                 </div>

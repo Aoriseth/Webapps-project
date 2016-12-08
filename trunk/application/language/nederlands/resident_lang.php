@@ -1,5 +1,8 @@
 <?php
 
+// title
+$lang[ 'r_title' ] = lang( 'common_app' ).': Resident';
+
 // main
 $lang[ 'r_button_help' ] = 'HULP';
 

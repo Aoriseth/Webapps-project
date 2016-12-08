@@ -1,7 +1,7 @@
 <?php
 
 // main
-$lang[ 'c_title' ] = 'Grace-Age: Caregiver';
+$lang[ 'c_title' ] = lang( 'common_app' ).': Caregiver';
 
 // navbar
 $lang[ 'c_home' ] = 'Home';

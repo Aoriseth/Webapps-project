@@ -2,8 +2,8 @@
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
-                Grace Age</a>
+				<?= lang( 'common_app' ) ?>
+			</a>
         </div>
     </div>
-    
 </nav>

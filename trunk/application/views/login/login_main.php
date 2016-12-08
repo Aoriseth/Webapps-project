@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
     <head>
-        <title>Grace Age: Login</title>
-        {include}
-        <!--Load unique scripts-->
+        <title><?= lang( 'login_title' ) ?></title>
 
+        {include}
     </head>
     <body>
         {navbar}
+
         <div class="container">
             <div class="row">
                 <div class=" col-md-6 text-center">
@@ -30,4 +29,5 @@
         </div>
     </body>
 </html>
+
 <script>$.material.init();</script>

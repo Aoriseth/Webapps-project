@@ -1,5 +1,8 @@
 <?php
 
+// title
+$lang[ 'login_title' ] = lang( 'common_app' ).': Login';
+
 // facial recognition
 $lang[ 'login_facial_explanation' ] = 'Meld je aan met gezichtsherkenning.';
 $lang[ 'login_facial_scrolldown' ] = 'Scroll naar beneden om je aan te melden.';
