@@ -11,11 +11,13 @@
         var ageMin;
         var ageMax;
         var gender;
-        var floor = [];
+        var floors = [];
+        
         $(function () {
             <?php foreach ($residents as $resident) { ?>
                 $("#<?php echo ($resident->id); ?>").draggable(); //TODO
             <?php } ?>
+
         });
 
         function add_group()
@@ -23,7 +25,7 @@
             //add_method = 'add';
             $('#form')[0].reset(); // reset form on modals
             $('.form-group').removeClass('has-error'); // clear error class
-            $('.help-block').empty(); // clear error string
+            $('.help-block').empty(); // clear error string, TODO
             $('#modal_form').modal('show'); // show bootstrap modal
             $('.modal-title').text('Add Group'); // Set Title to Bootstrap modal title
 
@@ -63,8 +65,8 @@
             var f = document.getElementById("floor");
             for (var i = 0; i < f.options.length; i++) {
                 if(f.options[i].selected){
-                    if ( !( f.options[i].value in floor ) ) {
-                        floor.push(f.options[i].value);
+                    if ( !( f.options[i].value in floors ) ) { // prevent duplicates
+                        floors.push(f.options[i].value);
                     }
                 }
             }
@@ -78,8 +80,24 @@
                     ageMax = parseInt(values[handle]);
                 }
             });
+            console.log(ageMin, ageMax, gender, floors);
+            //addGroup(ageMin, ageMax, gender, floor);
+            // clear global array
+            floors = [];
+            //
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url() ?>index.php/caregiver/saveGroup",
+                data: {resident: resident},
+                dataType: "text",
+                cache: false,
+
+                success: function (data) {
+                }
+            });
             
-            console.log(ageMin, ageMax, gender, floor);
+            
+            return false;            
         }
         /*
          function allowDrop(ev) {
@@ -146,37 +164,40 @@
                         <!-- GENDER -->
                         <div class="form-group">
                             <label class="col-md-2">Gender</label>
-                            <div class="radios">
-                                <div class="col-md-2">
-                                    <div class="radio radio-primary">
-                                        <label>
-                                            Male
-                                            <input type="radio" name="optionsRadios" id="optionMale" value="option1"<!--checked=""--><span class="circle"></span><span class="check"></span>
-                                        </label>
+                                <div class="radios">
+                                    <div class="col-md-2">
+                                        <div class="radio radio-primary">
+                                            <label>
+                                                Male
+                                                <input type="radio" name="optionsRadios" id="optionMale" value="option1"<!--checked=""--><span class="circle"></span><span class="check"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="radio radio-primary">
+                                            <label>
+                                                Female
+                                                <input type="radio" name="optionsRadios" id="optionFemale" value="option2"><span class="circle"></span><span class="check"></span>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="radio radio-primary">
-                                        <label>
-                                            Female
-                                            <input type="radio" name="optionsRadios" id="optionFemale" value="option2"><span class="circle"></span><span class="check"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
-                        <!-- FLOOR -->
+                        <!-- FLOOR -->   
                         <div class="form-group">
                             <label class="col-md-2">Floor</label>
                             <div class="col-md-10">
-                                <select id="floor" multiple="multiple" class="form-control">
-                                    <!-- TODO: floor numbers from database -->
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>                                    
-                                </select>
-                                <span class="help-block"></span>
+                                <form class="form-group" method="POST" id="floor_form" >
+                                    <select class="form-control" id="floor" > <!-- multiple="multiple" expands the opts -->
+                                        <?php foreach ($floors as $floor) { ?> 
+                                        <option value= <?php
+                                            $floor->floor_number;
+                                            echo $floor->floor_number;          // key name in db
+                                        ?> > <?php echo $floor->floor_number ?> </option>
+                                        <?php } ?>   
+                                    </select>
+                                </form>
                             </div>                            
                         </div>
 
