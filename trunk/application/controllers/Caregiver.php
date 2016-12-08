@@ -31,7 +31,9 @@ class Caregiver extends CI_Controller {
 	private function display_common_elements( $page )
 	{
 		$data[ 'include' ] = $this->load->view( 'include', '', true );
-		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', array( 'page' => $page ), true );
+		$data2[ 'pages' ] = [ 'home', 'overview', 'groups', 'statistics' ];
+		$data2[ 'page_active' ] = $page;
+		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
 		return $data;
 	}
 
