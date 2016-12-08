@@ -98,8 +98,9 @@ class Caregiver extends CI_Controller {
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
 
-	function saveGroup(){
-		$result = $this->Group_model->addGroup($filter, $caregiverID, $residentIDs);
+	function saveGroup() {
+		// TODO is this an AJAX call? block direct access then
+		$result = $this->Group_model->addGroup( $filter, $caregiverID, $residentIDs );
 	}
         
 	function load_charts()
