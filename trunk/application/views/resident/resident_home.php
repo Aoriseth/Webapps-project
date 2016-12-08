@@ -1,4 +1,4 @@
-<div class="panel">
+<div style="padding-bottom: 30px" class="panel">
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
             <form>
@@ -11,13 +11,13 @@
             </form>
         </div>
     </div>
-    
+    <div>
     <script> loadPuzzle("<?= base_url() ?>");</script>
      <canvas class="center-block img-responsive" id="puzzle" style="height: 32vw;width:content-box"></canvas>
             <script> loadPuzzle( "<?php echo base_url()?>", <?php echo json_encode($nrCompleted); ?>,
              <?php echo json_encode($path); ?> , <?php echo json_encode($puzzle); ?> , <?php echo json_encode($categories); ?>); </script>
+    </div>
 </div>
-<br>
 
 <?php if ($display_login_notification == true) { ?>
     <script type="text/javascript">
