@@ -72,7 +72,7 @@ table{
 }
 
 .btn-blue{
-    background-color: #3f51b5;
+    background-color: #3f51b5 !important;
 }
 .tlScale{
     font-size:2.5vmax !important;
