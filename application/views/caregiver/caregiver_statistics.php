@@ -1,13 +1,12 @@
-
 <!--Div that will hold the pie chart-->
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-6">
-			<p class="txScale"> All Category scores for individual resident<p>
+			<p class="txScale"><?= lang( 'caregiver_statistics_all_category_individual' ) ?><p>
 			<form class="form-group" method="POST" id="chart1_form" name="chart1Form">
 				<select class="form-control" name="residents" id="residents_select" onchange="chart1function()" onload="chart1function()">
 					<?php foreach ($residents as $resident) { ?>   
-						<option value=<?php echo json_encode($resident->id); ?>> <?php echo $resident->first_name; ?> </option>
+						<option value=<?= json_encode($resident->id); ?> ><?= $resident->first_name; ?></option>
 					<?php } ?>                    
 				</select>
 			</form>
@@ -16,11 +15,11 @@
 		</div>
 
 		<div class="col-md-6">
-			<p class="txScale"> Specific category score for all residents<p>
+			<p class="txScale"><?= lang( 'caregiver_statistics_category_all_individual' ) ?><p>
 			<form class="form-group" method="POST" id="chart2_form" name="chart2Form">
 				<select class="form-control" name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
 					<?php foreach ($categories as $category) { ?>   
-						<option value=<?php echo json_encode($category->category_set); ?>> <?php echo $category->category; ?> </option>
+						<option value=<?= json_encode($category->category_set); ?> ><?php echo $category->category; ?></option>
 					<?php } ?>           
 				</select>
 
