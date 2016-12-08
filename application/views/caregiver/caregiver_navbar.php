@@ -14,7 +14,7 @@
 					foreach ( $pages as $page ) {
 				?>
 					<li <?php if ( $page == $page_active ) { ?>class="active"<?php } ?> >
-						<a href="<?= base_url().'index.php/caregiver/'.$page ?>"><?= lang( 'caregiver_'.$page ) ?></a>
+						<a href="<?= base_url().'index.php/caregiver/'.$page ?>"><?= lang( 'c_'.$page ) ?></a>
 					</li>
 				<?php } ?>
 			</ul>

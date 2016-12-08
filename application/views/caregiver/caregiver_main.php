@@ -3,7 +3,7 @@
     <head> 
         <meta charset="utf-8">
         
-        <title><?= lang( 'caregiver_title' ) ?></title>
+        <title><?= lang( 'c_title' ) ?></title>
         
         <!--Load unique css-->
         <link href="<?php echo base_url(); ?>assets/datatables/css/dataTables.bootstrap.css" rel="stylesheet">

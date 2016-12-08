@@ -2,7 +2,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-6">
-			<p class="txScale"><?= lang( 'caregiver_statistics_all_category_individual' ) ?><p>
+			<p class="txScale"><?= lang( 'c_statistics_all_category_individual' ) ?><p>
 			<form class="form-group" method="POST" id="chart1_form" name="chart1Form">
 				<select class="form-control" name="residents" id="residents_select" onchange="chart1function()" onload="chart1function()">
 					<?php foreach ($residents as $resident) { ?>   
@@ -15,7 +15,7 @@
 		</div>
 
 		<div class="col-md-6">
-			<p class="txScale"><?= lang( 'caregiver_statistics_category_all_individual' ) ?><p>
+			<p class="txScale"><?= lang( 'c_statistics_category_all_individual' ) ?><p>
 			<form class="form-group" method="POST" id="chart2_form" name="chart2Form">
 				<select class="form-control" name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
 					<?php foreach ($categories as $category) { ?>   

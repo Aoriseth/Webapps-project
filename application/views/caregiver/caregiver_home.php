@@ -1,4 +1,4 @@
-<p class="txScale"><?= lang( 'caregiver_home_body' ) ?></p>
+<p class="txScale"><?= lang( 'c_home_body' ) ?></p>
 
 <?php if ($display_login_notification == true) { ?>
     <script type="text/javascript">

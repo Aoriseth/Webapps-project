@@ -11,8 +11,8 @@
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
-                <li <?php if ( $page == 'home' ) { ?>class="active"<?php } ?> ><a href="<?php echo base_url() . 'index.php/resident/home' ?>"><?= lang( 'resident_navbar_home' ) ?></a></li>
-                <li data-placement="bottom" data-toggle="popover" title="" data-container="body" data-content="<?= lang( 'resident_navbar_gallery_help' ) ?>" class="popup <?php if ( $page == 'gallery' ) { ?>active<?php } ?>" ><a href="<?php echo base_url() . 'index.php/resident/gallery' ?>"><?= lang( 'resident_navbar_gallery' ) ?></a></li>
+                <li <?php if ( $page == 'home' ) { ?>class="active"<?php } ?> ><a href="<?php echo base_url() . 'index.php/resident/home' ?>"><?= lang( 'r_navbar_home' ) ?></a></li>
+                <li data-placement="bottom" data-toggle="popover" title="" data-container="body" data-content="<?= lang( 'r_navbar_gallery_help' ) ?>" class="popup <?php if ( $page == 'gallery' ) { ?>active<?php } ?>" ><a href="<?php echo base_url() . 'index.php/resident/gallery' ?>"><?= lang( 'r_navbar_gallery' ) ?></a></li>
             </ul>
             
             <ul class="nav navbar-nav navbar-right">

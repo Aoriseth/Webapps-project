@@ -4,9 +4,9 @@
             <form>
                 <button data-toggle="popover" title="" data-container="body" style="width:100%;font-size:2.5vmax;"
                         class="popup btn-lg withripple btn btn-raised btn-info"
-                        data-content="<?= lang('resident_button_test_help') ?>" 
+                        data-content="<?= lang('r_button_test_help') ?>" 
                         formaction="<?= base_url() . 'index.php/resident/categories' ?>">
-                            <?= lang('resident_button_test') ?>
+                            <?= lang('r_button_test') ?>
                 </button>
             </form>
         </div>
