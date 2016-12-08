@@ -70,6 +70,10 @@ table{
 .btn-info, .btn-info:hover, .btn-info:active, .btn-info:visited {
     /*background-color: #3f51b5 !important;*/
 }
+
+.btn-blue{
+    background-color: #3f51b5;
+}
 .tlScale{
     font-size:2.5vmax !important;
 }
