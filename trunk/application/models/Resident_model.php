@@ -32,17 +32,17 @@ class Resident_model extends CI_Model {
 		return $query->result();
 	}
 	
-        /**
+	/**
 	 * Get all floors that are stored in the database.
 	 */
 	function getAllFloors() {
-                $query = $this->db->query(
-                        "SELECT DISTINCT floor_number "
-                        . "FROM a16_webapps_3.residents "
-                        . "ORDER BY floor_number"
-                );
-                return $query->result();
-        }
+		$query = $this->db->query(
+				"SELECT DISTINCT floor_number "
+				. "FROM a16_webapps_3.residents "
+				. "ORDER BY floor_number"
+		);
+		return $query->result();
+	}
 
     /**
 	 * Get the resident with the given ID.
@@ -56,8 +56,11 @@ class Resident_model extends CI_Model {
 		return $query->result();
 	}
 	
-        
-        function getAllResidentsByLanguage($language) {
+	/**
+	 * Return all the residents that have the given language set as their
+	 * display language.
+	 */
+	function getAllResidentsByLanguage( $language ) {
 		$query = $this->db->query(
 			"SELECT * "
 			. "FROM a16_webapps_3.residents "
@@ -65,6 +68,7 @@ class Resident_model extends CI_Model {
 		);
 		return $query->result();
 	}
+	
 	/**
 	 * Update the last completed field with the current time and date
 	 * for a given resident (by ID).
@@ -176,4 +180,60 @@ class Resident_model extends CI_Model {
 		);
 		return $query->row()->completed_sessions;
 	}
+	
+	/**
+	 * Return a list of n residents that have finished a questionnaire recently.
+	 * List ordered from newest to oldest. Returns less than n if there aren't that
+	 * many residents in the database.
+	 * 
+	 * If n is not given, it will return at most 10 results.
+	 */
+	function getNMostRecentCompletedResidents( $n=10 ) {
+		$query = $this->db->query(
+			"SELECT id, first_name, last_name, last_completed "
+			. "FROM a16_webapps_3.residents "
+			. "ORDER BY last_completed DESC"
+			. "LIMIT '$n'"
+		);
+		return $query->result();
+	}
+	
+	/**
+	 * Return a list of n residents that have finished a questionnaire the longest time ago.
+	 * List ordered from longest ago to more recently. Returns less than n if there aren't that
+	 * many residents in the database.
+	 * 
+	 * If n is not given, it will return at most 10 results.
+	 */
+	function getNLongestAgoCompletedResidents( $n ) {
+		$query = $this->db->query(
+			"SELECT id, first_name, last_name, last_completed "
+			. "FROM a16_webapps_3.residents "
+			. "ORDER BY last_completed ASC"
+			. "LIMIT '$n'"
+		);
+		return $query->result();
+	}
+	
+	/**
+	 * Return n or less residents that haven't completed the questionnaire in
+	 * over a given amount of days.
+	 * 
+	 * If no number of days is given, 30 is chosen by default.
+	 * If no number of wanted records is given, 10 or less results will be returned.
+	 * 
+	 * Note about default values:
+	 * If you call this function with a given n, days should also be given.
+	 */
+	function getNResidents( $days=30, $n=10 ) {
+		$query = $this->db->query(
+			"SELECT id, first_name, last_name, last_completed "
+			. "FROM a16_webapps_3.residents "
+			. "WHERE last_completed > NOW() - INTERVAL '$days' DAY"
+			. "ORDER BY last_completed ASC"
+			. "LIMIT '$n'"
+		);
+		return $query->result();
+	}
+	
 }
