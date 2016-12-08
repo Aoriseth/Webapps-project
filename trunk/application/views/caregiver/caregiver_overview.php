@@ -15,10 +15,6 @@
     <![endif]-->
 </head> 
 
-
-
-<h2>Resident overview page for the caregivers</h2>
-<hr>
 <div class="container-fluid">
     <h1 style="font-size:20pt">Health care Patients</h1>
 

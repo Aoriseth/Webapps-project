@@ -10,5 +10,4 @@ $lang[ 'caregiver_groups' ] = 'Group Selection';
 $lang[ 'caregiver_statistics' ] = 'Statistics';
 
 // home
-$lang[ 'caregiver_home_title' ] = 'Home page for the caregivers';
 $lang[ 'caregiver_home_body' ] = 'Hello {name}.';
