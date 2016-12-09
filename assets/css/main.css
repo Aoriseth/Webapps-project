@@ -54,7 +54,7 @@ body {
 }
 
 #progress_col{
-    transform: translateY(100%);
+    /*transform: translateY(100%);*/
 }
 table{
 
