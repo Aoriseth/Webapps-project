@@ -55,6 +55,7 @@
         {
             // clear global array
             floors = [];
+            filter_residents = [];
             // TODO: warning if empty
             console.log('--- function filter() ---');
             // GENDER
@@ -99,19 +100,26 @@
                 cache: false,
 
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
                     //console.log("Filter:", ageMin, ageMax, gender, floors[0]);
-                    filter_residents = data;
                     var response = JSON.parse(data);
-                    //console.log(response);
+                    filter_residents = response;
+                    console.log(filter_residents);
+                    replace();
                 },
-                        
                 error: function() {
                     alert("Error")
                 },
             });
-            
-            document.getElementById('theDiv').innerHTML = filter_residents;
+        }
+        
+        function replace(){
+            document.getElementById('theDiv').style.display = "block";
+            //console.log(filter_residents);
+            for (filter_resident of filter_residents) {
+                document.getElementById('theDiv').innerHTML += (filter_resident + " ");
+                console.log(filter_resident);
+            }
         }
         /*
          function allowDrop(ev) {
@@ -235,16 +243,34 @@
                                     <span class="age-range" id="age-max"></span>
                                 </div>
                             </div>
-
                         </div>
-
+                        
+                        <div class="modal-footer">
+                            <button type="button" id="btnFilter" onclick="filter()" class="btn btn-primary">Filter</button>
+                        </div>
+                        
+                        <!-- RESULTS -->   
+                        <div class="form-group" id = "theDiv" style="display:none">
+                            <label class="col-md-2">Results</label>
+                            <div class="col-md-10">
+                                <form class="form-group" method="POST" id="floor_form" >
+                                    <select class="form-control" id="floor" multiple="multiple"> <!-- multiple="multiple" expands the opts -->
+                                        
+                                        <?php foreach ($filter_residents as $filter_resident) { ?> 
+                                        <option value= <?php
+                                            $filter_resident->first_name;
+                                            echo $filter_resident->first_name;          // key name in db
+                                        ?> > <?php echo $filter_resident->first_name ?> </option>
+                                        <?php } ?>   
+                                        
+                                    </select>
+                                </form>
+                            </div>                            
+                        </div>
                 </form>
             </div>
-                    
-                    <div id="theDiv"></div>
-                    
+                                        
             <div class="modal-footer">
-                <button type="button" id="btnFilter" onclick="filter()" class="btn btn-primary">Filter</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                 <button type="button" id="btnAdd" onclick="save()" class="btn btn-success">Add</button>
             </div>

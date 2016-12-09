@@ -72,6 +72,7 @@ class Caregiver extends CI_Controller {
 
 		$data2[ 'residents' ] = $this->Resident_model->getAllResidents();
 		$data2[ 'floors'] = $this->Resident_model->getAllFloors();
+                $data2[ 'filter_residents' ] = [];
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_groups', $data2, true );
 
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
