@@ -25,10 +25,10 @@
             </div>
         </div>
 
-        <!--Help button for resident pages-->
-<!--        <button id="trigger" class="btn btn-warning btn-raised" style="height:3em;width:7em;position:fixed;bottom:30px;right:30px;">
+        Help button for resident pages
+        <button id="trigger" class="btn btn-warning btn-raised" style="height:3em;width:7em;position:fixed;top:60px;left:15px;">
             <?= lang('r_button_help') ?>
-        </button>-->
+        </button>
     </body>
 </html>
 
