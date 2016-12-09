@@ -16,10 +16,10 @@
             </ul>
             
             <ul class="nav navbar-nav navbar-right">
-                    <li><a href="<?php echo base_url() . 'index.php/logout' ?>"><?= lang( 'common_logout' ) ?></a></li>
-                    <li><a></a></li>
-                      
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
+                <li><a id="trigger" href="#"><?= lang( 'r_button_help' ) ?></a></li>
+                <li><a href="<?php echo base_url() . 'index.php/logout' ?>"><?= lang( 'common_logout' ) ?></a></li>
+                <li><a></a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
             </ul>
         </div>
             
