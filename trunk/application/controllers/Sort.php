@@ -36,8 +36,8 @@ class Sort extends CI_Controller {
                       
                        
 			//add html for action
-			$row[] = '<a class="btn btn-raised btn-success" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$residents->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-				  <a class="btn btn-raised btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$residents->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+			$row[] = '<a class="btn btn-success" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$residents->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+				  <a class="btn btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$residents->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
 		
 			$data[] = $row;
 		}
