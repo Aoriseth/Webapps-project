@@ -106,19 +106,19 @@ class Caregiver extends CI_Controller {
 	function filterGroup() {
 		// TODO is this an AJAX call? block direct access then
                 $resultArray = [];
-                if (isset($_POST['ageMin'], $_POST['ageMax'], $_POST['gender'], $_POST['floors'])) {
-                        /*$residents = $this->Resident_model->getAllResidents();
-			foreach ( $residents as $resident ) {
-                            array_push( $resultArray, $resident->first_name );
-			}*/
+                $ageMin = $_POST['ageMin']; 
+                $ageMax = $_POST['ageMax'];
+                $gender = $_POST['gender'];
+                $floors = $_POST['floors'];
+                if (isset($ageMin, $ageMax, $gender, $floors)) {
                         //
-                        $array_requirements = array('floor_number' => 'floors', 'gender' => 'gender');
+                        $floors = $this->input->post( 'floors' );
+                        $gender = $this->input->post( 'gender' );
+                        $array_requirements = array('floor_number' => intval($floors), 'gender' => $gender); // string to int
                         $filter_residents = $this->Resident_model->getResidentsWith( $array_requirements ) ;
                         foreach ( $filter_residents as $resident ) {
                             array_push( $resultArray, $resident->first_name );
 			}
-                        /*$result = $this->Group_model->addGroup( $filter, $caregiverID, $residentIDs );
-                        array_push( $resultArray, $result ); */            
                 }
 		header( 'Content-Type: application/json' );     
                 echo json_encode( $resultArray );
