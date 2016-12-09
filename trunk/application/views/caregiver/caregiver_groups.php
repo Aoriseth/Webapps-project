@@ -119,7 +119,7 @@
             for (filter_resident of filter_residents) {
                 document.getElementById('theDiv').innerHTML += (filter_resident + " ");
                 console.log(filter_resident);
-                document.getElementById('replace').innerHTML += (filter_resident + " ");
+                //document.getElementById('replace').write(filter_resident);
 
             }
         }
@@ -258,15 +258,14 @@
                                 <form class="form-group" method="POST" id="floor_form" >
                                     <select class="form-control" id="floor" multiple="multiple"> <!-- multiple="multiple" expands the opts -->
                                         
-                                        <?php foreach ($filter_residents as $filter_resident) { ?> 
-                                        <option value= <?php
-                                            $filter_resident->first_name;
-                                            echo $filter_resident->first_name;          // key name in db
-                                        ?> > <?php echo $filter_resident->first_name ?> </option>
-                                        <?php } ?>
-                                        <option>
-                                            <p id="replace">JavaScript can change HTML content.</p>
-                                        </option>
+                                        <div id="replace">
+                                            <?php foreach ($filter_residents as $filter_resident) { ?> 
+                                            <option value= <?php
+                                                $filter_resident->first_name;
+                                                echo $filter_resident->first_name;          // key name in db
+                                            ?> > <?php echo $filter_resident->first_name ?> </option>
+                                            <?php } ?>
+                                        </div>
 
                                         
                                     </select>
