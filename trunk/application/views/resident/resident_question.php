@@ -12,7 +12,7 @@
             <div class="" id="jumbotron_question">
                 <p class="" id="question_text">
                     
-                </p>
+                </p><br>
             </div>
         </div>
 
@@ -45,6 +45,7 @@
                 }
                 ?>
             </div>
+            <br>
         </div>
 
 
