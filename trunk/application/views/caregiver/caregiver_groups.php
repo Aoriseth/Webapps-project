@@ -13,12 +13,12 @@
         var gender = ""; // initialization
         var floors = [];
         var filter_residents = [];
+        var caregiverID = parseInt(<?php echo ($caregiverID); ?>);
 
         $(function () {
             <?php foreach ($residents as $resident) { ?>
                 $("#<?php echo ($resident->id); ?>").draggable(); //TODO
-            <?php } ?>
-
+            <?php }; ?>
         });
 
         function add_group()
@@ -100,7 +100,7 @@
                 cache: false,
 
                 success: function (data) {
-                    //console.log(data);
+                    console.log("caregiverID:", caregiverID);
                     //console.log("Filter:", ageMin, ageMax, gender, floors[0]);
                     var response = JSON.parse(data);
                     filter_residents = response;
@@ -119,6 +119,8 @@
             for (filter_resident of filter_residents) {
                 document.getElementById('theDiv').innerHTML += (filter_resident + " ");
                 console.log(filter_resident);
+                document.getElementById('replace').innerHTML += (filter_resident + " ");
+
             }
         }
         /*
@@ -246,7 +248,7 @@
                         </div>
                         
                         <div class="modal-footer">
-                            <button type="button" id="btnFilter" onclick="filter()" class="btn btn-primary">Filter</button>
+                            <button type="button" id="btnFilter" onclick="filter()" class="btn btn-info">Filter</button>
                         </div>
                         
                         <!-- RESULTS -->   
@@ -261,7 +263,11 @@
                                             $filter_resident->first_name;
                                             echo $filter_resident->first_name;          // key name in db
                                         ?> > <?php echo $filter_resident->first_name ?> </option>
-                                        <?php } ?>   
+                                        <?php } ?>
+                                        <option>
+                                            <p id="replace">JavaScript can change HTML content.</p>
+                                        </option>
+
                                         
                                     </select>
                                 </form>
@@ -272,7 +278,7 @@
                                         
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <button type="button" id="btnAdd" onclick="save()" class="btn btn-success">Add</button>
+                <button type="button" id="btnAdd" onclick="save()" class="btn btn-info">Add</button>
             </div>
         </div>
 
