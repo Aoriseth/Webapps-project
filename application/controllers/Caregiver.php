@@ -103,13 +103,24 @@ class Caregiver extends CI_Controller {
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
 
-	function saveGroup() {
+	function filterGroup() {
 		// TODO is this an AJAX call? block direct access then
                 $resultArray = [];
                 if (isset($_POST['ageMin'], $_POST['ageMax'], $_POST['gender'], $_POST['floors'])) {
-                        $result = $this->Group_model->addGroup( $filter, $caregiverID, $residentIDs );
-                        array_push( $resultArray, $result );                
+                        /*$residents = $this->Resident_model->getAllResidents();
+			foreach ( $residents as $resident ) {
+                            array_push( $resultArray, $resident->first_name );
+			}*/
+                        //
+                        $array_requirements = array('floor_number' => 'floors', 'gender' => 'gender');
+                        $filter_residents = $this->Resident_model->getResidentsWith( $array_requirements ) ;
+                        foreach ( $filter_residents as $resident ) {
+                            array_push( $resultArray, $resident->first_name );
+			}
+                        /*$result = $this->Group_model->addGroup( $filter, $caregiverID, $residentIDs );
+                        array_push( $resultArray, $result ); */            
                 }
+		header( 'Content-Type: application/json' );     
                 echo json_encode( $resultArray );
         }
         

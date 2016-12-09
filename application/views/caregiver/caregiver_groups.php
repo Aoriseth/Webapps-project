@@ -50,10 +50,10 @@
             });
         }
 
-        function save()
+        function filter()
         {
             // TODO: warning if empty
-            console.log('function save()');
+            console.log('function filter()');
             // GENDER
             if(document.getElementById('optionMale').checked) {
                 gender = "male";
@@ -80,21 +80,16 @@
                     ageMax = parseInt(values[handle]);
                 }
             });
-            console.log(ageMin, ageMax, gender, floors);
-            //addGroup(ageMin, ageMax, gender, floor);
-            // clear global array
-            //
-	    //$array_requirements = array('floor_number' => floors, 'gender' => gender);
-            //getResidentsWith( $array_requirements ) ;
+            //console.log("Filter:", ageMin, ageMax, gender, floors);
                         
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url() ?>index.php/caregiver/saveGroup", //saveGroup
+                url: "<?php echo base_url() ?>index.php/caregiver/filterGroup", //filterGroup
                 data: {
                     "ageMin": ageMin,
                     "ageMax": ageMax,
                     "gender": gender,
-                    "floors": floors,
+                    "floors": floors
                 },
                 dataType: "text",
                 cache: false,
@@ -102,11 +97,16 @@
                 success: function (data) {
                     console.log(data);
                     var response = JSON.parse(data);
-                    console.log(response);
+                    //console.log(response);
+                },
+                        
+                error: function() {
+                    alert("Error")
                 }
             });
-
-}
+            // clear global array
+            floors = [];
+        }
         /*
          function allowDrop(ev) {
          ev.preventDefault();
@@ -123,7 +123,6 @@
          }
          */
         //
-        floors = [];
 
 
     </script>
@@ -236,8 +235,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnAdd" onclick="save()" class="btn btn-raised btn-success">Add</button>
-                <button type="button" class="btn btn-raised btn-danger" data-dismiss="modal">Cancel</button>
+                <button type="button" id="btnFilter" onclick="filter()" class="btn btn-primary">Filter</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <button type="button" id="btnAdd" onclick="save()" class="btn btn-success">Add</button>
             </div>
         </div>
 
