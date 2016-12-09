@@ -6,13 +6,15 @@
 
     <div data-placement="bottom" data-toggle="popover" title="" data-content="<?= lang( 'r_question_help' ) ?>" data-container="body" class="popup panel row">
 
-        <div class="col-12">
+        <div class="row">
+        <div class="col-10 col-sm-offset-1">
             <br>
             <div class="" id="jumbotron_question">
-                <p class="text-center" id="question_text">
-                    fdqs
+                <p class="" id="question_text">
+                    
                 </p>
             </div>
+        </div>
 
             <div class="row"  id="jumbotron_answer">
                 <div class="visible-md visible-sm visible-lg col-sm-1"></div>
@@ -24,7 +26,7 @@
                     <div class=" col-sm-offset-0 col-sm-2 col-md-offset-0 col-md-2 col-xs-5" id="col_btn">
                         <div style="width:100%;text-align: center;margin:auto;">
 
-                            <button style="width:100%;height:100%;" class="btn btn-default" id="button_emotion<?php $emotion_index ?>" 
+                            <button style="width:100%;height:100%;" class="btn btn-fab  btn-default" id="button_emotion<?php $emotion_index ?>" 
                                     onclick="(storeAnswer(<?php echo $emotion_index ?>, ' <?php echo base_url() ?>', '{category}'));"
                                     value="<?php echo htmlspecialchars($option->option) ?>">
 
@@ -47,12 +49,12 @@
 
 
 
-        <p style="margin-top:10px;">
+<!--        <p style="margin-top:40px;">-->
 
         <div class="row container-fluid">
 
-            <div class="col-sm-10" id="progress_col">
-                <div class="progress" id="progress">
+            <div class="col-sm-10 col-sm-offset-1 " >
+                <div class="progress" id="progress" style="margin-top: 20px;">
                     <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progressBar" style="background-color: #3f51b5;min-width: 2em;">
                         
 
@@ -60,13 +62,12 @@
                 </div>
             </div>
 
-            <div class="col-sm-2" >
-                <button class="btn btn-raised btn-default" type="submit" name="back" value="Go back" onclick="pressGoBack()" style="width:100%; color:Gray;">
+            <div class="col-sm-offset-10 col-sm-2" >
+                <button class="btn btn-default" type="submit" name="back" value="Go back" onclick="pressGoBack()" style="width:100%; color:Gray;">
                     <?= lang('r_question_back') ?>
                 </button>
                 
             </div>
-            <p style="margin-bottom:85px;">
         </div>
     </div>
     <br>
