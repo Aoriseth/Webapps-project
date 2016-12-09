@@ -4,32 +4,32 @@
 $lang[ 'r_title' ] = lang( 'common_app' ).': Resident';
 
 // main
-$lang[ 'r_button_help' ] = 'HELP';
+$lang[ 'r_button_help' ] = 'Aide';
 
 // navbar
-$lang[ 'r_navbar_home' ] = 'Home';
-$lang[ 'r_navbar_gallery' ] = 'Gallery';
-$lang[ 'r_navbar_gallery_help' ] = 'Click on \'home\' to go back to the home page.  '
-        . ' Click on \'gallery\' to view previous puzzles.';
+$lang[ 'r_navbar_home' ] = 'Acceuil';
+$lang[ 'r_navbar_gallery' ] = 'Gallerie';
+$lang[ 'r_navbar_gallery_help' ] = 'cliquez sur  \'acceuil\' pour revenir à l\'acceuil  '
+        . ' Cliquez sur \'gallerie\' pour voir vos précédents puzzles.';
 
 // home
-$lang[ 'r_button_test' ] = 'Start a new test!';
-$lang[ 'r_button_test_help' ] = 'Click on \'Start a new test!\' to start giving feedback.';
+$lang[ 'r_button_test' ] = 'Commencer un nouveau test!';
+$lang[ 'r_button_test_help' ] = 'Cliquez sur \'Commencer un nouveau test!\' pour commencer à nos donner des informations sur vous.';
 
-$lang[ 'r_puzzle_help' ] = 'You can see your progress on the puzzle here.';
+$lang[ 'r_puzzle_help' ] = 'Vous pouvez voir votre avancement sur le puzzle ici.';
 
 // gallery
-$lang[ 'r_gallery_explanation' ] = 'Your finished puzzles will be displayed here.';
-$lang[ 'r_gallery_help' ] = 'Click on a completed puzzle to enlarge it.';
+$lang[ 'r_gallery_explanation' ] = 'Vos puzzle terminés sont affichés ici.';
+$lang[ 'r_gallery_help' ] = 'Cliquez sur un puzzle fini pour l\'agrandire.';
 
 // categories
-$lang[ 'r_categories_explanation' ] = 'Select a category';
-$lang[ 'r_categories_help' ] = 'Choose one of the visible categories to continue.';
+$lang[ 'r_categories_explanation' ] = 'Selectionez une categorie';
+$lang[ 'r_categories_help' ] = 'Choisissez une des catégories visibles pour continuer.';
 
 // question
-$lang[ 'r_question_back' ] = 'Go Back';
-$lang[ 'r_question_help' ] = 'Click on one of the faces to answer the question stated above.';
+$lang[ 'r_question_back' ] = 'Retour';
+$lang[ 'r_question_help' ] = 'Cliquez sur l\'un des visages pour répondre à la question çi-dessus.';
 
 // completed
-$lang[ 'r_completed_explanation' ] = 'Congratulations, you\'ve just completed the category <i>{category}</i>.';
-$lang[ 'r_completed_start_new' ] = 'Choose a new category!';
+$lang[ 'r_completed_explanation' ] = 'Felicitation, vous avez terminé la catégorie <i>{category}</i>.';
+$lang[ 'r_completed_start_new' ] = 'Choisissez une nouvelle catégorie!';
