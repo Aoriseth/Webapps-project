@@ -11,7 +11,7 @@
 				</select>
 			</form>
 
-			<div id="chart1_div"></div>
+			<div id="chart1_div" style="width:100%"></div>
 		</div>
 
 		<div class="col-md-6">
@@ -24,11 +24,11 @@
 
 
 			</form>
-			<div id="chart2_div"></div>
+			<div id="chart2_div" style="width:100%"></div>
 		</div>
 	</div>
         <div class="row">
-            <div id="chart3_div"></div>
+            <div id="chart3_div" style="width:100%"></div>
         </div>
 </div>
 
