@@ -19,7 +19,7 @@
         var options = {'title':chartTitle,
                        'width':400,
                        'height':400,
-                        hAxis: {gridlines: { count: 5 },
+                        vAxis: {gridlines: { count: 5 },
                                 minValue: 0,
                                 maxValue: 100
                                 }
@@ -28,7 +28,7 @@
                     };
 
         // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.BarChart(document.getElementById(chartId));
+        var chart = new google.visualization.ColumnChart(document.getElementById(chartId));
         chart.draw(data, options);
         
         
