@@ -10,9 +10,10 @@
         var ageRange;
         var ageMin;
         var ageMax;
-        var gender;
+        var gender = ""; // initialization
         var floors = [];
-        
+        var filter_residents = [];
+
         $(function () {
             <?php foreach ($residents as $resident) { ?>
                 $("#<?php echo ($resident->id); ?>").draggable(); //TODO
@@ -96,6 +97,7 @@
 
                 success: function (data) {
                     console.log(data);
+                    //filter_residents = data;
                     var response = JSON.parse(data);
                     //console.log(response);
                 },
@@ -105,7 +107,8 @@
                 }
             });
             // clear global array
-            floors = [];
+            //floors = [];
+            //document.getElementById('theDiv').innerHTML = filter_residents;
         }
         /*
          function allowDrop(ev) {
@@ -234,6 +237,9 @@
 
                 </form>
             </div>
+                    
+                    <div id="theDiv"></div>
+                    
             <div class="modal-footer">
                 <button type="button" id="btnFilter" onclick="filter()" class="btn btn-primary">Filter</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
