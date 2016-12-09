@@ -9,7 +9,7 @@ $lang[ 'r_button_help' ] = 'Aide';
 // navbar
 $lang[ 'r_navbar_home' ] = 'Acceuil';
 $lang[ 'r_navbar_gallery' ] = 'Gallerie';
-$lang[ 'r_navbar_gallery_help' ] = 'cliquez sur  \'acceuil\' pour revenir à l\'acceuil  '
+$lang[ 'r_navbar_gallery_help' ] = 'Cliquez sur  \'acceuil\' pour revenir à l\'acceuil  '
         . ' Cliquez sur \'gallerie\' pour voir vos précédents puzzles.';
 
 // home
@@ -23,7 +23,7 @@ $lang[ 'r_gallery_explanation' ] = 'Vos puzzle terminés sont affichés ici.';
 $lang[ 'r_gallery_help' ] = 'Cliquez sur un puzzle fini pour l\'agrandire.';
 
 // categories
-$lang[ 'r_categories_explanation' ] = 'Selectionez une categorie';
+$lang[ 'r_categories_explanation' ] = 'Sélectionnez une catégorie';
 $lang[ 'r_categories_help' ] = 'Choisissez une des catégories visibles pour continuer.';
 
 // question
@@ -31,5 +31,5 @@ $lang[ 'r_question_back' ] = 'Retour';
 $lang[ 'r_question_help' ] = 'Cliquez sur l\'un des visages pour répondre à la question çi-dessus.';
 
 // completed
-$lang[ 'r_completed_explanation' ] = 'Felicitation, vous avez terminé la catégorie <i>{category}</i>.';
+$lang[ 'r_completed_explanation' ] = 'Félicitation, vous avez terminé la catégorie <i>{category}</i>.';
 $lang[ 'r_completed_start_new' ] = 'Choisissez une nouvelle catégorie!';
