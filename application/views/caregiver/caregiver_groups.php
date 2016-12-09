@@ -53,8 +53,10 @@
 
         function filter()
         {
+            // clear global array
+            floors = [];
             // TODO: warning if empty
-            console.log('function filter()');
+            console.log('--- function filter() ---');
             // GENDER
             if(document.getElementById('optionMale').checked) {
                 gender = "male";
@@ -82,7 +84,8 @@
                 }
             });
             //console.log("Filter:", ageMin, ageMax, gender, floors);
-                        
+            
+            
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url() ?>index.php/caregiver/filterGroup", //filterGroup
@@ -90,25 +93,25 @@
                     "ageMin": ageMin,
                     "ageMax": ageMax,
                     "gender": gender,
-                    "floors": floors
+                    "floors": floors[0]
                 },
                 dataType: "text",
                 cache: false,
 
                 success: function (data) {
                     console.log(data);
-                    //filter_residents = data;
+                    //console.log("Filter:", ageMin, ageMax, gender, floors[0]);
+                    filter_residents = data;
                     var response = JSON.parse(data);
                     //console.log(response);
                 },
                         
                 error: function() {
                     alert("Error")
-                }
+                },
             });
-            // clear global array
-            //floors = [];
-            //document.getElementById('theDiv').innerHTML = filter_residents;
+            
+            document.getElementById('theDiv').innerHTML = filter_residents;
         }
         /*
          function allowDrop(ev) {
