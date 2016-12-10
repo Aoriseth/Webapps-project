@@ -59,7 +59,7 @@
 
 		$.ajax({
 			type: "POST",
-			url: "<?php echo base_url() ?>index.php/caregiver/load_charts",
+			url: "<?php echo base_url() ?>index.php/caregiver/load_resident_chart",
 			data: {resident: resident},
 			dataType: "text",
 			cache: false,
@@ -102,7 +102,7 @@
 
 		$.ajax({
 			type: "POST",
-			url: "<?php echo base_url() ?>index.php/caregiver/load_charts",
+			url: "<?php echo base_url() ?>index.php/caregiver/load_category_chart",
 			data: {category: category},
 			dataType: "text",
 			cache: false,

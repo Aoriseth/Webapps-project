@@ -97,8 +97,9 @@ class Caregiver extends CI_Controller {
 		}
 
 		$data = $this->display_common_elements( 'resident' );
-
-		$data2[ 'name' ] = $resident;
+                $residentObject = $this->Resident_model->getResidentById($resident);
+		$data2[ 'id' ] = $resident;
+                $data2[ 'name' ] = $residentObject[0]->first_name;
 		$data[ 'content' ] = $this->parser->parse( 'caregiver/caregiver_resident', $data2, true );
 
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
@@ -125,7 +126,7 @@ class Caregiver extends CI_Controller {
                 echo json_encode( $resultArray );
         }
         
-	function load_charts()
+	function load_resident_chart()
 	{
 		// only allow AJAX requests
 		if ( ! $this->input->is_ajax_request() ) {
@@ -152,7 +153,18 @@ class Caregiver extends CI_Controller {
 			array_push( $resultArray, $Xarray );
 			array_push( $resultArray, $Yarray );
 		}
-		
+                header( 'Content-Type: application/json' );     
+                echo json_encode( $resultArray );
+	}        
+	function load_category_chart()
+	{	
+                // only allow AJAX requests
+		if ( ! $this->input->is_ajax_request() ) {
+			redirect( '404' );
+		}
+
+		$resultArray = [];
+                
 		if ( isset( $_POST[ 'category' ] ) ) {
 			$category = $this->input->post( 'category' );
 			$residents = $this->Resident_model->getAllResidents();

@@ -3,10 +3,22 @@
 </p>
 
 <div class="container-fluid">
-    chart
-    <div id="chart1_div" style="width:100%"></div>
-
-
+    <div class="row">
+        <div class="col-xs-6">
+            <img src="<?php echo base_url(); ?>assets/elderly.jpg" alt="Profile Picture" style="width:250px;height:300px;">
+        </div>
+        <div class="col-xs-6">
+            <div id="chart1_div" style="width:100%"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            eventueel problematische topics (-50?)
+        </div>
+        <div class="col-xs-6">
+            grafiek die verloop toont van bepaalde categorie over over alle sessies
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -24,8 +36,8 @@
 
 		$.ajax({
 			type: "POST",
-			url: "<?php echo base_url() ?>index.php/caregiver/load_charts",
-			data: {resident: "{name}"},
+			url: "<?php echo base_url() ?>index.php/caregiver/load_resident_chart",
+			data: {resident: "{id}"},
 			dataType: "text",
 			cache: false,
 
