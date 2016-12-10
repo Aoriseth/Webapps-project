@@ -7,3 +7,10 @@
         });
     </script>
 <?php } ?>
+
+    
+problematische residenten 
+
+problematische topics + bar chart alle categorieen
+
+
