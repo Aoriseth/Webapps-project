@@ -81,7 +81,7 @@
 				function drawChart() {
 
 					var data = new google.visualization.DataTable();
-					dataChart(Yaxis, Xaxis, data, "chart1_div", '<?= lang( 'c_statistics_all_category_individual' ) ?>');
+					columnChart(Yaxis, Xaxis, data, "chart1_div", '<?= lang( 'c_statistics_all_category_individual' ) ?>');
 				}
 
 
@@ -124,7 +124,7 @@
 				function drawChart2() {
 
 					var data = new google.visualization.DataTable();
-					dataChart(Yaxis, Xaxis, data, "chart2_div", '<?= lang( 'c_statistics_category_all_individual' ) ?>');
+					columnChart(Yaxis, Xaxis, data, "chart2_div", '<?= lang( 'c_statistics_category_all_individual' ) ?>');
 				}
 
 			}
@@ -158,7 +158,7 @@
 				function drawChart3() {
 
 					var data = new google.visualization.DataTable();
-					dataChart(Yaxis, Xaxis, data, "chart3_div", 'avarage scores of all residents');
+					columnChart(Yaxis, Xaxis, data, "chart3_div", 'avarage scores of all residents');
 				}
 
 			}

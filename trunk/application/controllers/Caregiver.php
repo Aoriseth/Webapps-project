@@ -102,9 +102,11 @@ class Caregiver extends CI_Controller {
 		if ( empty( $resident ) ) {
 			redirect( 'caregiver/overview' );
 		}
-
+                $problematicCategories = $this->Statistics_model->getAllCategoriesBelow($resident, 50);
 		$data = $this->display_common_elements( 'resident' );
                 $residentObject = $this->Resident_model->getResidentById($resident);
+                $data2[ 'problematicCategories' ] = $problematicCategories;
+                $data2[ 'categories' ] = $this->Question_model->getAllCategoryNames( $this->session->language );
 		$data2[ 'id' ] = $resident;
                 $data2[ 'name' ] = $residentObject[0]->first_name;
 		$data[ 'content' ] = $this->parser->parse( 'caregiver/caregiver_resident', $data2, true );
@@ -186,6 +188,39 @@ class Caregiver extends CI_Controller {
 				$result = $this->Statistics_model->getScoreCategory( $resident->id, $category );
 				array_push( $Yarray, $resident->first_name );
 				array_push( $Xarray, $result );
+			}
+			array_push( $resultArray, $Xarray );
+			array_push( $resultArray, $Yarray );
+		}
+
+		header( 'Content-Type: application/json' );     
+		echo json_encode( $resultArray );
+	}
+        
+        function load_category_course_chart()
+	{	
+                // only allow AJAX requests
+		if ( ! $this->input->is_ajax_request() ) {
+			redirect( '404' );
+		}
+
+		$resultArray = [];
+                
+		if ( isset( $_POST[ 'category' ] ) && isset( $_POST[ 'resident' ] ) ) {
+			$category = $this->input->post( 'category' );
+                        $resident = $this->input->post( 'resident' );
+                        $residentObject = $this->Resident_model->getResidentById($resident)[0];
+                        $sessions = $residentObject->completed_sessions;
+			//array of strings
+			$Yarray = [];
+			//array of ints
+			$Xarray = [];
+                        $i = 1;
+			while ( $i <= $sessions){
+				$result = $this->Statistics_model->getScoresCategoryofSession( $resident, $category, $i);
+				array_push( $Yarray, (string)$i );
+				array_push( $Xarray, $result );
+                                $i++;
 			}
 			array_push( $resultArray, $Xarray );
 			array_push( $resultArray, $Yarray );
