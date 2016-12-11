@@ -50,7 +50,7 @@
         }
             
         data.addRows(rows);
-        // Set chart options
+
         var options = {'title':chartTitle,
                        'width':400,
                        'height':400,
