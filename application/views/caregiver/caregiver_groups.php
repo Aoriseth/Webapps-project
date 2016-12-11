@@ -4,144 +4,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.css"></script>
+    <script src="<?php echo base_url(); ?>assets/js/caregiver_filter.js" type="text/javascript"></script>
     
-    <script type="text/javascript">
-        var nonLinearStepSlider;
-        var ageRange;
-        var ageMin;
-        var ageMax;
-        var gender = ""; // initialization
-        var floors = [];
-        var filter_residents = [];
-        var caregiverID = parseInt(<?php echo ($caregiverID); ?>);
-
-        $(function () {
-            <?php foreach ($residents as $resident) { ?>
-                $("#<?php echo ($resident->id); ?>").draggable(); //TODO
-            <?php }; ?>
-        });
-
-        function add_group()
-        {
-            //add_method = 'add';
-            $('#form')[0].reset(); // reset form on modals
-            $('.form-group').removeClass('has-error'); // clear error class
-            //$('.help-block').empty(); // clear error string, TODO
-            $('#modal_form').modal('show'); // show bootstrap modal
-            $('.modal-title').text('Add Group'); // Set Title to Bootstrap modal title
-
-
-            nonLinearStepSlider = document.getElementById('slider-non-linear-step');
-            noUiSlider.create(nonLinearStepSlider, {
-                start: [60, 80],
-                step: 1,
-                range: {
-                    'min': [50],
-                    'max': [120]
-                }
-            });
-
-            ageRange = [
-                document.getElementById('age-min'),
-                document.getElementById('age-max')
-            ];
-
-            nonLinearStepSlider.noUiSlider.on('update', function (values, handle) {
-                ageRange[handle].innerHTML = parseInt(values[handle]);
-            });
-        }
-
-        function filter()
-        {
-            // clear global array
-            floors = [];
-            filter_residents = [];
-            // TODO: warning if empty
-            console.log('--- function filter() ---');
-            // GENDER
-            if(document.getElementById('optionMale').checked) {
-                gender = "male";
-            } else if(document.getElementById('optionFemale').checked) {
-                gender = "female";
-            }
-            
-            // FLOOR
-            var f = document.getElementById("floor");
-            for (var i = 0; i < f.options.length; i++) {
-                if(f.options[i].selected){
-                    if ( !( f.options[i].value in floors ) ) { // prevent duplicates
-                        floors.push(f.options[i].value);
-                    }
-                }
-            }
-  
-            // AGE
-            nonLinearStepSlider.noUiSlider.on('update', function ( values, handle ) {
-                if ( handle === 0 ) {
-                    ageMin = parseInt(values[handle]);
-                }
-                else if ( handle === 1 ) {
-                    ageMax = parseInt(values[handle]);
-                }
-            });
-            //console.log("Filter:", ageMin, ageMax, gender, floors);
-            
-            
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url() ?>index.php/caregiver/filterGroup", //filterGroup
-                data: {
-                    "ageMin": ageMin,
-                    "ageMax": ageMax,
-                    "gender": gender,
-                    "floors": floors[0]
-                },
-                dataType: "text",
-                cache: false,
-
-                success: function (data) {
-                    console.log("caregiverID:", caregiverID);
-                    //console.log("Filter:", ageMin, ageMax, gender, floors[0]);
-                    var response = JSON.parse(data);
-                    filter_residents = response;
-                    console.log(filter_residents);
-                    replace();
-                },
-                error: function() {
-                    alert("Error")
-                },
-            });
-        }
-        
-        function replace(){
-            document.getElementById('theDiv').style.display = "block";
-            //console.log(filter_residents);
-            for (filter_resident of filter_residents) {
-                document.getElementById('theDiv').innerHTML += (filter_resident + " ");
-                console.log(filter_resident);
-                //document.getElementById('replace').write(filter_resident);
-
-            }
-        }
-        /*
-         function allowDrop(ev) {
-         ev.preventDefault();
-         }
-         
-         function drag(ev) {
-         ev.dataTransfer.setData("Text", ev.target.id);
-         }
-         
-         function drop(ev) {
-         var data = ev.dataTransfer.getData("Text");
-         ev.target.appendChild(document.getElementById(data));
-         ev.preventDefault();
-         }
-         */
-        //
-
-
-    </script>
 </head>
 
 <div class="container-fluid">
@@ -248,30 +112,28 @@
                         </div>
                         
                         <div class="modal-footer">
-                            <button type="button" id="btnFilter" onclick="filter()" class="btn btn-info">Filter</button>
+                            <button type="button" id="btnFilter" onclick="filter('<?php echo base_url() ?>', 'caregiverID')" class="btn btn-info">Filter</button>
                         </div>
                         
-                        <!-- RESULTS -->   
-                        <div class="form-group" id = "theDiv" style="display:none">
+                        <!-- RESULTS -->
+                        <div class="form-group" id = "update_div" style="display:none">
                             <label class="col-md-2">Results</label>
-                            <div class="col-md-10">
-                                <form class="form-group" method="POST" id="floor_form" >
-                                    <select class="form-control" id="floor" multiple="multiple"> <!-- multiple="multiple" expands the opts -->
-                                        
-                                        <div id="replace">
+                            {result}
+                            <!--div class="col-md-10">
+                                <form class="form-group " method="POST" id="floor_form" >
+                                    <div id="results"></div>
+                                    <select class="form-control" id="filter_resident" multiple="multiple"> 
                                             <?php foreach ($filter_residents as $filter_resident) { ?> 
                                             <option value= <?php
                                                 $filter_resident->first_name;
                                                 echo $filter_resident->first_name;          // key name in db
                                             ?> > <?php echo $filter_resident->first_name ?> </option>
-                                            <?php } ?>
-                                        </div>
-
-                                        
+                                            <?php }?>
                                     </select>
                                 </form>
-                            </div>                            
+                            </div-->                            
                         </div>
+                        
                 </form>
             </div>
                                         

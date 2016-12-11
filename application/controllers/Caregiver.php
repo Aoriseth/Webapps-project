@@ -74,9 +74,16 @@ class Caregiver extends CI_Controller {
 		$data2[ 'floors'] = $this->Resident_model->getAllFloors();
                 $data2[ 'filter_residents' ] = [];
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_groups', $data2, true );
-
+                
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
+        
+        function result(){
+		$data = $this->display_common_elements( 'result' );
+                $data[ 'result' ] = $this->load->view( 'caregiver/caregiver_filter', '', true );
+		$this->parser->parse( 'caregiver/caregiver_groups.php', $data );
+        }
+
 
 	function statistics()
 	{
@@ -112,6 +119,7 @@ class Caregiver extends CI_Controller {
                 $ageMax = $_POST['ageMax'];
                 $gender = $_POST['gender'];
                 $floors = $_POST['floors'];
+
                 if (isset($ageMin, $ageMax, $gender, $floors)) {
                         //
                         $floors = $this->input->post( 'floors' );
@@ -119,7 +127,7 @@ class Caregiver extends CI_Controller {
                         $array_requirements = array('floor_number' => intval($floors), 'gender' => $gender); // string to int
                         $filter_residents = $this->Resident_model->getResidentsWith( $array_requirements ) ;
                         foreach ( $filter_residents as $resident ) {
-                            array_push( $resultArray, $resident->first_name );
+                            array_push( $resultArray, $resident );
 			}
                 }
 		header( 'Content-Type: application/json' );     
