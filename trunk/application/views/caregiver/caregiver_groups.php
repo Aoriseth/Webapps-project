@@ -8,6 +8,8 @@
 
 </head>
 
+test: "<?php echo count($caregiverID); ?>"
+
 <div class="container-fluid">
     <button class="btn btn-success" onclick="add_group()"><i class="glyphicon glyphicon-plus"></i> Add Group</button>
     <div class="row">
@@ -40,7 +42,7 @@
             </div>
             <div class="modal-body form">
                 <form action="#" id="form" class="form-horizontal">
-                    <div class="form-body">  
+                    <!--div class="form-body"-->  
 
                         <!-- GENDER -->
                         <div class="form-group">
@@ -69,7 +71,7 @@
                         <div class="form-group">
                             <label class="col-md-2">Floor</label>
                             <div class="col-md-10">
-                                <form class="form-group" method="POST" id="floor_form" >
+                                <!--form class="form-group" method="POST" id="floor_form"-->
                                     <select class="form-control" id="floor" > <!-- multiple="multiple" expands the opts -->
                                         <?php foreach ($floors as $floor) { ?> 
                                             <option value= <?php
@@ -78,7 +80,7 @@
                                             ?> > <?php echo $floor->floor_number ?> </option>
                                          <?php } ?>   
                                     </select>
-                                </form>
+                                <!--/form-->
                             </div>                            
                         </div>
 
@@ -96,34 +98,38 @@
                                 </div>
                                 <div>
                                     <span class="age-range" id="age-min"></span>
-                                    ~
+                                    -
                                     <span class="age-range" id="age-max"></span>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="modal-footer">
-                            <button type="button" id="btnFilter" onclick="filter('<?php echo base_url() ?>', 'caregiverID')" class="btn btn-info">Filter</button>
+                            
                         </div>
 
                         <!-- RESULTS -->
                         <div class="form-group" id="update_div" style="display:none">
                             <!--{result}-->   
                             <label class="col-md-2">Results</label>
-                                <div class="col-md-10">
-                                 <form class="form-group" method="POST" id="floor_form" >
-                                    <div id="result-list"></div>
-                                     </form>
-                                </div>  
+                            <div class="col-md-10">
+                                <!--form class="form-group" method="POST" id="floor_form"-->
+                                    <div id="result-list">
+                                    </div>
+                                <!--/form-->
+                            </div>  
                         </div>
-                    </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                            <button type="button" id="btnFilter" onclick="filter('<?php echo base_url() ?>', 'caregiverID')" 
+                                    class="btn btn-info"><i class="glyphicon glyphicon-filter"></i> Filter</button>
+                            <button type="button" id="btnAdd" onclick="save()" class="btn btn-info">Add</button>
+                        </div>
+                        
+                    <!--/div-->
                 </form>
             </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <button type="button" id="btnAdd" onclick="save()" class="btn btn-info">Add</button>
-            </div>
+            
         </div>
     </div> 
 </div> 

@@ -5,9 +5,6 @@ var ageMax;
 var gender = ""; // initialization
 var floors = [];
 var filter_residents;
-var update_div = $('#update_div');
-var results = $('#results');
-var code = "";
 
 /*
 (function () {
@@ -54,7 +51,6 @@ function filter(base_url, caregiverID)
     // clear global array
     floors = [];
     // TODO: warning if empty
-    console.log('--- function filter() ---');
     // GENDER
     if(document.getElementById('optionMale').checked) {
         gender = "male";
@@ -99,19 +95,8 @@ function filter(base_url, caregiverID)
         success: function (data) {
             //console.log("Filter:", ageMin, ageMax, gender, floors[0]);
             filter_residents = JSON.parse(data);
-            //console.log("filter_residents:", filter_residents);
-            code = "";
-            for (filter_resident of filter_residents) {
-                /*code += "<select class=\"form-control\" id=\"filter_resident\" multiple=\"multiple\"> \n\
-                <option value = \"" + filter_resident.first_name +"\">" +filter_resident.first_name + "</option>\n\n\
-                </select>";*/
-            }
             console.log("caregiverID: ", caregiverID);
-            //$('#update_div').replaceWith($(data["filter_residents"]));
-            //$('#update_div').replaceWith($(data['filter_residents']));
-            //results.html(code);
-
-            replace();
+                result(filter_residents);
         },
         error: function() {
             alert("Error")
@@ -119,22 +104,23 @@ function filter(base_url, caregiverID)
     });
 }
 
-function replace(){
-
-    document.getElementById('update_div').style.display = "block";
+function result(arg) {
+    var filter_residents = arg;
+    console.log(filter_residents);
     $('#result-list').html("<select class=\"form-control\" id=\"filter_resident\" \n\ multiple=\"multiple\"></select>");
     var options = "";
-    var i = 1;
-    for (filter_resident of filter_residents) {
-        console.log(filter_resident.first_name, filter_resident.last_name);
-        {
-            console.log(i++);
-            options += "<option value = " + filter_resident.first_name + ">" + filter_resident.first_name + "</option>";
-            $('#result-list select').append(options);
+    if (filter_residents.length > 0) {
+        document.getElementById('update_div').style.display = "block";
+        for (filter_resident of filter_residents) {
+            console.log(filter_resident.id, filter_resident.last_name);
+            {
+                options = "<option value = " + filter_resident.id + ">" + filter_resident.first_name + "</option>";
+                $('#result-list select').append(options);
+            }
+            $("#result-list option").attr("selected", "selected");
         }
-        $("#result-list option").attr("selected", "selected");
-
-
+    } else {
+        document.getElementById('update_div').style.display = "none"; // TODO: snackbar
     }
 }
 /*
