@@ -4,7 +4,7 @@ var ageMin;
 var ageMax;
 var gender = ""; // initialization
 var floors = [];
-var filter_residents = [];
+var filter_residents;
 var update_div = $('#update_div');
 var results = $('#results');
 var code = "";
@@ -25,25 +25,26 @@ function add_group()
     $('#modal_form').modal('show'); // show bootstrap modal
     $('.modal-title').text('Add Group'); // Set Title to Bootstrap modal title
 
+    if(nonLinearStepSlider == null){
+        nonLinearStepSlider = document.getElementById('slider-non-linear-step');
+        noUiSlider.create(nonLinearStepSlider, {
+            start: [60, 80],
+            step: 1,
+            range: {
+                'min': [50],
+                'max': [120]
+            }
+        });
 
-    nonLinearStepSlider = document.getElementById('slider-non-linear-step');
-    noUiSlider.create(nonLinearStepSlider, {
-        start: [60, 80],
-        step: 1,
-        range: {
-            'min': [50],
-            'max': [120]
-        }
-    });
+        ageRange = [
+            document.getElementById('age-min'),
+            document.getElementById('age-max')
+        ];
 
-    ageRange = [
-        document.getElementById('age-min'),
-        document.getElementById('age-max')
-    ];
-
-    nonLinearStepSlider.noUiSlider.on('update', function (values, handle) {
-        ageRange[handle].innerHTML = parseInt(values[handle]);
-    });
+        nonLinearStepSlider.noUiSlider.on('update', function (values, handle) {
+            ageRange[handle].innerHTML = parseInt(values[handle]);
+        });
+    }
 }
 
 function filter(base_url, caregiverID)
@@ -52,7 +53,6 @@ function filter(base_url, caregiverID)
     var caregiverID = caregiverID;
     // clear global array
     floors = [];
-    filter_residents = [];
     // TODO: warning if empty
     console.log('--- function filter() ---');
     // GENDER
@@ -98,19 +98,19 @@ function filter(base_url, caregiverID)
 
         success: function (data) {
             //console.log("Filter:", ageMin, ageMax, gender, floors[0]);
-            var filter_residents = JSON.parse(data);
+            filter_residents = JSON.parse(data);
             //console.log("filter_residents:", filter_residents);
             code = "";
             for (filter_resident of filter_residents) {
-                console.log(filter_resident.first_name, filter_resident.last_name);
-                code += "<select class=\"form-control\" id=\"filter_resident\" multiple=\"multiple\"> \n\
+                /*code += "<select class=\"form-control\" id=\"filter_resident\" multiple=\"multiple\"> \n\
                 <option value = \"" + filter_resident.first_name +"\">" +filter_resident.first_name + "</option>\n\n\
-                </select>";
+                </select>";*/
             }
             console.log("caregiverID: ", caregiverID);
             //$('#update_div').replaceWith($(data["filter_residents"]));
             //$('#update_div').replaceWith($(data['filter_residents']));
             //results.html(code);
+
             replace();
         },
         error: function() {
@@ -122,26 +122,18 @@ function filter(base_url, caregiverID)
 function replace(){
 
     document.getElementById('update_div').style.display = "block";
-    //document.getElementById("results").innerHTML = (code);
-    /*
-    var para = document.createElement("div");
-var node = document.createTextNode(code);
-para.appendChild(node);
-var element = document.getElementById("results");
-element.appendChild(para);*/
-    /*console.log("code: ", code);
-    document.getElementById('results').innerHTML = 'results';*/
-
-               /*         var test = "<option value = \"Lucas\">Lucas</option>";
-            $('#floor').html("code");
-            $('#results').html("code");
-
-*/
-    //console.log(filter_residents);
+    $('#result-list').html("<select class=\"form-control\" id=\"filter_resident\" \n\ multiple=\"multiple\"></select>");
+    var options = "";
+    var i = 1;
     for (filter_resident of filter_residents) {
-        //document.getElementById('theDiv').innerHTML += (filter_resident + " ");
-        console.log(filter_resident);
-        //document.getElementById('replace').write(filter_resident);
+        console.log(filter_resident.first_name, filter_resident.last_name);
+        {
+            console.log(i++);
+            options += "<option value = " + filter_resident.first_name + ">" + filter_resident.first_name + "</option>";
+            $('#result-list select').append(options);
+        }
+        $("#result-list option").attr("selected", "selected");
+
 
     }
 }
