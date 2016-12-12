@@ -34,24 +34,6 @@ class Login extends CI_Controller {
 		$this->parser->parse( 'login/login_main', $data );
 	}
 
-	public function en()
-	{
-		$this->session->language = 'english';
-		redirect( base_url() );
-	}
-
-	public function fr()
-	{
-		$this->session->language = 'francais';
-		redirect( base_url() );
-	}
-
-	public function nl()
-	{
-		$this->session->language = 'nederlands';
-		redirect( base_url() );
-	}
-
 	public function ajax()
 	{
 		// only allow AJAX requests
