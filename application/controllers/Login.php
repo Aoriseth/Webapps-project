@@ -98,9 +98,10 @@ class Login extends CI_Controller {
 		$this->session->language = strtolower( $person->getLanguage() );
 		$this->session->person = $person;
 
+		$this->session->id = $person->getId();
 		// *** TODO *** remove dependancies on this
 		if ( $person->getType() == 'resident' ) {
-			$this->session->id = $person->getId();
+			
 			$this->session->completedSessions = $person->getCompletedSessions();
 		}
 
