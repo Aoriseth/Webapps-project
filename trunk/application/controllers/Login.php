@@ -24,7 +24,7 @@ class Login extends CI_Controller {
 		$this->load->model( 'Login_model' );
 	}
 
-	public function index()
+	public function index()	// landing page
 	{
 		$data[ 'include' ] = $this->load->view( 'include', '', true );
 
@@ -67,16 +67,16 @@ class Login extends CI_Controller {
 			redirect( '404' );
 		}
 
-		// check if POST is set correct (at least kind of)
+		// check if POST is set correctly
 		if ( !isset( $_POST[ 'username' ] ) || !isset( $_POST[ 'password' ] ) ) {
 			header( 'Content-Type: application/json' );
 			echo json_encode( array( 'success' => false, 'error' => 'Username or password field not set.' ) );
 			return;
 		}
-
 		$username = $this->input->post( 'username' );
 		$password = $this->input->post( 'password' );
 
+		// check credentials with database
 		$result = $this->Login_model->login( $username, $password );
 
 		if ( $result[ 'succeeded' ] == true ) {
@@ -101,7 +101,6 @@ class Login extends CI_Controller {
 		$this->session->id = $person->getId();
 		// *** TODO *** remove dependancies on this
 		if ( $person->getType() == 'resident' ) {
-			
 			$this->session->completedSessions = $person->getCompletedSessions();
 		}
 
