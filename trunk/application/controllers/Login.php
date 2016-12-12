@@ -40,6 +40,12 @@ class Login extends CI_Controller {
 		redirect( base_url() );
 	}
 
+	public function fr()
+	{
+		$this->session->language = 'francais';
+		redirect( base_url() );
+	}
+
 	public function nl()
 	{
 		$this->session->language = 'nederlands';
