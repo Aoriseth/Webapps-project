@@ -20,7 +20,6 @@ class Login extends CI_Controller {
 		$this->lang->load( 'login', $this->session->language );
 
 		// models
-		$this->load->model( 'FaceRecKeys_model' );
 		$this->load->model( 'Login_model' );
 	}
 
@@ -29,7 +28,7 @@ class Login extends CI_Controller {
 		$data[ 'include' ] = $this->load->view( 'include', '', true );
 
 		$data[ 'navbar' ] = $this->load->view( 'login/login_navbar', '', true );
-		$data[ 'facial' ] = $this->load->view( 'login/login_facial_recognition', '', true );
+		$data[ 'camera' ] = $this->load->view( 'login/login_camera', '', true );
 		$data[ 'manual' ] = $this->load->view( 'login/login_manual', '', true );
 
 		$this->parser->parse( 'login/login_main', $data );
@@ -45,19 +44,6 @@ class Login extends CI_Controller {
 	{
 		$this->session->language = 'nederlands';
 		redirect( base_url() );
-	}
-
-	public function get_facial_recognition_tokens()
-	{
-		// only allow AJAX requests
-		if ( !$this->input->is_ajax_request() ) {
-			redirect( '404' );
-		}
-
-		$result = $this->FaceRecKeys_model->getKeys();
-
-		header( 'Content-Type: application/json' );
-		echo json_encode( $result );
 	}
 
 	public function ajax()

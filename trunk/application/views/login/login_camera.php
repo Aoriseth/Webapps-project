@@ -2,11 +2,11 @@
 <script src="<?= base_url();?>assets/js/QR-code/QRcodeRecog.js" type="text/javascript"></script>
 <script> setBaseURL("<?= base_url();?>");</script>
 <p class="txScale">
-	<?= lang( 'login_facial_explanation' ) ?>
+	<?= lang( 'login_camera_explanation' ) ?>
 </p>
 
 <p class="visible-sm visible-xs txScale">
-	<?= lang( 'login_facial_scrolldown' ) ?>
+	<?= lang( 'login_camera_scrolldown' ) ?>
 </p>
 
 <video id="camfr" width="90%" height="auto" autoplay="true">

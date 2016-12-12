@@ -14,7 +14,7 @@
                 <div class=" col-md-6 text-center">
                     <div class=" panel container-fluid">
                         <br>
-                        {facial}
+                        {camera}
                         <br>
                     </div>
                 </div>
