@@ -225,7 +225,7 @@ class Resident_model extends CI_Model {
 	 * Note about default values:
 	 * If you call this function with a given n, days should also be given.
 	 */
-	function getNResidents( $days=30, $n=10 ) {
+	function getNResidentsNotCompletedIn( $days=30, $n=10 ) {
 		$query = $this->db->query(
 			"SELECT id, first_name, last_name, last_completed "
 			. "FROM a16_webapps_3.residents "
