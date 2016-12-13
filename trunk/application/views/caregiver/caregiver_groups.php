@@ -1,17 +1,35 @@
 <head>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.css"></script>
-    <script src="<?php echo base_url(); ?>assets/js/caregiver_filter.js" type="text/javascript"></script>
-
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/caregiver_filter.js"></script>
+    <script type="text/javascript">
+        var base_url = "<?php Print(base_url()); ?>"; 
+        var caregiverID = "<?php Print($caregiverID); ?>"; 
+    </script>
 </head>
 
-test: "<?php echo count($caregiverID); ?>"
-
 <div class="container-fluid">
-    <button class="btn btn-success" onclick="add_group()"><i class="glyphicon glyphicon-plus"></i> Add Group</button>
+    <button class="btn btn-success" onclick="clickAddGroup()"><i class="glyphicon glyphicon-plus"></i> Add Group</button>
+
+    <div class="panel-group" id="accordion">
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Collapsible Group 1</a>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse">
+                <div class="panel-body">1</div>
+            </div>
+        </div>
+
+      
+  </div> 
+    
+
+    
     <div class="row">
         <?php foreach ($residents as $resident) { ?>   
             <div id="<?php echo ($resident->id); ?>" class="ui-widget-content">
@@ -28,14 +46,13 @@ test: "<?php echo count($caregiverID); ?>"
             </div>
         <?php } ?>    
     </div>
-    <div class ="col-xs-12">
-        <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    </div>
+    
 </div>
 
 <div class="modal fade" id="modal_form" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
+            
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h3 class="modal-title">Group Form</h3>
@@ -104,7 +121,7 @@ test: "<?php echo count($caregiverID); ?>"
                             </div>
                         </div>
                             
-                        </div>
+                        
 
                         <!-- RESULTS -->
                         <div class="form-group" id="update_div" style="display:none">
@@ -120,16 +137,14 @@ test: "<?php echo count($caregiverID); ?>"
                         
                         <div class="modal-footer">
                             <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-                            <button type="button" id="btnFilter" onclick="filter('<?php echo base_url() ?>', 'caregiverID')" 
-                                    class="btn btn-info"><i class="glyphicon glyphicon-filter"></i> Filter</button>
-                            <button type="button" id="btnAdd" onclick="save()" class="btn btn-info">Add</button>
+                            <button type="button" class="btn btn-info" id="btnFilter" onclick="clickFilter(caregiverID)">
+                                <i class="glyphicon glyphicon-filter"></i> Filter</button>
+                            <button type="button" class="btn btn-info" id="btnAdd" onclick="clickSave()">Add</button>
                         </div>
                         
                     <!--/div-->
                 </form>
-            </div>
-
-            
-        </div>
+            </div> <!--class="modal-body form"-->
+        </div> <!--class="modal-content"-->
     </div> 
 </div> 

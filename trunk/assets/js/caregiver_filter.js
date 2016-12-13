@@ -5,15 +5,14 @@ var ageMax;
 var gender = ""; // initialization
 var floors = [];
 var filter_residents;
+var selected_residents = [];
+var filter = [];
 
-/*
-(function () {
-    <?php foreach ($residents as $resident) { ?>
-        $("#<?php echo ($resident->id); ?>").draggable(); //TODO
-    <?php }; ?>
+$( document ).ready(function() {
+    //console.log( "base_url:"+base_url);
 });
-*/
-function add_group()
+
+function clickAddGroup()
 {
     //add_method = 'add';
     $('#form')[0].reset(); // reset form on modals
@@ -22,7 +21,7 @@ function add_group()
     $('#modal_form').modal('show'); // show bootstrap modal
     $('.modal-title').text('Add Group'); // Set Title to Bootstrap modal title
 
-    if(nonLinearStepSlider == null){
+    if (nonLinearStepSlider == null) {
         nonLinearStepSlider = document.getElementById('slider-non-linear-step');
         noUiSlider.create(nonLinearStepSlider, {
             start: [60, 80],
@@ -44,45 +43,48 @@ function add_group()
     }
 }
 
-function filter(base_url, caregiverID)
+function clickFilter(caregiverID)
 {
     var url = base_url + 'index.php/caregiver/filterGroup';
     var caregiverID = caregiverID;
     // clear global array
     floors = [];
+    filter = [];
     // TODO: warning if empty
     // GENDER
-    if(document.getElementById('optionMale').checked) {
+    if (document.getElementById('optionMale').checked) {
         gender = "male";
-    } else if(document.getElementById('optionFemale').checked) {
+    } else if (document.getElementById('optionFemale').checked) {
         gender = "female";
     }
 
     // FLOOR
     var f = document.getElementById("floor");
     for (var i = 0; i < f.options.length; i++) {
-        if(f.options[i].selected){
-            if ( !( f.options[i].value in floors ) ) { // prevent duplicates
+        if (f.options[i].selected) {
+            if (!(f.options[i].value in floors)) { // prevent duplicates
                 floors.push(f.options[i].value);
             }
         }
     }
 
     // AGE
-    nonLinearStepSlider.noUiSlider.on('update', function ( values, handle ) {
-        if ( handle === 0 ) {
+    nonLinearStepSlider.noUiSlider.on('update', function (values, handle) {
+        if (handle === 0) {
             ageMin = parseInt(values[handle]);
-        }
-        else if ( handle === 1 ) {
+        } else if (handle === 1) {
             ageMax = parseInt(values[handle]);
         }
     });
     //console.log("Filter:", ageMin, ageMax, gender, floors);
-
+    filter.push(ageMin);
+    filter.push(ageMax);
+    filter.push(gender);
+    filter.push(floors);
 
     $.ajax({
         type: "POST",
-        url: url, 
+        url: base_url + 'index.php/caregiver/filterGroup',
         data: {
             "ageMin": ageMin,
             "ageMax": ageMax,
@@ -96,16 +98,17 @@ function filter(base_url, caregiverID)
             //console.log("Filter:", ageMin, ageMax, gender, floors[0]);
             filter_residents = JSON.parse(data);
             console.log("caregiverID: ", caregiverID);
-                result(filter_residents);
+            result(filter_residents);
         },
-        error: function() {
-            alert("Error")
+        error: function () {
+            alert("Error: filter")
         },
     });
 }
 
 function result(arg) {
     var filter_residents = arg;
+    console.log("filter_residents:" );
     console.log(filter_residents);
     $('#result-list').html("<select class=\"form-control\" id=\"filter_resident\" \n\ multiple=\"multiple\"></select>");
     var options = "";
@@ -123,21 +126,42 @@ function result(arg) {
         document.getElementById('update_div').style.display = "none"; // TODO: snackbar
     }
 }
-/*
- function allowDrop(ev) {
- ev.preventDefault();
- }
 
- function drag(ev) {
- ev.dataTransfer.setData("Text", ev.target.id);
- }
+function clickSave(arg) {
+    selected_residents = [];
+    var f = document.getElementById("filter_resident");
+    for (var i = 0; i < f.options.length; i++) {
+        if (f.options[i].selected) {
+            if (!(f.options[i].value in selected_residents)) { // prevent duplicates
+                selected_residents.push(f.options[i].value);
+            }
+        }
+    }
+    
+    console.log("selected_residents: " + selected_residents);
+    console.log(selected_residents);
+    
+    $.ajax({
+        type: "POST",
+        url: base_url + 'index.php/caregiver/addGroup',
+        data: {
+            "selected_residents": selected_residents,
+            "caregiverID": caregiverID,
+            "filter": filter.toString()
+        },
+        dataType: "text",
+        cache: false,
 
- function drop(ev) {
- var data = ev.dataTransfer.getData("Text");
- ev.target.appendChild(document.getElementById(data));
- ev.preventDefault();
- }
- */
-//
+        success: function (data) {
+            console.log(filter.toString());
+        },
+        error: function () {
+            console.log("clickSaveJSON: " + selected_residents, caregiverID, filter.toString());
+        },
+    });
+}
 
-
+function test(arg)
+{
+    console.log(arg);
+}
