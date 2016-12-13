@@ -30,8 +30,11 @@
                 <?php } ?>
                         <div class="panel-body"><?php echo $resident_id ?></div> 
                 <?php 
-                if(!empty(next($groups))){
-                    if (next($groups)->group_id != $group_id) { ?>  
+                $mode = current($groups);
+                $mode = next($groups);
+                ///echo serialize($mode);
+                if(!empty($mode)){
+                    if ($mode->group_id != $group_id) { ?>  
                             </div>
                         </div>
                 <?php }} ?> 
