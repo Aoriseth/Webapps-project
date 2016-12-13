@@ -11,41 +11,34 @@
 
 <div class="container-fluid">
     <button class="btn btn-success" onclick="clickAddGroup()"><i class="glyphicon glyphicon-plus"></i> Add Group</button>
-
     <div class="panel-group" id="accordion">
-        
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Collapsible Group 1</a>
-                </h4>
-            </div>
-            <div id="collapse1" class="panel-collapse collapse">
-                <div class="panel-body">1</div>
-            </div>
-        </div>
-
-      
-  </div> 
-    
-
-    
-    <div class="row">
-        <?php foreach ($residents as $resident) { ?>   
-            <div id="<?php echo ($resident->id); ?>" class="ui-widget-content">
-
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 ">
+        <?php 
+        $group_id = -1;
+        $resident_id = -1;
+        foreach ($groups as $group) { 
+            $resident_id = $group->resident_id;
+            $duplicate = ($group_id == $group->group_id);
+                if ($duplicate==FALSE) { 
+                    $group_id = $group->group_id; ?> 
                     <div class="panel panel-default">
-                        <div class="panel-body">
-                            <!--div id="drag" draggable="true" ondragstart="drag(event)"-->
-                            <!--p value=<?php echo ($resident->id); ?>--> <?php echo ($resident->first_name); ?> </p>
-                            <!--/div-->
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $group_id ?>"><?php echo $group_id ?></a>
+                            </h4>
                         </div>
-                    </div>
-                </div>
-            </div>
-        <?php } ?>    
-    </div>
+                        <div id="collapse<?php echo $group_id ?>" class="panel-collapse collapse">
+                <?php } ?>
+                        <div class="panel-body"><?php echo $resident_id ?></div> 
+                <?php 
+                if(!empty(next($groups))){
+                    if (next($groups)->group_id != $group_id) { ?>  
+                            </div>
+                        </div>
+                <?php }} ?> 
+        <?php } ?>   
+  </div> 
+
+
     
 </div>
 
