@@ -7,9 +7,10 @@ var floors = [];
 var filter_residents;
 var selected_residents = [];
 var filter = [];
+var groups = [];
 
 $( document ).ready(function() {
-    //console.log( "base_url:"+base_url);
+    reload();
 });
 
 function clickAddGroup()
@@ -98,7 +99,7 @@ function clickFilter(caregiverID)
             //console.log("Filter:", ageMin, ageMax, gender, floors[0]);
             filter_residents = JSON.parse(data);
             console.log("caregiverID: ", caregiverID);
-            result(filter_residents);
+            showFResidents(filter_residents);
         },
         error: function () {
             alert("Error: filter")
@@ -106,7 +107,7 @@ function clickFilter(caregiverID)
     });
 }
 
-function result(arg) {
+function showFResidents(arg) {
     var filter_residents = arg;
     console.log("filter_residents:" );
     console.log(filter_residents);
@@ -161,7 +162,57 @@ function clickSave(arg) {
     });
 }
 
-function test(arg)
-{
-    console.log(arg);
+function reload(){
+    $.ajax({
+        type: "POST",
+        url: base_url + 'index.php/caregiver/getGroups',
+        data: {
+            "selected_residents": selected_residents,
+            "caregiverID": caregiverID,
+            "filter": filter.toString()
+        },
+        dataType: "text",
+        cache: false,
+
+        success: function (data) {
+            groups = JSON.parse(data);
+            console.log(groups);
+           showGroup(groups);
+        },
+        error: function () {
+            alert("Error: reload")
+        },
+    });
 }
+
+function showGroup(arg)
+{
+    var groups = arg;
+    var group_id;
+    var resident_id;
+    $('#panel-group').html("<div class=\"panel panel-default\">");
+    var code = "";
+    if (groups.length > 0) {
+        for (group of groups) {
+            
+            var temp_group_id = group['group_id'];
+            
+            if (temp_group_id != group_id )
+            {
+                group_id = temp_group_id;
+                //group_id
+                {
+                }
+            }
+            resident_id = group['resident_id'];
+            //resident_id
+            {
+            }
+            
+        }
+    } else {
+    }
+    console.log("group_id: " + group_id);
+
+}
+
