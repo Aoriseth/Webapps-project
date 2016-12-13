@@ -135,6 +135,14 @@ class Caregiver extends CI_Controller {
                 echo json_encode( $resultArray );
         }
         
+        function addGroup(){
+            
+                $residentIDs = $_POST['selected_residents']; 
+                $caregiverID = $_POST['caregiverID']; 
+                $filter = $_POST['filter']; 
+                $this->Group_model->addGroup($filter, $caregiverID, $residentIDs);
+        }
+        
 	function load_resident_chart()
 	{
 		// only allow AJAX requests

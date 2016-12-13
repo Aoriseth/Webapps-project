@@ -11,7 +11,6 @@ class Group_model extends CI_Model {
 			"INSERT INTO `a16_webapps_3`.`groups` (`group_explanation`, `created_by`) "
                 . "VALUES ('$filter', '$caregiverID'); ");
                         
-
         foreach ($residentIDs as $residentID) {
             $this->db->query("INSERT INTO `a16_webapps_3`.`residents_groups` ( `group_id`, `resident_id`) "
                             . "VALUES ((select `id` from `a16_webapps_3`.`groups` "
