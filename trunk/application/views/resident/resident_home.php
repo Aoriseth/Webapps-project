@@ -1,8 +1,9 @@
 <div style="padding-bottom: 30px" class="panel">
+    <br>
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
             <form>
-                <button data-toggle="popover" title="" data-container="body" style="background-color: #3f51b5;width:100%;font-size:2.5vmax;"
+                <button data-toggle="popover" title="" data-container="body" style="background-color: #673AB7;width:100%;font-size:2.5vmax;"
                         class="btn-blue popup btn-lg withripple btn btn-raised btn-info"
                         data-content="<?= lang('r_button_test_help') ?>" 
                         formaction="<?= base_url() . 'index.php/resident/categories' ?>">
