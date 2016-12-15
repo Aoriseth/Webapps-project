@@ -56,7 +56,7 @@
 
             <div class="col-sm-10 col-sm-offset-1 " >
                 <div class="progress" id="progress" style="margin-top: 20px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progressBar" style="background-color: #3f51b5;min-width: 2em;">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progressBar" style="background-color: #673AB7;min-width: 2em;">
                         
 
                     </div>
