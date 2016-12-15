@@ -102,13 +102,20 @@ class Caregiver extends CI_Controller {
 		if ( empty( $resident ) ) {
 			redirect( 'caregiver/overview' );
 		}
-                $problematicCategories = $this->Statistics_model->getAllCategoriesBelow($resident, 50);
+                $residentComment = $this->Statistics_model->generateResidentComment($resident);
 		$data = $this->display_common_elements( 'resident' );
                 $residentObject = $this->Resident_model->getResidentById($resident);
-                $data2[ 'problematicCategories' ] = $problematicCategories;
+                $data2['comment'] = $residentComment;
                 $data2[ 'categories' ] = $this->Question_model->getAllCategoryNames( $this->session->language );
 		$data2[ 'id' ] = $resident;
                 $data2[ 'name' ] = $residentObject[0]->first_name;
+                $data2[ 'last_name' ] = $residentObject[0]->last_name;
+                $data2[ 'date_of_birth' ] = $residentObject[0]->date_of_birth;
+                $data2[ 'language' ] = $residentObject[0]->language;
+                $data2[ 'floor' ] = $residentObject[0]->floor_number;
+                $data2[ 'room' ] = $residentObject[0]->room_number;
+                $data2[ 'sessions_completed' ] = $residentObject[0]->completed_sessions;
+                $data2[ 'last_activity' ] = $residentObject[0]->last_activity;
 		$data[ 'content' ] = $this->parser->parse( 'caregiver/caregiver_resident', $data2, true );
 
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
@@ -222,17 +229,15 @@ class Caregiver extends CI_Controller {
 			$category = $this->input->post( 'category' );
                         $resident = $this->input->post( 'resident' );
                         $residentObject = $this->Resident_model->getResidentById($resident)[0];
-                        $sessions = $residentObject->completed_sessions;
+                        $sessions = $this->Score_model->getAllCompletedSessionScoresAndDates( $resident );
 			//array of strings
 			$Yarray = [];
 			//array of ints
 			$Xarray = [];
-                        $i = 1;
-			while ( $i <= $sessions){
-				$result = $this->Statistics_model->getScoresCategoryofSession( $resident, $category, $i);
-				array_push( $Yarray, (string)$i );
+			foreach ( $sessions as $session){
+				$result = $this->Statistics_model->getScoresCategoryofSession( $resident, $category, $session->session);
+				array_push( $Yarray, $session->completed_on );
 				array_push( $Xarray, $result );
-                                $i++;
 			}
 			array_push( $resultArray, $Xarray );
 			array_push( $resultArray, $Yarray );

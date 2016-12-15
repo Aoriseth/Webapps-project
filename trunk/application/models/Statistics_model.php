@@ -93,6 +93,62 @@ class Statistics_model extends CI_Model{
         }
         return $returnCategories;
     }
+    
+    function generateResidentComment($resident){
+        $categories = $this->Question_model->getAllCategories();
+        $comment = "Comment about the scores of the resident.";
+        $averageScore = 50;
+        $goodScore = 70;
+        $good = [];
+        $bad = [];
+        $average = [];
+        foreach($categories as $category){
+            $categoryScore = $this->getScoreCategory($resident, $category->id);
+            if($categoryScore < $averageScore && $categoryScore > 0){
+                $categoryName = $this->Question_model->getCategoryName($category->id, $this->session->language);
+                array_push($bad, $categoryName[0]->category);
+            }
+            elseif($categoryScore >= $averageScore && $categoryScore < $goodScore){
+                $categoryName = $this->Question_model->getCategoryName($category->id, $this->session->language);
+                array_push($average, $categoryName[0]->category);
+            }
+            elseif($categoryScore >= $goodScore){
+                $categoryName = $this->Question_model->getCategoryName($category->id, $this->session->language);
+                array_push($good, $categoryName[0]->category);
+            }
+        }
+        $total = count($bad)+count($average)+count($good);
+        if(count($bad)/$total < 0.2){
+            if(count($good)/$total > 0.2){
+                $comment = "is doing very well, she scores very good on";
+                foreach($good as $goodCat){   
+                    $comment .= ", " . $goodCat;
+                }
+                $comment .= ". ";
+                if(count($bad) > 0){
+                    $comment .= "There is however room for improvement on";
+                    foreach($bad as $badCat){
+                        $comment .= ", " . $badCat;
+                    }
+                    $comment .= ". ";
+                }
+            }
+            else{
+                $comment = "is generally doing well";
+            }
+        }
+        else{
+            $comment = "is not doing well, she scores bad on";
+            if(count($bad) > 0){
+                    foreach($bad as $badCat){
+                        $comment .= ", " . $badCat;
+                    }
+                    $comment .= ". ";
+            }
+        }
+        return $comment;
+        
+    }
 
     function getTotalScoreResident($resident, $categorySets){
         $totalScore = 0;
