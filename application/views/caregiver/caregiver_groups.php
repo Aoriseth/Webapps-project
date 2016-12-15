@@ -137,7 +137,7 @@
                             <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
                             <button type="button" class="btn btn-info" id="btnFilter" onclick="clickFilter(caregiverID)">
                                 <i class="glyphicon glyphicon-filter"></i> Filter</button>
-                            <button type="button" class="btn btn-info" id="btnAdd" onclick="clickSave()">Save</button>
+                            <button type="button" class="btn btn-info" id="btnSave" onclick="clickSave()">Save</button>
                         </div>
                         
                     <!--/div-->
