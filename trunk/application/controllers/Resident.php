@@ -46,7 +46,7 @@ class Resident extends CI_Controller {
 		$residentId = $this->session->id;
 
 		$query1 = $this->Picture_model->getNrCompleted( $residentId );
-		$data2[ 'nrCompleted' ] = $query1[ 0 ]->pieces_collected;
+		$data2[ 'nrCompleted' ] = 0; //TODO DELETE THIS, NOT NECESSARY ANYMORE!
 
 		$query2 = $this->Picture_model->getPictureTest( $residentId );
 		$data2[ 'path' ] = $query2[ 0 ]->picture_dir;
