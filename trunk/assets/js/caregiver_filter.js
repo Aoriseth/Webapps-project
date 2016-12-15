@@ -43,6 +43,7 @@ function getCookie() {
 
 function clickAddGroup()
 {
+    document.getElementById("btnSave").disabled = true;
     //add_method = 'add';
     $('#form')[0].reset(); // reset form on modals
     $('.form-group').removeClass('has-error'); // clear error class
@@ -145,6 +146,7 @@ function showFResidents(arg) {
     $('#result-list').html("<select class=\"form-control\" id=\"filter_resident\" \n\ multiple=\"multiple\"></select>");
     var options = "";
     if (filter_residents.length > 0) {
+        document.getElementById("btnSave").disabled = false;
         document.getElementById('update_div').style.display = "block";
         for (filter_resident of filter_residents) {
             console.log(filter_resident.id, filter_resident.last_name);
