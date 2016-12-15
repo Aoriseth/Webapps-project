@@ -1,4 +1,4 @@
-function loadPuzzle(base_url, nr, path, name, categories) {
+function loadPuzzle(base_url, path, name, categories) {
     
 //    var url = base_url + 'index.php/Resident/getPuzzle';
 //    $.ajax({
@@ -20,7 +20,6 @@ function loadPuzzle(base_url, nr, path, name, categories) {
 
     var image = new Image();
     var greyImage = new Image();
-    var nrToDisplay = nr;
     var nrDisplayed = 0;
     image.src = base_url + path + name;
 	
