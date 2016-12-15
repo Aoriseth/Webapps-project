@@ -58,7 +58,6 @@ class Picture_model extends CI_Model {
             'resident_id' => $residentID,
             'in_progress' => 0,
             'times_completed' => 0,
-            'pieces_collected' => 0,
             'added_on' => date( 'Y-m-d H:i:s' )
         );
         $this->db->insert( 'a16_webapps_3.gallery_pictures', $array );
@@ -221,25 +220,6 @@ class Picture_model extends CI_Model {
                 . "FROM a16_webapps_3.gallery_pictures "
                 . "WHERE resident_id = '$residentId' AND in_progress = '1')"
         );
-        return $query->result();
-    }
-
-	//Deprecated function. Do not use this anymore, it will be deleted soon.
-    function incrementPiecesCollected( $residentID ) {
-		$this->db->where( 'resident_id', $residentID );
-		$this->db->where( 'in_progress', 1 );
-		$this->db->set( 'pieces_collected', 'pieces_collected+1', FALSE );
-		$this->db->update( 'a16_webapps_3.gallery_pictures' );
-    }
-	
-	//Deprecated function. Do not use this anymore, it will be deleted soon.
-    function getNrCompleted( $Id ) {
-        $query = $this->db->query(
-                "SELECT pieces_collected"
-                . " FROM a16_webapps_3.gallery_pictures"
-                . " WHERE resident_id='$Id' AND in_progress = 1"
-        );
-
         return $query->result();
     }
 }
