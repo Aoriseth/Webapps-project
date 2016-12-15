@@ -11,7 +11,7 @@
     <![endif]-->
 </head> 
 
-<div class="container-fluid">
+<div class="panel container-fluid">
     <h1 style="font-size:20pt">Health care Patients</h1>
 
     <h3>Person Data</h3>
