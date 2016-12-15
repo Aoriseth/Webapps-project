@@ -154,9 +154,6 @@ class Resident extends CI_Controller {
 
 		$data = $this->display_common_elements( 'completed' );
 		
-		// increase the number of collected puzzle pieces
-		$this->Picture_model->incrementPiecesCollected( $this->session->id );
-
 		$data2[ 'category' ] = htmlspecialchars( $category );
 		$categorySetID = $this->Question_model->getCategorySetIdFrom( $this->session->language, $category );
 		$tip = $this->Tip_model->getTipFromCategorySet( $categorySetID )->tip;
