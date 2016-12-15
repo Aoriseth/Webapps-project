@@ -1,4 +1,4 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #512DA8">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -24,4 +24,7 @@
 			</ul>
 		</div>
 	</div>
+</div>
+<div style="top:0px;height:250px;width:100%;background-color: #673ab7;position:absolute;">
+    
 </div>
