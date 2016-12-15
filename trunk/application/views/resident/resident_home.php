@@ -15,7 +15,7 @@
     <div>
     <script> loadPuzzle("<?= base_url() ?>");</script>
      <canvas class="center-block img-responsive" id="puzzle" style="height: 32vw;width:content-box"></canvas>
-            <script> loadPuzzle( "<?php echo base_url()?>", <?php echo json_encode($nrCompleted); ?>,
+            <script> loadPuzzle( "<?php echo base_url()?>",
              <?php echo json_encode($path); ?> , <?php echo json_encode($puzzle); ?> , <?php echo json_encode($categories); ?>); </script>
     </div>
 </div>
