@@ -75,7 +75,7 @@ class Resident_model extends CI_Model {
 	 */
 	function addResident( $residentID, $firstName, $lastName, $gender,
 			$password, $dateOfBirth, $language, $floorNumber,
-			$roomNumber, $lastDomicile, $caregiverID ) {
+			$roomNumber, $lastDomicile ) {
 		$array = array(
 			'id' => $residentID,
 			'first_name' => $firstName,
@@ -88,7 +88,7 @@ class Resident_model extends CI_Model {
 			'room_number' => $roomNumber,
 			'last_domicile' => $lastDomicile,
 			'type' => 'resident',
-			'account_created_by' => $caregiverID,
+			'account_created_by' => $this->session->id,
 			'account_created_on' => date( 'Y-m-d H:i:s' )
 		);
 		$this->db->insert( 'a16_webapps_3.residents', $array );
