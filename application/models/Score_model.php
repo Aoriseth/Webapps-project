@@ -127,6 +127,7 @@ class Score_model extends CI_Model {
 		);
 		return $query->result();
 	}
+        
 	
 	/**
 	 * Compute the total score of the current session for the given resident.

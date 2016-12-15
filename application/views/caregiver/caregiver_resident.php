@@ -1,41 +1,60 @@
-<p class="txScale">
-    Details of {name}.
-</p>
-
-<div class="container-fluid">
+<div class=" panel container-fluid">
+    </br>
+    <p class="txScale">
+        Details of {name} {last_name}.
+    </p>
+    
     <div class="row">
         <div class="col-xs-6">
             <img src="<?php echo base_url(); ?>assets/elderly.jpg" alt="Profile Picture" style="width:250px;height:300px;">
-        </div>
+        </div>   
         <div class="col-xs-6">
-            <div id="chart1_div" style="width:100%"></div>
+            born {date_of_birth} </br>
+            {language} </br>
+            floor {floor} room {room} </br>
+            last activity on {last_activity} </br>
+            {sessions_completed} completed session(s) </br>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-6">
-            Problematic categories: </br>
-            <?php foreach ($problematicCategories as $category){?>
-                <?php echo $category;?>
-            </br>
-            
-            <?php }?>
-        </div>
-        <div class="col-xs-6">
-            grafiek die verloop toont van bepaalde categorie over over alle sessies
-            <form class="form-group" method="POST" id="chart2_form" name="chart2Form">
-                <select class="form-control" name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
-                        <?php foreach ($categories as $category) { ?>   
-                                <option value=<?= json_encode($category->category_set); ?> ><?php echo $category->category; ?></option>
-                        <?php } ?>           
-                </select>
+    </br>
 
-
-            </form>
-            <div id="chart2_div" style="width:100%"></div>
-        </div>
-    </div>
 </div>
 
+<div class=" panel container-fluid">
+    </br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-6">
+                <div id="chart1_div" style="width:100%"></div>
+            </div>
+            <div class="col-xs-6">
+            </br>
+            {name} {comment}
+        </div>
+        </div>
+    </div>
+    </br>
+</div>
+
+<div class=" panel container-fluid">
+    </br>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-xs-6">
+                <form class="form-group" method="POST" id="chart2_form" name="chart2Form">
+                    <select class="form-control" name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
+                            <?php foreach ($categories as $category) { ?>   
+                                    <option value=<?= json_encode($category->category_set); ?> ><?php echo $category->category; ?></option>
+                            <?php } ?>           
+                    </select>
+                </form>
+                <div id="chart2_div" style="width:100%"></div>
+            </div>
+        </div>
+    </div>
+    </br>
+</div>
 <script type="text/javascript">
 	
         var formChart2 = document.getElementById('chart2_form');
