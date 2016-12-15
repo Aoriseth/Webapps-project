@@ -8,10 +8,41 @@ var filter_residents;
 var selected_residents = [];
 var filter = [];
 var groups = [];
+var cookie_name = "filter " + caregiverID;
 
 $( document ).ready(function() {
+    var cookie = getCookie();
+    console.log(JSON.parse(cookie));
     reload();
 });
+
+function setCookie(arg) {   // arg:Object    
+    // value
+    var cookieJSON = getCookie();                   
+    var cookieArray = [];
+    if (cookieJSON != null)
+        cookieArray = JSON.parse(cookieJSON);            
+    cookieArray.push(arg);
+    var cookie_value = JSON.stringify(cookieArray);
+    
+    // time
+    var d = new Date();
+    var exdays = 15;
+    d.setTime(d.getTime() + (exdays * 1000 * 24 * 60 * 60));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cookie_name + "=" + cookie_value + ";" + expires + "; path=/";
+}
+
+function getCookie() {
+    var cookie = document.cookie;
+    if (cookie !== null) {
+        var parts = cookie.split(cookie_name + "=");
+        if (parts.length === 2)
+            return parts.pop();
+    }
+}
+
+//////
 
 function clickAddGroup()
 {
@@ -83,6 +114,9 @@ function clickFilter(caregiverID)
     filter.push(gender);
     filter.push(floors);
 
+    var filter = {ageMin: ageMin, ageMax: ageMax, gender: gender, floors: floors};
+    setCookie(filter);
+    
     $.ajax({
         type: "POST",
         url: base_url + 'index.php/caregiver/filterGroup',
@@ -127,6 +161,7 @@ function showFResidents(arg) {
         document.getElementById('update_div').style.display = "none"; // TODO: snackbar
     }
 }
+
 
 function clickSave(arg) {
     selected_residents = [];
@@ -177,42 +212,9 @@ function reload(){
         success: function (data) {
             groups = JSON.parse(data);
             console.log(groups);
-           showGroup(groups);
         },
         error: function () {
             alert("Error: reload")
         },
     });
 }
-
-function showGroup(arg)
-{
-    var groups = arg;
-    var group_id;
-    var resident_id;
-    $('#panel-group').html("<div class=\"panel panel-default\">");
-    var code = "";
-    if (groups.length > 0) {
-        for (group of groups) {
-            
-            var temp_group_id = group['group_id'];
-            
-            if (temp_group_id != group_id )
-            {
-                group_id = temp_group_id;
-                //group_id
-                {
-                }
-            }
-            resident_id = group['resident_id'];
-            //resident_id
-            {
-            }
-            
-        }
-    } else {
-    }
-    console.log("group_id: " + group_id);
-
-}
-
