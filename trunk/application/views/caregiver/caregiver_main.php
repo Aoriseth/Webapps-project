@@ -29,7 +29,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-offset-1 col-md-10">
-                    <div class="panel container-fluid">
+                    <div class="container-fluid">
                         {content}
                     </div>
                 </div>
