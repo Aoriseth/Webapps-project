@@ -44,7 +44,7 @@ class Answer_model extends CI_Model {
 			$this->db->update( 'a16_webapps_3.answers', $answerData );
 		}
 		
-		$this->updateLastCompleted( $residentID );
+		$this->updateLastActivity( $residentID );
     }
 	
 	/**
@@ -71,7 +71,7 @@ class Answer_model extends CI_Model {
 	 * Update the last activity field with the current time and date
 	 * for a given resident (by ID).
 	 */
-	private function updateLastCompleted( $residentID ) {
+	private function updateLastActivity( $residentID ) {
 		$this->db->where( 'id', $residentID );
 		$this->db->set( 'last_activity', date( 'Y-m-d H:i:s' ) );
 		$this->db->update( 'a16_webapps_3.residents' );

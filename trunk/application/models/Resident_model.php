@@ -6,19 +6,20 @@ class Resident_model extends CI_Model {
 		parent::__construct();
 		
 		require 'lib/password.php';
-		$this->load->helper('date');
-        date_default_timezone_set('Europe/Brussels');
+		$this->load->helper( 'date' );
+        date_default_timezone_set( 'Europe/Brussels' );
+		$this->load->model( 'Score_model' );
 	}
 
 	/*
 	 * Increase the session of the resident whith given ID by 1.
 	 */
 	function incrementSession( $residentID ) {
-		$this->db->where('id', $residentID);
-		$this->db->set('completed_sessions', 'completed_sessions+1', FALSE);
-		$this->db->update('a16_webapps_3.residents');
+		$this->Score_model->addSessionScore( $residentID );
 		
-		$this->updateLastCompleted($residentID);
+		$this->db->where( 'id', $residentID );
+		$this->db->set( 'completed_sessions', 'completed_sessions+1', FALSE );
+		$this->db->update( 'a16_webapps_3.residents' );
 	}
 	
 	/**
@@ -70,16 +71,6 @@ class Resident_model extends CI_Model {
 	}
 	
 	/**
-	 * Update the last completed field with the current time and date
-	 * for a given resident (by ID).
-	 */
-	private function updateLastCompleted( $residentID ) {
-		$this->db->where('id', $residentID);
-		$this->db->set('last_completed', date('Y-m-d H:i:s'));
-		$this->db->update('a16_webapps_3.residents');
-	}
-	
-	/**
 	 * Insert a new resident into the database.
 	 */
 	function addResident( $residentID, $firstName, $lastName, $gender,
@@ -98,9 +89,9 @@ class Resident_model extends CI_Model {
 			'last_domicile' => $lastDomicile,
 			'type' => 'resident',
 			'account_created_by' => $caregiverID,
-			'account_created_on' => date('Y-m-d H:i:s')
+			'account_created_on' => date( 'Y-m-d H:i:s' )
 		);
-		$this->db->insert('a16_webapps_3.residents', $array);
+		$this->db->insert( 'a16_webapps_3.residents', $array );
 	}
         
 	/**
@@ -205,7 +196,7 @@ class Resident_model extends CI_Model {
 	 * 
 	 * If n is not given, it will return at most 10 results.
 	 */
-	function getNLongestAgoCompletedResidents( $n ) {
+	function getNLongestAgoCompletedResidents( $n=10 ) {
 		$query = $this->db->query(
 			"SELECT id, first_name, last_name, last_completed "
 			. "FROM a16_webapps_3.residents "
