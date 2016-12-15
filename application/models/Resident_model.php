@@ -183,7 +183,7 @@ class Resident_model extends CI_Model {
 		$query = $this->db->query(
 			"SELECT id, first_name, last_name, last_completed "
 			. "FROM a16_webapps_3.residents "
-			. "ORDER BY last_completed DESC"
+			. "ORDER BY last_completed DESC "
 			. "LIMIT '$n'"
 		);
 		return $query->result();

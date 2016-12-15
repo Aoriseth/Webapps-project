@@ -16,6 +16,7 @@
                 Floor: {floor} Room: {room} </br>
                 Last activity on {last_activity} </br>
                 {sessions_completed} completed session(s) </br>
+                {name}'s average score is {average_score}
             </div>
         </div>
         </br>

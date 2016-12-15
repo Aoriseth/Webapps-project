@@ -46,7 +46,11 @@ class Caregiver extends CI_Controller {
 	function home()
 	{
 		$data = $this->display_common_elements( 'home' );
-
+                $residents = $this->Resident_model->getAllResidents();
+                //$data2['recent_residents'] = $this->Resident_model->getNMostRecentCompletedResidents();
+                foreach($residents as $resident){
+                    
+                }
 		$data2[ 'name' ] = $this->session->first_name;
 
 		$data2[ 'display_login_notification' ] = $this->session->display_login_notification;
@@ -116,6 +120,7 @@ class Caregiver extends CI_Controller {
                 $data2[ 'room' ] = $residentObject[0]->room_number;
                 $data2[ 'sessions_completed' ] = $residentObject[0]->completed_sessions;
                 $data2[ 'last_activity' ] = $residentObject[0]->last_activity;
+                $data2['average_score'] = round($this->Statistics_model->getTotalScoreResident($resident));
 		$data[ 'content' ] = $this->parser->parse( 'caregiver/caregiver_resident', $data2, true );
 
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
@@ -247,7 +252,7 @@ class Caregiver extends CI_Controller {
 		echo json_encode( $resultArray );
 	}
         
-        function load_avarage_score_chart()
+        function load_avarage_score_per_resident_chart()
 	{
 		// only allow AJAX requests
 		if ( ! $this->input->is_ajax_request() ) {
@@ -266,8 +271,41 @@ class Caregiver extends CI_Controller {
                 $Xarray = [];
 
                 foreach ( $residents as $resident ) {
-                    $totalScore = $this->Statistics_model->getTotalScoreResident($resident->id, $categories);
+                    $totalScore = $this->Statistics_model->getTotalScoreResident($resident->id);
                     array_push( $Yarray, $resident->first_name );
+                    array_push( $Xarray, $totalScore );
+                }    
+                    
+                array_push( $resultArray, $Xarray );
+                array_push( $resultArray, $Yarray );
+		
+		
+		
+		header( 'Content-Type: application/json' );     
+		echo json_encode( $resultArray );
+	}
+        
+        function load_avarage_score_per_category_chart()
+	{
+		// only allow AJAX requests
+		if ( ! $this->input->is_ajax_request() ) {
+			redirect( '404' );
+		}
+
+		$resultArray = [];
+
+
+                $residents = $this->Resident_model->getAllResidents();
+                $categories = $this->Question_model->getAllCategories(); // as ID
+
+                //array of strings
+                $Yarray = [];
+                //array of ints
+                $Xarray = [];
+
+                foreach ( $categories as $category ) {
+                    $totalScore = $this->Statistics_model->getTotalScoreCategory($residents, $category->id);   
+                    array_push( $Yarray, $this->Question_model->getCategoryName($category->id, $this->session->language)[0] );
                     array_push( $Xarray, $totalScore );
                 }    
                     

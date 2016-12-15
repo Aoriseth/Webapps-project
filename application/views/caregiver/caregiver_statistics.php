@@ -140,13 +140,12 @@
         });
         return false;
     }
-
+    
     function chart3function() {
         console.log('chart 3 submitted');
-
-        $.ajax({
+	$.ajax({
             type: "POST",
-            url: "<?php echo base_url() ?>index.php/caregiver/load_avarage_score_chart",
+            url: "<?php echo base_url() ?>index.php/caregiver/load_avarage_score_per_resident_chart",
             data: {},
             dataType: "text",
             cache: false,
