@@ -28,7 +28,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-offset-1 col-md-10">
+                <div class="col-md-12">
                     <div class="container-fluid">
                         {content}
                     </div>
