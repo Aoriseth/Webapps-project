@@ -7,10 +7,10 @@
 
         <div class="row">
 
-            <div class="col-xs-6">
+            <div class="col-sm-6">
                 <img src="<?php echo base_url(); ?>assets/elderly.jpg" alt="Profile Picture" style="width:250px;height:300px;">
             </div>   
-            <div class="col-xs-6">
+            <div class="col-sm-6">
                 Born {date_of_birth} </br>
                 {language} </br>
                 Floor: {floor} Room: {room} </br>
@@ -26,7 +26,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-md-6">
             <div class="panel container-fluid">
                 <br>
                 {name} {comment}
@@ -36,7 +36,7 @@
 
 
         </div>
-        <div  class="col-sm-6">
+        <div  class="col-md-6">
             <div class="panel container-fluid">
                 <form class="form-group" method="POST" id="chart2_form" name="chart2Form">
                     <select class="form-control" name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
