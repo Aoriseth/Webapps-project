@@ -157,6 +157,7 @@ function showFResidents(arg) {
             $("#result-list option").attr("selected", "selected");
         }
     } else {
+        document.getElementById("btnSave").disabled = true;
         document.getElementById('update_div').style.display = "none"; // TODO: snackbar
     }
 }
@@ -240,9 +241,11 @@ function showFilters() {
                     "<h4 class=\"panel-title\">" +
                     "<a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse" + i + "\">" + i + "</a>" +
                     "</h4>" + "</div>" +
-                    "<div id=\"collapse" + i + "\" class=\"panel-collapse collapse\">" +
-                    "<div class=\"panel-body\">" + JSON.stringify(cookie) + "</div>" +
-                    "</div></div>";
+                    "<div id=\"collapse" + i + "\" class=\"panel-collapse collapse\">";
+                    for(key in cookie){
+                        code += "<div class=\"panel-body\">" + key + ":\t" + cookie[key] + "</div>" ;
+                    }
+                    code += "</div></div>";
             $('#accordion').append(code);
         }
     }
