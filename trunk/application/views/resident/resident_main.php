@@ -13,7 +13,7 @@
     <body>
         <!--Navigation bar of this page-->
         {navbar}
-        
+        <br><br>
         <!-- the main element of the page (puzzle, etc) -->
         <div class="container" id="container_resident">
             <div class="row">
