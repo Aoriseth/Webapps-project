@@ -6,7 +6,10 @@
     <script type="text/javascript">
         var base_url = "<?php Print(base_url()); ?>"; 
         var caregiverID = "<?php Print($caregiverID); ?>"; 
+        var base_url = "<?php Print(base_url()); ?>"; 
+        var caregiverID = "<?php Print($caregiverID); ?>"; 
     </script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/caregiver_filter.js"></script>
 </head>
 
 <div class="panel container-fluid">
