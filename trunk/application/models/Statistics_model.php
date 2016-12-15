@@ -120,43 +120,119 @@ class Statistics_model extends CI_Model{
         $total = count($bad)+count($average)+count($good);
         if(count($bad)/$total < 0.2){
             if(count($good)/$total > 0.2){
-                $comment = "is doing very well, she scores very good on";
-                foreach($good as $goodCat){   
-                    $comment .= ", " . $goodCat;
-                }
-                $comment .= ". ";
-                if(count($bad) > 0){
-                    $comment .= "There is however room for improvement on";
-                    foreach($bad as $badCat){
-                        $comment .= ", " . $badCat;
+                if(count($good)/$total < 0.7){
+                    $comment = "is doing very well, (s)he scores very good on";
+                    foreach($good as $goodCat){   
+                        $comment .= ", " . $goodCat;
                     }
                     $comment .= ". ";
+                    if(count($bad) > 0){
+                        $comment .= "There is however alot of room for improvement on";
+                        foreach($bad as $badCat){
+                            $comment .= ", " . $badCat;
+                        }
+                        $comment .= ". ";
+                    }
+                }
+                else{
+                    $comment = "is doing excellent. ";
+                    if(count($bad) > 0){
+                        $comment .= "However, (s)he can do alot better on";
+                        foreach($bad as $badCat){
+                            $comment .= ", " . $badCat;
+                        }
+                        $comment .= ". ";
+                        if(count($average) > 0){
+                            $comment .= "The following topics can also be improved";
+                            foreach($average as $averageCat){
+                                $comment .= ", " . $averageCat;
+                            }
+                            $comment .= ". ";
+                    
+                        }
+                    }
+                    elseif(count($average) > 0){
+                        $comment .= "However, there is room for improvement on";
+                        foreach($average as $averageCat){
+                            $comment .= ", " . $averageCat;
+                        }
+                        $comment .= ". ";
+                    }
                 }
             }
             else{
-                $comment = "is generally doing well";
+                $comment = "is generally doing well. ";
+                if(count($bad) > 0){
+                        $comment .= "However, (s)he can do alot better on";
+                        foreach($bad as $badCat){
+                            $comment .= ", " . $badCat;
+                        }
+                        $comment .= ". ";
+                        if(count($average) > 0){
+                            $comment .= "The following topics can also be improved";
+                            foreach($average as $averageCat){
+                                $comment .= ", " . $averageCat;
+                        }
+                        $comment .= ". ";
+                    }
+                }
+                
+                elseif(count($average) > 0){
+                        $comment .= "However, there is room for improvement on";
+                        foreach($average as $averageCat){
+                            $comment .= ", " . $averageCat;
+                        }
+                        $comment .= ". ";
+                }
             }
         }
         else{
-            $comment = "is not doing well, she scores bad on";
+            $comment = "is not doing well, (s)he scores bad on";
             if(count($bad) > 0){
                     foreach($bad as $badCat){
                         $comment .= ", " . $badCat;
                     }
                     $comment .= ". ";
+                    if(count($average) > 0){
+                                $comment .= "The following topics can also be improved";
+                                foreach($average as $averageCat){
+                                    $comment .= ", " . $averageCat;
+                        }
+                        $comment .= ". ";
+                    }
             }
         }
         return $comment;
         
     }
 
-    function getTotalScoreResident($resident, $categorySets){
+    function getTotalScoreResident($resident){
+        $categorySets = $this->Question_model->getAllCategories(); // as ID
         $totalScore = 0;
         $nonZeroCategories = 0;
         $totalAvarageScore = 0;
         //for all categories
         foreach($categorySets as $categorySet) {
             $scoreCategory = $this->getScoreCategory($resident, $categorySet->id);
+            $totalScore += $scoreCategory;
+            if($scoreCategory > 0){
+                $nonZeroCategories++;
+            }
+        }
+//      
+        if($nonZeroCategories > 0){
+            $totalAvarageScore = $totalScore/$nonZeroCategories;
+        }
+        return $totalAvarageScore;
+    }
+    
+    function getTotalScoreCategory($residents, $categorySet){
+        $totalScore = 0;
+        $nonZeroCategories = 0;
+        $totalAvarageScore = 0;
+        //for all categories
+        foreach($residents as $resident) {
+            $scoreCategory = $this->getScoreCategory($resident->id, $categorySet);
             $totalScore += $scoreCategory;
             if($scoreCategory > 0){
                 $nonZeroCategories++;
