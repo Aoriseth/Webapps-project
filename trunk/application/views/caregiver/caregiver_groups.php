@@ -9,7 +9,7 @@
     </script>
 </head>
 
-<div class="container-fluid">
+<div class="panel container-fluid">
     <button class="btn btn-success" onclick="clickAddGroup()"><i class="glyphicon glyphicon-plus"></i> Add Group</button>
     <div class="panel-group" id="accordion">
         <?php 
