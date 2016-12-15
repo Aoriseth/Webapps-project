@@ -354,26 +354,32 @@ class Caregiver extends CI_Controller {
 			$target_file = $target_dir.$target_name;
 			$imageFileType = pathinfo( $target_file, PATHINFO_EXTENSION );
 
-			// check if image file is an actual image
+			//Check if image file is an actual image
 			$check = getimagesize( $_FILES[ "fileToUpload" ][ "tmp_name" ] );
 			if ( $check == false ) {
 				echo 'Fake image.';
 				return;
 			}
 
-			// check if file already exists
-			if ( file_exists( $target_file ) ) {
-				echo 'File already exists. ';
-				return;
+			//Check if file already exists, rename if it exists. Give up if it fails too many times.
+			$counter = 0;
+			while ( file_exists( $target_file ) ) {
+				if($counter > 8) {
+					echo 'Chances of this happening are astronomically small. Please try again later.';
+					return;
+				}
+				$randomString = substr( md5( microtime() ), mt_rand( 0, 26 ), 1 );
+				$target_file = $target_file.$randomString;
+				$counter = $counter + 1;
 			}
 
-			// check file size
+			//Check file size
 			if ( $_FILES[ "fileToUpload" ][ "size" ] > 700000 ) {
 				echo 'File too large. ';
 				return;
 			}
 			
-			// allow certain file formats
+			//Allow certain file formats
 			if ( $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ) {
 				//Something else than a jpg, png or jpeg cannot be uploaded
 				echo 'This type of images is not supported. ';
