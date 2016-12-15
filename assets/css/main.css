@@ -19,7 +19,7 @@ and open the template in the editor.
 
 
 body {
-    background: rgb(233, 234, 237) !important;
+    background: #FFFFFF !important;
     padding-top: 70px;
 }
 
@@ -72,7 +72,7 @@ table{
 }
 
 .btn-blue{
-    background-color: #3f51b5 !important;
+    background-color: #512DA8 !important;
 }
 .tlScale{
     font-size:2.5vmax !important;
