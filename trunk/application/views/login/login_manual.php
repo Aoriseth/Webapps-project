@@ -27,7 +27,7 @@ $( function() {
 				<input class="form-control" name="password" id="focusedInput2" required type="password">
 			</div>
 		
-			<input class="btn btn-lg btn-raised btn-default" type="submit" name="login" value="<?= lang( 'common_login' ) ?>">
+                    <input class="btn btn-lg btn-raised btn-info" style="background-color: #673AB7;" type="submit" name="login" value="<?= lang( 'common_login' ) ?>">
 		</div>
 	</form>
 </div>
