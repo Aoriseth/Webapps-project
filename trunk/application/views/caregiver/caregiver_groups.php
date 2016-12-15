@@ -2,10 +2,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.css"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/caregiver_filter.js"></script>
     <script type="text/javascript">
-        var base_url = "<?php Print(base_url()); ?>"; 
-        var caregiverID = "<?php Print($caregiverID); ?>"; 
         var base_url = "<?php Print(base_url()); ?>"; 
         var caregiverID = "<?php Print($caregiverID); ?>"; 
     </script>
@@ -15,7 +12,8 @@
 <div class="panel container-fluid">
     <button class="btn btn-success" onclick="clickAddGroup()"><i class="glyphicon glyphicon-plus"></i> Add Group</button>
     <div class="panel-group" id="accordion">
-        <?php 
+        
+        <?php /*
         $group_id = -1;
         $resident_id = -1;
         foreach ($groups as $group) { 
@@ -41,8 +39,9 @@
                             </div>
                         </div>
                 <?php }} ?> 
-        <?php } ?>   
-  </div> 
+        <?php } */ ?>   
+        
+    </div> 
 
 
     
@@ -138,7 +137,7 @@
                             <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
                             <button type="button" class="btn btn-info" id="btnFilter" onclick="clickFilter(caregiverID)">
                                 <i class="glyphicon glyphicon-filter"></i> Filter</button>
-                            <button type="button" class="btn btn-info" id="btnAdd" onclick="clickSave()">Add</button>
+                            <button type="button" class="btn btn-info" id="btnAdd" onclick="clickSave()">Save</button>
                         </div>
                         
                     <!--/div-->
