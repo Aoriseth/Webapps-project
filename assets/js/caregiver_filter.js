@@ -9,11 +9,10 @@ var selected_residents = [];
 var filter = [];
 var groups = [];
 var cookie_name = "filter " + caregiverID;
+var filterObject;
 
 $( document ).ready(function() {
-    var cookie = getCookie();
-    console.log(JSON.parse(cookie));
-    reload();
+    showFilters();
 });
 
 function setCookie(arg) {   // arg:Object    
@@ -41,8 +40,6 @@ function getCookie() {
             return parts.pop();
     }
 }
-
-//////
 
 function clickAddGroup()
 {
@@ -114,8 +111,8 @@ function clickFilter(caregiverID)
     filter.push(gender);
     filter.push(floors);
 
-    var filter = {ageMin: ageMin, ageMax: ageMax, gender: gender, floors: floors};
-    setCookie(filter);
+    filterObject = {ageMin: ageMin, ageMax: ageMax, gender: gender, floors: floors};
+    
     
     $.ajax({
         type: "POST",
@@ -162,7 +159,6 @@ function showFResidents(arg) {
     }
 }
 
-
 function clickSave(arg) {
     selected_residents = [];
     var f = document.getElementById("filter_resident");
@@ -176,7 +172,7 @@ function clickSave(arg) {
     
     console.log("selected_residents: " + selected_residents);
     console.log(selected_residents);
-    
+    /*
     $.ajax({
         type: "POST",
         url: base_url + 'index.php/caregiver/addGroup',
@@ -189,12 +185,17 @@ function clickSave(arg) {
         cache: false,
 
         success: function (data) {
-            console.log(filter.toString());
-        },
+            console.log(filter.toString());*/
+            setCookie(filterObject);
+            $('#modal_form').modal('hide');
+            showFilters();
+            filter_residents = 0;
+            showFResidents(filter_residents);
+        /*},
         error: function () {
             console.log("clickSaveJSON: " + selected_residents, caregiverID, filter.toString());
         },
-    });
+    });*/
 }
 
 function reload(){
@@ -214,7 +215,37 @@ function reload(){
             console.log(groups);
         },
         error: function () {
-            alert("Error: reload")
+            alert("Error: reload");
         },
     });
 }
+
+function showFilters() {
+    var cookieJSON = getCookie();
+    if (cookieJSON != null) {
+        var cookieArray = [];
+        cookieArray = JSON.parse(cookieJSON);
+        //console.log(cookieArray);
+        var i = 0;
+        var code = "";
+        $('#accordion').empty();
+
+        for (cookie of cookieArray) {
+            console.log(i++);
+            console.log(cookie);
+            code = "<div class=\"panel panel-default\">" +
+                    "<div class=\"panel-heading\">" +
+                    "<h4 class=\"panel-title\">" +
+                    "<a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse" + i + "\">" + i + "</a>" +
+                    "</h4>" + "</div>" +
+                    "<div id=\"collapse" + i + "\" class=\"panel-collapse collapse\">" +
+                    "<div class=\"panel-body\">" + JSON.stringify(cookie) + "</div>" +
+                    "</div></div>";
+            $('#accordion').append(code);
+        }
+    }
+}
+
+      
+        
+          
