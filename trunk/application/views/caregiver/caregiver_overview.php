@@ -136,9 +136,14 @@
             });
 
         });
+        
 
 
-
+        function redirect(url){
+            var url2 = url.toString();
+            console.log(url2);
+            window.location.href = url2;
+        }
         function add_person()
         {
             save_method = 'add';
