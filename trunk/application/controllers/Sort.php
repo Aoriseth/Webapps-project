@@ -31,10 +31,10 @@ class Sort extends CI_Controller {
                        $url = base_url() . 'index.php/caregiver/resident/' . $residents->id ;
                        
                         
-                        $row[] = '<a class="btn" onclick="redirect('."'" . (string)$url ."'".')"> '. $residents->id .'</a>';
+                        $row[] = '<a class="btn btn-raised" onclick="redirect('."'" . (string)$url ."'".')"> '. $residents->id .'</a>';
                         //$row[] = $residents->id;
-			$row[] = $residents->first_name;
-                        $row[] = $residents->last_name;
+			$row[] = '<a class="btn" onclick="redirect('."'" . (string)$url ."'".')"> '.$residents->first_name .'</a>';
+                        $row[] = '<a class="btn" onclick="redirect('."'" . (string)$url ."'".')"> '. $residents->last_name .'</a>';
                         $row[] = $residents->gender;                       
                         $row[] = $residents->date_of_birth;                       
                         $row[] = $residents->floor_number;   
