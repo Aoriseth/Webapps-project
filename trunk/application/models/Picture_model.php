@@ -152,8 +152,6 @@ class Picture_model extends CI_Model {
             . " WHERE id='$residentID' AND in_progress = '1'"
         );
         */
-		
-		
     }
     
     function activateNewPuzzle( $residentID ) {

@@ -81,10 +81,10 @@ class Resident extends CI_Controller {
 			$this->Score_model->addSessionScore( $this->session->id );
 			$this->Resident_model->incrementSession( $this->session->id );
 			$this->session->completedSessions = $this->session->completedSessions + 1;
-                        //$this->Picture_model->incrementPuzzleCompleted($this->session->id);
-                        //$this->Picture_model->deactivatePuzzle($this->session->id);
-                        //$this->Picture_model->activateNewPuzzle($this->session->id);
-                        header("Refresh:0");
+			$this->Picture_model->incrementPuzzleCompleted($this->session->id);
+			$this->Picture_model->deactivatePuzzle($this->session->id);
+			$this->Picture_model->activateNewPuzzle($this->session->id);
+			header("Refresh:0");
                         
 			// TODO: something when all categories are finished
 			/*
