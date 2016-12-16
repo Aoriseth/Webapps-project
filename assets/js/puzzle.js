@@ -20,7 +20,6 @@ function loadPuzzle(base_url, path, name, categories) {
 
     var image = new Image();
     var greyImage = new Image();
-    var nrDisplayed = 0;
     image.src = base_url + path + name;
 	
     (image.onload) = function(){
@@ -39,10 +38,12 @@ function loadPuzzle(base_url, path, name, categories) {
         for(var y = 0; y < 4; ++y) {
             for(var x = 0; x < 3; ++x) {
                 //if((Math.random() <= nrToDisplay/12 && nrDisplayed < nrToDisplay) || (12-(3*y+x)) <= nrToDisplay - (nrDisplayed)){
-                if(categories[3*y + x + 1] === 1){
+                if( x === 0 && y === 0){
                     context.drawImage(image, x * (image.width / 3), y * (image.height / 4), (image.width / 3), (image.height / 4),
                     centerShift_x +( x * image.width * ratio)/3, centerShift_y + (y * image.height * ratio)/4, (image.width * ratio)/3, (image.height * ratio)/4);
-                    nrDisplayed++;
+                }else if(categories[3*y + x - 1] === 1){
+                    context.drawImage(image, x * (image.width / 3), y * (image.height / 4), (image.width / 3), (image.height / 4),
+                    centerShift_x +( x * image.width * ratio)/3, centerShift_y + (y * image.height * ratio)/4, (image.width * ratio)/3, (image.height * ratio)/4);
                     //console.log("piece drawn" + y + x);
                 }else{
                     context.drawImage(greyImage,
