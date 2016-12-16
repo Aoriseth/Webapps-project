@@ -32,7 +32,7 @@
 
                                 <img style="width:100%;height:100%;" src=<?php echo base_url() . 'assets/imgs/emotions/' . $emotion_index . ".png" ?> >                                   
                             </button>
-                            <br/>
+                            <br><br>
                             <?php
                             echo htmlspecialchars($option->option);
                             $emotion_index++;
