@@ -10,6 +10,9 @@
 	<?= lang( 'login_camera_scrolldown' ) ?>
 </p>
 
-<video class="webcam" id="camfr" width="90%" height="auto" autoplay="true" />
-<canvas id = "canvasVideo" hidden="true" width="90%" height="auto" />
-<img id="photoFR" width="90%" height="auto" />
+<video class="webcam" id="camfr" width="90%" height="auto" autoplay="true"></video>
+    <canvas id = "canvasVideo" hidden="true" width="90%" height="auto"></canvas>
+<img id="photoFR" width="90%" height="auto">
+
+
+                        
