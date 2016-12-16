@@ -126,34 +126,30 @@ class Picture_model extends CI_Model {
     
     
     function incrementPuzzleCompleted( $residentID ) {
-        $query = $this->db->query(
-                "UPDATE `a16_webapps_3`.`gallery_pictures`"
-                . " SET `times_completed`='1'"
-                . " WHERE id='$residentID' AND in_progress = '1'"
+        $this->db->query(
+            "UPDATE `a16_webapps_3`.`gallery_pictures`"
+            . " SET `times_completed` = 'times_completed' + '1'"
+            . " WHERE id='$residentID' AND in_progress = '1'"
         );
-        $result = $query->result();
-        return $result[0]->times_completed;
         
     }
     
     function deactivatePuzzle( $residentID ) {
-        $query = $this->db->query(
-                "UPDATE `a16_webapps_3`.`gallery_pictures`"
-                . " SET `in_progress`='0'"
-                . " WHERE id='$residentID' AND in_progress = '1'"
+        $this->db->query(
+            "UPDATE `a16_webapps_3`.`gallery_pictures`"
+            . " SET `in_progress`='0'"
+            . " WHERE id='$residentID' AND in_progress = '1'"
         );
-        $result = $query->result();
-        return $result[0]->in_progress;
         
     }
     
     function activateNewPuzzle( $residentID ) {
-        $query = $this->db->query(
-                "UPDATE TOP (1) `a16_webapps_3`.`gallery_pictures`"
-                . " SET `in_progress`='1'"
-                . " WHERE id='$residentID' AND times_completed = '0'"
+        $this->db->query(
+            "UPDATE `a16_webapps_3`.`gallery_pictures`"
+            . " SET `in_progress`='1'"
+            . " WHERE id='$residentID' AND times_completed = '0'"
+            . " LIMIT 1"
         );
-        $query->result();
         
        
     }
