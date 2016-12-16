@@ -25,6 +25,7 @@ class Resident extends CI_Controller {
 		$this->load->model( 'Question_model' );
 		$this->load->model( 'Resident_model' );
 		$this->load->model( 'Tip_model' );
+		$this->load->model( 'Score_model' );
 	}
 
 	function index()
@@ -77,7 +78,7 @@ class Resident extends CI_Controller {
 		$categories = $this->Question_model->getAllUnfinishedCategories( $this->session->id );
 
 		if ( count( $categories ) == 0 ) {
-			// all categories are done --> increment session number
+			$this->Score_model->addSessionScore( $this->session->id );
 			$this->Resident_model->incrementSession( $this->session->id );
 			$this->session->completedSessions = $this->session->completedSessions + 1;
 
@@ -88,6 +89,7 @@ class Resident extends CI_Controller {
 			 * Or move this if statement block + $category fetch to somewhere
 			 * more appropriate.
 			 */
+			// !!! Important: ensure that everything in this if-block occurs exactly 1 time.
 		}
 
 		shuffle( $categories );
@@ -156,6 +158,8 @@ class Resident extends CI_Controller {
 		$tip = $this->Tip_model->getTipFromCategorySet( $categorySetID )->tip;
 		$data2[ 'tip' ] = htmlspecialchars( $tip );
 		$data[ 'content' ] = $this->parser->parse( 'resident/resident_completed', $data2, true );
+		
+		$this->Score_model->addCategoryScore( $this->session->id, $categorySetID );
 
 		$this->parser->parse( 'resident/resident_main', $data );
 	}
