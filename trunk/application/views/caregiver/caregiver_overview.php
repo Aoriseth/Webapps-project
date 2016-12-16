@@ -41,7 +41,7 @@
                     <th>Last Completed</th>
                     <th>Completed Sessions</th>
 
-                    <th style="width:125px;">Action</th>
+                    <th style="width:500px;">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -243,9 +243,11 @@
                 },
                 error: function (jqXHR, textStatus, errorThrown)
                 {
-                    alert('Error adding / update data');
+                    //alert('Error adding / update data');
+                    $('#modal_form').modal('hide');
                     $('#btnSave').text('save'); //change button text
                     $('#btnSave').attr('disabled', false); //set button enable 
+                    reload_table();
 
                 }
             });
