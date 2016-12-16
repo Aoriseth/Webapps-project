@@ -231,26 +231,27 @@ function showFilters() {
         //console.log(cookieArray);
         var i = 0;
         var code = "";
-        $('#accordion').empty();
+        $('#accordion_filters').empty();
 
         for (cookie of cookieArray) {
             console.log(i++);
             console.log(cookie);
             code = "<div class=\"panel panel-default\">" +
-                    "<div class=\"panel-heading\">" +
+                    "<div class=\"panel-heading \">" +
                     "<h4 class=\"panel-title\">" +
-                    "<a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse" + i + "\">" + i + "</a>" +
-                    "</h4>" + "</div>" +
+                    "<a data-toggle=\"collapse\" data-parent=\"#accordion_filters\" href=\"#collapse" + i + "\">" + i +
+                    "<button type=\"button\" class=\"btn-link\" id=\"btn" + i + "\" onclick=\"clickGraph()\">Graph</button>" + 
+                    "</a>" + "</h4>" + "</div>" +
                     "<div id=\"collapse" + i + "\" class=\"panel-collapse collapse\">";
                     for(key in cookie){
                         code += "<div class=\"panel-body\">" + key + ":\t" + cookie[key] + "</div>" ;
                     }
                     code += "</div></div>";
-            $('#accordion').append(code);
+            $('#accordion_filters').append(code);
         }
     }
 }
 
-      
-        
-          
+function clickGraph(){
+    console.log("clickGraph");
+}
