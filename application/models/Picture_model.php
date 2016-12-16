@@ -124,7 +124,6 @@ class Picture_model extends CI_Model {
     }
     
     
-    
     function incrementPuzzleCompleted( $residentID ) {
 		$this->db->where( 'resident_id', $residentID );
 		$this->db->where( 'in_progress', '1' );
@@ -159,7 +158,7 @@ class Picture_model extends CI_Model {
 			"SELECT id"
             . " FROM `a16_webapps_3`.`gallery_pictures`"
             . " WHERE resident_id='$residentID'"
-            . " ORDER BY times_comleted ASC"
+            . " ORDER BY times_completed ASC"
 			. " LIMIT 1"
 		);
 		
