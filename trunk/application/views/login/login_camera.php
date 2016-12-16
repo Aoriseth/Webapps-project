@@ -16,4 +16,10 @@
     <canvas id = "canvasVideo" hidden="true" width="90%" height="auto"></canvas>
 <img id="photoFR" width="90%" height="auto">
 
+<?php } else { ?>
+
+<p>
+	Camera login is currently not supported on Safari.
+</p>
+
 <?php } ?>
