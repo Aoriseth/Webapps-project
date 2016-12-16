@@ -28,11 +28,11 @@ class Sort extends CI_Controller {
 			$no++;
 			$row = array();  
                        
-                       
+                       $url = base_url() . 'index.php/caregiver/resident/' . $residents->id ;
                        
                         
-                       /** $row[] = '<a class="btn" onclick="'<?php echo base_url().'index.php/caregiver/resident/'.'.$residents->id."'".' ?>' "> '.$residents->id.' </a>';*/
-                        $row[] = $residents->id;
+                        $row[] = '<a class="btn" onclick="redirect('."'" . (string)$url ."'".')"> '. $residents->id .'</a>';
+                        //$row[] = $residents->id;
 			$row[] = $residents->first_name;
                         $row[] = $residents->last_name;
                         $row[] = $residents->gender;                       
