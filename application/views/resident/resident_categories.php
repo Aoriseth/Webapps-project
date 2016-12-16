@@ -15,25 +15,25 @@
                             <!--input class="btn btn-default" type="submit" name="category" value="<?php echo $category->category ?>" class="text-center"-->
                             <button style="width:13vw;height:13vw;" type="submit" name="category" value="<?php echo $category->category ?>" class="btn btn-fab btn-default text-center">
                                 <?php if ($category->category === "Safety and security") { ?>
-                                <img style="width:9vw;" src="http://image.flaticon.com/icons/png/512/295/295666.png">
+                                <img style="width:9vw;" src="https://image.flaticon.com/icons/png/512/295/295666.png">
                                     <!--<span style='font-size:10vw' class="glyphicon glyphicon-facetime-video"></span>-->
                                 <?php } elseif ($category->category === "Food and meals") { ?>
-                                <img style="width:8vw;" src="http://image.flaticon.com/icons/png/512/272/272155.png">
+                                <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/272/272155.png">
                                     <!--<span style='font-size:10vw' class="glyphicon glyphicon-cutlery"></span>--> 
                                 <?php } elseif ($category->category === "Comfort") { ?>
-                                <img style="width:10vw;" src="http://image.flaticon.com/icons/png/512/148/148102.png">
+                                <img style="width:10vw;" src="https://image.flaticon.com/icons/png/512/148/148102.png">
                                     <!--<span style='font-size:10vw' class="glyphicon glyphicon-bed"></span>-->
                                 <?php } elseif ($category->category === "Personal relationships") { ?>
-                                    <img style="width:10vw;" src="http://image.flaticon.com/icons/png/512/265/265667.png">
+                                    <img style="width:10vw;" src="https://image.flaticon.com/icons/png/512/265/265667.png">
                                     <!--<span style='font-size:10vw' class="glyphicon glyphicon-heart"></span>--> 
                                 <?php } elseif ($category->category === "Activities") { ?>
-                                    <img style="width:8vw;" src="http://image.flaticon.com/icons/png/512/147/147206.png">
+                                    <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/147/147206.png">
                                     <!--<span style='font-size:10vw' class="glyphicon glyphicon-blackboard"></span>--> 
                                 <?php } elseif ($category->category === "Privacy") { ?>
-                                    <img style="width:8vw;" src="http://image.flaticon.com/icons/png/512/147/147040.png">
+                                    <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/147/147040.png">
                                     <!--<span style='font-size:10vw' class="glyphicon glyphicon-home"></span>--> 
                                 <?php } else { ?>
-                                    <img style="width:10vw;" src="http://image.flaticon.com/icons/png/512/190/190177.png">
+                                    <img style="width:10vw;" src="https://image.flaticon.com/icons/png/512/190/190177.png">
                                     <!--<span style='font-size:10vw' class="glyphicon glyphicon-edit"></span>-->
                                 <?php } ?>
                             </button><br><br>
