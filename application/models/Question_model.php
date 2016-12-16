@@ -23,8 +23,7 @@ class Question_model extends CI_Model {
         $query = $this->db->query(
 			"SELECT category_set, category"
 			. " FROM a16_webapps_3.categories"
-                        . " WHERE language = '$language'"
-
+			. " WHERE language = '$language'"
         );
         return $query->result();
     }
@@ -33,8 +32,7 @@ class Question_model extends CI_Model {
         $query = $this->db->query(
 			"SELECT category"
 			. " FROM a16_webapps_3.categories"
-                        . " WHERE category_set = '$id' AND language = '$language'"
-
+			. " WHERE category_set = '$id' AND language = '$language'"
         );
         return $query->result();
     }
@@ -43,7 +41,7 @@ class Question_model extends CI_Model {
      * that are not yet completed.
      */
     function getAllUnfinishedCategories($residentID) {
-        $language = $this->Resident_model->getResidentLanguage($residentID);
+        $language = $this->session->language;
         $currentSession = ($this->Resident_model->getSessionsCompleted($residentID)) + 1;
 
         $all_category_sets = $this->db->query(
@@ -142,7 +140,7 @@ class Question_model extends CI_Model {
 	 * current session.
 	 */
 	function getAllUnansweredQuestionsFrom($residentID, $categorySetID) {
-		$language = $this->Resident_model->getResidentLanguage($residentID);
+		$language = $this->session->language;
 		$currentSession = ($this->Resident_model->getSessionsCompleted($residentID)) + 1;
 
 		$all_questions = $this->getAllQuestionSetsFrom($categorySetID);

@@ -20,7 +20,7 @@ class Answer_model extends CI_Model {
      */
     function storeAnswer( $residentID, $questionSetID, $chosenOptionSet ) {
 		$currentSession = ( $this->Resident_model->getSessionsCompleted( $residentID ) ) + 1;
-		$language = $this->Resident_model->getResidentLanguage( $residentID );
+		$language = $this->session->language;
 		
 		//Ready the array with the answers
 		$answerData = array(
