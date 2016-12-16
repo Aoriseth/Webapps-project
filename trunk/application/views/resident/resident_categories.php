@@ -8,7 +8,7 @@
                 <h2 style="font-size:3vmax">
                     <?= lang('r_categories_explanation') ?>
                 </h2>
-                <hr/>
+                <hr/><br>
                 <?php foreach ($categories as $category) { ?>
                     <div class="col-sm-4" >
                         <form style='text-align:center' action="<?php echo base_url() . 'index.php/resident/question' ?>" method="GET">
