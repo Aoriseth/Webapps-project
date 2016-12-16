@@ -10,9 +10,12 @@ var filter = [];
 var groups = [];
 var cookie_name = "filter " + caregiverID;
 var filterObject;
+var filterInfo = [[]];
+var cookieArray = [];
 
 $( document ).ready(function() {
     showFilters();
+    clickAddGroup();
 });
 
 function setCookie(arg) {   // arg:Object    
@@ -45,12 +48,13 @@ function clickAddGroup()
 {
     document.getElementById("btnSave").disabled = true;
     //add_method = 'add';
+    /*
     $('#form')[0].reset(); // reset form on modals
     $('.form-group').removeClass('has-error'); // clear error class
     //$('.help-block').empty(); // clear error string, TODO
     $('#modal_form').modal('show'); // show bootstrap modal
     $('.modal-title').text('Add Group'); // Set Title to Bootstrap modal title
-
+    */
     if (nonLinearStepSlider == null) {
         nonLinearStepSlider = document.getElementById('slider-non-linear-step');
         noUiSlider.create(nonLinearStepSlider, {
@@ -194,6 +198,7 @@ function clickSave(arg) {
             showFilters();
             filter_residents = 0;
             showFResidents(filter_residents);
+            clickGraph();
         /*},
         error: function () {
             console.log("clickSaveJSON: " + selected_residents, caregiverID, filter.toString());
@@ -224,9 +229,9 @@ function reload(){
 }
 
 function showFilters() {
+    filterInfo = [[]];
     var cookieJSON = getCookie();
     if (cookieJSON != null) {
-        var cookieArray = [];
         cookieArray = JSON.parse(cookieJSON);
         //console.log(cookieArray);
         var i = 0;
@@ -234,24 +239,32 @@ function showFilters() {
         $('#accordion_filters').empty();
 
         for (cookie of cookieArray) {
-            console.log(i++);
+            i++;
             console.log(cookie);
             code = "<div class=\"panel panel-default\">" +
                     "<div class=\"panel-heading \">" +
                     "<h4 class=\"panel-title\">" +
                     "<a data-toggle=\"collapse\" data-parent=\"#accordion_filters\" href=\"#collapse" + i + "\">" + i +
-                    "<button type=\"button\" class=\"btn-link\" id=\"btn" + i + "\" onclick=\"clickGraph()\">Graph</button>" + 
                     "</a>" + "</h4>" + "</div>" +
                     "<div id=\"collapse" + i + "\" class=\"panel-collapse collapse\">";
                     for(key in cookie){
                         code += "<div class=\"panel-body\">" + key + ":\t" + cookie[key] + "</div>" ;
                     }
-                    code += "</div></div>";
+                    code += "<div class=\"panel-body\">";
+                    code += "<button type=\"button\" class=\"btn-link\" id=\"btn" + i + "\" onclick=\"clickGraph("+ "\)\">Graph</button>" ;
+                    code += "</div></div></div>";
             $('#accordion_filters').append(code);
         }
     }
 }
 
-function clickGraph(){
-    console.log("clickGraph");
+function clickGraph() { // arg:JSON
+    /*var i = 0;
+    for (cookie of cookieArray) {
+        i++;
+        $('#btn' + i).click(function () {
+            console.log('you clicked ' + i);
+        });
+    }*/
+    console.log(selected_residents);
 }

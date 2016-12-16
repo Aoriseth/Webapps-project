@@ -318,6 +318,39 @@ class Caregiver extends CI_Controller {
 		echo json_encode( $resultArray );
 	}
         
+        function load_avarage_score_per_group_per_category_chart($group)
+	{
+		// only allow AJAX requests
+		if ( ! $this->input->is_ajax_request() ) {
+			redirect( '404' );
+		}
+
+		$resultArray = [];
+
+
+                $residents = $group;
+                $categories = $this->Question_model->getAllCategories(); // as ID
+
+                //array of strings
+                $Yarray = [];
+                //array of ints
+                $Xarray = [];
+
+                foreach ( $categories as $category ) {
+                    $totalScore = $this->Statistics_model->getTotalScoreCategory($residents, $category->id);   
+                    array_push( $Yarray, $this->Question_model->getCategoryName($category->id, $this->session->language)[0]->category );
+                    array_push( $Xarray, $totalScore );
+                }    
+                    
+                array_push( $resultArray, $Xarray );
+                array_push( $resultArray, $Yarray );
+		
+		
+		
+		header( 'Content-Type: application/json' );     
+		echo json_encode( $resultArray );
+	}
+        
 
 	/**
 	 * Upload a picture that is stored on the computer. Uploaded pictures are stored
