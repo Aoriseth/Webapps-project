@@ -94,11 +94,9 @@ class Statistics_model extends CI_Model{
         return $returnCategories;
     }
     
-    function generateResidentComment($resident){
+    function generateResidentComment($resident, $averageScore = 50, $goodScore = 70){
         $categories = $this->Question_model->getAllCategories();
-        $comment = "Comment about the scores of the resident.";
-        $averageScore = 50;
-        $goodScore = 70;
+        $comment = "hasn't completed any questionaires yet.";
         $good = [];
         $bad = [];
         $average = [];
@@ -118,6 +116,7 @@ class Statistics_model extends CI_Model{
             }
         }
         $total = count($bad)+count($average)+count($good);
+        if($total == 0) return $comment;
         if(count($bad)/$total < 0.2){
             if(count($good)/$total > 0.2){
                 if(count($good)/$total < 0.7){
