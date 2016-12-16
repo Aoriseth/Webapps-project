@@ -111,6 +111,7 @@
           var colvis = new $.fn.dataTable.ColVis(table); //initial colvis
     $('#colvis').html(colvis.button()); //add colvis button to div with id="colvis"
 
+
             //datepicker
             $('.datepicker').datepicker({
                 autoclose: true,
@@ -350,12 +351,17 @@
                             </div>
                         </div> 
 
-                        <div class="form-group">
+                     <div class="form-group">
                             <label class="control-label col-md-3">Language</label>
                             <div class="col-md-9">
-                                <input name="language" placeholder="Language" class="form-control" type="text">
+                                <select name="Language" class="form-control">
+                                    <option value="">--Select Language--</option>
+                                    <option value="Nederlands">Nederlands</option>
+                                    <option value="English">English</option>
+                                    <option value="francais">Français</option>                                    
+                                </select>
                                 <span class="help-block"></span>
-                            </div>
+                            </div>                            
                         </div>
 
                         <div class="form-group">
