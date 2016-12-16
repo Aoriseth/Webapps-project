@@ -10,41 +10,44 @@
 </head>
 
 <div class="panel container-fluid">
-    <button class="btn btn-success" onclick="clickAddGroup()"><i class="glyphicon glyphicon-plus"></i> Add Group</button>
-    <div class="panel-group" id="accordion">
-        
-        <?php /*
-        $group_id = -1;
-        $resident_id = -1;
-        foreach ($groups as $group) { 
-            $resident_id = $group->resident_id;
-            $duplicate = ($group_id == $group->group_id);
-                if ($duplicate==FALSE) { 
-                    $group_id = $group->group_id; ?> 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $group_id ?>"><?php echo $group_id ?></a>
-                            </h4>
-                        </div>
-                        <div id="collapse<?php echo $group_id ?>" class="panel-collapse collapse">
-                <?php } ?>
-                        <div class="panel-body"><?php echo $resident_id ?></div> 
-                <?php 
-                $mode = current($groups);
-                $mode = next($groups);
-                ///echo serialize($mode);
-                if(!empty($mode)){
-                    if ($mode->group_id != $group_id) { ?>  
+<button class="btn btn-success" onclick="clickAddGroup()"><i class="glyphicon glyphicon-plus"></i> Add Group</button>
+<div class="row">
+    <div class="col-md-3 col-sm-6">        
+        <div class="panel-group" id="accordion_filters">
+
+            <?php /*
+            $group_id = -1;
+            $resident_id = -1;
+            foreach ($groups as $group) { 
+                $resident_id = $group->resident_id;
+                $duplicate = ($group_id == $group->group_id);
+                    if ($duplicate==FALSE) { 
+                        $group_id = $group->group_id; ?> 
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $group_id ?>"><?php echo $group_id ?></a>
+                                </h4>
                             </div>
-                        </div>
-                <?php }} ?> 
-        <?php } */ ?>   
-        
+                            <div id="collapse<?php echo $group_id ?>" class="panel-collapse collapse">
+                    <?php } ?>
+                            <div class="panel-body"><?php echo $resident_id ?></div> 
+                    <?php 
+                    $mode = current($groups);
+                    $mode = next($groups);
+                    ///echo serialize($mode);
+                    if(!empty($mode)){
+                        if ($mode->group_id != $group_id) { ?>  
+                                </div>
+                            </div>
+                    <?php }} ?> 
+            <?php } */ ?>   
+
+        </div> 
     </div> 
-
-
-    
+    <div class="col-md-9 col-sm-6">
+        graph
+    </div>  
 </div>
 
 <div class="modal fade" id="modal_form" role="dialog">
