@@ -1,3 +1,5 @@
+<?php if ( ! $this->agent->is_browser( 'Safari' ) ) { ?>
+
 <script src="<?= base_url();?>assets/js/QR-code/qcode-decoder.min.js" type="text/javascript"></script>
 <script src="<?= base_url();?>assets/js/QR-code/QRcodeRecog.js" type="text/javascript"></script>
 <script> setBaseURL("<?= base_url();?>");</script>
@@ -14,5 +16,4 @@
     <canvas id = "canvasVideo" hidden="true" width="90%" height="auto"></canvas>
 <img id="photoFR" width="90%" height="auto">
 
-
-                        
+<?php } ?>
