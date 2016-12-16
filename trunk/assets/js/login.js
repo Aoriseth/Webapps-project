@@ -3,14 +3,16 @@ function login(base_url, usernameI, passwordI) {
     console.log("usernameI" + usernameI + "passwordI" + passwordI);
     var username = usernameI;
     var password = passwordI;
+    
     var url = base_url + 'index.php/login/ajax';
     if (username === null || password === null) {
         console.log("inside if loop");
         username = $('#login_form input[ name = username ]').val();
         password = $('#login_form input[ name = password ]').val();
+        video = false
         
     }else{
-        url2 = base_url + 'index.php/login/videoajax';
+        video = true
     }
    
     $.ajax({
@@ -18,7 +20,8 @@ function login(base_url, usernameI, passwordI) {
         url: url,
         data: {
             username: username,
-            password: password
+            password: password,
+            video: "video"
         },
         dataType: "text",
         cache: false,

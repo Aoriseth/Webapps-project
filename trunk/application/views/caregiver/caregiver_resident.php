@@ -1,4 +1,6 @@
+<script src="<?= base_url() ?>assets/js/QR-code/qrcode.min.js" type="text/javascript"></script>
 <div class="container-fluid">
+
     <div class="panel container-fluid">
         <br>
         <p class="txScale">
@@ -16,7 +18,17 @@
                 Floor: {floor} Room: {room} </br>
                 Last activity on {last_activity} </br>
                 {sessions_completed} completed session(s) </br>
-                {name}'s average score is {average_score}
+                {name}'s average score is {average_score} </br>
+                <div id="qrcode"></div>
+                <script type="text/javascript">
+                    new QRCode(document.getElementById("qrcode"), {
+                    text: {"username":'{username}',"password":"HotGranny"},
+                            width: 128,
+                            height: 128,
+                            colorDark : "#000000",
+                            colorLight : "#ffffff",
+                            correctLevel : QRCode.CorrectLevel.H});
+                </script>
             </div>
         </div>
         </br>
