@@ -305,7 +305,7 @@ class Caregiver extends CI_Controller {
 
                 foreach ( $categories as $category ) {
                     $totalScore = $this->Statistics_model->getTotalScoreCategory($residents, $category->id);   
-                    array_push( $Yarray, $this->Question_model->getCategoryName($category->id, $this->session->language)[0] );
+                    array_push( $Yarray, $this->Question_model->getCategoryName($category->id, $this->session->language)[0]->category );
                     array_push( $Xarray, $totalScore );
                 }    
                     
