@@ -7,6 +7,8 @@ class Sort extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Sort_model','residents');
+                  $this->load->helper( 'date' );
+                 date_default_timezone_set( 'Europe/Brussels' );
 	}
 
 	public function index()
@@ -20,10 +22,17 @@ class Sort extends CI_Controller {
 		$list = $this->residents->get_datatables();
 		$data = array();
 		$no = $_POST['start'];
+                
+                
 		foreach ($list as $residents) {
 			$no++;
-			$row = array();              
+			$row = array();  
+                       
+                       
+                       
                         
+                       /** $row[] = '<a class="btn" onclick="'<?php echo base_url().'index.php/caregiver/resident/'.'.$residents->id."'".' ?>' "> '.$residents->id.' </a>';*/
+                        $row[] = $residents->id;
 			$row[] = $residents->first_name;
                         $row[] = $residents->last_name;
                         $row[] = $residents->gender;                       
@@ -64,20 +73,15 @@ class Sort extends CI_Controller {
 
 	public function ajax_add()
 	{
-                //varchar
-                $id='r126';
-                $type='resident';
-                //int
-                $session_In_Progress=0;
-                $completed_sessions=0;
-                //date
-                $last_activity='2016-11-24';
-                $last_completed='';
+              $session_In_Progress = 0;
+              $completed_sessions = 0;
+              $account_created_by = $this->session->id;
+              $profile_picture_id = NULL ;
                 
 		$this->_validate();
 		$data = array(
                     
-				'id' => $this->input->$id,
+				'id' => $this->input->post('id'),
 				'first_name' => $this->input->post('first_name'),
 				'last_name' => $this->input->post('last_name'),
 				'gender' => $this->input->post('gender'),
@@ -87,26 +91,31 @@ class Sort extends CI_Controller {
                                 'floor_number' => $this->input->post('floor_number'),
                                 'room_number' => $this->input->post('room_number'),
                                 'last_domicile' => $this->input->post('last_domicile'),
-                                'last_activity' => $this->input->$last_activity,
-                                'last_completed' => $this->input->$last_completed,
-				'completed_sessions' => $this->input->$completed_sessions,
-                                'session_in_progress' => $this->input->$session_In_Progress,
-                                'type' => $this->input->$type,                    
-                                'account_created_by' => $this->input->post('account_created_by'),
-                                'account_created_on' => $this->input->post('account_created_on'),                     
+                                'last_activity' => $this->input->post('last_activity'),
+                                'last_completed' => $this->input->post('last_completed'),
+				'completed_sessions' => $completed_sessions,
+                                'session_in_progress' => $session_In_Progress,
+                                'type' => $this->input->post('type'),                    
+                                'account_created_by' => $account_created_by,
+                                'account_created_on' => date( 'Y-m-d H:i:s' ),                   
+                                 'profile_picture_id' => $profile_picture_id,   
                     
                     
                     
 			);
 		$insert = $this->residents->save($data);
 		echo json_encode(array("status" => TRUE));
+                echo 'succesfully added' ;
 	}
 
 	public function ajax_update()
 	{
+            
+          
 		$this->_validate();
 		$data = array(
-                    'id' => $this->input->post('id'),
+                    
+                                'id' => $this->input->post('id'),
 				'first_name' => $this->input->post('first_name'),
 				'last_name' => $this->input->post('last_name'),
 				'gender' => $this->input->post('gender'),
@@ -120,6 +129,7 @@ class Sort extends CI_Controller {
                                 'last_completed' => $this->input->post('last_completed'),
 				'completed_sessions' => $this->input->post('completed_sessions'),
                                 'session_in_progress' => $this->input->post('session_in_progress'),
+                                'type' => $this->input->post('type'),
                                 'account_created_by' => $this->input->post('account_created_by'),
                                 'account_created_on' => $this->input->post('account_created_on'),
 				
@@ -143,14 +153,14 @@ class Sort extends CI_Controller {
 		$data['inputerror'] = array();
 		$data['status'] = TRUE;
 
-		if($this->input->post('firstName') == '')
+		if($this->input->post('first_name') == '')
 		{
 			$data['inputerror'][] = 'firstName';
 			$data['error_string'][] = 'First name is required';
 			$data['status'] = FALSE;
 		}
 
-		if($this->input->post('lastName') == '')
+		if($this->input->post('last_name') == '')
 		{
 			$data['inputerror'][] = 'lastName';
 			$data['error_string'][] = 'Last name is required';
@@ -200,20 +210,14 @@ class Sort extends CI_Controller {
 			$data['inputerror'][] = 'last_domicile';
 			$data['error_string'][] = 'last_domicile is required';
 			$data['status'] = FALSE;
-		}              
+		}  
+                 if($this->input->post('type') == '')
+		{
+			$data['inputerror'][] = 'type';
+			$data['error_string'][] = 'type is required';
+			$data['status'] = FALSE;
+		}  
               
-                if($this->input->post('account_created_by') == '')
-		{
-			$data['inputerror'][] = 'account_created_by';
-			$data['error_string'][] = 'account_created_by is required';
-			$data['status'] = FALSE;
-		}
-                if($this->input->post('account_created_on') == '')
-		{
-			$data['inputerror'][] = 'account_created_on';
-			$data['error_string'][] = 'account_created_on is required';
-			$data['status'] = FALSE;
-		}
 
 
 		if($data['status'] === FALSE)
@@ -222,5 +226,7 @@ class Sort extends CI_Controller {
 			exit();
 		}
 	}
+        
+       
 
 }
