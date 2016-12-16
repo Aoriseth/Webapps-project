@@ -49,7 +49,7 @@
 
             <tfoot>
                 <tr>
-
+                    <th>id</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Gender</th>          
@@ -140,9 +140,8 @@
 
 
         function redirect(url){
-            var url2 = url.toString();
-            console.log(url2);
-            window.location.href = url2;
+            
+            window.location.href = url;
         }
         function add_person()
         {
