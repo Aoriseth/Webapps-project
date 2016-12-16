@@ -6,13 +6,16 @@
 
     <div data-placement="bottom" data-toggle="popover" title="" data-content="<?= lang( 'r_question_help' ) ?>" data-container="body" class="popup panel row">
 
-        <div class="row">
-        <div class="col-10 col-sm-offset-1">
+        
+        <div class="col-12">
             <br>
-            <div class="" id="jumbotron_question">
-                <p class="" id="question_text">
+            <div class="container-fluid" id="jumbotron_question">
+                <div class="container-fluid">
+                    <p class="tlScale" id="question_text">
                     
-                </p><br>
+                </p><hr><br>
+                </div>
+                
             </div>
         </div>
 
@@ -46,7 +49,6 @@
                 ?>
             </div>
             <br>
-        </div>
 
 
 
@@ -64,7 +66,7 @@
             </div>
 
             <div class="col-sm-offset-10 col-sm-2" >
-                <button class="btn btn-default" type="submit" name="back" value="Go back" onclick="pressGoBack()" style="width:100%; color:Gray;">
+                <button class="btn btn-default" type="submit" name="back" value="Go back" onclick="pressGoBack()" style="width:100%; color:#673AB7;">
                     <?= lang('r_question_back') ?>
                 </button>
                 
