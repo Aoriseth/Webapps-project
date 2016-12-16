@@ -29,6 +29,8 @@ function loadPuzzle(base_url, path, name, categories) {
     greyImage.onload = function(){
         var canvas = document.getElementById("puzzle");
         var context = canvas.getContext("2d");
+        context.canvas.width  = window.innerWidth;
+        context.canvas.height = window.innerHeight;
         var hRatio = canvas.width  / image.width;
         var vRatio =  canvas.height / image.height;
         var ratio  = Math.min ( hRatio, vRatio );
