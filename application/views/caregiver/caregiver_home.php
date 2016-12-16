@@ -17,9 +17,9 @@
     It seems that all your residents are still alive. </br>
     The following residents most recently completed their questionair:
     <ul>
-        <?php //foreach($recent_residents as $resident){
-            ?><li> <?php //echo $resident->first_name ?></li> 
-        <?php}?>
+        <?php foreach($recent_residents as $resident){
+            ?><li> <?php echo $resident->first_name; ?></li> 
+        <?php } ?>
         
     </ul>
     </br>

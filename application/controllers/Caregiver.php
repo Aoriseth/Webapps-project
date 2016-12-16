@@ -47,7 +47,7 @@ class Caregiver extends CI_Controller {
 	{
 		$data = $this->display_common_elements( 'home' );
                 $residents = $this->Resident_model->getAllResidents();
-                //$data2['recent_residents'] = $this->Resident_model->getNMostRecentCompletedResidents();
+                $data2['recent_residents'] = $this->Resident_model->getNMostRecentCompletedResidents();
                 foreach($residents as $resident){
                     
                 }

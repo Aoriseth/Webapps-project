@@ -182,7 +182,7 @@ class Resident_model extends CI_Model {
 			"SELECT id, first_name, last_name, last_completed "
 			. "FROM a16_webapps_3.residents "
 			. "ORDER BY last_completed DESC "
-			. "LIMIT '$n'"
+			. "LIMIT $n"
 		);
 		return $query->result();
 	}
@@ -199,7 +199,7 @@ class Resident_model extends CI_Model {
 			"SELECT id, first_name, last_name, last_completed "
 			. "FROM a16_webapps_3.residents "
 			. "ORDER BY last_completed ASC"
-			. "LIMIT '$n'"
+			. "LIMIT $n"
 		);
 		return $query->result();
 	}
@@ -220,7 +220,7 @@ class Resident_model extends CI_Model {
 			. "FROM a16_webapps_3.residents "
 			. "WHERE last_completed > NOW() - INTERVAL '$days' DAY"
 			. "ORDER BY last_completed ASC"
-			. "LIMIT '$n'"
+			. "LIMIT $n"
 		);
 		return $query->result();
 	}
