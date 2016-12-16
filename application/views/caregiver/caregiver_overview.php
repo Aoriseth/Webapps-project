@@ -3,7 +3,7 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.min.css"/>
-
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/datatables-colvis/1.1.2/css/dataTables.colVis.css"/>
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -11,7 +11,7 @@
     <![endif]-->
 </head> 
 
-<div class="panel container-fluid">
+<div class="container-fluid">
     <h1 style="font-size:20pt">Health care Patients</h1>
 
     <h3>Person Data</h3>
@@ -20,10 +20,17 @@
     <button class="btn btn-info" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> Reload</button>
     <br />
     <br />
+    
+       <div class="row">
+            <div class="col-md-12">
+                <div id="colvis"></div>
+            </div>
+       </div>
     <div class="table-responsive">
         <table  id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
-                <tr>                    
+                <tr> 
+                    <th>id</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Gender</th>            
@@ -59,10 +66,11 @@
     </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables-colvis/1.1.2/js/dataTables.colVis.js"></script>
 
 <script src="<?php echo base_url(); ?>assets/datatables/js/dataTables.bootstrap.js"></script>
 
@@ -93,12 +101,15 @@
                 //Set column definition initialisation properties.
                 "columnDefs": [
                     {
-                        "targets": [-1], //last column
+                        "targets": [0], //last column
                         "orderable": false, //set not orderable
                     },
                 ],
 
             });
+        
+          var colvis = new $.fn.dataTable.ColVis(table); //initial colvis
+    $('#colvis').html(colvis.button()); //add colvis button to div with id="colvis"
 
             //datepicker
             $('.datepicker').datepicker({
@@ -159,17 +170,17 @@
                     $('[name="last_name"]').val(data.last_name);
                     $('[name="gender"]').val(data.gender);
                     $('[name="password"]').val(data.password);
-                    $('[name="date_of_birth"]').datepicker('update', date_of_birth);
+                    $('[name="date_of_birth"]').datepicker('update', data.date_of_birth);
                     $('[name="language"]').val(data.language);
                     $('[name="floor_number"]').val(data.floor_number);
                     $('[name="room_number"]').val(data.room_number);
                     $('[name="last_domicile"]').val(data.last_domicile);
-                    $('[name="last_activity"]').datepicker('update', last_activity);
-                    $('[name="last_completed"]').datepicker('update', last_completed);
+                    $('[name="last_activity"]').datepicker('update', data.last_activity);
+                    $('[name="last_completed"]').datepicker('update', data.last_completed);
                     $('[name="completed_sessions"]').val(data.completed_sessions);
                     $('[name="session_in_progress"]').val(data.session_in_progress);
                     $('[name="account_created_by"]').val(data.account_created_by);
-                    $('[name="account_created_on"]').datepicker('update', account_created_on);
+                    $('[name="account_created_on"]').datepicker('update', data.account_created_on);
 
 
                     $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
@@ -276,9 +287,16 @@
             </div>
             <div class="modal-body form">
                 <form action="#" id="form" class="form-horizontal">
-                    <input type="hidden" value=" " name="id"/> 
+                   
                     <div class="form-body">  
-
+                        
+                          <div class="form-group">
+                            <label class="control-label col-md-3">ID</label>
+                            <div class="col-md-9">
+                                <input name="id" placeholder="r..." class="form-control" type="text">
+                                <span class="help-block"></span>
+                            </div>
+                          </div> 
 
 
                         <div class="form-group">
@@ -313,7 +331,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Password</label>
                             <div class="col-md-9">
-                                <input name="password" placeholder="Password" class="form-control" type="text">
+                                <input name="password" placeholder="Password" class="form-control" type="password">
                                 <span class="help-block"></span>
                             </div>
                         </div>  
@@ -321,7 +339,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Date of Birth</label>
                             <div class="col-md-9">
-                                <input name="date_of_birth" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
+                                <input name="date_of_birth" placeholder="yyyy-mm-dd" class="form-control datepicker" type="">
                                 <span class="help-block"></span>
                             </div>
                         </div> 
@@ -349,37 +367,49 @@
                                 <span class="help-block"></span>
                             </div>
                         </div>
-
-                        <div class="form-group">
+                         <div class="form-group">
                             <label class="control-label col-md-3">Last Domicile</label>
                             <div class="col-md-9">
                                 <input name="last_domicile" placeholder="Last Domicile" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Account Created By</label>
+                        
+                          <input name="last_activity" placeholder="" class="form-control" type="hidden" value="null">
+                          
+                           <input name="last_completed" placeholder="" class="form-control" type="hidden" value="null">
+                           
+                           <input name="completed_sessions" placeholder="" class="form-control" type="hidden" >
+                           
+                           <input name="session_in_progress" placeholder="" class="form-control" type="hidden">
+                          
+                          
+                         <div class="form-group">
+                            <label class="control-label col-md-3">type</label>
                             <div class="col-md-9">
-                                <input name="account_created_by" placeholder="Account Created By" class="form-control" type="text">
+                                <select name="type" class="form-control">
+                                    <option value="">--Select type--</option>
+                                    <option value="resident">resident</option>
+                                    <option value="caregiver">caregiver</option>                                                                       
+                                </select>
                                 <span class="help-block"></span>
-                            </div>
+                            </div>                            
                         </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Account Created On</label>
-                            <div class="col-md-9">                                
-                                <input name="account_created_on" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>             
+                                                 
+                        <input name="account_created_by" placeholder="" class="form-control" type="hidden" >
+                                                                                              
+                        <input name="account_created_on" placeholder="" class="form-control" type="hidden" value="">
+                                          
+                        <input name="profile_picture_id" placeholder="" class="form-control" type="hidden" value="null">
+                             
+                           
 
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnSave" onclick="save()" class="btn btn-raised btn-success">Save</button>
-                <button type="button" class="btn btn-raised btn-danger" data-dismiss="modal">Cancel</button>
+                <button type="button" id="btnSave" onclick="save()" class="btn btn-success">Save</button>
+                <button type="button" class="btn  btn-danger" data-dismiss="modal">Cancel</button>
             </div>
         </div> 
     </div> 
