@@ -80,7 +80,7 @@ class Score_model extends CI_Model {
 	 */
 	function getLastCompletedSessionDatesOfAllResidents() {
 		$query = $this->db->query(
-			"SELECT session, completed_on "
+			"SELECT resident_id, session, completed_on "
 			. "FROM ( "
 				. "SELECT a16_webapps_3.session_scores.*, row_number() OVER "
 				. "(PARTITION BY resident_id ORDER BY completed_on DESC) AS rn "
@@ -97,7 +97,7 @@ class Score_model extends CI_Model {
 	 */
 	function getLastCompletedSessionScoresOfAllResidents() {
 		$query = $this->db->query(
-			"SELECT session, score "
+			"SELECT resident_id, session, score "
 			. "FROM ( "
 				. "SELECT a16_webapps_3.session_scores.*, row_number() OVER "
 				. "(PARTITION BY resident_id ORDER BY completed_on DESC) AS rn "
@@ -117,7 +117,7 @@ class Score_model extends CI_Model {
 	 */
 	function getLastCompletedSessionScoresAndDatesOfAllResidents() {
 		$query = $this->db->query(
-			"SELECT session, score, completed_on "
+			"SELECT resident_id, session, score, completed_on "
 			. "FROM ( "
 				. "SELECT a16_webapps_3.session_scores.*, row_number() OVER "
 				. "(PARTITION BY resident_id ORDER BY completed_on DESC) AS rn "
@@ -180,5 +180,105 @@ class Score_model extends CI_Model {
 		);
 		$result = $query->result();
 		return 100 * ( $result[0]->sum_weighted_answers ) / ( $result[0]->sum_weighted_total );
+	}
+	
+	
+	/**
+	 * Get the completed categories of the given resident and the date on which
+	 * these categories were completed.
+	 */
+	function getAllCompletedCategoryDates( $residentID ) {
+		$query = $this->db->query(
+			"SELECT category_set, completed_on "
+			. "FROM a16_webapps_3.category_scores "
+			. "WHERE resident_id='$residentID' "
+			. "ORDER BY session DESC"
+		);
+		return $query->result();
+	}
+	
+	/**
+	 * Get the completed categories of the given resident and the score of each
+	 * completed category.
+	 */
+	function getAllCompletedCategoryScores( $residentID ) {
+		$query = $this->db->query(
+			"SELECT category_set, score "
+			. "FROM a16_webapps_3.category_scores "
+			. "WHERE resident_id='$residentID' "
+			. "ORDER BY session DESC"
+		);
+		return $query->result();
+	}
+	
+	/**
+	 * Get the completed categories of the given resident and the score of each
+	 * completed category.
+	 * 
+	 * Use this function only if you need both the scores and the dates
+	 * of the completed categories.
+	 */
+	function getAllCompletedCategoryScoresAndDates( $residentID ) {
+		$query = $this->db->query(
+			"SELECT category_set, score, completed_on "
+			. "FROM a16_webapps_3.category_scores "
+			. "WHERE resident_id='$residentID' "
+			. "ORDER BY session DESC"
+		);
+		return $query->result();
+	}
+	
+	/**
+	 * Get the most recently completed category and date
+	 * of all residents.
+	 */
+	function getLastCompletedCategoryDatesOfAllResidents() {
+		$query = $this->db->query(
+			"SELECT resident_id, category_set, completed_on "
+			. "FROM ( "
+				. "SELECT a16_webapps_3.category_scores.*, row_number() OVER "
+				. "(PARTITION BY resident_id ORDER BY completed_on DESC) AS rn "
+				. "FROM a16_webapps_3.category_scores "
+				. ") nested_table "
+			. "WHERE nested_table.rn = 1"
+		);
+		return $query->result();
+	}
+	
+	/**
+	 * Get the most recently completed category and score
+	 * of all residents.
+	 */
+	function getLastCompletedCategoryScoresOfAllResidents() {
+		$query = $this->db->query(
+			"SELECT resident_id, category_set, score "
+			. "FROM ( "
+				. "SELECT a16_webapps_3.category_scores.*, row_number() OVER "
+				. "(PARTITION BY resident_id ORDER BY completed_on DESC) AS rn "
+				. "FROM a16_webapps_3.category_scores "
+				. ") nested_table "
+			. "WHERE nested_table.rn = 1"
+		);
+		return $query->result();
+	}
+	
+	/**
+	 * Get the most recently completed category, score and date
+	 * of all residents.
+	 * 
+	 * Use this function only if you really need both the score of
+	 * the category and the date on which it was finished.
+	 */
+	function getLastCompletedCategoryScoresAndDatesOfAllResidents() {
+		$query = $this->db->query(
+			"SELECT resident_id, category_set, score, completed_on "
+			. "FROM ( "
+				. "SELECT a16_webapps_3.category_scores.*, row_number() OVER "
+				. "(PARTITION BY resident_id ORDER BY completed_on DESC) AS rn "
+				. "FROM a16_webapps_3.category_scores "
+				. ") nested_table "
+			. "WHERE nested_table.rn = 1"
+		);
+		return $query->result();
 	}
 }
