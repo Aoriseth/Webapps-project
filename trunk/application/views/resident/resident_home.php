@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
             <form>
-                <button data-toggle="popover" title="" data-container="body" style="background-color: #673AB7;width:100%;font-size:2.5vmax;"
-                        class="btn-blue popup btn-lg withripple btn btn-raised btn-info"
+                <button data-toggle="popover" title="" data-container="body" style="color: #673AB7;width:100%;font-size:2.5vmax;"
+                        class=" popup btn-lg btn btn-raised"
                         data-content="<?= lang('r_button_test_help') ?>" 
                         formaction="<?= base_url() . 'index.php/resident/categories' ?>">
                             <?= lang('r_button_test') ?>

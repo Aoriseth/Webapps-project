@@ -26,9 +26,9 @@
         </div>
 
         <!--Help button for resident pages-->
-        <button id="trigger" class="btn btn-warning" style="height:3em;width:5em;position:fixed;top:60px;left:10px;">
+<!--        <button id="trigger" class="btn btn-warning" style="height:3em;width:5em;position:fixed;top:60px;left:10px;">
             <?= lang('r_button_help') ?>
-        </button>
+        </button>-->
     </body>
 </html>
 
