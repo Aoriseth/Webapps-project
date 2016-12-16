@@ -4,6 +4,10 @@ var index = 0;
 var max;
 var width;
 var timeout;
+var base_url;
+function setBaseUrlloadQ(baseurl){
+    base_url = baseurl;
+}
 
 
 // User has to be logged in as resident to be able to do this!
@@ -38,9 +42,8 @@ function storeAnswer(chosenOption, base_url, categoryName) {
         console.log("width: " + width)
         $('#progressBar').css('width', width + "%");
         $('#progressBar').text(index + "/" + max);
-        if(index === 0){
-            window.location.href = base_url + "index.php/resident/categories";
-        }
+        console.log(index);
+       
         if (index < max) {
 
             $("#question_text").text("");
@@ -79,6 +82,10 @@ function loadQuestion(i) {
     }, false);
 }
 function pressGoBack() {
+     if(index === 0){
+            console.log(base_url);
+            window.location.href = "categories";
+        }
     if (index > 0) {
         index--;
         window.clearTimeout(timeout)
