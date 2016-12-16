@@ -38,7 +38,9 @@ function storeAnswer(chosenOption, base_url, categoryName) {
         console.log("width: " + width)
         $('#progressBar').css('width', width + "%");
         $('#progressBar').text(index + "/" + max);
-
+        if(index === 0){
+            window.location.href = base_url + "index.php/resident/categories";
+        }
         if (index < max) {
 
             $("#question_text").text("");
@@ -50,7 +52,7 @@ function storeAnswer(chosenOption, base_url, categoryName) {
             timeout = setTimeout(function () {
                 window.location.href = base_url + "index.php/resident/completed?category=" + categoryName;
 
-            }, 1500);
+            }, 750);
         }
     }else{
         window.location.href = base_url + "index.php/resident/completed?category=" + categoryName;
