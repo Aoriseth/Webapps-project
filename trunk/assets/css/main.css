@@ -71,6 +71,11 @@ table{
     /*background-color: #3f51b5 !important;*/
 }
 
+btn:active{
+    border: none;
+}
+
+
 .btn-blue{
     background-color: #673AB7 !important;
 }
