@@ -240,7 +240,7 @@ function showFilters() {
 
         for (cookie of cookieArray) {
             i++;
-            console.log(cookie);
+            //console.log(cookie);
             code = "<div class=\"panel panel-default\">" +
                     "<div class=\"panel-heading \">" +
                     "<h4 class=\"panel-title\">" +
@@ -267,4 +267,34 @@ function clickGraph() { // arg:JSON
         });
     }*/
     console.log(selected_residents);
+    google.charts.load('current', {'packages': ['corechart']});
+
+    $.ajax({
+        type: "POST",
+        url: base_url + 'index.php/caregiver/load_avarage_score_per_category_chart',
+        data: {selected_residents: selected_residents},
+        dataType: "text",
+        cache: false,
+
+        success: function (data) {
+            var Yaxis = [];
+            var Xaxis = [];
+            console.log(data);
+            var response = JSON.parse(data);
+            console.log(response);
+
+            Xaxis = response[0];
+            Yaxis = response[1];
+
+            //google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+
+                var data = new google.visualization.DataTable();
+                columnChart(Yaxis, Xaxis, data, "chart1_div", 'average scores of all categories of selected residents');
+            }
+        }
+    });
+    return false;
 }
