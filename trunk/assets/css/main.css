@@ -75,6 +75,10 @@ btn:active{
     border: none;
 }
 
+.navbar{
+    background-color: #512DA8;
+}
+
 
 .btn-blue{
     background-color: #673AB7 !important;
