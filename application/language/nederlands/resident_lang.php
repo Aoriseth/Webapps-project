@@ -31,5 +31,5 @@ $lang[ 'r_question_back' ] = 'Ga terug';
 $lang[ 'r_question_help' ] = 'Klik op een van de gezichten om de bovenstaande vraag te beantwoorden.';
 
 // completed
-$lang[ 'r_completed_explanation' ] = 'Proficiat, je hebt de categorie <i>{category}</i> afgewerkt.';
+$lang[ 'r_completed_explanation' ] = 'Proficiat, je hebt de categorie <i>{category}</i> afgewerkt !';
 $lang[ 'r_completed_start_new' ] = 'Kies een nieuwe categorie!';
