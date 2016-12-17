@@ -320,38 +320,46 @@ class Caregiver extends CI_Controller {
 		echo json_encode( $resultArray );
 	}
         
-        function load_avarage_score_per_group_per_category_chart($group)
+        function load_avarage_score_per_group_per_category_chart()
 	{
-		// only allow AJAX requests
-		if ( ! $this->input->is_ajax_request() ) {
-			redirect( '404' );
-		}
+                    // only allow AJAX requests
+            if (!$this->input->is_ajax_request()) {
+                redirect('404');
+            }
 
-		$resultArray = [];
+            $resultArray = [];
 
+            if (isset($_POST['selected_residents'])) {
+                
+                $group = $this->input->post('selected_residents');
+                $residents = [];
 
-                $residents = $group;
+                foreach ($group as $residentID) {
+                    array_push($residents, $this->Resident_model->getResidentById($residentID));
+                }
+                
+                    //$residents = $this->Resident_model->getAllResidents();
+
                 $categories = $this->Question_model->getAllCategories(); // as ID
-
                 //array of strings
                 $Yarray = [];
                 //array of ints
                 $Xarray = [];
 
-                foreach ( $categories as $category ) {
-                    $totalScore = $this->Statistics_model->getTotalScoreCategory($residents, $category->id);   
-                    array_push( $Yarray, $this->Question_model->getCategoryName($category->id, $this->session->language)[0]->category );
-                    array_push( $Xarray, $totalScore );
-                }    
-                    
-                array_push( $resultArray, $Xarray );
-                array_push( $resultArray, $Yarray );
-		
-		
-		
-		header( 'Content-Type: application/json' );     
-		echo json_encode( $resultArray );
-	}
+                foreach ($categories as $category) {
+                    $totalScore = $this->Statistics_model->getTotalScoreCategory($residents, $category->id);
+                    array_push($Yarray, $this->Question_model->getCategoryName($category->id, $this->session->language)[0]->category);
+                    array_push($Xarray, $totalScore);
+                }
+
+                array_push($resultArray, $Xarray);
+                array_push($resultArray, $Yarray);
+                 
+            }
+
+            header('Content-Type: application/json');
+            echo json_encode($resultArray);
+        }
         
 
 	/**
