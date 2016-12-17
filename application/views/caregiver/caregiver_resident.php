@@ -8,10 +8,15 @@
         </p>
 
         <div class="row">
-
+            <?php if ($gender == 'Female'){ ?> 
             <div class="col-sm-6">
-                <img src="<?php echo base_url(); ?>assets/elderly.jpg" alt="Profile Picture" style="width:250px;height:300px;">
-            </div>   
+                <img src="<?php echo base_url(); ?>assets/elderlyFemale.jpg" alt="Profile Picture" style="width:250px;height:300px;">
+            </div>
+            <?php }elseif ($gender == 'Male'){ ?>
+            <div class="col-sm-6">
+                <img src="<?php echo base_url(); ?>assets/elderlyMale.jpg" alt="Profile Picture" style="width:250px;height:300px;">
+            </div>
+            <?php } ?> 
             <div class="col-sm-6">
                 Born {date_of_birth} </br>
                 {language} </br>
