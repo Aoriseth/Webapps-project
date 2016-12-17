@@ -31,5 +31,5 @@ $lang[ 'r_question_back' ] = 'Go Back';
 $lang[ 'r_question_help' ] = 'Click on one of the faces to answer the question stated above.';
 
 // completed
-$lang[ 'r_completed_explanation' ] = 'Congratulations, you\'ve just completed the category <i>{category}</i>.';
+$lang[ 'r_completed_explanation' ] = 'Congratulations, you\'ve just completed the category <i>{category}</i> !';
 $lang[ 'r_completed_start_new' ] = 'Choose a new category!';
