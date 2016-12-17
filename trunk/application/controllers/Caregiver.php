@@ -113,6 +113,7 @@ class Caregiver extends CI_Controller {
                 $data2[ 'categories' ] = $this->Question_model->getAllCategoryNames( $this->session->language );
 		$data2[ 'id' ] = $resident;
                 $data2[ 'name' ] = $residentObject[0]->first_name;
+                $data2[ 'gender' ] = $residentObject[0]->gender;
                 $data2[ 'last_name' ] = $residentObject[0]->last_name;
                 $data2[ 'date_of_birth' ] = $residentObject[0]->date_of_birth;
                 $data2[ 'language' ] = $residentObject[0]->language;
