@@ -75,7 +75,7 @@ btn:active{
     border: none;
 }
 
-.navbar, .navbar.navbar-default{
+.darkprimary{
     background-color: #512DA8 !important;
 }
 
