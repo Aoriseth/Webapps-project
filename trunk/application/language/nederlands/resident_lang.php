@@ -9,7 +9,7 @@ $lang[ 'r_button_help' ] = 'HULP';
 // navbar
 $lang[ 'r_navbar_home' ] = 'Puzzel';
 $lang[ 'r_navbar_gallery' ] = 'Galerij';
-$lang[ 'r_navbar_gallery_help' ] = 'Klik op \'galerij\' om de afgwerkte puzzels te zien.';
+$lang[ 'r_navbar_gallery_help' ] = 'Klik op \'Puzzel\' om je huidige puzzel te bekijken. Klik op \'galerij\' om de afgewerkte puzzels te zien.';
 
 
 // home
