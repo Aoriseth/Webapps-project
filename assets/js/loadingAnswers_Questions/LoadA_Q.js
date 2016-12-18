@@ -119,6 +119,9 @@ function pressGoBack() {
         $("#question_text").text("");
         $("#question_text").text(questions[index].question);
         questionSet = questions[index].question_set;
+        $("#question_text").finish();
+        $("#question_text").css('color', '#FF5722');
+        $("#question_text").animate({color: 'black'}, 1500);
         width = index / max * 100;
         $('#progressBar').css('width', width + "%");
         $('#progressBar').text(index + "/" + max);
