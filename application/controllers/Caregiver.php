@@ -328,35 +328,35 @@ class Caregiver extends CI_Controller {
             }
 
             $resultArray = [];
+            $residents = [];
+            $group = [];
 
             if (isset($_POST['selected_residents'])) {
-                
+
                 $group = $this->input->post('selected_residents');
-                $residents = [];
 
-                foreach ($group as $residentID) {
-                    array_push($residents, $this->Resident_model->getResidentById($residentID));
-                }
                 
-                    //$residents = $this->Resident_model->getAllResidents();
-
+                foreach ($group as $residentID) {
+                    //array_push($residents, $this->Resident_model->getResidentById($residentID)); // array of arrays of one object
+                    array_push($residents, current($this->Resident_model->getResidentById($residentID))); 
+                }
+                //$residents = $this->Resident_model->getAllResidents(); // array of objects
+                
                 $categories = $this->Question_model->getAllCategories(); // as ID
                 //array of strings
                 $Yarray = [];
                 //array of ints
                 $Xarray = [];
-
+                
                 foreach ($categories as $category) {
                     $totalScore = $this->Statistics_model->getTotalScoreCategory($residents, $category->id);
                     array_push($Yarray, $this->Question_model->getCategoryName($category->id, $this->session->language)[0]->category);
                     array_push($Xarray, $totalScore);
                 }
-
-                array_push($resultArray, $Xarray);
-                array_push($resultArray, $Yarray);
-                 
+                array_push( $resultArray, $Xarray );
+                array_push( $resultArray, $Yarray );
+               
             }
-
             header('Content-Type: application/json');
             echo json_encode($resultArray);
         }

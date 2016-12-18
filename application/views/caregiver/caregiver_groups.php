@@ -151,6 +151,16 @@
         <div class="col-md-6 col-sm-12">
             <div class="container">
                 <div id="chart1_div" style="width:100%"></div>
+                <div id="wait" 
+                     style="
+                        display:none;
+                        border:0px solid black;
+                        position:absolute;
+                        text-align:center;
+                        top:50%;
+                        left:50%;
+                        "><img src=<?php echo base_url() . 'assets/imgs/ajax-loader.gif' ?> >                                   
+                </div>
             </div>
         </div> 
     </div> 
