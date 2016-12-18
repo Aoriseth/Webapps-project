@@ -7,7 +7,7 @@ $lang[ 'r_title' ] = lang( 'common_app' ).': Resident';
 $lang[ 'r_button_help' ] = 'HULP';
 
 // navbar
-$lang[ 'r_navbar_home' ] = 'Thuis';
+$lang[ 'r_navbar_home' ] = 'Puzzel';
 $lang[ 'r_navbar_gallery' ] = 'Galerij';
 $lang[ 'r_navbar_gallery_help' ] = 'Klik op \'galerij\' om de afgwerkte puzzels te zien.';
 
@@ -32,4 +32,4 @@ $lang[ 'r_question_help' ] = 'Klik op een van de gezichten om de bovenstaande vr
 
 // completed
 $lang[ 'r_completed_explanation' ] = 'Proficiat, je hebt de categorie <i>{category}</i> afgewerkt !';
-$lang[ 'r_completed_start_new' ] = 'Kies een nieuwe categorie!';
+$lang[ 'r_completed_start_new' ] = 'Start een nieuwe categorie!';
