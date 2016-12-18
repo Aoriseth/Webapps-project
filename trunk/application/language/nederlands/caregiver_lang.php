@@ -4,8 +4,8 @@
 $lang[ 'c_title' ] = lang( 'common_app' ).': Verzorger';
 
 // navbar
-$lang[ 'c_navbar_home' ] = 'Thuis';
-$lang[ 'c_navbar_overview' ] = 'Overzicht residenten';
+$lang[ 'c_navbar_home' ] = 'Hoofdpagina';
+$lang[ 'c_navbar_overview' ] = 'Overzicht bewoners';
 $lang[ 'c_navbar_groups' ] = 'Groep selectie';
 $lang[ 'c_navbar_statistics' ] = 'Statistieken';
 
