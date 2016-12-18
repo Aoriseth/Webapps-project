@@ -13,6 +13,33 @@ $lang[ 'c_navbar_statistics' ] = 'Statistieken';
 $lang[ 'c_home_title' ] = 'Hallo {name}!';
 $lang[ 'c_home_info_residents' ] = 'De volgende residenten hebben recent de vragenlijst beantwoord:';
 
+// overview
+$lang[ 'c_overview_add_person' ] = 'Voeg persoon toe';
+$lang[ 'c_overview_reload' ] = 'Vernieuw';
+
+$lang[ 'c_overview_id' ] = 'ID';
+$lang[ 'c_overview_first_name' ] = 'Voornaam';
+$lang[ 'c_overview_last_name' ] = 'Achternaam';
+$lang[ 'c_overview_gender' ] = 'Gender';
+$lang[ 'c_overview_gender_male' ] = 'Man';
+$lang[ 'c_overview_gender_female' ] = 'Vrouw';
+$lang[ 'c_overview_gender_other' ] = 'Andere';
+$lang[ 'c_overview_password' ] = 'Wachtwoord';
+$lang[ 'c_overview_date_of_birth' ] = 'Geboortedatum';
+$lang[ 'c_overview_language' ] = 'Taal';
+$lang[ 'c_overview_language_english' ] = 'English';
+$lang[ 'c_overview_language_francais' ] = 'Francais';
+$lang[ 'c_overview_language_nederlands' ] = 'Nederlands';
+$lang[ 'c_overview_floor' ] = 'Verdieping';
+$lang[ 'c_overview_room' ] = 'Kamer';
+$lang[ 'c_overview_last_activity' ] = 'Laatste activiteit';
+$lang[ 'c_overview_last_completed_session' ] = 'Laatste volledige sessie';
+$lang[ 'c_overview_amount_of_sessions' ] = 'Aantal sessies';
+$lang[ 'c_overview_domicile' ] = 'Domicilie';
+$lang[ 'c_overview_type' ] = 'Type van account';
+$lang[ 'c_overview_type_resident' ] = 'Inwoner';
+$lang[ 'c_overview_type_caregiver' ] = 'Verzorger';
+
 // statistics
 $lang[ 'c_statistics_all_category_individual' ] = 'Alle categoriën per resident';
 $lang[ 'c_statistics_category_all_individual' ] = 'Alle residenten per categorie';

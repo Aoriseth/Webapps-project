@@ -6,3 +6,6 @@ $lang[ 'common_login' ] = 'Connexion';
 $lang[ 'common_logout' ] = 'Deconnexion ';
 
 $lang[ 'common_welcome_snackbar' ] = 'Bonjour {name}, vous êtes connecté(e) avec succès .';
+
+$lang[ 'common_save' ] = 'Save';
+$lang[ 'common_cancel' ] = 'Cancel';
