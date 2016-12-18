@@ -28,6 +28,7 @@ $lang[ 'r_categories_help' ] = 'Kies één van de drie zichtbare categorieën om
 
 // question
 $lang[ 'r_question_back' ] = 'Ga terug';
+$lang['r_question_back_cat'] = 'Ga terug naar categorie keuze';
 $lang[ 'r_question_help' ] = 'Klik op een van de gezichten om de bovenstaande vraag te beantwoorden.';
 
 // completed
