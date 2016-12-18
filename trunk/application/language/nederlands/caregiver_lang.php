@@ -10,7 +10,8 @@ $lang[ 'c_navbar_groups' ] = 'Groep selectie';
 $lang[ 'c_navbar_statistics' ] = 'Statistieken';
 
 // home
-$lang[ 'c_home_body' ] = 'Hallo {name}.';
+$lang[ 'c_home_title' ] = 'Hallo {name}!';
+$lang[ 'c_home_info_residents' ] = 'De volgende residenten hebben recent de vragenlijst beantwoord:';
 
 // statistics
 $lang[ 'c_statistics_all_category_individual' ] = 'Alle categoriën per resident';
