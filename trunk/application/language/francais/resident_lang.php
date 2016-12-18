@@ -7,7 +7,7 @@ $lang[ 'r_title' ] = lang( 'common_app' ).': Resident';
 $lang[ 'r_button_help' ] = 'Aide';
 
 // navbar
-$lang[ 'r_navbar_home' ] = 'Acceuil';
+$lang[ 'r_navbar_home' ] = 'Puzzle';
 $lang[ 'r_navbar_gallery' ] = 'Gallerie';
 $lang[ 'r_navbar_gallery_help' ] = 'Cliquez sur  \'acceuil\' pour revenir à l\'acceuil  '
         . ' Cliquez sur \'gallerie\' pour voir vos précédents puzzles.';
