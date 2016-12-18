@@ -66,7 +66,7 @@
                 </div>
             </div>
 
-            <div class="pull-right container-fluid" >
+            <div class="pull-right" >
                 <button class="btn btn-default" type="submit" name="back" value="Go back" id="GoBackButton" onclick="pressGoBack()" style=" color:#673AB7;">
                     <?= lang('r_question_back_cat') ?>
                 </button>
