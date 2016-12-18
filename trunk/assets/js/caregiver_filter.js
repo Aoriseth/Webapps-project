@@ -58,10 +58,10 @@ function clickAddGroup()
     if (nonLinearStepSlider == null) {
         nonLinearStepSlider = document.getElementById('slider-non-linear-step');
         noUiSlider.create(nonLinearStepSlider, {
-            start: [60, 80],
+            start: [50, 90],
             step: 1,
             range: {
-                'min': [50],
+                'min': [20],
                 'max': [120]
             }
         });

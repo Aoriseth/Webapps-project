@@ -1,8 +1,6 @@
 <head>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.css"></script>
-    
     <script type="text/javascript">
         var base_url = "<?php Print(base_url()); ?>"; 
         var caregiverID = "<?php Print($caregiverID); ?>"; 

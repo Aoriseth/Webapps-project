@@ -135,15 +135,31 @@ class Caregiver extends CI_Controller {
                 $ageMax = $_POST['ageMax'];
                 $gender = $_POST['gender'];
                 $floors = $_POST['floors'];
-
+                $filter_residents = [];
                 if (isset($ageMin, $ageMax, $gender, $floors)) {
                         //
                         $floors = $this->input->post( 'floors' );
                         $gender = $this->input->post( 'gender' );
-                        $array_requirements = array('floor_number' => intval($floors), 'gender' => $gender); // string to int
-                        $filter_residents = $this->Resident_model->getResidentsWith( $array_requirements ) ;
+                        if(trim($gender)==""){
+                            $array_requirements = array('floor_number' => intval($floors)); // string to int
+                        }
+                        else { 
+                            $array_requirements = array('floor_number' => intval($floors), 'gender' => $gender); 
+                        }
+                        $filter_residents = $this->Resident_model->getResidentsWith( $array_requirements );
+                        //
+                        $dateMin = new DateTime();
+                        $dateMin->modify('-'.$ageMax.' year');
+                        $dateAfter = $dateMin->format('yyyy-mm-dd');
+                        $dateMax = new DateTime();
+                        $dateMax->modify('-'.$ageMin.' year');
+                        $dateBefore = $dateMax->format('Y-m-d');
+                        $filter_residents_by_bd = $this->Resident_model->getAllResidentsBornBetween($dateAfter, $dateBefore);
+                        
                         foreach ( $filter_residents as $resident ) {
-                            array_push( $resultArray, $resident );
+                            if (in_array ( $resident, $filter_residents_by_bd )) {
+                                array_push( $resultArray, $resident );
+                            }
 			}
                 }
 		header( 'Content-Type: application/json' );     
