@@ -1,6 +1,6 @@
 <div class="panel container-fluid">
     <br />
-    <button class="btn btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i> Add Person</button>
+    <button class="btn btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i>Add Person</button>
     <button class="btn btn-info" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> Reload</button>
     
     <div class="row">
@@ -13,18 +13,17 @@
         <table  id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr> 
-                    <th>id</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Gender</th>            
-                    <th>Date of Birth</th>                 
-                    <th>Floor Number</th>  
-                    <th>Room Number</th>
-                    <th>Last Activity</th>
-                    <th>Last Completed</th>
-                    <th>Completed Sessions</th>
-
-                    <th style="width:500px;">Action</th>
+                    <?php
+                        $tableheads = [
+                            'ID', 'First Name', 'Last Name', 'Gender', 'Date of Birth',
+                            'Floor Number', 'Room Number',
+                            'Last Activity', 'Last Completed', 'Completed Sessions',
+                            'Action'
+                        ];
+                        foreach ( $tableheads as $head ) {
+                            echo '<th>'.$head.'</th>';
+                        }
+                    ?>
                 </tr>
             </thead>
             <tbody>
@@ -32,17 +31,11 @@
 
             <tfoot>
                 <tr>
-                    <th>id</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Gender</th>          
-                    <th>Date of Birth</th>           
-                    <th>Floor Number</th>     
-                    <th>Room Number</th>
-                    <th>Last Activity</th>
-                    <th>Last Completed</th>
-                    <th>Completed Sessions</th>            
-                    <th>Action</th>
+                    <?php
+                        foreach ( $tableheads as $head ) {
+                            echo '<th>'.$head.'</th>';
+                        }
+                    ?>
                 </tr>
             </tfoot>
         </table>
