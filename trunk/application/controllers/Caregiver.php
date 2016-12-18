@@ -36,7 +36,7 @@ class Caregiver extends CI_Controller {
 	{
 		$data[ 'include' ] = $this->load->view( 'include', '', true );
 
-		$data2[ 'pages' ] = [ 'home', 'overview', 'groups', 'statistics' ];
+		$data2[ 'pages' ] = [ 'home', 'overview', 'statistics' ];
 		$data2[ 'page_active' ] = $page;
 		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
 
