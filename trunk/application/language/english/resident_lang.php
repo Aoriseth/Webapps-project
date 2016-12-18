@@ -28,6 +28,7 @@ $lang[ 'r_categories_help' ] = 'Choose one of the visible categories to continue
 
 // question
 $lang[ 'r_question_back' ] = 'Go Back';
+$lang['r_question_back_cat'] = 'Go back to choosing categories';
 $lang[ 'r_question_help' ] = 'Click on one of the faces to answer the question stated above.';
 
 // completed

@@ -28,6 +28,8 @@ $lang[ 'r_categories_help' ] = 'Choisissez une des catégories visibles pour con
 
 // question
 $lang[ 'r_question_back' ] = 'Retour';
+$lang['r_question_back_cat'] = 'Retour';
+
 $lang[ 'r_question_help' ] = 'Cliquez sur l\'un des visages pour répondre à la question çi-dessus.';
 
 // completed
