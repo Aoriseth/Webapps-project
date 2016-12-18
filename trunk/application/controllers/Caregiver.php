@@ -150,7 +150,7 @@ class Caregiver extends CI_Controller {
                         //
                         $dateMin = new DateTime();
                         $dateMin->modify('-'.$ageMax.' year');
-                        $dateAfter = $dateMin->format('yyyy-mm-dd');
+                        $dateAfter = $dateMin->format('Y-m-d');
                         $dateMax = new DateTime();
                         $dateMax->modify('-'.$ageMin.' year');
                         $dateBefore = $dateMax->format('Y-m-d');
