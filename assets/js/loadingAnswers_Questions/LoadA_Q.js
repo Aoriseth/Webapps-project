@@ -48,13 +48,20 @@ function storeAnswer(chosenOption, base_url, categoryName) {
        
         if (index < max) {
 
+            $("#question_text").finish();
             $("#question_text").text("");
             $("#question_text").text(questions[index].question);
             questionSet = questions[index].question_set;
             $("#question_text").css('color', '#FF5722');
             $("#question_text").animate({color:'black'},1500);
+//            $('.answerbutton').attr("disabled", "disabled");
+//            setTimeout(function(){
+//                $('.answerbutton').removeAttr("disabled");
+//            },1000);
             
         } else {
+            $("#question_text").text("Vragenlijst voltooid !");
+            $("#question_text").finish();
             $("#question_text").css('color', '#FF5722');
             $("#question_text").animate({color:'black'},1500);
             //$("#progress").effect( "bounce", {times:5,distance: 50}, 3 );
