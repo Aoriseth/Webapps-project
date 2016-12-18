@@ -60,7 +60,7 @@ function storeAnswer(chosenOption, base_url, categoryName) {
 //            },1000);
             
         } else {
-            $("#question_text").text("Vragenlijst voltooid !");
+            $("#question_text").text("Categorie voltooid !");
             $("#question_text").finish();
             $("#question_text").css('color', '#FF5722');
             $("#question_text").animate({color:'black'},1500);
