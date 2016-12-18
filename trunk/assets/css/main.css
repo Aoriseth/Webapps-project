@@ -16,8 +16,14 @@ and open the template in the editor.
     font-size: 12px;
 }
 
-button:focus {outline:none !important;}
+button:focus {
+    outline:none !important;
+}
 
+.popover-content {
+    line-height: 110%;
+    font-size: 16px;
+}
 a {
     font-size: 16px;
 }
