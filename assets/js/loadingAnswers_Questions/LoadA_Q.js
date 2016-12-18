@@ -7,10 +7,13 @@ var timeout;
 var base_url;
 var firstButtonText = null;
 var ButtonText;
-function initialize(baseurl, buttontext, firstbuttontext) {
+var categoryCompletedText;
+
+function initialize(baseurl, buttontext, firstbuttontext, categorycompletedtext) {
     base_url = baseurl;
     firstButtonText = firstbuttontext;
     ButtonText = buttontext;
+	categoryCompletedText = categorycompletedtext;
 }
 
 
@@ -67,7 +70,7 @@ function storeAnswer(chosenOption, base_url, categoryName) {
 //            },1000);
 
         } else {
-            $("#question_text").text("Categorie voltooid !");
+            $("#question_text").text(categoryCompletedText);
             $("#question_text").finish();
             $("#question_text").css('color', '#FF5722');
             $("#question_text").animate({color: 'black'}, 1500);

@@ -28,10 +28,12 @@ $lang[ 'r_categories_help' ] = 'Choisissez une des catégories visibles pour con
 
 // question
 $lang[ 'r_question_back' ] = 'Retour';
-$lang['r_question_back_cat'] = 'Retour';
-
+$lang[ 'r_question_back_cat'] = 'Retour';
 $lang[ 'r_question_help' ] = 'Cliquez sur l\'un des visages pour répondre à la question çi-dessus.';
+$lang[ 'r_question_completed' ] = 'Catégorie complète!';
 
 // completed
 $lang[ 'r_completed_explanation' ] = 'Félicitation, vous avez terminé la catégorie <i>{category}</i>.';
+$lang[ 'r_completed_here_is_tip' ] = 'Voici une astuce pour cette catégorie:';
 $lang[ 'r_completed_start_new' ] = 'Choisissez une nouvelle catégorie!';
+$lang[ 'r_completed_go_puzzle' ] = 'Allez au puzzle';
