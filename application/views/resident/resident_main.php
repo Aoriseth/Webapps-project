@@ -39,6 +39,11 @@
             $('.popup').popover('toggle');
             event.stopPropagation();
         });
+        
+//        $('#trigger').click(function (event) {
+//            $('.important').effect('shake',1500);
+//            $( ".important" ).dialog({ modal: true });
+//        });
 
         $(window).click(function () {
             //Hide the menus if visible
