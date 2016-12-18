@@ -1,26 +1,22 @@
-
-
-
-    <?php if ($display_login_notification == true) { ?>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $.snackbar({content: '<?= lang('common_welcome_snackbar') ?>'});
-            });
-        </script>
-    <?php } ?>
-
+<?php if ($display_login_notification == true) { ?>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.snackbar({content: '<?= lang('common_welcome_snackbar') ?>'});
+        });
+    </script>
+<?php } ?>
 
 <div class=" panel container-fluid">
     </br>
-        <p class="txScale"><?= lang( 'c_home_body' ) ?></p>
-    
-    It seems that all your residents are still alive. </br>
-    The following residents most recently completed their questionair:
+
+    <p class="txScale"><?= lang( 'c_home_title' ) ?></p>
+
+    <p><?= lang( 'c_home_info_residents' ) ?></p>
+
     <ul>
         <?php foreach($recent_residents as $resident){
             ?><li> <?php echo $resident->first_name; ?></li> 
         <?php } ?>
-        
     </ul>
     </br>
 

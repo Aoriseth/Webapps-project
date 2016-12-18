@@ -10,7 +10,8 @@ $lang[ 'c_navbar_groups' ] = 'Selection de groupe';
 $lang[ 'c_navbar_statistics' ] = 'Statistiques';
 
 // home
-$lang[ 'c_home_body' ] = 'Bonjour {name}.';
+$lang[ 'c_home_title' ] = 'Bonjour {name}!';
+$lang[ 'c_home_info_residents' ] = 'The following residents most recently completed their questionair:';
 
 // statistics
 $lang[ 'c_statistics_all_category_individual' ] = 'Tous scores des catégories par résident';
