@@ -7,7 +7,7 @@ function loadPuzzle(base_url, path, name, categories) {
 
     (image.onload) = function () {
         greyImage2.src = base_url.concat('/assets/imgs/grey.png');
-        greyImage.src = base_url.concat('/assets/imgs/Question-mark12.png');
+        greyImage.src = base_url.concat('/assets/imgs/question-mark12.png');
     };
 
     greyImage.onload = function () {
