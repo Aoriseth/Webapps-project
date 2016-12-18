@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a  class=" navbar-brand" ><?= lang('common_app') ?></a>
+            <a  style="pointer-events: none;" class=" navbar-brand" ><?= lang('common_app') ?></a>
         </div>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
@@ -18,7 +18,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a  style="color:#FF5722" id="trigger" href="#"><?= lang('r_button_help') ?></a></li>
                 <li><a  href="<?php echo base_url() . 'index.php/logout' ?>"><?= lang('common_logout') ?></a></li>
-                <li><a  style="height:50px;" href="#"><span class="glyphicon glyphicon-user"></span></a></li>
+                <li><a  style="pointer-events:none;height:50px;" href="#"><span class="glyphicon glyphicon-user"></span></a></li>
             </ul>
         </div>
 
