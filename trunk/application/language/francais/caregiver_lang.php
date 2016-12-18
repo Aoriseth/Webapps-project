@@ -11,7 +11,7 @@ $lang[ 'c_navbar_statistics' ] = 'Statistiques';
 
 // home
 $lang[ 'c_home_title' ] = 'Bonjour {name}!';
-$lang[ 'c_home_info_residents' ] = 'The following residents most recently completed their questionair:';
+$lang[ 'c_home_info_residents' ] = 'The following residents most recently completed their questionnaire:';
 
 // statistics
 $lang[ 'c_statistics_all_category_individual' ] = 'Tous scores des catégories par résident';
