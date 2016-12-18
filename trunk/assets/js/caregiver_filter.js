@@ -134,7 +134,7 @@ function clickFilter(caregiverID)
         success: function (data) {
             //console.log("Filter:", ageMin, ageMax, gender, floors[0]);
             filter_residents = JSON.parse(data);
-            console.log("caregiverID: ", caregiverID);
+            //console.log("caregiverID: ", caregiverID);
             showFResidents(filter_residents);
         },
         error: function () {
@@ -153,9 +153,9 @@ function showFResidents(arg) {
         document.getElementById("btnSave").disabled = false;
         document.getElementById('update_div').style.display = "block";
         for (filter_resident of filter_residents) {
-            console.log(filter_resident.id, filter_resident.last_name);
             {
-                options = "<option value = " + filter_resident.id + ">" + filter_resident.first_name + "</option>";
+                options = "<option value = " + filter_resident.id + ">" + filter_resident.first_name +
+                        " " + filter_resident.last_name + "</option>";
                 $('#result-list select').append(options);
             }
             $("#result-list option").attr("selected", "selected");
@@ -177,7 +177,7 @@ function clickSave(arg) {
         }
     }
     
-    console.log("selected_residents: " + selected_residents);
+    console.log("selected_residents: ");
     console.log(selected_residents);
     /*
     $.ajax({
@@ -197,7 +197,6 @@ function clickSave(arg) {
             $('#modal_form').modal('hide');
             showFilters();
             filter_residents = 0;
-            showFResidents(filter_residents);
             clickGraph();
         /*},
         error: function () {
@@ -259,6 +258,13 @@ function showFilters() {
 }
 
 function clickGraph() { // arg:JSON
+    $(document).ajaxStart(function(){
+        $("#wait").css("display", "block");
+    });
+    $(document).ajaxComplete(function(){
+        $("#wait").css("display", "none");
+    });
+    
     /*var i = 0;
     for (cookie of cookieArray) {
         i++;
@@ -266,20 +272,22 @@ function clickGraph() { // arg:JSON
             console.log('you clicked ' + i);
         });
     }*/
-    console.log(selected_residents);
     google.charts.load('current', {'packages': ['corechart']});
 
     $.ajax({
         type: "POST",
-        url: base_url + 'index.php/caregiver/load_avarage_score_per_category_chart',
+        url: base_url + 'index.php/caregiver/load_avarage_score_per_group_per_category_chart',
         data: {selected_residents: selected_residents},
         dataType: "text",
         cache: false,
 
         success: function (data) {
+            document.getElementById("btnSave").disabled = true;
             var Yaxis = [];
             var Xaxis = [];
-            console.log(data);
+            //console.log(selected_residents);
+            //console.log("data: ");
+            //console.log(data);
             var response = JSON.parse(data);
             console.log(response);
 
@@ -290,9 +298,9 @@ function clickGraph() { // arg:JSON
             google.charts.setOnLoadCallback(drawChart);
 
             function drawChart() {
-
                 var data = new google.visualization.DataTable();
-                columnChart(Yaxis, Xaxis, data, "chart1_div", 'average scores of all categories of selected residents');
+                columnChart(Yaxis, Xaxis, data, "chart1_div", 
+                "average scores of all categories of selected residents");
             }
         }
     });
