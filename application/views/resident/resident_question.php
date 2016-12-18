@@ -57,15 +57,16 @@
 
         <div class="row container-fluid">
 
-            <div class="col-sm-10 col-sm-offset-1 " >
-                <div class="progress" id="progress" style="margin-top: 20px;">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progressBar" style="background-color: #673AB7;min-width: 2em;">
-
-
+            <div class="col-sm-12" >
+                <div class="container-fluid">
+                    <div class="progress" id="progress" style="margin-top: 20px;">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progressBar" style="background-color: #673AB7;min-width: 2em;">
+                            
+                        </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
             <div class="pull-right" >
                 <button class="btn btn-default" type="submit" name="back" value="Go back" id="GoBackButton" onclick="pressGoBack()" style=" color:#673AB7;">
                     <?= lang('r_question_back_cat') ?>
