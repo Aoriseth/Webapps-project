@@ -27,10 +27,13 @@ $lang[ 'r_categories_explanation' ] = 'Kies een categorie';
 $lang[ 'r_categories_help' ] = 'Kies één van de drie zichtbare categorieën om verder te gaan.';
 
 // question
-$lang[ 'r_question_back' ] = 'Ga terug';
-$lang['r_question_back_cat'] = 'Ga terug naar categorie keuze';
+$lang[ 'r_question_back' ] = 'Ga terug naar de vorige vraag';
+$lang[ 'r_question_back_cat'] = 'Ga terug naar categorie keuze';
 $lang[ 'r_question_help' ] = 'Klik op een van de gezichten om de bovenstaande vraag te beantwoorden.';
+$lang[ 'r_question_completed' ] = 'Categorie voltooid!';
 
 // completed
 $lang[ 'r_completed_explanation' ] = 'Proficiat, je hebt de categorie <i>{category}</i> afgewerkt !';
+$lang[ 'r_completed_here_is_tip' ] = 'Hier is een tip voor deze categorie:';
 $lang[ 'r_completed_start_new' ] = 'Start een nieuwe categorie!';
+$lang[ 'r_completed_go_puzzle' ] = 'Ga naar de puzzel';

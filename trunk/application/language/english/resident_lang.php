@@ -27,10 +27,13 @@ $lang[ 'r_categories_explanation' ] = 'Select a category';
 $lang[ 'r_categories_help' ] = 'Choose one of the visible categories to continue.';
 
 // question
-$lang[ 'r_question_back' ] = 'Go Back';
-$lang['r_question_back_cat'] = 'Go back to choosing categories';
+$lang[ 'r_question_back' ] = 'Go back to the previous question';
+$lang[ 'r_question_back_cat'] = 'Go back to choosing categories';
 $lang[ 'r_question_help' ] = 'Click on one of the faces to answer the question stated above.';
+$lang[ 'r_question_completed' ] = 'Category completed!';
 
 // completed
 $lang[ 'r_completed_explanation' ] = 'Congratulations, you\'ve just completed the category <i>{category}</i> !';
+$lang[ 'r_completed_here_is_tip' ] = 'Here is a tip for this category:';
 $lang[ 'r_completed_start_new' ] = 'Choose a new category!';
+$lang[ 'r_completed_go_puzzle' ] = 'Go to the puzzle';

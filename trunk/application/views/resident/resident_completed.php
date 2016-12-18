@@ -8,14 +8,12 @@
         </div>
         <div class="tip">
             <p class="tlScale">
-                Hier is een tip voor deze categorie:
+				<?= lang( 'r_completed_here_is_tip' ) ?>
             </p>
             <blockquote>
                 <i><p class="txScale">
                         {tip}
-                    </p>
-
-                </i>
+                </p></i>
             </blockquote>
 
 
@@ -31,7 +29,7 @@
 
         <div class="pull-right">
             <form action=<?php echo base_url() . 'index.php/resident/home' ?> method="POST">
-                <input class="btn btn-lg btn-default" type="submit" name="Categories" value="Ga naar de puzzle" style="size: 100%;color:#673AB7">
+                <input class="btn btn-lg btn-default" type="submit" name="Categories" value="<?= lang( 'r_completed_go_puzzle' ) ?>" style="size: 100%;color:#673AB7">
             </form>
         </div>
     </div>

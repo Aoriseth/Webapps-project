@@ -3,7 +3,7 @@
 <div class="container-fluid" id="container_resident">
     <script src="<?php echo base_url(); ?>assets/js/loadingAnswers_Questions/LoadA_Q.js" type="text/javascript"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-    <script >initialize('<?php echo base_url(); ?>', '<?= lang('r_question_back') ?>', '<?= lang('r_question_back_cat') ?>');</script>
+    <script >initialize('<?php echo base_url(); ?>', '<?= lang('r_question_back') ?>', '<?= lang('r_question_back_cat') ?>', '<?= lang( 'r_question_completed' ) ?>' );</script>
 
     <div data-placement="bottom" data-toggle="popover" title="" data-content="<?= lang('r_question_help') ?>" data-container="body" class="popup panel row">
 
