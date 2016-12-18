@@ -1844,7 +1844,7 @@ fieldset[disabled] .form-group .form-control {
   margin-top: -11px;
 }
 .form-group select {
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;*/
      -moz-appearance: none;
           appearance: none;
 }
