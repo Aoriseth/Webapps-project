@@ -133,6 +133,19 @@ class Resident_model extends CI_Model {
 		return $query->result();
 	}
 	
+        /*
+	 * Get all residents born between the given datetimes.
+	 */
+	function getAllResidentsBornBetween( $dateAfter, $dateBefore ) {
+		$query = $this->db->query(
+			"SELECT * "
+			. "FROM a16_webapps_3.residents "
+			. "WHERE date_of_birth > '$dateAfter'"
+			. "AND date_of_birth < '$dateBefore'"
+		);
+		return $query->result();
+	}
+        
 	/*
 	 * Get all residents that were last active before the given datetime.
 	 */
