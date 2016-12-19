@@ -73,10 +73,12 @@
     google.charts.load('current', {'packages': ['corechart']});
     // Below here the QR code stuff
     // qr code generator library -> http://davidshimjs.github.io/qrcodejs/
+    var data = ' {"username": "{username}", "password": "{password}"} ';
+    console.log(data);
     qrcode = new QRCode(document.getElementById("qrcode"), {
-        text: {"username": '{username}', "password": "{password}"},
-        width: 128,
-        height: 128,
+        text: data,
+        width: 200,
+        height: 200,
         colorDark: "#000000",
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H});
