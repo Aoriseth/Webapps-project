@@ -129,14 +129,6 @@ class Picture_model extends CI_Model {
         $this->db->where( 'in_progress', '1' );
         $this->db->set( 'times_completed', 'times_completed+1', FALSE );
         $this->db->update( 'a16_webapps_3.gallery_pictures' );
-        /**
-		$this->db->query(
-            "UPDATE `a16_webapps_3`.`gallery_pictures`"
-            . " SET `times_completed` = `times_completed` + '1'"
-            . " WHERE id='$residentID' AND in_progress = '1'"
-        );
-		 */
-        
     }
     
     function deactivatePuzzle( $residentID ) {
@@ -144,13 +136,6 @@ class Picture_model extends CI_Model {
 		$this->db->where( 'in_progress', '1' );
 		$this->db->set( 'in_progress', '0', FALSE );
 		$this->db->update( 'a16_webapps_3.gallery_pictures' );
-		/**
-        $this->db->query(
-            "UPDATE `a16_webapps_3`.`gallery_pictures`"
-            . " SET `in_progress`='0'"
-            . " WHERE id='$residentID' AND in_progress = '1'"
-        );
-        */
     }
     
     function activateNewPuzzle( $residentID ) {
@@ -184,7 +169,7 @@ class Picture_model extends CI_Model {
 		$query = $this->db->query(
                 "SELECT picture_id"
                 . " FROM a16_webapps_3.gallery_pictures"
-                . " WHERE id='$galleryID')"
+                . " WHERE id='$galleryID'"
         );
 		$pictureID = $query->result()->picture_id;
 		
@@ -210,7 +195,7 @@ class Picture_model extends CI_Model {
 		$query = $this->db->query(
                 "SELECT profile_picture_id"
                 . " FROM a16_webapps_3.residents"
-                . " WHERE id='$residentID')"
+                . " WHERE id='$residentID'"
         );
 		$pictureID = $query->result()->profile_picture_id;
 		
@@ -245,7 +230,7 @@ class Picture_model extends CI_Model {
 		$query = $this->db->query(
                 "SELECT picture_dir, picture_name"
                 . " FROM a16_webapps_3.pictures"
-                . " WHERE id='$pictureID')"
+                . " WHERE id='$pictureID'"
         );
 		$query = $query->result();
 		
