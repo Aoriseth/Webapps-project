@@ -121,6 +121,7 @@ class Caregiver extends CI_Controller {
                 $data2[ 'room' ] = $residentObject[0]->room_number;
                 $data2[ 'sessions_completed' ] = $residentObject[0]->completed_sessions;
                 $data2['username'] = $residentObject[0]->id;
+                $data2['password'] = $residentObject[0]->password;
                 $data2[ 'last_activity' ] = $residentObject[0]->last_activity;
                 $data2['average_score'] = round($this->Statistics_model->getTotalScoreResident($resident));
 		$data[ 'content' ] = $this->parser->parse( 'caregiver/caregiver_resident', $data2, true );
