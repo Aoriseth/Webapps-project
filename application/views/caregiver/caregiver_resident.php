@@ -1,4 +1,6 @@
 <script src="<?= base_url() ?>assets/js/QR-code/qrcode.min.js" type="text/javascript"></script>
+<script src="<?= base_url() ?>assets/js/QR-code/download.js" type="text/javascript"></script>
+
 <div class="container-fluid">
 
     <div class="panel container-fluid">
@@ -24,16 +26,7 @@
                 Last activity on {last_activity} </br>
                 {sessions_completed} completed session(s) </br>
                 {name}'s average score is {average_score} </br>
-                <div id="qrcode"></div>
-                <script type="text/javascript">
-                    new QRCode(document.getElementById("qrcode"), {
-                    text: {"username":'{username}',"password":"HotGranny"},
-                            width: 128,
-                            height: 128,
-                            colorDark : "#000000",
-                            colorLight : "#ffffff",
-                            correctLevel : QRCode.CorrectLevel.H});
-                </script>
+                <div id="qrcode"></div><button id = "qrcodeButton"> download qr code</button>
             </div>
         </div>
         </br>
@@ -63,7 +56,7 @@
                         <?php } ?>           
                     </select>
                 </form>
-                <div id="chart2_div" style="width:100%"></div>
+                <div class="btn" id="chart2_div" style="width:100%"></div>
             </div>
 
 
@@ -75,9 +68,24 @@
 
 
 <script type="text/javascript">
-
+    var qrcode = null;
     var formChart2 = document.getElementById('chart2_form');
     google.charts.load('current', {'packages': ['corechart']});
+    // Below here the QR code stuff
+    // qr code generator library -> http://davidshimjs.github.io/qrcodejs/
+    qrcode = new QRCode(document.getElementById("qrcode"), {
+        text: {"username": '{username}', "password": "{password}"},
+        width: 128,
+        height: 128,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H});
+    $("#qrcodeButton").click(function(){
+        // download function library http://danml.com/download.html#FullSource
+        // I changed something in teh QR-code generator library so I have an id of the image of the QR-code
+        // line 367
+        download($("#qrcodeID").attr('src'),"qrcode.png","image/png");
+    });
 
     chart1function();
     chart2function();
