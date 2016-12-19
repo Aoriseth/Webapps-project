@@ -1,27 +1,26 @@
-var video = null;
+var videoBoolean = null;
 function login(base_url, usernameI, passwordI) {
-    console.log("usernameI" + usernameI + "passwordI" + passwordI);
+    console.log("usernameI" + usernameI + "passwordI" + passwordI + " videoBoolean   " + videoBoolean);
     var username = usernameI;
     var password = passwordI;
-    
+
     var url = base_url + 'index.php/login/ajax';
     if (username === null || password === null) {
         console.log("inside if loop");
         username = $('#login_form input[ name = username ]').val();
         password = $('#login_form input[ name = password ]').val();
-        video = false
-        
-    }else{
-        video = true
+        videoBoolean = 'false';
+    } else {
+        videoBoolean = 'true';
     }
-   
+    console.log("videoBoolean " + videoBoolean);
     $.ajax({
         type: "POST",
         url: url,
         data: {
-            username: username,
-            password: password,
-            video: "video"
+            "username": username,
+            "password": password,
+            "video":videoBoolean
         },
         dataType: "text",
         cache: false,
