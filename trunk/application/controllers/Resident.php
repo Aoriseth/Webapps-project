@@ -76,16 +76,14 @@ class Resident extends CI_Controller {
         $data = $this->display_common_elements('categories');
 
         // get 3 random categories
-        $categories = $this->Question_model->getAllUnfinishedCategories($this->session->id);
+        $categories = $this->Question_model->getAllUnfinishedCategories( $this->session->id, 3);
 
-        if (count($categories) == 0) {
-            $this->Score_model->addSessionScore($this->session->id);
-            $this->Resident_model->incrementSession($this->session->id);
-            $this->session->completedSessions = $this->session->completedSessions + 1;
-            $this->Picture_model->incrementPuzzleCompleted($this->session->id);
-            $this->Picture_model->deactivatePuzzle($this->session->id);
-            $this->Picture_model->activateNewPuzzle($this->session->id);
-            header("Refresh:0");
+        if ( count( $categories ) == 0 ) {
+            $this->Score_model->addSessionScore( $this->session->id );
+            $this->Resident_model->incrementSession( $this->session->id );
+            $this->session->completedSessions = $this->Resident_model->getSessionsCompleted( $this->session->id );
+            $this->Picture_model->updateAndChangePuzzle( $this->session->id );
+            header( "Refresh:0" );
 
             // TODO: something when all categories are finished
             /*
@@ -97,8 +95,7 @@ class Resident extends CI_Controller {
             // !!! Important: ensure that everything in this if-block occurs exactly 1 time.
         }
 
-        shuffle($categories);
-        $data2['categories'] = array_splice($categories, 0, 3);
+        $data2['categories'] = $categories;
 
         $data['content'] = $this->parser->parse('resident/resident_categories', $data2, true);
 
