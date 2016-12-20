@@ -5,7 +5,7 @@ class Resident_model extends CI_Model {
 	public function __construct() {
 		parent::__construct();
 		
-		require 'lib/password.php';
+		//require 'lib/password.php';
 		$this->load->helper( 'date' );
         date_default_timezone_set( 'Europe/Brussels' );
 		$this->load->model( 'Score_model' );
