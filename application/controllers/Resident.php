@@ -168,7 +168,7 @@ class Resident extends CI_Controller {
             redirect('404');
         }
         $questionSet = $this->input->post('question_set');
-        
+		$this->Answer_model->deleteAllAnswers($this->session->id, $questionSet);
     }
 
 }
