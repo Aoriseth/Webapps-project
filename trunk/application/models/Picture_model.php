@@ -5,8 +5,8 @@ class Picture_model extends CI_Model {
     public function __construct() {
         parent::__construct();
 
-        $this->load->helper( 'date' );
-        date_default_timezone_set( 'Europe/Brussels' );
+        $this->load->helper('date');
+        date_default_timezone_set('Europe/Brussels');
     }
 
     /**
@@ -20,25 +20,25 @@ class Picture_model extends CI_Model {
 	 * undesired side effect with fields like last_completed and about who has ownership of
 	 * the picture)
      */
-    function storeNewPuzzlePicture( $picture_dir, $picture_name, $residentID = NULL ) {
+    function storeNewPuzzlePicture($picture_dir, $picture_name, $residentID = NULL) {
         $this->db->query("START TRANSACTION");
 		$this->db->query("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
-        $pictureID = $this->storePicture( $picture_dir, $picture_name );
-        $this->storeNewGallery( $pictureID, $residentID );
+        $pictureID = $this->storePicture($picture_dir, $picture_name);
+        $this->storeNewGallery($pictureID, $residentID);
 		$this->db->query("COMMIT");
     }
 
     /**
      * Assign a new given profile picture to a given resident.
      */
-    function storeNewProfilePicture( $picture_dir, $picture_name, $residentID ) {
+    function storeNewProfilePicture($picture_dir, $picture_name, $residentID) {
         $this->db->query("START TRANSACTION");
 		$this->db->query("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
-		$pictureID = $this->storePicture( $picture_dir, $picture_name );
-        $updateData = array( 'profile_picture_id' => $pictureID );
-        $whereArray = array( 'id' => $residentID );
-        $this->db->where( $whereArray );
-        $this->db->update( 'a16_webapps_3.residents', $updateData );
+		$pictureID = $this->storePicture( $picture_dir, $picture_name);
+        $updateData = array('profile_picture_id' => $pictureID);
+        $whereArray = array('id' => $residentID);
+        $this->db->where($whereArray);
+        $this->db->update('a16_webapps_3.residents', $updateData);
 		$this->db->query("COMMIT");
     }
 
@@ -49,12 +49,12 @@ class Picture_model extends CI_Model {
 	 * - storeNewPuzzlePicture,
 	 * - storeNewProfilePicture.
      */
-    private function storePicture( $picture_dir, $picture_name ) {
+    private function storePicture($picture_dir, $picture_name) {
         $array = array(
-            'picture_dir' => addslashes( $picture_dir ),
-            'picture_name' => addslashes( $picture_name )
+            'picture_dir' => addslashes($picture_dir),
+            'picture_name' => addslashes($picture_name)
         );
-        $this->db->insert( 'a16_webapps_3.pictures', $array );
+        $this->db->insert('a16_webapps_3.pictures', $array);
         return $this->db->insert_id();
     }
 
@@ -64,21 +64,21 @@ class Picture_model extends CI_Model {
 	 * 
 	 * Do not use this function. Instead, use storeNewPuzzlePicture.
      */
-    private function storeNewGallery( $pictureID, $residentID = NULL ) {
+    private function storeNewGallery($pictureID, $residentID = NULL) {
         $array = array(
             'picture_id' => $pictureID,
             'resident_id' => $residentID,
             'in_progress' => 0,
             'times_completed' => 0,
-            'added_on' => date( 'Y-m-d H:i:s' )
+            'added_on' => date('Y-m-d H:i:s')
         );
-        $this->db->insert( 'a16_webapps_3.gallery_pictures', $array );
+        $this->db->insert('a16_webapps_3.gallery_pictures', $array);
     }
 
     /**
      * Return a gallery_picture stored in the database.
      */
-    function getGalleryPicture( $galleryID ) {
+    function getGalleryPicture($galleryID) {
         $query = $this->db->query(
                 "SELECT *"
                 . " FROM a16_webapps_3.gallery_pictures"
@@ -90,7 +90,7 @@ class Picture_model extends CI_Model {
     /**
      * Get all gallery records from a given resident.
      */
-    function getGalleryPicturesFrom( $residentID ) {
+    function getGalleryPicturesFrom($residentID) {
         $query = $this->db->query(
                 "SELECT *"
                 . " FROM a16_webapps_3.gallery_pictures"
@@ -120,9 +120,9 @@ class Picture_model extends CI_Model {
 	 * 
 	 * Do not use this function outside of this model. Instead, use getNPictures.
 	 */
-	private function getNGalleryPictures( $residentID, $n ) {
+	private function getNGalleryPictures($residentID, $n) {
 		$query = $this->db->query(
-                "SELECT *"
+                "SELECT picture_id"
                 . " FROM a16_webapps_3.gallery_pictures"
 				. " WHERE resident_id='$residentID' AND in_progress = 0 AND times_completed > 0"
 				. " ORDER BY last_completion DESC"
@@ -139,7 +139,7 @@ class Picture_model extends CI_Model {
      * $full_path = $picutre_dir . $picture_name
      * 
      */
-    function getPicture( $pictureID ) {
+    function getPicture($pictureID) {
         $query = $this->db->query(
                 "SELECT picture_dir, picture_name"
                 . " FROM a16_webapps_3.pictures"
@@ -151,8 +151,8 @@ class Picture_model extends CI_Model {
     /**
      * Get (at most) n pictures of the given resident, where n is a given number.
      */
-    function getNCompletedPictures( $residentID, $n=5 ) {
-        $galleries = $this->getNGalleryPictures( $residentID, $n );
+    function getNCompletedPictures($residentID, $n=5) {
+        $galleries = $this->getNGalleryPictures($residentID, $n);
 		
 		$array = array();
 		foreach($galleries->result_array() as $row) {
@@ -168,22 +168,22 @@ class Picture_model extends CI_Model {
     }
     
     
-    private function incrementPuzzleCompleted( $residentID ) {
-        $this->db->where( 'resident_id', $residentID );
-        $this->db->where( 'in_progress', '1' );
-        $this->db->set( 'times_completed', 'times_completed+1', FALSE );
-        $this->db->update( 'a16_webapps_3.gallery_pictures' );
+    private function incrementPuzzleCompleted($residentID) {
+        $this->db->where('resident_id', $residentID);
+        $this->db->where('in_progress', '1');
+        $this->db->set('times_completed', 'times_completed+1', FALSE);
+        $this->db->update('a16_webapps_3.gallery_pictures');
     }
     
-    private function deactivatePuzzle( $residentID ) {
-		$this->db->where( 'resident_id', $residentID );
-		$this->db->where( 'in_progress', '1' );
-		$this->db->set( 'in_progress', '0', FALSE );
-		$this->db->update( 'a16_webapps_3.gallery_pictures' );
+    private function deactivatePuzzle($residentID) {
+		$this->db->where('resident_id', $residentID);
+		$this->db->where('in_progress', '1');
+		$this->db->set('in_progress', '0', FALSE);
+		$this->db->update('a16_webapps_3.gallery_pictures');
     }
 	
-	private function updateLastCompleted( $residentID ) {
-		$date = date( 'Y-m-d H:i:s' );
+	private function updateLastCompleted($residentID) {
+		$date = date('Y-m-d H:i:s');
 		$this->db->query(
             "UPDATE `a16_webapps_3`.`gallery_pictures`"
             . " SET `last_completed`='$date'"
@@ -191,7 +191,7 @@ class Picture_model extends CI_Model {
         );
 	}
     
-    private function activateNewPuzzle( $residentID ) {
+    private function activateNewPuzzle($residentID) {
         $query = $this->db->query(
             "SELECT id"
             . " FROM `a16_webapps_3`.`gallery_pictures`"
@@ -216,7 +216,7 @@ class Picture_model extends CI_Model {
 	 * 
 	 * Once this function has been called, deleted data will be gone forever!
 	 */
-	function deleteGalleryPicture( $galleryID ) {
+	function deleteGalleryPicture($galleryID) {
 		$this->db->query("START TRANSACTION");
 		$this->db->query("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
 		
@@ -236,7 +236,7 @@ class Picture_model extends CI_Model {
 		);
 		
 		//Delete the picture from the server and database.
-		$this->deletePicture( $pictureID );
+		$this->deletePicture($pictureID);
 		
 		$this->db->query("COMMIT");
 	}
@@ -246,7 +246,7 @@ class Picture_model extends CI_Model {
 	 * of the resident will be set to null and the picture itself will be deleted from
 	 * the server and the pictures table.
 	 */
-	function deleteProfilePicture( $residentID ) {
+	function deleteProfilePicture($residentID) {
 		$this->db->query("START TRANSACTION");
 		$this->db->query("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
 
@@ -264,13 +264,13 @@ class Picture_model extends CI_Model {
 		}
 		
 		//First remove the reference to the picture from the resident table (foreign key).
-		$updateData = array( 'profile_picture_id' => NULL );
-        $whereArray = array( 'id' => $residentID );
-        $this->db->where( $whereArray );
-        $this->db->update( 'a16_webapps_3.residents', $updateData );
+		$updateData = array('profile_picture_id' => NULL);
+        $whereArray = array('id' => $residentID);
+        $this->db->where($whereArray);
+        $this->db->update('a16_webapps_3.residents', $updateData);
 		
 		//Then delete the picture from the server and database.
-		$this->deletePicture( $pictureID );
+		$this->deletePicture($pictureID);
 		
 		$this->db->query("COMMIT");
 	}
@@ -284,7 +284,7 @@ class Picture_model extends CI_Model {
 	 * - deleteGalleryPicture
 	 * - deleteProfilePicture
 	 */
-	private function deletePicture( $pictureID ) {
+	private function deletePicture($pictureID) {
 		//Get the picture name and location on the server.
 		$query = $this->db->query(
                 "SELECT picture_dir, picture_name"
@@ -304,7 +304,7 @@ class Picture_model extends CI_Model {
 		);
 	}
 	
-    function getPictureTest( $residentId ) {
+    function getPictureTest($residentId) {
         $query = $this->db->query(
                 "SELECT picture_dir, picture_name"
                 . " FROM a16_webapps_3.pictures"
@@ -317,7 +317,7 @@ class Picture_model extends CI_Model {
     
 	//Deprecated function. Do not use this anymore, it will be deleted soon.
 	//Use getNCompletedPictures( ... ) instead.
-    function getFinishedPicture( $residentId ) {
+    function getFinishedPicture($residentId) {
         $query = $this->db->query(
             "SELECT picture_dir, picture_name"
             . " FROM a16_webapps_3.pictures"
@@ -331,10 +331,10 @@ class Picture_model extends CI_Model {
         return $query->result();
     }
 	
-	function updateAndChangePuzzle( $residentID ) {
-		$this->incrementPuzzleCompleted( $residentID );
-		$this->updateLastCompleted( $residentID );
-		$this->deactivatePuzzle( $residentID );
-		$this->activateNewPuzzle( $residentID );
+	function updateAndChangePuzzle($residentID) {
+		$this->incrementPuzzleCompleted($residentID);
+		$this->updateLastCompleted($residentID);
+		$this->deactivatePuzzle($residentID);
+		$this->activateNewPuzzle($residentID);
 	}
 }
