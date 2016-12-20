@@ -76,4 +76,39 @@ class Answer_model extends CI_Model {
 		$this->db->set( 'last_activity', date( 'Y-m-d H:i:s' ) );
 		$this->db->update( 'a16_webapps_3.residents' );
 	}
+	
+	/**
+	 * Delete all stored answers of the category which the given question
+	 * set belongs to, coming from the given resident within the current
+	 * session.
+	 */
+	function deleteAllAnswers($residentID, $questionSet) {
+		//Get the current session of the given resident
+		$currentSession = ( $this->Resident_model->getSessionsCompleted( $residentID ) ) + 1;
+		
+		//Get the category set using the given question set
+		$query = $this->db->query(
+			"SELECT category_set "
+			. "FROM question_view "
+			. "LIMIT 1"
+		);
+		$categorySet = $query->result()[0]->category_set;
+		
+		//Get all question sets from this category set
+		$query = $this->db->query(
+			"SELECT DISTINCT question_set "
+			. "FROM a16_webapps_3.question_view "
+			. "WHERE category_set='$categorySet'"
+		);
+		$questionSets = $query->result();
+		
+		//Delete all answers of the category set (of this resident and within
+		//the given session)
+		$this->db->query(
+			"DELETE "
+			. "FROM a16_webapps_3.answers "
+			. "WHERE resident_id='$residentID' AND session='$currentSession' AND "
+			. "question_set IN (" . implode(',', $questionSets) . ")"
+		);
+	}
 }
