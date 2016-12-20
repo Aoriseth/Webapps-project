@@ -86,10 +86,6 @@ class Answer_model extends CI_Model {
 		//Get the current session of the given resident
 		$currentSession = ( $this->Resident_model->getSessionsCompleted( $residentID ) ) + 1;
 		
-		echo 'session: ';
-		echo $currentSession;
-		echo ' = ';
-		
 		//Get the category set using the given question set
 		$query = $this->db->query(
 			"SELECT category_set "
@@ -108,8 +104,6 @@ class Answer_model extends CI_Model {
 		);
 		$questionSets = array();
 		foreach($query->result_array() as $row) {
-			echo $row['question_set'];
-			echo ' ';
 			$questionSets[] = $row['question_set'];
 		}
 		
