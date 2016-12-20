@@ -17,29 +17,39 @@ class Picture_model extends CI_Model {
      * If the resident is NULL or not given (so it is NULL by default), the picture
      * is not assigned to 1 particular resident and it will be available for all residents.
      * ==> This is not recommended! (programmatically safe to do, but might result in
-	 * undesired side effect with fields like last_completed,...)
+	 * undesired side effect with fields like last_completed and about who has ownership of
+	 * the picture)
      */
     function storeNewPuzzlePicture( $picture_dir, $picture_name, $residentID = NULL ) {
-        //TODO: use transaction to be sure id isn't changed during the execution of this function.
+        $this->db->query("START TRANSACTION");
+		$this->db->query("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
         $pictureID = $this->storePicture( $picture_dir, $picture_name );
         $this->storeNewGallery( $pictureID, $residentID );
+		$this->db->query("COMMIT");
     }
 
     /**
      * Assign a new given profile picture to a given resident.
      */
     function storeNewProfilePicture( $picture_dir, $picture_name, $residentID ) {
-        $pictureID = $this->storePicture( $picture_dir, $picture_name );
+        $this->db->query("START TRANSACTION");
+		$this->db->query("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
+		$pictureID = $this->storePicture( $picture_dir, $picture_name );
         $updateData = array( 'profile_picture_id' => $pictureID );
         $whereArray = array( 'id' => $residentID );
         $this->db->where( $whereArray );
         $this->db->update( 'a16_webapps_3.residents', $updateData );
+		$this->db->query("COMMIT");
     }
 
     /**
      * Store the given picture in the database and return the ID.
+	 * 
+	 * Do not use this function outside of this model. Use either:
+	 * - storeNewPuzzlePicture,
+	 * - storeNewProfilePicture.
      */
-    function storePicture( $picture_dir, $picture_name ) {
+    private function storePicture( $picture_dir, $picture_name ) {
         $array = array(
             'picture_dir' => addslashes( $picture_dir ),
             'picture_name' => addslashes( $picture_name )
@@ -51,8 +61,10 @@ class Picture_model extends CI_Model {
     /**
      * Store new gallery_picture with the given ID of a picture that is
      * already in the pictures table.
+	 * 
+	 * Do not use this function. Instead, use storeNewPuzzlePicture.
      */
-    function storeNewGallery( $pictureID, $residentID = NULL ) {
+    private function storeNewGallery( $pictureID, $residentID = NULL ) {
         $array = array(
             'picture_id' => $pictureID,
             'resident_id' => $residentID,
@@ -88,8 +100,11 @@ class Picture_model extends CI_Model {
     }
 
     /**
-     * Get all gallery records.
-     * Not recommended because of privacy issues!
+     * Get all gallery records. This won't return the actual pictures, but
+	 * all information about them, including their id in the pictures table.
+	 * 
+	 * Never use this function to get all actual pictures (this will 
+	 * clog the database for a while if there are many pictures)!
      */
     function getAllGalleryPictures() {
         $query = $this->db->query(
@@ -98,12 +113,29 @@ class Picture_model extends CI_Model {
         );
         return $query->result();
     }
+	
+	/**
+	 * Return (at most) n gallery records of the given resident which refer to
+	 * pictures that are completed at least once.
+	 * 
+	 * Do not use this function outside of this model. Instead, use getNPictures.
+	 */
+	private function getNGalleryPictures( $residentID, $n ) {
+		$query = $this->db->query(
+                "SELECT *"
+                . " FROM a16_webapps_3.gallery_pictures"
+				. " WHERE resident_id='$residentID' AND in_progress = 0 AND times_completed > 0"
+				. " ORDER BY last_completion DESC"
+				. " LIMIT $n"
+        );
+        return $query->result();
+	}
 
     /**
      * Return a picture stored in the database. Both the folder where it is
      * stored in (picture_dir) and the picture name are returned.
      * 
-     * The full path of the picture can be get as follows:
+     * The full path of the picture can be gotten as follows:
      * $full_path = $picutre_dir . $picture_name
      * 
      */
@@ -117,28 +149,43 @@ class Picture_model extends CI_Model {
     }
 
     /**
-     * Get at most n pictures of the given resident, where n is a given number.
+     * Get (at most) n pictures of the given resident, where n is a given number.
      */
-    function getNPictures( $residentID, $n ) {
-        //TODO
+    function getNCompletedPictures( $residentID, $n=5 ) {
+        $galleries = $this->getNGalleryPictures( $residentID, $n );
+		$query = $this->db->query(
+                "SELECT picture_dir, picture_name"
+                . " FROM a16_webapps_3.pictures"
+                . " WHERE id IN (" . implode(',', $galleries) . ")"
+        );
+        return $query->result();
     }
     
     
-    function incrementPuzzleCompleted( $residentID ) {
+    private function incrementPuzzleCompleted( $residentID ) {
         $this->db->where( 'resident_id', $residentID );
         $this->db->where( 'in_progress', '1' );
         $this->db->set( 'times_completed', 'times_completed+1', FALSE );
         $this->db->update( 'a16_webapps_3.gallery_pictures' );
     }
     
-    function deactivatePuzzle( $residentID ) {
+    private function deactivatePuzzle( $residentID ) {
 		$this->db->where( 'resident_id', $residentID );
 		$this->db->where( 'in_progress', '1' );
 		$this->db->set( 'in_progress', '0', FALSE );
 		$this->db->update( 'a16_webapps_3.gallery_pictures' );
     }
+	
+	private function updateLastCompleted( $residentID ) {
+		$date = date( 'Y-m-d H:i:s' );
+		$this->db->query(
+            "UPDATE `a16_webapps_3`.`gallery_pictures`"
+            . " SET `last_completed`='$date'"
+            . " WHERE resident_id='$residentID' AND in_progress='1'"
+        );
+	}
     
-    function activateNewPuzzle( $residentID ) {
+    private function activateNewPuzzle( $residentID ) {
         $query = $this->db->query(
             "SELECT id"
             . " FROM `a16_webapps_3`.`gallery_pictures`"
@@ -219,9 +266,7 @@ class Picture_model extends CI_Model {
 	 * --------
 	 * | NEVER | CALL THIS FUNCTION FROM OUTSIDE THIS MODEL.
 	 * --------
-	 * This function should remain private. If you want to delete pictures,
-	 * either use the functions:
-	 * 
+	 * If you want to delete pictures, use either of the functions:
 	 * - deleteGalleryPicture
 	 * - deleteProfilePicture
 	 */
@@ -245,7 +290,6 @@ class Picture_model extends CI_Model {
 		);
 	}
 	
-	//Deprecated function. Do not use this anymore, it will be deleted soon.
     function getPictureTest( $residentId ) {
         $query = $this->db->query(
                 "SELECT picture_dir, picture_name"
@@ -257,6 +301,8 @@ class Picture_model extends CI_Model {
         return $query->result();
     }
     
+	//Deprecated function. Do not use this anymore, it will be deleted soon.
+	//Use getNCompletedPictures( ... ) instead.
     function getFinishedPicture( $residentId ) {
         $query = $this->db->query(
             "SELECT picture_dir, picture_name"
@@ -270,4 +316,11 @@ class Picture_model extends CI_Model {
         );
         return $query->result();
     }
+	
+	function updateAndChangePuzzle( $residentID ) {
+		$this->incrementPuzzleCompleted( $residentID );
+		$this->updateLastCompleted( $residentID );
+		$this->deactivatePuzzle( $residentID );
+		$this->activateNewPuzzle( $residentID );
+	}
 }
