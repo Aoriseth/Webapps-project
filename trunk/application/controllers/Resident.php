@@ -167,7 +167,11 @@ class Resident extends CI_Controller {
         if (!$this->input->is_ajax_request()) {
             redirect('404');
         }
-        $questionSet = $this->input->post('question_set');
+		
+		$jsonDecoded = json_decode($this->security->xss_clean($this->input->raw_input_stream));
+        $questionSet = $jsonDecoded->question_set;
+		
+        //$questionSet = $this->input->post('question_set');
 		$this->Answer_model->deleteAllAnswers($this->session->id, $questionSet);
     }
 

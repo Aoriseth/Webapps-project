@@ -99,10 +99,8 @@ function loadQuestion(i) {
 }
 function pressGoBack() {
     if (index === 0) {
-		console.log(base_url);
         var url = base_url + 'index.php/resident/delete_answers';
-        var data = {'question_set': questionSet};
-        /* In the database the chosenoptions start from 1 not from 0 */
+        var data = {question_set: questionSet};
         $.ajax({
             url: url,
             type: 'POST',
@@ -111,7 +109,7 @@ function pressGoBack() {
             cache: false,
             processData: false
         });
-        window.location.href = "categories";
+        window.location.href = base_url + 'index.php/resident/categories?';
     }
     if (index === 1) {
         $('#GoBackButton').html(firstButtonText);
