@@ -27,7 +27,7 @@ function login(base_url, usernameI, passwordI) {
     })
             .done(function (data) {
                 var response = JSON.parse(data);
-
+                console.log("response:  " + JSON.stringify(response));
                 if (response[ 'success' ]) {
                     // redirect to home page
                     window.location = base_url;

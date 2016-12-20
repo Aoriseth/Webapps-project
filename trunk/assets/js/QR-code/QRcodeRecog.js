@@ -64,7 +64,7 @@ function result(e, r) {
         r = JSON.parse(r);
         console.log("username = " + r.username);
         console.log("password = " + r.password);
-
+        
         login(base_url, r.username, r.password);
     }
     //qr.decodeFromCamera(video, result);
