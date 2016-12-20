@@ -18,8 +18,6 @@ class Question_model extends CI_Model {
 			. " FROM a16_webapps_3.category_sets"
 
         );
-		echo 'Current PHP version: ' . phpversion();
-		exit;
 		/*
 		$pw1 = '$2y$10$h2JKVTtmxVEJ3wAaPf6yxOyGo4dfhKEqZTef0T7Vm2PpBEiE.huHa';
 		$pw2 = '$2y$10$h2JKVTtmxVEJ3wAaPf6yxOyGo4dfhKEqZTef0T7Vm2PpBEiE.huHa';
