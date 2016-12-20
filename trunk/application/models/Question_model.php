@@ -4,6 +4,8 @@ class Question_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
+		
+		//require 'lib/password.php';
     }
 
     /* Returns all categories of the given language.
@@ -16,6 +18,14 @@ class Question_model extends CI_Model {
 			. " FROM a16_webapps_3.category_sets"
 
         );
+		/*
+		$pw1 = '$2y$10$h2JKVTtmxVEJ3wAaPf6yxOyGo4dfhKEqZTef0T7Vm2PpBEiE.huHa';
+		$pw2 = '$2y$10$h2JKVTtmxVEJ3wAaPf6yxOyGo4dfhKEqZTef0T7Vm2PpBEiE.huHa';
+		$condition = password_hashed_verify($pw1, $pw2);
+		echo $condition;
+		exit;
+		*/
+		
         return $query->result();
     }
 	
