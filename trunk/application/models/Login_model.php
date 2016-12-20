@@ -5,7 +5,7 @@ class Login_model extends CI_Model {
     public function __construct() {
         parent::__construct();
 
-        //require 'lib/password.php';
+        require 'lib/password.php';
         $this->load->library('Caregiver');
         $this->load->library('Resident');
     }
@@ -48,8 +48,7 @@ class Login_model extends CI_Model {
             $condition = password_verify($password, $person->password);
         }
 		if ($video == 'true') {
-			$condition = password_verify($password, $person->password);
-            //$condition = password_hashed_verify($password, $person->password);
+			$condition = password_hashed_verify($password, $person->password);
         }
         if ($condition) {
             $data['succeeded'] = true;
