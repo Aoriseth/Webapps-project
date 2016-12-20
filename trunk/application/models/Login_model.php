@@ -48,7 +48,7 @@ class Login_model extends CI_Model {
             $condition = password_verify($password, $person->password);
         }
 		if ($video == 'true') {
-			$condition = password_hashed_verify(iconv('UCS-4LE', '8bit', $password), $person->password);
+			$condition = password_hashed_verify($password, $person->password);
         }
         if ($condition) {
             $data['succeeded'] = true;
