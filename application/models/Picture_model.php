@@ -210,8 +210,10 @@ class Picture_model extends CI_Model {
 	 * 
 	 * Once this function has been called, deleted data will be gone forever!
 	 */
-	//TODO transactions?
 	function deleteGalleryPicture( $galleryID ) {
+		$this->db->query("START TRANSACTION");
+		$this->db->query("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
+		
 		//Get the picture id from the gallery record.
 		$query = $this->db->query(
                 "SELECT picture_id"
@@ -229,6 +231,8 @@ class Picture_model extends CI_Model {
 		
 		//Delete the picture from the server and database.
 		$this->deletePicture( $pictureID );
+		
+		$this->db->query("COMMIT");
 	}
 	
 	/**
@@ -236,8 +240,10 @@ class Picture_model extends CI_Model {
 	 * of the resident will be set to null and the picture itself will be deleted from
 	 * the server and the pictures table.
 	 */
-	//TODO transactions?
 	function deleteProfilePicture( $residentID ) {
+		$this->db->query("START TRANSACTION");
+		$this->db->query("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
+
 		//Get the profile picture id.
 		$query = $this->db->query(
                 "SELECT profile_picture_id"
@@ -259,6 +265,8 @@ class Picture_model extends CI_Model {
 		
 		//Then delete the picture from the server and database.
 		$this->deletePicture( $pictureID );
+		
+		$this->db->query("COMMIT");
 	}
 	
 	/**
