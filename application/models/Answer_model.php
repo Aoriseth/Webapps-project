@@ -86,12 +86,18 @@ class Answer_model extends CI_Model {
 		//Get the current session of the given resident
 		$currentSession = ( $this->Resident_model->getSessionsCompleted( $residentID ) ) + 1;
 		
+		echo 'session: ';
+		echo $currentSession;
+		echo ' = ';
+		
 		//Get the category set using the given question set
 		$query = $this->db->query(
 			"SELECT category_set "
 			. "FROM question_view "
+			. "WHERE question_set='$questionSet'"
 			. "LIMIT 1"
 		);
+		
 		$categorySet = $query->result()[0]->category_set;
 		
 		//Get all question sets from this category set
@@ -100,7 +106,12 @@ class Answer_model extends CI_Model {
 			. "FROM a16_webapps_3.question_view "
 			. "WHERE category_set='$categorySet'"
 		);
-		$questionSets = $query->result();
+		$questionSets = array();
+		foreach($query->result_array() as $row) {
+			echo $row['question_set'];
+			echo ' ';
+			$questionSets[] = $row['question_set'];
+		}
 		
 		//Delete all answers of the category set (of this resident and within
 		//the given session)
