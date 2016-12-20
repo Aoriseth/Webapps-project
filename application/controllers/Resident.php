@@ -76,14 +76,14 @@ class Resident extends CI_Controller {
         $data = $this->display_common_elements('categories');
 
         // get 3 random categories
-        $categories = $this->Question_model->getAllUnfinishedCategories( $this->session->id, 3 );
+        $categories = $this->Question_model->getAllUnfinishedCategories($this->session->id, 3);
 
-        if ( count( $categories ) == 0 ) {
-            $this->Score_model->addSessionScore( $this->session->id );
-            $this->Resident_model->incrementSession( $this->session->id );
-            $this->session->completedSessions = $this->Resident_model->getSessionsCompleted( $this->session->id );
-            $this->Picture_model->updateAndChangePuzzle( $this->session->id );
-            header( "Refresh:0" );
+        if (count($categories) == 0) {
+            $this->Score_model->addSessionScore($this->session->id);
+            $this->Resident_model->incrementSession($this->session->id);
+            $this->session->completedSessions = $this->Resident_model->getSessionsCompleted($this->session->id);
+            $this->Picture_model->updateAndChangePuzzle($this->session->id);
+            header("Refresh:0");
 
             // TODO: something when all categories are finished
             /*
@@ -161,6 +161,14 @@ class Resident extends CI_Controller {
         $this->Score_model->addCategoryScore($this->session->id, $categorySetID);
 
         $this->parser->parse('resident/resident_main', $data);
+    }
+
+    function delete_answers() {
+        if (!$this->input->is_ajax_request()) {
+            redirect('404');
+        }
+        $questionSet = $this->input->post('question_set');
+        
     }
 
 }
