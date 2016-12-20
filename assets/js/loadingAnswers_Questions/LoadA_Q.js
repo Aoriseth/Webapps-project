@@ -36,14 +36,6 @@ function storeAnswer(chosenOption, base_url, categoryName) {
             dataType: "text",
             cache: false,
             processData: false
-        }).always(function (result) {
-            //console.log(JSON.stringify(result));
-            /**
-             * {category_id: categoryId,
-             question_id: questionId,
-             chosen_option: chosenOption}
-             */
-
         });
 
         // modify the question
@@ -108,6 +100,18 @@ function loadQuestion(i) {
 function pressGoBack() {
     if (index === 0) {
         console.log(base_url);
+         var url = base_url + 'index.php/resident/delete_answers';
+        var data = {'question_set': questionSet};
+        /* In the database the chosenoptions start from 1 not from 0 */
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: JSON.stringify(data),
+            dataType: "text",
+            cache: false,
+            processData: false
+        });
+        
         window.location.href = "categories";
     }
     if (index === 1) {
