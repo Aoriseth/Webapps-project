@@ -42,13 +42,13 @@ class Login_model extends CI_Model {
         $person = $this->db->query("SELECT * FROM a16_webapps_3."
                         . "$person->type"
                         . "s WHERE id='$username'")->row();
-
+        $condition = false;
         //Verify password
         if ($video == 'false') {
             $condition = password_verify($password, $person->password);
         }
-		if ($video == 'true') {
-			$condition = password_hashed_verify($password, $person->password);
+        if ($video == 'true') {
+            $condition = password_hashed_verify($password, $person->password);
         }
         if ($condition) {
             $data['succeeded'] = true;
