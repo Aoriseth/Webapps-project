@@ -128,7 +128,7 @@ class Picture_model extends CI_Model {
 				. " ORDER BY last_completion DESC"
 				. " LIMIT $n"
         );
-        return $query->result();
+        return $query;
 	}
 
     /**
@@ -153,10 +153,16 @@ class Picture_model extends CI_Model {
      */
     function getNCompletedPictures( $residentID, $n=5 ) {
         $galleries = $this->getNGalleryPictures( $residentID, $n );
+		
+		$array = array();
+		foreach($galleries->result_array() as $row) {
+			$array[] = $row['picture_id'];
+		}
+		
 		$query = $this->db->query(
                 "SELECT picture_dir, picture_name"
                 . " FROM a16_webapps_3.pictures"
-                . " WHERE id IN (" . implode(',', $galleries) . ")"
+                . " WHERE id IN (" . implode(',', $array) . ")"
         );
         return $query->result();
     }
