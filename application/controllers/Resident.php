@@ -76,7 +76,7 @@ class Resident extends CI_Controller {
         $data = $this->display_common_elements('categories');
 
         // get 3 random categories
-        $categories = $this->Question_model->getAllUnfinishedCategories( $this->session->id, 3);
+        $categories = $this->Question_model->getAllUnfinishedCategories( $this->session->id, 3 );
 
         if ( count( $categories ) == 0 ) {
             $this->Score_model->addSessionScore( $this->session->id );
