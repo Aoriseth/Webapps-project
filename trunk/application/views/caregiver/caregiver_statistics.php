@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="filter-content">
                             <div class="modal-header">
-                                <h3 class="modal-title">Group Form</h3>
+                                <h3 class="modal-title">Filter</h3>
                             </div>
                         <div class="col-md-6 col-sm-6">        
 
@@ -97,7 +97,8 @@
                                         <div class="modal-footer">
                                             <!--button type="button" class="btn btn-info" id="btnFilter" onclick="clickFilter(caregiverID);" style="float: right;">
                                                 <i class="glyphicon glyphicon-filter"></i> Filter</button-->
-                                            <!--button type="button" class="btn btn-info" id="btnSave" onclick="clickSave()">Save</button-->
+                                            <button type="button" class="btn btn-info" id="btnSave" onclick="clickSave()">
+                                                <i class="glyphicon glyphicon-stats"></i> Stats</button>
                                         </div>
                                 </form>
                             </div> <!--class="modal-body form"-->

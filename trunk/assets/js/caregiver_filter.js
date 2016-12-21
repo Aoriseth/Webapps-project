@@ -46,7 +46,7 @@ function getCookie() {
 
 function clickAddGroup()
 {
-    //document.getElementById("btnSave").disabled = true;
+    document.getElementById("btnSave").disabled = true;
     /*
     $('#form')[0].reset(); // reset form on modals
     $('.form-group').removeClass('has-error'); // clear error class
@@ -142,10 +142,12 @@ function clickFilter(caregiverID)
 
 function showFResidents(arg) {
     var filter_residents = arg;
-    $('#result-list').html("<select class=\"form-control\" id=\"filter_resident\" \n\ multiple=\"multiple\"></select>");
+    $('#result-list').html("<select class=\"form-control\" id=\"filter_resident\" " 
+            + "multiple=\"multiple\" " // onchange=\"clickFilter(caregiverID)\"
+            + "></select>");
     var options = "";
     if (filter_residents.length > 0) {
-        //document.getElementById("btnSave").disabled = false;
+        document.getElementById("btnSave").disabled = false;
         document.getElementById('result-info').innerHTML = "";
         document.getElementById('update_div').style.display = "block";
         document.getElementById('chart1_div').style.display = "block"; 
@@ -159,7 +161,7 @@ function showFResidents(arg) {
             clickSave();
         }
     } else {
-        //document.getElementById("btnSave").disabled = true;
+        document.getElementById("btnSave").disabled = true;
         document.getElementById('result-info').innerHTML = "<br>No result, change filter.";
         document.getElementById('update_div').style.display = "none"; // TODO: snackbar
         document.getElementById('chart1_div').style.display = "none"; 
