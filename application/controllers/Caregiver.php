@@ -33,7 +33,7 @@ class Caregiver extends CI_Controller {
 		redirect( 'caregiver/home' );
 	}
 
-	private function display_common_elements( $page )
+	private function display_common_elements($page)
 	{
 		$data[ 'include' ] = $this->load->view( 'include', '', true );
 
