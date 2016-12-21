@@ -17,7 +17,15 @@ function login( base_url, username, password, error_feedback, from_camera ) {
         cache: false,
     })
         .done( function ( data ) {
-            var response = JSON.parse( data );
+            
+            try {
+                var response = JSON.parse( data );
+            } catch ( err ) {
+                console.log( 'AJAX response raw: ' + data );
+                console.log( 'JSON parse failed: ' + err );
+                error_feedback.html( 'Couldn\'t process answer from server.' );
+                return;
+            }
             console.log( 'AJAX response: ' + JSON.stringify( response ) );
 
             if (response[ 'success' ]) {
