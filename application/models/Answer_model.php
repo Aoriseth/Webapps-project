@@ -7,6 +7,7 @@ class Answer_model extends CI_Model {
         
         $this->load->helper( 'date' );
         date_default_timezone_set( 'Europe/Brussels' );
+		$this->load->model( 'Resident_model' );
     }
     
     /**
@@ -44,7 +45,8 @@ class Answer_model extends CI_Model {
 			$this->db->update( 'a16_webapps_3.answers', $answerData );
 		}
 		
-		$this->updateLastActivity( $residentID );
+		$this->Resident_model->updateLastActivity($residentID);
+		$this->Resident_model->setInProgress($residentID, 1);
     }
 	
 	/**
@@ -65,16 +67,6 @@ class Answer_model extends CI_Model {
 			return FALSE;
 		}
 		return TRUE;
-	}
-	
-	/**
-	 * Update the last activity field with the current time and date
-	 * for a given resident (by ID).
-	 */
-	private function updateLastActivity( $residentID ) {
-		$this->db->where( 'id', $residentID );
-		$this->db->set( 'last_activity', date( 'Y-m-d H:i:s' ) );
-		$this->db->update( 'a16_webapps_3.residents' );
 	}
 	
 	/**

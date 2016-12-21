@@ -80,8 +80,10 @@ class Resident extends CI_Controller {
 
         if (count($categories) == 0) {
             $this->Score_model->addSessionScore($this->session->id);
-            $this->Resident_model->incrementSession($this->session->id);
-            $this->session->completedSessions = $this->Resident_model->getSessionsCompleted($this->session->id);
+			$this->Resident_model->incrementSession($this->session->id);
+			$this->session->completedSessions = $this->Resident_model->getSessionsCompleted($this->session->id);
+			$this->Resident_model->setInProgress($this->session->id, 0);
+			$this->Resident_model->updateLastCompleted($this->session->id);
             $this->Picture_model->updateAndChangePuzzle($this->session->id);
             header("Refresh:0");
 

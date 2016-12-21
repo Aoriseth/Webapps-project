@@ -25,6 +25,7 @@ class Caregiver extends CI_Controller {
 		$this->load->model( 'Resident_model' );
 		$this->load->model( 'Statistics_model' );
 		$this->load->model( 'Group_model' );
+		$this->load->model( 'Caregiver_model' );
 	}
 
 	function index()
@@ -59,6 +60,8 @@ class Caregiver extends CI_Controller {
 		$data[ 'content' ] = $this->parser->parse( 'caregiver/caregiver_home', $data2, true );
 
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
+		
+		$this->Caregiver_model->updateLastActivity($this->session->id);
 	}
 
 	function overview()
@@ -384,12 +387,6 @@ class Caregiver extends CI_Controller {
 	/**
 	 * Upload a picture that is stored on the computer. Uploaded pictures are stored
 	 * in the upload folder.
-	 * 
-	 * |===============================|
-	 * | THIS IS A TEMPORARY FUNCTION. |
-	 * |===============================|
-	 * 
-	 * TODO: Move all of this code to the place where it is needed/appropriate for uploading pictures.
 	 */
 	function upload()
 	{

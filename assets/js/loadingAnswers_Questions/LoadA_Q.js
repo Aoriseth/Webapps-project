@@ -19,8 +19,6 @@ function initialize(baseurl, buttontext, firstbuttontext, categorycompletedtext)
 
 // User has to be logged in as resident to be able to do this!
 function storeAnswer(chosenOption, base_url, categoryName) {
-    console.log(ButtonText);
-    console.log(firstButtonText);
     $("#GoBackButton").html(ButtonText);
     if (index < max) {
         var url = base_url + 'index.php/resident/question_store_answer';
