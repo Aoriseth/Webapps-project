@@ -16,6 +16,7 @@ var cookieArray = [];
 $( document ).ready(function() {
     //showFilters();
     clickAddGroup();
+    clickFilter(caregiverID);
 });
 
 function setCookie(arg) {   // arg:Object    
