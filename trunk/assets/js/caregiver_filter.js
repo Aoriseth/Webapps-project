@@ -47,7 +47,6 @@ function getCookie() {
 function clickAddGroup()
 {
     //document.getElementById("btnSave").disabled = true;
-    //add_method = 'add';
     /*
     $('#form')[0].reset(); // reset form on modals
     $('.form-group').removeClass('has-error'); // clear error class
@@ -88,7 +87,6 @@ function clickFilter(caregiverID)
     // clear global array
     floors = [];
     filter = [];
-    // TODO: warning if empty
     // GENDER
     if (document.getElementById('optionMale').checked) {
         gender = "male";
@@ -114,14 +112,11 @@ function clickFilter(caregiverID)
             ageMax = parseInt(values[handle]);
         }
     });
-    //console.log("Filter:", ageMin, ageMax, gender, floors);
     filter.push(ageMin);
     filter.push(ageMax);
     filter.push(gender);
     filter.push(floors);
-
     filterObject = {ageMin: ageMin, ageMax: ageMax, gender: gender, floors: floors};
-    
     
     $.ajax({
         type: "POST",
@@ -136,9 +131,7 @@ function clickFilter(caregiverID)
         cache: false,
 
         success: function (data) {
-            //console.log("Filter:", ageMin, ageMax, gender, floors[0]);
             filter_residents = JSON.parse(data);
-            //console.log("caregiverID: ", caregiverID);
             showFResidents(filter_residents);
         },
         error: function () {
@@ -149,8 +142,6 @@ function clickFilter(caregiverID)
 
 function showFResidents(arg) {
     var filter_residents = arg;
-    console.log("filter_residents:" );
-    console.log(filter_residents);
     $('#result-list').html("<select class=\"form-control\" id=\"filter_resident\" \n\ multiple=\"multiple\"></select>");
     var options = "";
     if (filter_residents.length > 0) {
@@ -186,8 +177,6 @@ function clickSave() {
         }
     }
     
-    console.log("selected_residents: ");
-    console.log(selected_residents);
     /*
     $.ajax({
         type: "POST",
@@ -203,8 +192,8 @@ function clickSave() {
         success: function (data) {
             console.log(filter.toString());*/
             //setCookie(filterObject);
-            $('#modal_form').modal('hide');
-            showFilters();
+            //$('#modal_form').modal('hide');
+            //showFilters();
             filter_residents = 0;
             clickGraph();
         /*},
@@ -228,7 +217,6 @@ function reload(){
 
         success: function (data) {
             groups = JSON.parse(data);
-            console.log(groups);
         },
         error: function () {
             alert("Error: reload");
@@ -241,14 +229,12 @@ function showFilters() {
     var cookieJSON = getCookie();
     if (cookieJSON != null) {
         cookieArray = JSON.parse(cookieJSON);
-        //console.log(cookieArray);
         var i = 0;
         var code = "";
         $('#accordion_filters').empty();
 
         for (cookie of cookieArray) {
             i++;
-            //console.log(cookie);
             code = "<div class=\"panel panel-default\">" +
                     "<div class=\"panel-heading \">" +
                     "<h4 class=\"panel-title\">" +
@@ -294,16 +280,9 @@ function clickGraph() { // arg:JSON
             //document.getElementById("btnSave").disabled = true;
             var Yaxis = [];
             var Xaxis = [];
-            //console.log(selected_residents);
-            //console.log("data: ");
-            //console.log(data);
             var response = JSON.parse(data);
-            console.log(response);
-
             Xaxis = response[0];
             Yaxis = response[1];
-
-            //google.charts.load('current', {'packages':['corechart']});
             google.charts.setOnLoadCallback(drawChart);
 
             function drawChart() {
