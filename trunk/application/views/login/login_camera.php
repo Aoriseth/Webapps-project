@@ -7,7 +7,7 @@
 </p>
 
 <p span style="color:red" id="error_message_camera">
-    <!-- will be used to display error messages -->
+    &nbsp<!-- will be used to display error messages -->
 </p>
 
 <p class="visible-sm visible-xs txScale">
