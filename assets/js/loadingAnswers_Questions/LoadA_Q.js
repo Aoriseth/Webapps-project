@@ -41,8 +41,8 @@ function storeAnswer(chosenOption, base_url, categoryName) {
         width = index / max * 100;
         console.log("width: " + width);
         $('#progressBar').css('width', width + "%");
-        $('#progressBar').text(index + "/" + max);
-        console.log(index);
+        $('#progressbarText').text("Vraag " + index + " van de " + max);
+        //console.log(index);
 
 
 
@@ -90,7 +90,7 @@ function loadQuestion(i) {
         //console.log($("#question_text").text());
         width = index / max * 100;
         $('#progressBar').css('width', width + "%");
-        $('#progressBar').text(index + "/" + max);
+        $('#progressbarText').text("Vraag " + index + " van de " + max);
 
 
     }, false);
@@ -123,7 +123,7 @@ function pressGoBack() {
         $("#question_text").animate({color: 'black'}, 1500);
         width = index / max * 100;
         $('#progressBar').css('width', width + "%");
-        $('#progressBar').text(index + "/" + max);
+        $('#progressbarText').text("Vraag " + index + " van de " + max);
     }
 }
 
