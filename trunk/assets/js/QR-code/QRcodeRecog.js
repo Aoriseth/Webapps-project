@@ -1,6 +1,7 @@
-var streaming = false;
-var video = null;
 var base_url = null;
+var video = null;
+var streaming = false;
+var login_attempt_in_progress;
 
 function setBaseURL( baseurl ) {
     base_url = baseurl;
@@ -56,8 +57,8 @@ function displayError( error ) {
                 streaming = true;
 
                 try {
-                    new QCodeDecoder().decodeFromCamera(video, result);
-                } catch (err) {
+                    new QCodeDecoder().decodeFromCamera( video, result );
+                } catch ( err ) {
                     console.log( 'decodeFromCamera failed:' );
                     console.log( err );
                 }
@@ -70,7 +71,15 @@ function displayError( error ) {
 
 })();
 
+function login_failed_callback() {
+    login_attempt_in_progress = false;
+}
+
 function result( err, result ) {
+    if ( login_attempt_in_progress ) {
+        console.log( 'Result from QR decode ignored.' );
+        return;
+    }
 
     if ( err ) {
         console.log( 'QR decode error: ' + err );
@@ -87,7 +96,8 @@ function result( err, result ) {
         if ( typeof username === "undefined" || typeof password === "undefined" ) {
             displayError( 'Invalid QR code.' );
         } else {
-            login( base_url, username, password, $( '#error_message_camera' ), true );
+            login_attempt_in_progress = true;
+            login( base_url, username, password, $( '#error_message_camera' ), true, login_failed_callback );
         }
     }
 }
