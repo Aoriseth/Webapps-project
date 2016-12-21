@@ -303,7 +303,8 @@ namespace PasswordCompat\binary {
          */
         function _strlen($binary_string) {
             if (function_exists('mb_strlen')) {
-                return mb_strlen($binary_string, '8bit');
+                return mb_strlen($binary_string);	// use internal character encoding
+//              return mb_strlen($binary_string, '8bit');
             }
             return strlen($binary_string);
         }
