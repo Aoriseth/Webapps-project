@@ -5,18 +5,48 @@ class Resident_model extends CI_Model {
 	public function __construct() {
 		parent::__construct();
 		
-		$this->load->helper( 'date' );
-        date_default_timezone_set( 'Europe/Brussels' );
-		$this->load->model( 'Score_model' );
+		$this->load->helper('date');
+        date_default_timezone_set('Europe/Brussels');
+		$this->load->model('Score_model');
 	}
 
 	/*
 	 * Increase the session of the resident whith given ID by 1.
 	 */
-	function incrementSession( $residentID ) {
-		$this->db->where( 'id', $residentID );
-		$this->db->set( 'completed_sessions', 'completed_sessions+1', FALSE );
-		$this->db->update( 'a16_webapps_3.residents' );
+	function incrementSession($residentID) {
+		$this->db->where('id', $residentID);
+		$this->db->set('completed_sessions', 'completed_sessions+1', FALSE);
+		$this->db->update('a16_webapps_3.residents');
+	}
+	
+	/**
+	 * Update the record of the given resident to reflect if a session
+	 * is in progress or not.
+	 */
+	function setInProgress($residentID, $inProgress) {
+		$this->db->where('id', $residentID);
+		$this->db->set('session_in_progress', $inProgress, FALSE);
+		$this->db->update('a16_webapps_3.residents');
+	}
+	
+	/**
+	 * Update the last activity field with the current time and date
+	 * for a given resident (by ID).
+	 */
+	function updateLastActivity($residentID) {
+		$this->db->where('id', $residentID);
+		$this->db->set('last_activity', date('Y-m-d H:i:s'));
+		$this->db->update('a16_webapps_3.residents');
+	}
+	
+	/**
+	 * Update the last completed field with the current time and date
+	 * for a given resident (by ID).
+	 */
+	function updateLastCompleted($residentID) {
+		$this->db->where('id', $residentID);
+		$this->db->set('last_completed', date('Y-m-d H:i:s'));
+		$this->db->update('a16_webapps_3.residents');
 	}
 	
 	/**
@@ -74,7 +104,7 @@ class Resident_model extends CI_Model {
 			$password, $dateOfBirth, $language, $floorNumber,
 			$roomNumber, $lastDomicile ) {
 		$array = array(
-			'id' => $residentID,
+			'id' => $this->createNewPersonID($firstName, $lastName),
 			'first_name' => $firstName,
 			'last_name' => $lastName,
 			'gender' => $gender,
@@ -89,6 +119,43 @@ class Resident_model extends CI_Model {
 			'account_created_on' => date( 'Y-m-d H:i:s' )
 		);
 		$this->db->insert( 'a16_webapps_3.residents', $array );
+	}
+	
+	/**
+	 * Create a unique ID for a person, given his/her first name
+	 * and last name.
+	 * 
+	 * Also makes sure there is no other resident or caregiver that 
+	 */
+	private function createNewPersonID($firstName, $lastName) {
+		$id = strtolower($firstName) . strtolower($lastName);
+		if(!$this->isExistingPerson($id)) {
+			return $id;
+		}
+		
+		$counter = 2;
+		while($this->isExistingPerson($extendedID = $id . $counter)) {
+			$counter++;
+		}
+		return $extendedID;
+	}
+	
+	/**
+	 * Return true if the given id is the id of an existing
+	 * person, either resident or caregiver. (This means
+	 * the given id is already in use if true is returned.)
+	 */
+	private function isExistingPerson($potentialPersonID) {
+		$query = $this->db->query(
+			"SELECT id "
+			. "FROM a16_webapps_3.person_view "
+			. "WHERE id='$potentialPersonID' "
+			. "LIMIT 1"
+		);
+		if($query->num_rows() == 0) {
+			return FALSE;
+		}
+		return TRUE;
 	}
         
 	/**
