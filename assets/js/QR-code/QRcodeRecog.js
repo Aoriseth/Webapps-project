@@ -1,14 +1,14 @@
 var streaming = false;
 var video = null;
-var FRecButton = null;
-var qr = null;
 var base_url = null;
+
+function setBaseURL(baseurl) {
+    base_url = baseurl;
+}
 
 (function () {
 
-
-    function startup() {
-        // This function is called when the page is started up
+    function startup() {    // This function is called when the page is started up
 
         video = document.querySelector("#camfr");
         navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia || navigator.mozGetUserMedia;
@@ -27,6 +27,7 @@ var base_url = null;
             });
             // {facingMode: 'user'}
         }
+
         // This function is called when the webcam is ready to play
         video.addEventListener('canplay', function (ev) {
             if (!streaming) {
@@ -34,43 +35,37 @@ var base_url = null;
                 streaming = true;
             }
         }, false);
-        qr = new QCodeDecoder();
+
         try {
-            qr.decodeFromCamera(video, result);
-        } catch (e) {
-            console.log(e);
-            qr.decodeFromCamera(video, result);
+            new QCodeDecoder().decodeFromCamera(video, result);
+        } catch (err) {
+            console.log( 'decodeFromCamera failed: ' + err );
         }
     }
-
-
-
 
     // add event listener to the window to execute the function startup when the page is loaded
     window.addEventListener('load', startup, false);
+
 })();
-function result(e, r) {
-    if (e) {
-        console.log(e);
-        try{
-                    qr.decodeFromCamera(video, result);
 
-        }catch (e){
-            console.log(e);
-        }
+function result( err, result ) {
+
+    if ( err ) {
+        console.log( 'QR decode error: ' + err );
+        $( '#error_message_camera' ).html( 'There is a problem reading the QR code.' );
+
     } else {
-        console.log(r);
+        console.log( 'QR code: ' + result  );
 
-        r = JSON.parse(r);
-        console.log("username = " + r.username);
-        console.log("password = " + r.password);
-        
-        login(base_url, r.username, r.password);
+        result_parsed = JSON.parse( result );
+        var username = result_parsed.username;
+        var password = result_parsed.password;
+        console.log( 'Parsed data: ' + username + ' / ' + password );
+
+        if ( typeof username === "undefined" || typeof password === "undefined" ) {
+            $( '#error_message_camera' ).html( 'Invalid QR code.' );
+        } else {
+            login( base_url, username, password, $( '#error_message_camera' ), true );
+        }
     }
-    //qr.decodeFromCamera(video, result);
 }
-function setBaseURL(baseurl) {
-    base_url = baseurl;
-}
-
-
