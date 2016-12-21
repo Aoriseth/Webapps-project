@@ -1,4 +1,4 @@
-function login( base_url, username, password, error_feedback, from_camera ) {
+function login( base_url, username, password, error_feedback, from_camera, login_failed_callback = null ) {
 
     var url = base_url + 'index.php/login/ajax';
     var videoBoolean = ( from_camera ? 'true' : 'false' );
@@ -39,6 +39,10 @@ function login( base_url, username, password, error_feedback, from_camera ) {
                 // return focus to username
                 if ( ! from_camera ) {
                     $('#login_form input[ name = username ]').focus();
+                }
+                // notify caller
+                if ( login_failed_callback ) {
+                    login_failed_callback();
                 }
             }
         })
