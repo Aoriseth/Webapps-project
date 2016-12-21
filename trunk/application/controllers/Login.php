@@ -49,10 +49,10 @@ class Login extends CI_Controller {
 		}
 		$username = $this->input->post( 'username' );
 		$password = $this->input->post( 'password' );
-                $video = $this->input->post('video');
+		$video = $this->input->post('video');
 
 		// check credentials with database
-		$result = $this->Login_model->login( $username, $password,$video );
+		$result = $this->Login_model->login( $username, $password, $video );
 
 		if ( $result[ 'succeeded' ] == true ) {
 			$this->setup_login( $result[ 'person' ] );
