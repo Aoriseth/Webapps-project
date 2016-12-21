@@ -20,7 +20,7 @@
     </p>
 
     <p span style="color:red" id="error_message_manual">
-        <!-- will be used to display error messages -->
+        &nbsp<!-- will be used to display error messages -->
     </p>
 
     <form method="POST" id="login_form">
