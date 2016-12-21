@@ -14,7 +14,7 @@ var filterInfo = [[]];
 var cookieArray = [];
 
 $( document ).ready(function() {
-    showFilters();
+    //showFilters();
     clickAddGroup();
 });
 
@@ -46,7 +46,7 @@ function getCookie() {
 
 function clickAddGroup()
 {
-    document.getElementById("btnSave").disabled = true;
+    //document.getElementById("btnSave").disabled = true;
     //add_method = 'add';
     /*
     $('#form')[0].reset(); // reset form on modals
@@ -73,6 +73,10 @@ function clickAddGroup()
 
         nonLinearStepSlider.noUiSlider.on('update', function (values, handle) {
             ageRange[handle].innerHTML = parseInt(values[handle]);
+        });
+        
+        nonLinearStepSlider.noUiSlider.on('change', function () {
+            clickFilter(caregiverID);
         });
     }
 }
@@ -150,8 +154,10 @@ function showFResidents(arg) {
     $('#result-list').html("<select class=\"form-control\" id=\"filter_resident\" \n\ multiple=\"multiple\"></select>");
     var options = "";
     if (filter_residents.length > 0) {
-        document.getElementById("btnSave").disabled = false;
+        //document.getElementById("btnSave").disabled = false;
+        document.getElementById('result-info').innerHTML = "";
         document.getElementById('update_div').style.display = "block";
+        document.getElementById('chart1_div').style.display = "block"; 
         for (filter_resident of filter_residents) {
             {
                 options = "<option value = " + filter_resident.id + ">" + filter_resident.first_name +
@@ -159,14 +165,17 @@ function showFResidents(arg) {
                 $('#result-list select').append(options);
             }
             $("#result-list option").attr("selected", "selected");
+            clickSave();
         }
     } else {
-        document.getElementById("btnSave").disabled = true;
+        //document.getElementById("btnSave").disabled = true;
+        document.getElementById('result-info').innerHTML = "<br>No result, change filter.";
         document.getElementById('update_div').style.display = "none"; // TODO: snackbar
+        document.getElementById('chart1_div').style.display = "none"; 
     }
 }
 
-function clickSave(arg) {
+function clickSave() {
     selected_residents = [];
     var f = document.getElementById("filter_resident");
     for (var i = 0; i < f.options.length; i++) {
@@ -193,7 +202,7 @@ function clickSave(arg) {
 
         success: function (data) {
             console.log(filter.toString());*/
-            setCookie(filterObject);
+            //setCookie(filterObject);
             $('#modal_form').modal('hide');
             showFilters();
             filter_residents = 0;
@@ -282,7 +291,7 @@ function clickGraph() { // arg:JSON
         cache: false,
 
         success: function (data) {
-            document.getElementById("btnSave").disabled = true;
+            //document.getElementById("btnSave").disabled = true;
             var Yaxis = [];
             var Xaxis = [];
             //console.log(selected_residents);

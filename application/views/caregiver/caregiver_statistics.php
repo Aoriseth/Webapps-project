@@ -27,7 +27,7 @@
                                         <!-- GENDER -->
                                         <div class="form-group">
                                             <label class="col-md-2">Gender</label>
-                                            <div class="radios">
+                                            <div class="radios" onchange="clickFilter(caregiverID);">
                                                 <div class="col-md-2">
                                                     <div class="radio radio-primary">
                                                         <label>
@@ -51,7 +51,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2">Floor</label>
                                             <div class="col-md-10">
-                                                    <select class="form-control" id="floor" > <!-- multiple="multiple" expands the opts -->
+                                                    <select class="form-control" id="floor" onchange="clickFilter(caregiverID);"> <!-- multiple="multiple" expands the opts -->
                                                         <?php foreach ($floors as $floor) { ?> 
                                                             <option value= <?php
                                                             $floor->floor_number;
@@ -85,6 +85,7 @@
 
 
                                         <!-- RESULTS -->
+                                        <div id="result-info" style="font-size:16px; text-align:right; color:#BDBDBD;"></div>
                                         <div class="form-group" id="update_div" style="display:none">
                                             <label class="col-md-2">Results</label>
                                             <div class="col-md-10">
@@ -94,9 +95,9 @@
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-info" id="btnFilter" onclick="clickFilter(caregiverID)" style="float: right;">
-                                                <i class="glyphicon glyphicon-filter"></i> Filter</button>
-                                            <button type="button" class="btn btn-info" id="btnSave" onclick="clickSave()">Save</button>
+                                            <!--button type="button" class="btn btn-info" id="btnFilter" onclick="clickFilter(caregiverID);" style="float: right;">
+                                                <i class="glyphicon glyphicon-filter"></i> Filter</button-->
+                                            <!--button type="button" class="btn btn-info" id="btnSave" onclick="clickSave()">Save</button-->
                                         </div>
                                 </form>
                             </div> <!--class="modal-body form"-->
