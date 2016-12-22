@@ -14,7 +14,8 @@
 
     <ul>
         <?php foreach ($recent_residents as $resident) {
-            ?><li> <?php echo $resident->first_name; ?></li> 
+            ?><li> <?php echo $resident->first_name; ?> <?php echo $resident->last_name;?>: <?php echo date("Y-m-d", strtotime($resident->last_completed));
+            ?></li> 
         <?php } ?>
     </ul>
     <hr>

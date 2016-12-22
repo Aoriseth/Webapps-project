@@ -49,9 +49,7 @@ class Caregiver extends CI_Controller {
 		$data = $this->display_common_elements( 'home' );
                 $residents = $this->Resident_model->getAllResidents();
                 $data2['recent_residents'] = $this->Resident_model->getNMostRecentCompletedResidents();
-                foreach($residents as $resident){
-                    
-                }
+
 		$data2[ 'name' ] = $this->session->first_name;
 
 		$data2[ 'display_login_notification' ] = $this->session->display_login_notification;
