@@ -8,18 +8,31 @@
 
 <div class=" panel container-fluid">
     </br>
-    <p class="tlScale"><?= lang('c_home_title') ?></p>
-
-    <p class="txScale"><?= lang('c_home_info_residents') ?></p>
-
-    <ul>
-        <?php foreach ($recent_residents as $resident) {
-            ?><li> <?php echo $resident->first_name; ?> <?php echo $resident->last_name;?>: <?php echo date("Y-m-d", strtotime($resident->last_completed));
-            ?></li> 
-        <?php } ?>
-    </ul>
+    <p class="txScale"><?= lang('c_home_title') ?></p>
     <hr>
-    <div class="container-fluid">
+
+    <p class="tlScale"><?= lang('c_home_info_residents') ?></p>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="list-group">
+                <?php foreach ($recent_residents as $resident) {
+                    ?><div class="list-group-item">
+                        <div class="row-picture">
+                            <img class="circle" src="http://lorempixel.com/56/56/people/1" alt="icon">
+                        </div>
+                        <div class="row-content">
+                            <h4 class="list-group-item-heading"><a href="#"><?php echo $resident->first_name; ?> <?php echo $resident->last_name;?> </a></h4>
+
+                            <p class="list-group-item-text">Completed Questionnaire on - <?php echo date("Y-m-d", strtotime($resident->last_completed));?></p>
+                        </div>
+                    </div>
+                    <div class="list-group-separator"></div> 
+                <?php } ?>
+
+            </div>
+        </div>
+        <div class="col-md-6">
         <div class="row">
             <div class="col-xs-12">
                 <div id="chart1_div" style="width:100%"></div>
@@ -30,6 +43,8 @@
             </div>
         </div>
     </div>
+    </div>
+    
     </br>
 </div>
 
