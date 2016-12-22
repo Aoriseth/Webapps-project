@@ -260,6 +260,7 @@ class Resident_model extends CI_Model {
 		$query = $this->db->query(
 			"SELECT id, first_name, last_name, last_completed "
 			. "FROM a16_webapps_3.residents "
+                        . "WHERE last_completed > '0000-00-00 00:00:00'"
 			. "ORDER BY last_completed DESC "
 			. "LIMIT $n"
 		);
