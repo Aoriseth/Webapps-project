@@ -1,5 +1,7 @@
 <div class="panel container-fluid">
-    <br />
+    <br>
+    <p class="tlScale">Overzicht van alle bewoners //please replace//</p>
+    <hr>
     <button class="btn btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i> <?= lang( 'c_overview_add_person' ); ?></button>
     <button class="btn btn-info" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> <?= lang( 'c_overview_reload' ); ?></button>
     
