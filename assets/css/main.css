@@ -122,3 +122,7 @@ video.webcam {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
+
+.form-group .btn, .input-group-btn .btn{
+    border: 1px solid #BDBDBD !important;
+}

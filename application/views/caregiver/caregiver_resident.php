@@ -1,5 +1,7 @@
 <script src="<?= base_url() ?>assets/js/QR-code/qrcode.min.js" type="text/javascript"></script>
 <script src="<?= base_url() ?>assets/js/QR-code/download.js" type="text/javascript"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
 
 <div class="container-fluid">
 
@@ -50,7 +52,7 @@
         <div  class="col-md-6">
             <div class="panel container-fluid">
                 <form class="form-group" method="POST" id="chart2_form" name="chart2Form">
-                    <select class="form-control" name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
+                    <select class="selectpicker form-control" name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
                         <?php foreach ($categories as $category) { ?>   
                             <option value=<?= json_encode($category->category_set); ?> ><?php echo $category->category; ?></option>
                         <?php } ?>           

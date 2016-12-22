@@ -1,6 +1,8 @@
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.css"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
     <script type="text/javascript">
         var base_url = "<?php Print(base_url()); ?>"; 
         var caregiverID = "<?php Print($caregiverID); ?>"; 
@@ -51,7 +53,7 @@
                                         <div class="form-group">
                                             <label class="col-md-2">Floor</label>
                                             <div class="col-md-10">
-                                                    <select class="form-control" id="floor" onchange="clickFilter(caregiverID);"> <!-- multiple="multiple" expands the opts -->
+                                                    <select class="selectpicker form-control" id="floor" onchange="clickFilter(caregiverID);"> <!-- multiple="multiple" expands the opts -->
                                                         <?php foreach ($floors as $floor) { ?> 
                                                             <option value= <?php
                                                             $floor->floor_number;
@@ -128,7 +130,7 @@
         <!--div class="col-md-6">
             <div class="panel container-fluid">
                 <form class="form-group" method="POST" id="chart1_form" name="chart1Form">
-                    <select class="form-control" name="residents" id="residents_select" onchange="chart1function()" onload="chart1function()">
+                    <select class="selectpicker form-control" name="residents" id="residents_select" onchange="chart1function()" onload="chart1function()">
                         <?php foreach ($residents as $resident) { ?>   
                             <option value=<?= json_encode($resident->id); ?> ><?= $resident->first_name; ?></option>
                         <?php } ?>                    
@@ -142,7 +144,7 @@
         <div class="col-md-6">
             <div class="panel container-fluid">
                 <form class="form-group" method="POST" id="chart2_form" name="chart2Form">
-                    <select class="form-control" name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
+                    <select class="selectpicker form-control" name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
                         <?php foreach ($categories as $category) { ?>   
                             <option value=<?= json_encode($category->category_set); ?> ><?php echo $category->category; ?></option>
                         <?php } ?>           
