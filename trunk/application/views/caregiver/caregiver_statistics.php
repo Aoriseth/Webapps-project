@@ -109,7 +109,7 @@
                         </div>
 
                         <div class="col-md-6 col-sm-12">
-                            <div class="container-fluid">
+                            <div class="container">
                                 <div id="chart1_div" style="width:100%"></div>
                                 <div id="wait" 
                                      style="
@@ -170,6 +170,7 @@
 
 
 <script type="text/javascript">
+    /*
     //var formChart1 = document.getElementById('chart1_form');
     var formChart2 = document.getElementById('chart2_form');
 
@@ -204,7 +205,7 @@
 
                 function drawChart() {
                     var data = new google.visualization.DataTable();
-                    columnChart(Yaxis, Xaxis, data, "chart1_div", '<?= lang('c_statistics_all_category_individual') ?>');
+                    columnChart(Yaxis, Xaxis, data, "chart1_div", "c_statistics_all_category_individual");
                 }
             }
         });
@@ -237,7 +238,7 @@
 
                 function drawChart2() {
                     var data = new google.visualization.DataTable();
-                    columnChart(Yaxis, Xaxis, data, "chart2_div", '<?= lang('c_statistics_category_all_individual') ?>');
+                    columnChart(Yaxis, Xaxis, data, "chart2_div", "c_statistics_category_all_individual");
                 }
             }
         });
@@ -269,5 +270,5 @@
             }
         });
         return false;
-    }
+    }*/
 </script>

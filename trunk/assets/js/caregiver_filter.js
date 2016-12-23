@@ -14,6 +14,7 @@ var filterInfo = [[]];
 var cookieArray = [];
 
 $( document ).ready(function() {
+    google.charts.load('current', {'packages': ['corechart']});
     //showFilters();
     clickAddGroup();
     clickFilter(caregiverID);
@@ -199,6 +200,8 @@ function clickSave() {
             //showFilters();
             filter_residents = 0;
             clickGraph();
+            chart2function();
+            chart3function();
         /*},
         error: function () {
             console.log("clickSaveJSON: " + selected_residents, caregiverID, filter.toString());
@@ -270,7 +273,7 @@ function clickGraph() { // arg:JSON
             console.log('you clicked ' + i);
         });
     }*/
-    google.charts.load('current', {'packages': ['corechart']});
+    //google.charts.load('current', {'packages': ['corechart']});
 
     $.ajax({
         type: "POST",
@@ -291,6 +294,112 @@ function clickGraph() { // arg:JSON
             function drawChart() {
                 var data = new google.visualization.DataTable();
                 columnChart(Yaxis, Xaxis, data, "chart1_div", chart_title);
+            }
+        }
+    });
+    return false;
+}
+
+//var formChart1 = document.getElementById('chart1_form');
+var formChart2 = document.getElementById('chart2_form');
+
+//google.charts.load('current', {'packages': ['corechart']});
+//chart1function();
+//chart2function();
+//chart3function();
+//formChart1.addEventListener('submit', function(e) {
+function chart1function() {
+    console.log('chart 1 submitted');
+    //e.preventDefault();
+    //var selects = formChart1.getElementsByTagName('select');
+    //var resident = selects[0].value;
+    var resident = parseInt($("#residents_select").val());
+
+    $.ajax({
+        type: "POST",
+        url: base_url + "index.php/caregiver/load_resident_chart",
+        data: {resident: resident},
+        dataType: "text",
+        cache: false,
+
+        success: function (data) {
+            var Yaxis = [];
+            var Xaxis = [];
+            console.log(data);
+            var response = JSON.parse(data);
+            console.log(response);
+            Xaxis = response[0];
+            Yaxis = response[1];
+            //google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var data = new google.visualization.DataTable();
+                columnChart(Yaxis, Xaxis, data, "chart1_div", "c_statistics_all_category_individual");
+            }
+        }
+    });
+    return false;
+}
+
+//formChart2.addEventListener('submit', 
+function chart2function() {
+    console.log('chart 2 submitted');
+    //e.preventDefault();
+    //var selects = formChart2.getElementsByTagName('select');
+    //var category = parseInt(selects[0].value);
+    var category = parseInt($("#categories_select").val());
+    
+    $.ajax({
+        type: "POST",
+        url: base_url + "index.php/caregiver/load_category_chart",
+        data: {
+            category: category,
+            selected_residents: selected_residents
+        },
+        dataType: "text",
+        cache: false,
+
+        success: function (data) {
+            var Yaxis = [];
+            var Xaxis = [];
+            console.log(data);
+            var response = JSON.parse(data);
+            console.log(response);
+            Xaxis = response[0];
+            Yaxis = response[1];
+            google.charts.setOnLoadCallback(drawChart2);
+
+            function drawChart2() {
+                var data = new google.visualization.DataTable();
+                columnChart(Yaxis, Xaxis, data, "chart2_div", "c_statistics_category_all_individual");
+            }
+        }
+    });
+    return false;
+}
+
+function chart3function() {
+    console.log('chart 3 submitted');
+    $.ajax({
+        type: "POST",
+        url: base_url + "index.php/caregiver/load_avarage_score_per_resident_chart",
+        data: {selected_residents: selected_residents},
+        dataType: "text",
+        cache: false,
+
+        success: function (data) {
+            var Yaxis = [];
+            var Xaxis = [];
+            var response = JSON.parse(data);
+            console.log(response);
+            Xaxis = response[0];
+            Yaxis = response[1];
+            google.charts.setOnLoadCallback(drawChart3);
+
+            function drawChart3() {
+                var data = new google.visualization.DataTable();
+                columnChart(Yaxis, Xaxis, data, "chart3_div", 'avarage scores of all residents');
             }
         }
     });
