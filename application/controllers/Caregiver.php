@@ -49,10 +49,14 @@ class Caregiver extends CI_Controller {
 	{
 		$data = $this->display_common_elements( 'home' );
                 $residents = $this->Resident_model->getAllResidents();
-                $data2['recent_residents'] = $this->Resident_model->getNMostRecentCompletedResidents();
+                $recentResidents = $this->Resident_model->getNMostRecentCompletedResidents();
+                $data2['recent_residents'] = $recentResidents;
 
 		$data2[ 'name' ] = $this->session->first_name;
-
+                foreach($recentResidents as $resident){
+                    $profilePictures[] = $this->Picture_model->getProfilePicture($resident->id);
+                }
+                $data2['profile_pictures'] = $profilePictures; 
 		$data2[ 'display_login_notification' ] = $this->session->display_login_notification;
 		$this->session->display_login_notification = false;
 
@@ -128,7 +132,7 @@ class Caregiver extends CI_Controller {
                 $data2['password'] = $residentObject[0]->password;
                 $data2[ 'last_activity' ] = $residentObject[0]->last_activity;
                 $data2['average_score'] = round($this->Statistics_model->getTotalScoreResident($resident));
-				$data2['profile_picture'] = $this->Picture_model->getProfilePicture($residentObject[0]->id);
+		$data2['profile_picture'] = $this->Picture_model->getProfilePicture($residentObject[0]->id);
 		$data[ 'content' ] = $this->parser->parse( 'caregiver/caregiver_resident', $data2, true );
 
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
