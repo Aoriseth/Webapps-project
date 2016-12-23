@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="filter-content">
                             <div class="modal-header">
-                                <h3 class="modal-title">Filter</h3>
+                                <h3 class="modal-title"><?= lang('c_statistics_filter') ?></h3>
                             </div>
                         <div class="col-md-6 col-sm-6">        
 
