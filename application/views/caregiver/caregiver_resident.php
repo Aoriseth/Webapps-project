@@ -15,7 +15,7 @@
             <div class="col-sm-6">
                 <img src={profile_picture} alt="Profile Picture" style="width:260px;height:300px;">
 				<div id="propic"></div>
-				<input type="file" id ="propic_file"> <!--should not be visible, style this as: #propic_file{display:none}-->
+                                <input type="file" id ="propic_file" style="display: none;"> <!--should not be visible, style this as: #propic_file{display:none}-->
 				<input type="button" id="propic_button" value="Change profile picture">
 				
             </div> 
