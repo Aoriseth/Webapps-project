@@ -12,15 +12,9 @@
         </p>
 
         <div class="row">
-            <?php if ($gender == 'Female'){ ?> 
             <div class="col-sm-6">
                 <img src={profile_picture} alt="Profile Picture" style="width:250px;height:300px;">
-            </div>
-            <?php }elseif ($gender == 'Male'){ ?>
-            <div class="col-sm-6">
-                <img src="<?php echo base_url(); ?>assets/elderlyMale.jpg" alt="Profile Picture" style="width:250px;height:300px;">
-            </div>
-            <?php } ?> 
+            </div> 
             <div class="col-sm-6">
                 Born: {date_of_birth} </br>
                 Language: {language} </br>
@@ -28,7 +22,7 @@
                 Last activity: {last_activity} </br>
                 {sessions_completed} completed session(s) </br>
                 {name}'s average score is {average_score} </br>
-                <div id="qrcode"></div><button id = "qrcodeButton"> download qr code</button>
+                <div id="qrcode"></div><button id = "qrcodeButton">Download QR code</button>
             </div>
         </div>
         </br>
