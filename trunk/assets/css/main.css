@@ -17,8 +17,8 @@ and open the template in the editor.
     transition: all .2s ease-in-out;
 }
 .grow:hover { 
-    transform: scale(1.1); 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transform: scale(1.05); 
+    box-shadow: 0 1px 5px rgba(0,0,0,0.3);
 }
 
 
@@ -123,6 +123,6 @@ video.webcam {
     transform: scaleX(-1);
 }
 
-.form-group .btn, .input-group-btn .btn{
+/*.form-group .btn, .input-group-btn .btn{
     border: 1px solid #BDBDBD !important;
-}
+}*/
