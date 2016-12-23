@@ -41,6 +41,7 @@ $lang[ 'c_overview_type_resident' ] = 'Resident';
 $lang[ 'c_overview_type_caregiver' ] = 'Caregiver';
 
 // statistics
+$lang[ 'c_statistics_filter' ] = 'Filter';
 $lang[ 'c_statistics_gender' ] = 'Genre';
 $lang[ 'c_statistics_male' ] = 'Mâle';
 $lang[ 'c_statistics_female' ] = 'Femelle';
