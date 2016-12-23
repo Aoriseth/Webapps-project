@@ -7,28 +7,32 @@
 
     <div class="panel container-fluid">
         <br>
-        <p class="txScale">
-            Details of {name} {last_name}
-        </p>
+        <p class="tlScale">
+            {name} {last_name}
+        </p><hr>
+        <div class="container-fluid">
+            <div class="row">
+                <div style="text-align: center" class="col-sm-4">
+                    <img src={profile_picture} alt="Profile Picture" style="width:260px;height:300px;">
+                    <input type="file" id ="propic_file" style="display: none;"> <!--should not be visible, style this as: #propic_file{display:none}-->
+                    <input class="btn btn-raised" type="button" id="propic_button" value="Change profile picture">
 
-        <div class="row">
-            <div class="col-sm-6">
-                <img src={profile_picture} alt="Profile Picture" style="width:260px;height:300px;">
-				<div id="propic"></div>
-                                <input type="file" id ="propic_file" style="display: none;"> <!--should not be visible, style this as: #propic_file{display:none}-->
-				<input type="button" id="propic_button" value="Change profile picture">
-				
-            </div> 
-            <div class="col-sm-6">
-                Born: {date_of_birth} </br>
-                Language: {language} </br>
-                Floor: {floor} Room: {room} </br>
-                Last activity: {last_activity} </br>
-                {sessions_completed} completed session(s) </br>
-                {name}'s average score is {average_score} </br>
-                <div id="qrcode"></div><button id = "qrcodeButton">Download QR code</button>
+                </div> 
+                <div class="col-sm-4">
+                    Born: {date_of_birth} </br>
+                    Language: {language} </br>
+                    Floor: {floor} Room: {room} </br>
+                    Last activity: {last_activity} </br>
+                    {sessions_completed} completed session(s) </br>
+                    {name}'s average score is {average_score} </br>
+                </div>
+                
+                <div class="col-sm-4">
+                    <div  id="qrcode" style="text-align:center;"></div><button class="btn btn-raised" id = "qrcodeButton">Download QR code</button>
+                </div>
             </div>
         </div>
+
         </br>
     </div>
 
@@ -82,18 +86,18 @@
         colorDark: "#000000",
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H});
-    $("#qrcodeButton").click(function(){
+    $("#qrcodeButton").click(function () {
         // download function library http://danml.com/download.html#FullSource
         // I changed something in teh QR-code generator library so I have an id of the image of the QR-code
         // line 367
-        download($("#qrcodeID").attr('src'),"qrcode_{name}_{last_name}.png","image/png");
+        download($("#qrcodeID").attr('src'), "qrcode_{name}_{last_name}.png", "image/png");
     });
 
-	//Profile picture related stuff
-	document.getElementById('propic_button').onclick = function() {
-		document.getElementById('propic_file').click();
-		//TODO ajax call to upload() with id of resident -> $_FILES is set?
-	};
+    //Profile picture related stuff
+    document.getElementById('propic_button').onclick = function () {
+        document.getElementById('propic_file').click();
+        //TODO ajax call to upload() with id of resident -> $_FILES is set?
+    };
 
     chart1function();
     chart2function();
