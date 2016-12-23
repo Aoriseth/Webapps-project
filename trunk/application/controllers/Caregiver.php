@@ -226,10 +226,20 @@ class Caregiver extends CI_Controller {
 		}
 
 		$resultArray = [];
+                $residents = [];
+                $group = [];
+
+                if (isset($_POST['selected_residents'])) {
+                        $group = $this->input->post('selected_residents');
+                        foreach ($group as $residentID) {
+                            //array_push($residents, $this->Resident_model->getResidentById($residentID)); // array of arrays of one object
+                            array_push($residents, current($this->Resident_model->getResidentById($residentID))); 
+                        }
+                }
                 
 		if ( isset( $_POST[ 'category' ] ) ) {
 			$category = $this->input->post( 'category' );
-			$residents = $this->Resident_model->getAllResidents();
+			//$residents = $this->Resident_model->getAllResidents();
 
 			//array of strings
 			$Yarray = [];
@@ -289,8 +299,17 @@ class Caregiver extends CI_Controller {
 
 		$resultArray = [];
 
+                $residents = [];
+                $group = [];
 
-                $residents = $this->Resident_model->getAllResidents();
+                if (isset($_POST['selected_residents'])) {
+                        $group = $this->input->post('selected_residents');
+                        foreach ($group as $residentID) {
+                            //array_push($residents, $this->Resident_model->getResidentById($residentID)); // array of arrays of one object
+                            array_push($residents, current($this->Resident_model->getResidentById($residentID))); 
+                        }
+                }
+                //$residents = $this->Resident_model->getAllResidents();
                 $categories = $this->Question_model->getAllCategories(); // as ID
 
                 //array of strings
@@ -307,7 +326,7 @@ class Caregiver extends CI_Controller {
                 array_push( $resultArray, $Xarray );
                 array_push( $resultArray, $Yarray );
 		
-		
+                
 		
 		header( 'Content-Type: application/json' );     
 		echo json_encode( $resultArray );
