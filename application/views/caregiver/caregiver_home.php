@@ -8,13 +8,16 @@
 
 <div class=" panel container-fluid">
     </br>
-    <p class="txScale"><?= lang('c_home_title') ?></p>
-    <hr>
+<!--    <p class="txScale"><?= lang('c_home_title') ?></p>
+    <p class="tlScale">  Welkom!</p>
+    <hr>-->
 
-    <p class="tlScale"><?= lang('c_home_info_residents') ?></p>
+    
 
     <div class="row">
         <div class="col-md-6">
+            <p style="font-size:16px;"><?= lang('c_home_info_residents') ?></p>
+            <hr>
             <div class="list-group">
                 <?php $i = 0;
                 foreach ($recent_residents as $resident) {
