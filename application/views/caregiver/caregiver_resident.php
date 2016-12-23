@@ -14,6 +14,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <img src={profile_picture} alt="Profile Picture" style="width:250px;height:300px;">
+				<div id="qrcode"></div><button id = "propicButton">Change profile picture</button>
             </div> 
             <div class="col-sm-6">
                 Born: {date_of_birth} </br>
