@@ -16,10 +16,11 @@
     <div class="row">
         <div class="col-md-6">
             <div class="list-group">
-                <?php foreach ($recent_residents as $resident) {
+                <?php $i = 0;
+                foreach ($recent_residents as $resident) {
                     ?><div class="list-group-item">
                         <div class="row-picture">
-                            <img class="circle" src="http://lorempixel.com/56/56/people/1" alt="icon">
+                            <img class="circle" src= "<?php echo $profile_pictures[$i]?>" alt="icon">
                         </div>
                         <div class="row-content">
                             <h4 class="list-group-item-heading"><a href="<?php echo base_url(); ?>index.php/caregiver/resident/<?php echo $resident->id ?>" ><?php echo $resident->first_name; ?> <?php echo $resident->last_name;?> </a></h4>
@@ -28,7 +29,7 @@
                         </div>
                     </div>
                     <div class="list-group-separator"></div> 
-                <?php } ?>
+                <?php $i++; } ?>
 
             </div>
         </div>
