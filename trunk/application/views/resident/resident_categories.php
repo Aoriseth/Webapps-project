@@ -1,11 +1,11 @@
-<div class="panel popup" data-placement="bottom" data-toggle="popover" title="" data-container="body" data-content="<?= lang('r_categories_help') ?>">
+<div class=" panel popup" data-placement="bottom" data-toggle="popover" title="" data-container="body" data-content="<?= lang('r_categories_help') ?>">
     <div class="container-fluid">
         <div class="row">
 
 
 
             <div class="col-lg-12" >
-                <h2 style="font-size:3vmax">
+                <h2 class="tlScale">
                     <?= lang('r_categories_explanation') ?>
                 </h2>
                 <hr/><br>
@@ -13,7 +13,7 @@
                     <div class="col-sm-4" >
                         <form style='text-align:center' action="<?php echo base_url() . 'index.php/resident/question' ?>" method="GET">
                             <!--input class="btn btn-default" type="submit" name="category" value="<?php echo $category->category ?>" class="text-center"-->
-                            <button style="width:13vw;height:13vw;" type="submit" name="category" value="<?php echo $category->category ?>" class="btn btn-fab btn-default text-center">
+                            <button style="width:13vw;height:13vw;" type="submit" name="category" value="<?php echo $category->category ?>" class="grow btn btn-fab btn-default text-center">
                                 <?php if ($category->category === "Veiligheid") { ?>
                                     <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/295/295666.png">
                                 <?php } elseif ($category->category === "Maaltijden") { ?>
@@ -42,7 +42,7 @@
                                     <img style="width:10vw;" src="https://image.flaticon.com/icons/png/512/190/190177.png">
                                 <?php } ?>
                             </button><br><br>
-                            <p style="font-size:2vmax"><?php echo $category->category ?></p>
+                            <p class="txScale"><?php echo $category->category ?></p>
 
 
                         </form>
