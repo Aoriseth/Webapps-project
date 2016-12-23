@@ -8,13 +8,13 @@
     <div class="panel container-fluid">
         <br>
         <p class="txScale">
-            Details of {name} {last_name}.
+            Details of {name} {last_name}
         </p>
 
         <div class="row">
             <?php if ($gender == 'Female'){ ?> 
             <div class="col-sm-6">
-                <img src="<?php echo base_url(); ?>assets/elderlyFemale.jpg" alt="Profile Picture" style="width:250px;height:300px;">
+                <img src={profile_picture} alt="Profile Picture" style="width:250px;height:300px;">
             </div>
             <?php }elseif ($gender == 'Male'){ ?>
             <div class="col-sm-6">
@@ -22,10 +22,10 @@
             </div>
             <?php } ?> 
             <div class="col-sm-6">
-                Born {date_of_birth} </br>
-                {language} </br>
+                Born: {date_of_birth} </br>
+                Language: {language} </br>
                 Floor: {floor} Room: {room} </br>
-                Last activity on {last_activity} </br>
+                Last activity: {last_activity} </br>
                 {sessions_completed} completed session(s) </br>
                 {name}'s average score is {average_score} </br>
                 <div id="qrcode"></div><button id = "qrcodeButton"> download qr code</button>

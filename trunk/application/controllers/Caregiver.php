@@ -26,6 +26,7 @@ class Caregiver extends CI_Controller {
 		$this->load->model( 'Statistics_model' );
 		$this->load->model( 'Group_model' );
 		$this->load->model( 'Caregiver_model' );
+		$this->load->model( 'Language_model' );
 	}
 
 	function index()
@@ -119,7 +120,7 @@ class Caregiver extends CI_Controller {
                 $data2[ 'gender' ] = $residentObject[0]->gender;
                 $data2[ 'last_name' ] = $residentObject[0]->last_name;
                 $data2[ 'date_of_birth' ] = $residentObject[0]->date_of_birth;
-                $data2[ 'language' ] = $residentObject[0]->language;
+                $data2[ 'language' ] = $this->Language_model->translate($residentObject[0]->language, $this->session->language);
                 $data2[ 'floor' ] = $residentObject[0]->floor_number;
                 $data2[ 'room' ] = $residentObject[0]->room_number;
                 $data2[ 'sessions_completed' ] = $residentObject[0]->completed_sessions;
@@ -127,6 +128,7 @@ class Caregiver extends CI_Controller {
                 $data2['password'] = $residentObject[0]->password;
                 $data2[ 'last_activity' ] = $residentObject[0]->last_activity;
                 $data2['average_score'] = round($this->Statistics_model->getTotalScoreResident($resident));
+				$data2['profile_picture'] = $this->Picture_model->getProfilePicture($residentObject[0]->id);
 		$data[ 'content' ] = $this->parser->parse( 'caregiver/caregiver_resident', $data2, true );
 
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
