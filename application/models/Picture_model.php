@@ -147,6 +147,25 @@ class Picture_model extends CI_Model {
         );
         return $query->result();
     }
+	
+	/**
+	 * Return the profile picture of the given resident.
+	 * Returns null if no profile picture is set.
+	 */
+	function getProfilePicture($residentID) {
+		$query = $this->db->query(
+			"SELECT profile_picture_id "
+			. "FROM a16_webapps_3.residents "
+			. "WHERE id='$residentID'"
+		);
+		$pictureID = $query->result()[0]->profile_picture_id;
+		if($pictureID == NULL) {
+			return NULL;
+		}
+		$picture = $this->getPicture($pictureID)[0];
+		echo "/" . $picture->picture_dir . $picture->picture_name;
+		return ("/" . $picture->picture_dir . $picture->picture_name);
+	}
 
     /**
      * Get (at most) n pictures of the given resident, where n is a given number.
