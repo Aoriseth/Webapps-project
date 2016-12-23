@@ -18,9 +18,6 @@ class Language_model extends CI_Model {
 	 * translate(English, English) returns English
 	 */
 	function translate( $word_to_translate, $translate_to ) {
-		if($word_to_translate == $translate_to) {
-			return $word_to_translate;
-		}
 		$query = $this->db->query(
 			"SELECT translation "
 			. "FROM a16_webapps_3.languages "
