@@ -163,7 +163,7 @@ function showFResidents(arg) {
         }
     } else {
         document.getElementById("btnSave").disabled = true;
-        document.getElementById('result-info').innerHTML = "<br>No result, change filter.";
+        document.getElementById('result-info').innerHTML = "<br>" + no_result;
         document.getElementById('update_div').style.display = "none"; // TODO: snackbar
         document.getElementById('chart1_div').style.display = "none"; 
     }
@@ -290,8 +290,7 @@ function clickGraph() { // arg:JSON
 
             function drawChart() {
                 var data = new google.visualization.DataTable();
-                columnChart(Yaxis, Xaxis, data, "chart1_div", 
-                "average scores of all categories of selected residents");
+                columnChart(Yaxis, Xaxis, data, "chart1_div", chart_title);
             }
         }
     });
