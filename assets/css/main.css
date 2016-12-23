@@ -73,10 +73,17 @@ body {
 
 }
 
+.txOutline{
+    color: white!important;
+    text-shadow: 0px 0px 10px black;
+    font-size: 18px;
+    margin-top:10px;
+}
+
 #progress_col{
     /*transform: translateY(100%);*/
 }
-table{
+table
 
 }
 
@@ -107,7 +114,7 @@ btn:active{
     background-color: #673AB7 !important;
 }
 .tlScale{
-    font-size:2.5vmax !important;
+    font-size:2vmax !important;
 }
 
 .txScale{
