@@ -60,7 +60,7 @@
                         <?php } ?>           
                     </select>
                 </form>
-                <div class="btn" id="chart2_div" style="width:100%"></div>
+                <div id="chart2_div" style="width:100%"></div>
             </div>
 
 
