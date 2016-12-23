@@ -13,8 +13,11 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <img src={profile_picture} alt="Profile Picture" style="width:250px;height:300px;">
-				<div id="qrcode"></div><button id = "propicButton">Change profile picture</button>
+                <img src={profile_picture} alt="Profile Picture" style="width:260px;height:300px;">
+				<div id="propic"></div>
+				<input type="file" id ="propic_file"> <!--should not be visible, style this as: #propic_file{display:none}-->
+				<input type="button" id="propic_button" value="Change profile picture">
+				
             </div> 
             <div class="col-sm-6">
                 Born: {date_of_birth} </br>
@@ -85,6 +88,12 @@
         // line 367
         download($("#qrcodeID").attr('src'),"qrcode_{name}_{last_name}.png","image/png");
     });
+
+	//Profile picture related stuff
+	document.getElementById('propic_button').onclick = function() {
+		document.getElementById('propic_file').click();
+		//TODO ajax call to upload() with id of resident -> $_FILES is set?
+	};
 
     chart1function();
     chart2function();
