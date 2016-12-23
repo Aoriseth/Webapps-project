@@ -58,8 +58,8 @@
         <div class="row container-fluid">
             <br>
             <div class="col-sm-12" >
-                <div class="container-fluid" style="height:40px;">
-                    <div class="progress" id="progress" style="height: 40px;">
+                <div class="container-fluid" style="height:35px;">
+                    <div class="progress" id="progress" style="height: 35px;">
                         <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progressBar" style="background-color: #673AB7;">
                             <span class="txOutline" id="progressbarText" style="position: absolute;display: block;width: 95%;color:black"></span>
                         </div>
