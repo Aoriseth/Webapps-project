@@ -160,7 +160,7 @@ class Picture_model extends CI_Model {
 		);
 		$pictureID = $query->result()[0]->profile_picture_id;
 		if($pictureID == NULL) {
-			return NULL;
+			return "/assets/imgs/nopropic.png";
 		}
 		$picture = $this->getPicture($pictureID)[0];
 		echo "/" . $picture->picture_dir . $picture->picture_name;
