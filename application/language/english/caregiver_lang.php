@@ -41,5 +41,13 @@ $lang[ 'c_overview_type_resident' ] = 'Resident';
 $lang[ 'c_overview_type_caregiver' ] = 'Caregiver';
 
 // statistics
+$lang[ 'c_statistics_gender' ] = 'Gender';
+$lang[ 'c_statistics_male' ] = 'Male';
+$lang[ 'c_statistics_female' ] = 'Female';
+$lang[ 'c_statistics_floor' ] = 'Floor';
+$lang[ 'c_statistics_age' ] = 'Age';
+$lang[ 'c_statistics_result' ] = 'Result';
+$lang[ 'c_statistics_no_result' ] = 'No result, change filter.';
+$lang[ 'c_statistics_all_category_selected_individual' ] = 'All category scores of selected resident';
 $lang[ 'c_statistics_all_category_individual' ] = 'All category scores per resident';
 $lang[ 'c_statistics_category_all_individual' ] = 'All residents per category';

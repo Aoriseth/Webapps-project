@@ -41,5 +41,13 @@ $lang[ 'c_overview_type_resident' ] = 'Inwoner';
 $lang[ 'c_overview_type_caregiver' ] = 'Verzorger';
 
 // statistics
+$lang[ 'c_statistics_gender' ] = 'Geslacht';
+$lang[ 'c_statistics_male' ] = 'Mannelijk';
+$lang[ 'c_statistics_female' ] = 'Vrouwelijk';
+$lang[ 'c_statistics_floor' ] = 'Verdieping';
+$lang[ 'c_statistics_age' ] = 'Leeftijd';
+$lang[ 'c_statistics_result' ] = 'Resultaat';
+$lang[ 'c_statistics_no_result' ] = 'Geen resultaat, verander filter.';
+$lang[ 'c_statistics_all_category_selected_individual' ] = 'Alle categorieën geselecteerde residenten';
 $lang[ 'c_statistics_all_category_individual' ] = 'Alle categoriën per resident';
 $lang[ 'c_statistics_category_all_individual' ] = 'Alle residenten per categorie';

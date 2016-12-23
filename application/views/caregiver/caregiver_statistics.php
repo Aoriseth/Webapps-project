@@ -6,6 +6,8 @@
     <script type="text/javascript">
         var base_url = "<?php Print(base_url()); ?>"; 
         var caregiverID = "<?php Print($caregiverID); ?>"; 
+        var no_result = "<?php Print(lang('c_statistics_no_result')); ?>"; 
+        var chart_title = "<?php Print(lang('c_statistics_all_category_selected_individual')); ?>"; 
     </script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/caregiver_filter.js"></script>
 </head>
@@ -28,20 +30,20 @@
 
                                         <!-- GENDER -->
                                         <div class="form-group">
-                                            <label class="col-md-2">Gender</label>
+                                            <label class="col-md-2"><?= lang('c_statistics_gender') ?></label>
                                             <div class="radios" onchange="clickFilter(caregiverID);">
-                                                <div class="col-md-2">
+                                                <div class="col-md-4">
                                                     <div class="radio radio-primary">
                                                         <label>
-                                                            Male
+                                                            <?= lang('c_statistics_male') ?>
                                                             <input type="radio" name="optionsRadios" id="optionMale" value="option1"<!--checked=""--><span class="circle"></span><span class="check"></span>
                                                         </label>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-4">
                                                     <div class="radio radio-primary">
                                                         <label>
-                                                            Female
+                                                            <?= lang('c_statistics_female') ?>
                                                             <input type="radio" name="optionsRadios" id="optionFemale" value="option2"><span class="circle"></span><span class="check"></span>
                                                         </label>
                                                     </div>
@@ -51,7 +53,7 @@
 
                                         <!-- FLOOR -->   
                                         <div class="form-group">
-                                            <label class="col-md-2">Floor</label>
+                                            <label class="col-md-2"><?= lang('c_statistics_floor') ?></label>
                                             <div class="col-md-10">
                                                     <select class="selectpicker form-control" id="floor" onchange="clickFilter(caregiverID);"> <!-- multiple="multiple" expands the opts -->
                                                         <?php foreach ($floors as $floor) { ?> 
@@ -66,7 +68,7 @@
 
                                         <!-- AGE -->
                                         <div class="form-group">
-                                            <label class="col-md-2">Age</label>
+                                            <label class="col-md-2"><?= lang('c_statistics_age') ?></label>
                                             <div class="col-md-10">
                                                 <div id="slider-non-linear-step" class="slider shor noUi-target noUi-ltr noUi-horizontal noUi-connect">
                                                     <div class="noUi-base">
@@ -89,7 +91,7 @@
                                         <!-- RESULTS -->
                                         <div id="result-info" style="font-size:16px; text-align:right; color:#BDBDBD;"></div>
                                         <div class="form-group" id="update_div" style="display:none">
-                                            <label class="col-md-2">Results</label>
+                                            <label class="col-md-2"><?= lang('c_statistics_result') ?></label>
                                             <div class="col-md-10">
                                                     <div id="result-list">
                                                     </div>
