@@ -48,6 +48,7 @@ function getCookie() {
 
 function clickAddGroup()
 {
+    console.log('clickAddGroup');
     document.getElementById("btnSave").disabled = true;
     /*
     $('#form')[0].reset(); // reset form on modals
@@ -84,6 +85,7 @@ function clickAddGroup()
 
 function clickFilter(caregiverID)
 {
+    console.log('clickFilter: ' + caregiverID);
     var url = base_url + 'index.php/caregiver/filterGroup';
     var caregiverID = caregiverID;
     // clear global array
@@ -143,6 +145,7 @@ function clickFilter(caregiverID)
 }
 
 function showFResidents(arg) {
+    console.log('showFResidents');
     var filter_residents = arg;
     $('#result-list').html("<select class=\"form-control\" id=\"filter_resident\" " 
             + "multiple=\"multiple\" " // onchange=\"clickFilter(caregiverID)\"
@@ -160,8 +163,8 @@ function showFResidents(arg) {
                 $('#result-list select').append(options);
             }
             $("#result-list option").attr("selected", "selected");
-            clickSave();
         }
+        clickSave();
     } else {
         document.getElementById("btnSave").disabled = true;
         document.getElementById('result-info').innerHTML = "<br>" + no_result;
@@ -171,6 +174,7 @@ function showFResidents(arg) {
 }
 
 function clickSave() {
+    console.log('clickSave');
     selected_residents = [];
     var f = document.getElementById("filter_resident");
     for (var i = 0; i < f.options.length; i++) {
@@ -293,7 +297,7 @@ function clickGraph() { // arg:JSON
 
             function drawChart() {
                 var data = new google.visualization.DataTable();
-                columnChart(Yaxis, Xaxis, data, "chart1_div", chart_title);
+                columnChart(Yaxis, Xaxis, data, "chart1_div", chart_title0);
             }
         }
     });
@@ -335,7 +339,7 @@ function chart1function() {
 
             function drawChart() {
                 var data = new google.visualization.DataTable();
-                columnChart(Yaxis, Xaxis, data, "chart1_div", "c_statistics_all_category_individual");
+                columnChart(Yaxis, Xaxis, data, "chart1_div", chart_title1);
             }
         }
     });
@@ -372,7 +376,7 @@ function chart2function() {
 
             function drawChart2() {
                 var data = new google.visualization.DataTable();
-                columnChart(Yaxis, Xaxis, data, "chart2_div", "c_statistics_category_all_individual");
+                columnChart(Yaxis, Xaxis, data, "chart2_div", chart_title2);
             }
         }
     });
@@ -399,7 +403,7 @@ function chart3function() {
 
             function drawChart3() {
                 var data = new google.visualization.DataTable();
-                columnChart(Yaxis, Xaxis, data, "chart3_div", 'avarage scores of all residents');
+                columnChart(Yaxis, Xaxis, data, "chart3_div", chart_title3);
             }
         }
     });

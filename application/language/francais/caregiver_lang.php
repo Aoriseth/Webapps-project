@@ -50,5 +50,7 @@ $lang[ 'c_statistics_age' ] = 'Âge';
 $lang[ 'c_statistics_result' ] = 'Résultat';
 $lang[ 'c_statistics_no_result' ] = 'Aucun résultat, modifier filtre.';
 $lang[ 'c_statistics_all_category_selected_individual' ] = 'Score des différentes catégories pour les résidents sélectionnés';
-$lang[ 'c_statistics_all_category_individual' ] = 'Scores des différentes catégories par résident';
 $lang[ 'c_statistics_category_all_individual' ] = 'Tous les résidents par catégories';
+$lang[ 'c_statistics_average_scores_of_selected_residents' ] = 'Scores moyens des résidents sélectionnés';
+
+
