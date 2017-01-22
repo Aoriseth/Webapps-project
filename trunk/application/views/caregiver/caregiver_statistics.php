@@ -7,7 +7,10 @@
         var base_url = "<?php Print(base_url()); ?>"; 
         var caregiverID = "<?php Print($caregiverID); ?>"; 
         var no_result = "<?php Print(lang('c_statistics_no_result')); ?>"; 
-        var chart_title = "<?php Print(lang('c_statistics_all_category_selected_individual')); ?>"; 
+        var chart_title0 = "<?php Print(lang('c_statistics_all_category_selected_individual')); ?>"; 
+        var chart_title1 = "<?php Print(lang('c_statistics_all_category_individual')); ?>"; 
+        var chart_title2 = "<?php Print(lang('c_statistics_category_all_individual')); ?>"; 
+        var chart_title3 = "<?php Print(lang('c_statistics_average_scores_of_selected_residents')); ?>"; 
     </script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/caregiver_filter.js"></script>
 </head>

@@ -22,7 +22,9 @@
                         vAxis: {gridlines: { count: 5 },
                                 minValue: 0,
                                 maxValue: 100
-                                }
+                                },
+                        legend: {position: 'none'},
+                        bar: {groupWidth: 15},
 
                         
                     };
