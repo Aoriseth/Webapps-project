@@ -112,7 +112,7 @@
                         </div>
 
                         <div class="col-md-6 col-sm-12">
-                            <div class="container">
+                            <div class="container-fluid">
                                 <div id="chart1_div" style="width:100%"></div>
                                 <div id="wait" 
                                      style="
