@@ -77,6 +77,7 @@ class Resident extends CI_Controller {
 
         // get 3 random categories
         $categories = $this->Question_model->getAllUnfinishedCategories($this->session->id, 3);
+        $cat = $this->Question_model->getAllCategoryNames($this->session->language);
 
         if (count($categories) == 0) {
             $this->Score_model->addSessionScore($this->session->id);
@@ -96,7 +97,7 @@ class Resident extends CI_Controller {
              */
             // !!! Important: ensure that everything in this if-block occurs exactly 1 time.
         }
-
+        $data2['cat'] = $cat;
         $data2['categories'] = $categories;
 
         $data['content'] = $this->parser->parse('resident/resident_categories', $data2, true);
