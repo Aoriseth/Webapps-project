@@ -6,6 +6,20 @@ and open the template in the editor.
 /* 
     Created on : Nov 12, 2016
     Author     : Robin
+
+Dark primary
+#512da8
+
+Primary
+#673ab7
+
+Light primary
+#d1c4e9
+
+Accent color
+#ff5722
+
+
 */
 #div1 {
     width: 100%;
@@ -65,14 +79,6 @@ body {
     font-size: 18px;
 }
 
-#col_btn {
-
-}
-
-#button_emotion img{
-
-}
-
 .txOutline{
     color: white!important;
     text-shadow: 0px 0px 10px black;
@@ -83,9 +89,7 @@ body {
 #progress_col{
     /*transform: translateY(100%);*/
 }
-table
 
-}
 
 @media(min-width:768px) {
 
@@ -94,9 +98,7 @@ table
 .btn-raised{
     white-space: normal !important;
 }
-.btn-info, .btn-info:hover, .btn-info:active, .btn-info:visited {
-    /*background-color: #3f51b5 !important;*/
-}
+
 
 btn:active{
     border: none;
@@ -120,16 +122,9 @@ btn:active{
 .txScale{
     font-size: 1.75vmax !important;
 }
-/*nav.ul{
-    float: right;
-}*/
 
 video.webcam {
     /* mirror video */
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
-
-/*.form-group .btn, .input-group-btn .btn{
-    border: 1px solid #BDBDBD !important;
-}*/
