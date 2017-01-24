@@ -6,6 +6,7 @@
   table-layout: fixed;
   width: 100%;
   color: #849397;
+  font-size: 1.5em;
 }
 .questions > li {
   position: relative;
@@ -43,19 +44,19 @@
   display: none;
 }
 .questions > li.is-complete {
-  color: #2ECC71;
+  color: #673ab7;
 }
 .questions > li.is-complete:before,
 .questions > li.is-complete:after {
   color: #FFF;
-  background: #2ECC71;
+  background: #673ab7;
 }
 .questions > li.is-active {
-  color: #3498DB;
+  color: #ff5722;
 }
 .questions > li.is-active:before {
   color: #FFF;/* color inside a bubble*/
-  background: #3498DB;
+  background: #ff5722;
 }
 /**
    * Needed for IE8
@@ -63,37 +64,5 @@
 .questions__last:after {
   display: none!important;
 }
-/**
-   * Size Extensions
-   */
-.questions--medium {
-  font-size: 1.5em;
-}
-.questions--large {
-  font-size: 2em;
-}
-/**
- * Some Generic Stylings
- */
-*,
-*:after,
-*:before {
-  box-sizing: border-box;
-}
-h1 {
-  margin-bottom: 1.5em;
-}
-.questions {
-  margin-bottom: 3em;
-}
-a {
-  color: #3498DB;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-body {
-  text-align: center;
-  color: #444;
-}
+
+
