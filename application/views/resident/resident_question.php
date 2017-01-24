@@ -2,8 +2,9 @@
 
 <div class="container-fluid" id="container_resident">
     <script src="<?php echo base_url(); ?>assets/js/loadingAnswers_Questions/LoadA_Q.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/css/progressbar.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-    <script >initialize('<?php echo base_url(); ?>', '<?= lang('r_question_back') ?>', '<?= lang('r_question_back_cat') ?>', '<?= lang('r_question_completed') ?>');</script>
+    <script >initialize('<?php echo base_url(); ?>', '<?= lang('r_question_back') ?>', '<?= lang('r_question_back_cat') ?>', '<?= lang('r_question_completed') ?>', {numberQuestions});</script>
 
     <div style="" data-placement="bottom" data-toggle="popover" title="" data-content="<?= lang('r_question_help') ?>" data-container="body" class="popup panel row">
 
@@ -54,16 +55,34 @@
 
 
 <!--        <p style="margin-top:40px;">-->
-
+        <ol class="questions quesions--medium">
+            <li class="is-complete" data-step="1">
+                Step 1
+            </li>
+            <li data-step="2" class ="is-complete">
+                Step 2
+            </li>
+            <li data-step="3" class="is-active">
+                Step 3
+            </li>
+            <li data-step="4" class="">
+                Step 3
+            </li>
+            <li data-step="5" class="questions__last">
+                Step 3
+            </li>
+        </ol>
         <div class="row container-fluid">
             <br>
             <div class="col-sm-12" >
                 <div class="container-fluid" style="height:35px;">
-                    <div class="progress" id="progress" style="height: 35px;">
+
+
+                    <!--<div class="progress" id="progress" style="height: 35px;">
                         <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progressBar" style="background-color: #673AB7;">
                             <span class="txOutline" id="progressbarText" style="position: absolute;display: block;width: 95%;color:black"></span>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                 <br>
             </div>

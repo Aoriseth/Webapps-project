@@ -92,6 +92,32 @@
         // line 367
         download($("#qrcodeID").attr('src'), "qrcode_{name}_{last_name}.png", "image/png");
     });
+    //Profile picture related stuff
+    /*document.getElementById('propic_button').onclick = function () {
+        document.getElementById('propic_file').click();
+        //TODO ajax call to upload() with id of resident -> $_FILES is set?
+    };*/
+    $('#uploadImage').on('submit',(function(e) {
+            
+            var data = new FormData(this);
+            data.append("residentID","{username}");
+            console.log('data: ' + data);
+            console.log(data);
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url() ?>index.php/caregiver/upload",
+                data: data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                succes: function(data){
+                    console.log('result:  ' + data);
+                }
+            }).always(function(dat,stat,err){
+                console.log("data: " + dat + "stat " + stat + "err: " + err);
+            })
+        
+    }));
 
     //Profile picture related stuff
     document.getElementById('propic_button').onclick = function () {
@@ -114,21 +140,16 @@
             data: {resident: "{id}"},
             dataType: "text",
             cache: false,
-
             success: function (data) {
                 var Yaxis = [];
                 var Xaxis = [];
                 console.log(data);
                 var response = JSON.parse(data);
                 console.log(response);
-
                 Xaxis = response[0];
                 Yaxis = response[1];
-
                 //google.charts.load('current', {'packages':['corechart']});
                 google.charts.setOnLoadCallback(drawChart);
-
-
                 function drawChart() {
 
                     var data = new google.visualization.DataTable();
@@ -145,32 +166,22 @@
         console.log('chart 2 submitted');
         //e.preventDefault();
         var selects = formChart2.getElementsByTagName('select');
-
-
         var category = parseInt(selects[0].value);
-
-
         $.ajax({
             type: "POST",
             url: "<?php echo base_url() ?>index.php/caregiver/load_category_course_chart",
             data: {category: category, resident: "{id}"},
             dataType: "text",
             cache: false,
-
             success: function (data) {
                 var Yaxis = [];
                 var Xaxis = [];
                 console.log(data);
                 var response = JSON.parse(data);
                 console.log(response);
-
                 Xaxis = response[0];
                 Yaxis = response[1];
-
-
                 google.charts.setOnLoadCallback(drawChart2);
-
-
                 function drawChart2() {
 
                     var data = new google.visualization.DataTable();
