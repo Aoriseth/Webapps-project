@@ -101,8 +101,8 @@
             
             var data = new FormData(this);
             data.append("residentID","{username}");
-            console.log('data: ' + data);
-            console.log(data);
+            //console.log('data: ' + data);
+            //console.log(data);
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url() ?>index.php/caregiver/upload",
@@ -111,10 +111,10 @@
                 cache: false,
                 processData: false,
                 succes: function(data){
-                    console.log('result:  ' + data);
+                    //console.log('result:  ' + data);
                 }
             }).always(function(dat,stat,err){
-                console.log("data: " + dat + "stat " + stat + "err: " + err);
+                //console.log("data: " + dat + "stat " + stat + "err: " + err);
             })
         
     }));
@@ -124,6 +124,10 @@
         document.getElementById('propic_file').click();
         //TODO ajax call to upload() with id of resident -> $_FILES is set?
     };
+    
+    chart1function();
+    chart2function();
+        
     $(window).resize(function(){
         chart1function();
         chart2function();
@@ -145,9 +149,9 @@
             success: function (data) {
                 var Yaxis = [];
                 var Xaxis = [];
-                console.log(data);
+                //console.log(data);
                 var response = JSON.parse(data);
-                console.log(response);
+                //console.log(response);
                 Xaxis = response[0];
                 Yaxis = response[1];
                 //google.charts.load('current', {'packages':['corechart']});
@@ -178,9 +182,9 @@
             success: function (data) {
                 var Yaxis = [];
                 var Xaxis = [];
-                console.log(data);
+                //console.log(data);
                 var response = JSON.parse(data);
-                console.log(response);
+                //console.log(response);
                 Xaxis = response[0];
                 Yaxis = response[1];
                 google.charts.setOnLoadCallback(drawChart2);
@@ -194,9 +198,5 @@
         });
         return false;
     }
-
-
-
-
 
 </script>

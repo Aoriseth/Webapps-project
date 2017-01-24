@@ -57,9 +57,11 @@
 
 
     google.charts.load('current', {'packages': ['corechart']});
-
+    
+    chart1function();
+    
     $(window).resize(function(){
-            chart1function();
+        chart1function();
     });
     //formChart1.addEventListener('submit', function(e) {
     function chart1function() {
@@ -76,9 +78,9 @@
             success: function (data) {
                 var Yaxis = [];
                 var Xaxis = [];
-                console.log(data);
+                //console.log(data);
                 var response = JSON.parse(data);
-                console.log(response);
+                //console.log(response);
 
                 Xaxis = response[0];
                 Yaxis = response[1];
