@@ -1,3 +1,4 @@
+// global variables
 var base_url = null;
 var video = null;
 var streaming = false;
@@ -14,7 +15,7 @@ function displayError( error ) {
 (function () {
 
     function startup() {    // This function is called when the page is started up
-
+        // getting a videostream from the webcam
         video = document.querySelector( "#camfr" );
         navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia || navigator.mozGetUserMedia;
 
@@ -57,6 +58,7 @@ function displayError( error ) {
                 streaming = true;
 
                 try {
+                    // get the QR-code from the videostream
                     new QCodeDecoder().decodeFromCamera( video, result );
                 } catch ( err ) {
                     console.log( 'decodeFromCamera failed:' );
@@ -74,7 +76,7 @@ function displayError( error ) {
 function login_failed_callback() {
     login_attempt_in_progress = false;
 }
-
+// This function handles the result of the QR code recognition
 function result( err, result ) {
     if ( login_attempt_in_progress ) {
         console.log( 'Result from QR decode ignored.' );
@@ -86,17 +88,19 @@ function result( err, result ) {
         displayError( 'There is a problem reading the QR code.' );
 
     } else {
-        console.log( 'QR code: ' + result  );
+        
+        //console.log( 'QR code: ' + result  );
 
-        result_parsed = JSON.parse( result );
+        var result_parsed = JSON.parse( result );
         var username = result_parsed.username;
         var password = result_parsed.password;
-        console.log( 'Parsed data: ' + username + ' / ' + password );
+        //console.log( 'Parsed data: ' + username + ' / ' + password );
 
         if ( typeof username === "undefined" || typeof password === "undefined" ) {
             displayError( 'Invalid QR code.' );
         } else {
             login_attempt_in_progress = true;
+            // try to login
             login( base_url, username, password, $( '#error_message_camera' ), true, login_failed_callback );
         }
     }

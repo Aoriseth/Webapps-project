@@ -115,10 +115,13 @@ class Resident extends CI_Controller {
         $categorySetID = $this->Question_model->getCategorySetIdFrom($this->session->language, $category);
         $allUnansweredQuestions = $this->Question_model->getAllUnansweredQuestionsFrom($this->session->id, $categorySetID);
         $options = $this->Question_model->getOptionsFor($allUnansweredQuestions[0]->question_set, $this->session->language);
+        $questions = $this->Question_model->getAllQuestionSetsFrom($categorySetID);
+        $totNumberQuestions = count($questions)- count($allUnansweredQuestions);
 
         $data2['category'] = $category;
         $data2['allUnansweredQuestions'] = $allUnansweredQuestions;
         $data2['options'] = $options;
+        $data2['numberQuestions'] = $totNumberQuestions;
 
         $data['content'] = $this->parser->parse('resident/resident_question', $data2, true);
 

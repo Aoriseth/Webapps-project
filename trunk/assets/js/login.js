@@ -3,8 +3,8 @@ function login( base_url, username, password, error_feedback, from_camera, login
     var url = base_url + 'index.php/login/ajax';
     var videoBoolean = ( from_camera ? 'true' : 'false' );
 
-    console.log( 'login attempt: ' + username + ' / ' + password + ( from_camera ? ' from camera' : '' ) )
-
+    //console.log( 'login attempt: ' + username + ' / ' + password + ( from_camera ? ' from camera' : '' ) )
+    // ajax request
     $.ajax({
         type: "POST",
         url: url,
@@ -21,15 +21,15 @@ function login( base_url, username, password, error_feedback, from_camera, login
             try {
                 var response = JSON.parse( data );
             } catch ( err ) {
-                console.log( 'AJAX response raw: ' + data );
-                console.log( 'JSON parse failed: ' + err );
+                //console.log( 'AJAX response raw: ' + data );
+                //console.log( 'JSON parse failed: ' + err );
                 error_feedback.html( 'Couldn\'t process answer from server.' );
                 return;
             }
-            console.log( 'AJAX response: ' + JSON.stringify( response ) );
+            //console.log( 'AJAX response: ' + JSON.stringify( response ) );
 
             if (response[ 'success' ]) {
-                console.log( 'login success' );
+                //console.log( 'login success' );
                 // redirect to home page
                 window.location = base_url;
             } else {
