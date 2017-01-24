@@ -15,7 +15,7 @@
 </script>
 
 <div>
-    <p class="txScale">
+    <p class="txScale container-fluid">
         <?= lang( 'login_manual_explanation' ) ?>
     </p>
 
@@ -33,8 +33,8 @@
                 <label class="control-label" for="focusedInput2"><?= lang( 'login_field_password' ) ?></label>
                 <input class="form-control" name="password" id="focusedInput2" required type="password">
             </div>
-            <br>
-            <input class="btn btn-lg btn-raised btn-info" style="background-color: #673AB7;" type="submit" name="login" value="<?= lang( 'common_login' ) ?>">
+            <br><br>
+            <input class="btn btn-lg btn-raised btn-info txScale pull-right" style="background-color: #673AB7;" type="submit" name="login" value="<?= lang( 'common_login' ) ?>">
         </div>
     </form>
 </div>

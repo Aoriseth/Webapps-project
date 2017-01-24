@@ -12,10 +12,8 @@
         <div class="container">
             <div class="row">
                 <div class=" col-md-6 text-center">
-                    <div class=" panel container-fluid">
-                        <br>
+                    <div class="panel" >
                         {camera}
-                        <br>
                     </div>
                 </div>
                 <div class=" col-md-6">
