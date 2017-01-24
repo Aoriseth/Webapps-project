@@ -50,11 +50,9 @@
             }
             ?>
         </div>
-        <br>
+        <br><br><br>
 
 
-
-<!--        <p style="margin-top:40px;">-->
         <ol class="questions quesions--medium">
             <li class="is-complete" data-step="1">
                 Step 1
@@ -75,7 +73,7 @@
         <div class="row container-fluid">
             <br>
             <div class="col-sm-12" >
-                <div class="container-fluid" style="height:35px;">
+                <div class="container-fluid" >
 
 
                     <!--<div class="progress" id="progress" style="height: 35px;">
