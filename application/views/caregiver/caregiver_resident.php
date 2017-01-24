@@ -124,9 +124,11 @@
         document.getElementById('propic_file').click();
         //TODO ajax call to upload() with id of resident -> $_FILES is set?
     };
-
-    chart1function();
-    chart2function();
+    $(window).resize(function(){
+        chart1function();
+        chart2function();
+    });
+    
     //formChart1.addEventListener('submit', function(e) {
     function chart1function() {
         console.log('chart 1 submitted');

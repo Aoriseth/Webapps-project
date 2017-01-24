@@ -39,7 +39,7 @@
         <div class="col-md-6">
         <div class="row">
             <div class="col-xs-12">
-                <div id="chart1_div" style="width:100%"></div>
+                <div id="chart1_div"></div>
             </div>
             <div class="col-xs-6">
                 </br>
@@ -58,14 +58,13 @@
 
     google.charts.load('current', {'packages': ['corechart']});
 
-    chart1function();
-
+    $(window).resize(function(){
+            chart1function();
+    });
     //formChart1.addEventListener('submit', function(e) {
     function chart1function() {
         console.log('chart 1 submitted');
         //e.preventDefault();
-
-
 
         $.ajax({
             type: "POST",
@@ -87,25 +86,14 @@
                 //google.charts.load('current', {'packages':['corechart']});
                 google.charts.setOnLoadCallback(drawChart);
 
-
-
-
                 function drawChart() {
 
                     var data = new google.visualization.DataTable();
                     columnChart(Yaxis, Xaxis, data, "chart1_div", 'average scores of all categories');
                 }
-
-
             }
         });
         return false;
     }
-
-
-
-
-
-
 
 </script>
