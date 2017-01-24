@@ -132,3 +132,12 @@ video.webcam {
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
+
+.slider .noUi-handle {
+    border-color: #673ab7 !important;
+    background-color: #673ab7 !important;
+}
+
+.noUi-base{
+    height: 0% !important;
+}

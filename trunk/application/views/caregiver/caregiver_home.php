@@ -91,7 +91,7 @@
                 function drawChart() {
 
                     var data = new google.visualization.DataTable();
-                    columnChart(Yaxis, Xaxis, data, "chart1_div", 'average scores of all categories');
+                    columnChart(Yaxis, Xaxis, data, "chart1_div"); //, 'average scores of all categories'
                 }
             }
         });
