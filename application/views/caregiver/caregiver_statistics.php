@@ -24,7 +24,7 @@
                 <div class="filter-content">
 
                     <div class="modal-header">
-                        <h3 class="modal-title"><?= lang('c_statistics_filter'), ' - ', lang('c_statistics_all_category_selected_individual')?></h3>
+                        <h3 style="font-size:1.3vmax;"><?= lang('c_statistics_filter'), ' - ', lang('c_statistics_all_category_selected_individual')?></h3>
                     </div>
 
                     <div class="col-md-6 col-sm-6">        
@@ -134,7 +134,7 @@
     <div class="col-md-6">
         <div class="panel container-fluid">
             <div class="modal-header">
-                <h3 class="modal-title"><?= lang('c_statistics_average_scores_of_selected_residents') ?></h3>
+                <h3 style="font-size:1.3vmax;"><?= lang('c_statistics_average_scores_of_selected_residents') ?></h3>
             </div>
             <div class="modal-body form">
                 <div id="chart3_div"></div>
@@ -145,7 +145,7 @@
     <div class="col-md-6">
         <div class="panel container-fluid">
             <!--div class="modal-header">
-                <h3 class="modal-title"><?= lang('c_statistics_category_all_individual') ?></h3>
+                <h3 class="txScale"><?= lang('c_statistics_category_all_individual') ?></h3>
             </div-->
             <div class="modal-body form">
                 <form class="form-group" method="POST" id="chart2_form" name="chart2Form">
