@@ -1,17 +1,15 @@
-<div style="padding-bottom: 30px" class="panel">
-    <br>
-    <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
+<div class="panel">
+        <div>
             <form>
-                <button data-toggle="popover" title="" data-container="body" style="color: #673AB7;width:100%;font-size:2.5vmax;"
-                        class=" popup btn-lg btn btn-raised"
+                <button data-toggle="popover" title="" data-container="body" style="margin:0px;color: white;width:100%;height:2.5em;font-size:2.5vmax;"
+                        class=" popup btn-lg btn accent"
                         data-content="<?= lang('r_button_test_help') ?>" 
                         formaction="<?= base_url() . 'index.php/resident/categories' ?>">
                             <?= lang('r_button_test') ?>
                 </button>
             </form>
+                
         </div>
-    </div>
     <div>
      <canvas class="center-block img-responsive" id="puzzle"></canvas>
             <script> loadPuzzle( "<?php echo base_url()?>",
