@@ -55,19 +55,19 @@
 
         <ol class="questions quesions--medium">
             <li class="is-complete" data-step="1">
-                Step 1
+                Vraag 1
             </li>
             <li data-step="2" class ="is-complete">
-                Step 2
+                Vraag 2
             </li>
             <li data-step="3" class="is-active">
-                Step 3
+                Vraag 3
             </li>
             <li data-step="4" class="">
-                Step 3
+                Vraag 4
             </li>
             <li data-step="5" class="questions__last">
-                Step 3
+                Vraag 5
             </li>
         </ol>
         <div class="row container-fluid">
