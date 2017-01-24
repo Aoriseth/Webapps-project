@@ -17,8 +17,9 @@
         data.addRows(rows);
         // Set chart options
         var options = {'title':chartTitle,
-                       'width':400,
+                       'width':'100%',//$(".panel").width(),
                        'height':400,
+                       
                         vAxis: {gridlines: { count: 5 },
                                 minValue: 0,
                                 maxValue: 100
@@ -54,7 +55,7 @@
         data.addRows(rows);
 
         var options = {'title':chartTitle,
-                       'width':400,
+                       'width':'100%',
                        'height':400,
                         vAxis: {gridlines: { count: 5 },
                                 minValue: 0,

@@ -20,6 +20,12 @@ $( document ).ready(function() {
     clickFilter(caregiverID);
 });
 
+$(window).resize(function(){
+    clickGraph();
+    chart2function();
+    chart3function();
+});
+
 function setCookie(arg) {   // arg:Object    
     // value
     var cookieJSON = getCookie();                   
@@ -297,7 +303,7 @@ function clickGraph() { // arg:JSON
 
             function drawChart() {
                 var data = new google.visualization.DataTable();
-                columnChart(Yaxis, Xaxis, data, "chart1_div", chart_title0);
+                columnChart(Yaxis, Xaxis, data, "chart1_div"); // ,chart_title0
             }
         }
     });
@@ -376,7 +382,7 @@ function chart2function() {
 
             function drawChart2() {
                 var data = new google.visualization.DataTable();
-                columnChart(Yaxis, Xaxis, data, "chart2_div", chart_title2);
+                columnChart(Yaxis, Xaxis, data, "chart2_div"); // ,chart_title2
             }
         }
     });
@@ -403,7 +409,7 @@ function chart3function() {
 
             function drawChart3() {
                 var data = new google.visualization.DataTable();
-                columnChart(Yaxis, Xaxis, data, "chart3_div", chart_title3);
+                columnChart(Yaxis, Xaxis, data, "chart3_div"); // ,chart_title3
             }
         }
     });
