@@ -1,3 +1,5 @@
+<script src="<?php echo base_url(); ?>assets/js/puzzle.js"></script>
+
 <div class="panel">
         <div>
             <form>

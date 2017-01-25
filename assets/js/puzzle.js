@@ -59,8 +59,6 @@ function loadGallery(base_url, data) {
             //console.log(data[0]['picture_dir']);
             document.getElementById(imgName).src = base_url + data[i]['picture_dir'] + data[i]['picture_name'];
             document.getElementById(imgName).width = document.getElementById("slider").width;
-            
-            console.log("height = " + window.innerHeight)
         }
     } else {
         document.getElementById("no_pictures_message").style.visibility = 'visible';
