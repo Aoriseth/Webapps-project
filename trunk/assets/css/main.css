@@ -137,6 +137,15 @@ ul {
     padding: 0;
 }
 
+.slider .noUi-handle {
+    border-color: #673ab7 !important;
+    background-color: #673ab7 !important;
+}
+
+.noUi-base{
+    height: 0% !important;
+}
+
 @media screen and (max-width: 992px) {
     .large-btns_nav{
         z-index: 3;
