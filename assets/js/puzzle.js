@@ -3,8 +3,11 @@ function loadPuzzle(base_url, path, name, categories) {
     var image = new Image();
     var greyImage = new Image();
     var greyImage2 = new Image();
-    image.src = base_url + path + name;
-
+    if (path !== null && name !== null) {
+        image.src = base_url + path + name;
+    } else {
+        image.src = base_url + "/assets/imgs/reserve.png"
+    }
     (image.onload) = function () {
         greyImage2.src = base_url.concat('/assets/imgs/673ab7.png');
         greyImage.src = base_url.concat('/assets/imgs/question-mark12.png');
@@ -21,7 +24,6 @@ function loadPuzzle(base_url, path, name, categories) {
 
         for (var y = 0; y < 4; ++y) {
             for (var x = 0; x < 3; ++x) {
-                //if((Math.random() <= nrToDisplay/12 && nrDisplayed < nrToDisplay) || (12-(3*y+x)) <= nrToDisplay - (nrDisplayed)){
                 if (x === 0 && y === 0) {
                     context.drawImage(image, x * (image.width / 3), y * (image.height / 4), (image.width / 3), (image.height / 4),
                             (x * image.width * hRatio) / 3, (y * image.height * vRatio) / 4, (image.width * hRatio) / 3, (image.height * vRatio) / 4);
@@ -34,7 +36,6 @@ function loadPuzzle(base_url, path, name, categories) {
                             (x * image.width * hRatio) / 3, (y * image.height * vRatio) / 4, (image.width * hRatio) / 3, (image.height * vRatio) / 4);
                     context.drawImage(greyImage,
                             (x * image.width * hRatio) / 3, (y * image.height * vRatio) / 4, (image.width * hRatio) / 3, (image.height * vRatio) / 4);
-                    //console.log("grey drawn "+ (9-(3*y+x)) + " " + nrToDisplay + " " + nrDisplayed);
                 }
             }
         }
