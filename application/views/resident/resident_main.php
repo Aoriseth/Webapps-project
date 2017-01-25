@@ -9,15 +9,17 @@
 
         <!-- Load  Unique scripts -->
         <script src="<?php echo base_url(); ?>assets/js/puzzle.js"></script>
-        
-        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="http://responsiveslides.com/responsiveslides.min.js?v=1.6"></script>
+
+
     </head>
     <body>
         <!--Navigation bar of this page-->
         {navbar}
         <br><br>
         <!-- the main element of the page (puzzle, etc) -->
-            <div class="container" id="container_resident">
+        <div class="container" id="container_resident">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <div>
