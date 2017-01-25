@@ -32,6 +32,8 @@ $lang[ 'r_question_back' ] = 'Retour';
 $lang[ 'r_question_back_cat'] = 'Retour';
 $lang[ 'r_question_help' ] = 'Cliquez sur l\'un des visages pour répondre à la question çi-dessus.';
 $lang[ 'r_question_completed' ] = 'Catégorie complète!';
+$lang['r_question_question'] = "Question";
+
 
 // completed
 $lang[ 'r_completed_explanation' ] = 'Félicitation, vous avez terminé la catégorie <i>{category}</i>.';

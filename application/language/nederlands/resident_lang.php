@@ -32,6 +32,8 @@ $lang[ 'r_question_back' ] = 'Ga terug naar de vorige vraag';
 $lang[ 'r_question_back_cat'] = 'Ga terug naar categorie keuze';
 $lang[ 'r_question_help' ] = 'Klik op een van de gezichten om de bovenstaande vraag te beantwoorden.';
 $lang[ 'r_question_completed' ] = 'Categorie voltooid!';
+$lang['r_question_question'] = "Vraag";
+
 
 // completed
 $lang[ 'r_completed_explanation' ] = 'Proficiat, je hebt de categorie <i>{category}</i> afgewerkt !';

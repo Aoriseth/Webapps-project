@@ -33,6 +33,7 @@ $lang[ 'r_question_back' ] = 'Go back to the previous question';
 $lang[ 'r_question_back_cat'] = 'Go back to choosing categories';
 $lang[ 'r_question_help' ] = 'Click on one of the faces to answer the question stated above.';
 $lang[ 'r_question_completed' ] = 'Category completed!';
+$lang['r_question_question'] = "Question";
 
 // completed
 $lang[ 'r_completed_explanation' ] = 'Congratulations, you\'ve just completed the category <i>{category}</i> !';
