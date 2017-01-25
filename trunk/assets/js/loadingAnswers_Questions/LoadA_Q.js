@@ -45,14 +45,6 @@ function storeAnswer(chosenOption, base_url, categoryName) {
     index++;
     // change the progress bar
     progressbarNext();
-//    width = index / max * 100;
-//    console.log("width: " + width);
-//    $('#progressBar').css('width', width + "%");
-//    $('#progressbarText').text("Vraag " + index + " van de " + max);
-    //console.log(index);
-
-
-
     if (index < max) {
 // animations on the question text
         $("#question_text").finish();
@@ -61,35 +53,22 @@ function storeAnswer(chosenOption, base_url, categoryName) {
         questionSet = questions[index].question_set;
         $("#question_text").css('color', '#FF5722');
         $("#question_text").animate({color: 'black'}, 1500);
-//            $('.answerbutton').attr("disabled", "disabled");
-//            setTimeout(function(){
-//                $('.answerbutton').removeAttr("disabled");
-//            },1000);
-
     } else {
         $("#question_text").text(categoryCompletedText);
         $("#question_text").finish();
         $("#question_text").css('color', '#FF5722');
         $("#question_text").animate({color: 'black'}, 1500);
-        //$("#progress").effect( "bounce", {times:5,distance: 50}, 3 );
         timeout = setTimeout(function () {
             window.location.href = base_url + "index.php/resident/completed?category=" + categoryName;
         }, 750);
     }
-    /*} else {
-     window.location.href = base_url + "index.php/resident/completed?category=" + categoryName;
-     }*/
 }
-
-function loadQuestion(i) {
 // put all the questions in a variable and put them in the view
+function loadQuestion(i) {
     questions = i;
     questionSet = questions[index].question_set;
     max = questions.length;
     $("#question_text").text(questions[index].question);
-//    width = index / max * 100;
-//    $('#progressBar').css('width', width + "%");
-//    $('#progressbarText').text("Vraag " + index + " van de " + max);
 }
 // This function is called when the go back button is pressed
 function pressGoBack() {
@@ -123,9 +102,6 @@ function pressGoBack() {
         $("#question_text").animate({color: 'black'}, 1500);
 
         progressbarPrevious();
-        //width = index / max * 100;
-        //$('#progressBar').css('width', width + "%");
-        //$('#progressbarText').text("Vraag " + index + " van de " + max);
     }
 }
 // initialize the content of the progressbar
@@ -140,13 +116,16 @@ function progressbarInit() {
         else if (i === (totNumberOfQuestionscompleted + 1))
         {
             innerhtml += '<li id="question' + i + '" class="is-active" data-step="' + i + '">' + underCircle + i + '</li>';
-        } else if (i === (totNumberOfQuestionscompleted + max)) {
+        } 
+        //add the last question
+        else if (i === (totNumberOfQuestionscompleted + max)) {
             innerhtml += '<li id="question' + i + '" class="questions__last" data-step="' + i + '">' + underCircle + i + '</li>';
-        } else {
+        } 
+        // add the rest
+        else {
             innerhtml += '<li id="question' + i + '" class="" data-step="' + i + '">' + underCircle + " " + i + '</li>';
         }
     }
-    //console.log("innerhtml" + innerhtml);
     $("#progress-bar").html(innerhtml);
 
 }
@@ -158,7 +137,6 @@ function progressbarNext() {
     } else {
         $('#question' + (cindex)).attr('class', 'is-complete');
         $('#question' + (cindex + 1)).attr('class', 'is-active');
-        ;
     }
 }
 //let the progressbar move to the previous question
