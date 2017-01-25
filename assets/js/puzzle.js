@@ -18,9 +18,9 @@ function loadPuzzle(base_url, path, name, categories) {
         var context = canvas.getContext("2d");
         context.imageSmoothingEnabled = false;
         canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        canvas.height = window.innerHeight * 0.8;
         var hRatio = canvas.width / image.width;
-        var vRatio = canvas.height / image.height;
+        var vRatio = canvas.height / image.height ;
 
         for (var y = 0; y < 4; ++y) {
             for (var x = 0; x < 3; ++x) {
@@ -43,7 +43,6 @@ function loadPuzzle(base_url, path, name, categories) {
 }
 
 function loadPuzzlePiece(base_url, path, name, setID) {
-    console.log(path + name + "     " + setID);
     var image = new Image();
     if (path !== null && name !== null) {
         image.src = base_url + path + name;
@@ -54,14 +53,11 @@ function loadPuzzlePiece(base_url, path, name, setID) {
         var canvas = document.getElementById("puzzle");
         var context = canvas.getContext("2d");
         context.imageSmoothingEnabled = false;
-        canvas.width = window.innerWidth / 2;
-        canvas.height = window.innerHeight / 2;
+        canvas.width = window.innerWidth / 3;
+        canvas.height = window.innerHeight / 4;
 
         var x = ((parseInt(setID)) % 3);
         var y = ((parseInt(setID) - x) / 3);
-        
-        console.log(x);
-        console.log(y);
 
         context.drawImage(image, x * (image.width / 3), y * (image.height / 4), (image.width / 3), (image.height / 4), 0, 0, canvas.width, canvas.height);
     };
