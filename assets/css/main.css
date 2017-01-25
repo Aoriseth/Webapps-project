@@ -137,7 +137,7 @@ ul {
     padding: 0;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 992px) {
     .large-btns_nav{
         z-index: 3;
         position: absolute;
@@ -161,7 +161,7 @@ ul {
 
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 992px) {
     .large-btns_nav{
         z-index: 3;
         position: absolute;
