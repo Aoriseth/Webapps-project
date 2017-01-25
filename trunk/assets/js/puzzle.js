@@ -18,25 +18,22 @@ function loadPuzzle(base_url, path, name, categories) {
         context.canvas.height = window.innerHeight;
         var hRatio = canvas.width / image.width;
         var vRatio = canvas.height / image.height;
-        var ratio = Math.min(hRatio, vRatio);
-        var centerShift_x = (canvas.width - image.width * ratio) / 2;
-        var centerShift_y = (canvas.height - image.height * ratio) / 2;
 
         for (var y = 0; y < 4; ++y) {
             for (var x = 0; x < 3; ++x) {
                 //if((Math.random() <= nrToDisplay/12 && nrDisplayed < nrToDisplay) || (12-(3*y+x)) <= nrToDisplay - (nrDisplayed)){
                 if (x === 0 && y === 0) {
                     context.drawImage(image, x * (image.width / 3), y * (image.height / 4), (image.width / 3), (image.height / 4),
-                            centerShift_x + (x * image.width * ratio) / 3, centerShift_y + (y * image.height * ratio) / 4, (image.width * ratio) / 3, (image.height * ratio) / 4);
+                            (x * image.width * hRatio) / 3, (y * image.height * vRatio) / 4, (image.width * hRatio) / 3, (image.height * vRatio) / 4);
                 } else if (categories[3 * y + x - 1] === 1) {
                     context.drawImage(image, x * (image.width / 3), y * (image.height / 4), (image.width / 3), (image.height / 4),
-                            centerShift_x + (x * image.width * ratio) / 3, centerShift_y + (y * image.height * ratio) / 4, (image.width * ratio) / 3, (image.height * ratio) / 4);
+                            (x * image.width * hRatio) / 3, (y * image.height * vRatio) / 4, (image.width * hRatio) / 3, (image.height * vRatio) / 4);
                     //console.log("piece drawn" + y + x);
                 } else {
                     context.drawImage(greyImage2,
-                            centerShift_x + (x * image.width * ratio) / 3, centerShift_y + (y * image.height * ratio) / 4, (image.width * ratio) / 3, (image.height * ratio) / 4);
+                            (x * image.width * hRatio) / 3, (y * image.height * vRatio) / 4, (image.width * hRatio) / 3, (image.height * vRatio) / 4);
                     context.drawImage(greyImage,
-                            centerShift_x + (x * image.width * ratio) / 3, centerShift_y + (y * image.height * ratio) / 4, (image.width * ratio) / 3, (image.height * ratio) / 4);
+                            (x * image.width * hRatio) / 3, (y * image.height * vRatio) / 4, (image.width * hRatio) / 3, (image.height * vRatio) / 4);
                     //console.log("grey drawn "+ (9-(3*y+x)) + " " + nrToDisplay + " " + nrDisplayed);
                 }
             }
