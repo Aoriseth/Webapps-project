@@ -1,8 +1,7 @@
 <div data-placement="bottom" data-toggle="popover" title="" data-container="body" data-content="<?= lang('r_gallery_help') ?>" class="popup panel container-fluid">
 
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="http://responsiveslides.com/responsiveslides.min.js?v=1.6"></script>
+    
 
 
 
