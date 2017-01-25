@@ -4,7 +4,6 @@
     <script src="<?php echo base_url(); ?>assets/js/loadingAnswers_Questions/LoadA_Q.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/css/progressbar.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-    <script >initialize('<?php echo base_url(); ?>', '<?= lang('r_question_back') ?>', '<?= lang('r_question_back_cat') ?>', '<?= lang('r_question_completed') ?>', {numberQuestions});</script>
 
     <div style="" data-placement="bottom" data-toggle="popover" title="" data-content="<?= lang('r_question_help') ?>" data-container="body" class="popup panel row">
 
@@ -53,25 +52,12 @@
         <br><br><br>
 
 
-        <ol class="questions quesions--medium">
-            <li class="is-complete" data-step="1">
-                Vraag 1
-            </li>
-            <li data-step="2" class ="is-complete">
-                Vraag 2
-            </li>
-            <li data-step="3" class="is-active">
-                Vraag 3
-            </li>
-            <li data-step="4" class="">
-                Vraag 4
-            </li>
-            <li data-step="5" class="questions__last">
-                Vraag 5
-            </li>
-        </ol>
         <div class="row container-fluid">
             <br>
+            <ol id ="progress-bar" class="questions quesions--medium">
+                
+            </ol>
+
             <div class="col-sm-12" >
                 <div class="container-fluid" >
 
@@ -95,7 +81,7 @@
     <br>
     <br>
 </div>
-<script> loadQuestion(<?php echo json_encode($allUnansweredQuestions); ?>);</script>
+<script >initialize('<?php echo base_url(); ?>', '<?= lang('r_question_back') ?>', '<?= lang('r_question_back_cat') ?>', '<?= lang('r_question_completed') ?>', {numberQuestions}, "Vraag",<?php echo json_encode($allUnansweredQuestions); ?>);</script>
 <script>
     $(document).ready(function () {
 //        $(".panel").show("slide", { direction: "left" }, 500);

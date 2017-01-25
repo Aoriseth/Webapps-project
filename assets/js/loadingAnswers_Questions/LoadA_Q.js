@@ -9,17 +9,18 @@ var base_url;
 var firstButtonText = null;
 var ButtonText;
 var categoryCompletedText;
-var totNumberOfQuestions;
-
+var totNumberOfQuestionscompleted;
+var underCircle;
 // This function is used for setting the baseurl and having the correct language in the textareas that can change
-function initialize(baseurl, buttontext, firstbuttontext, categorycompletedtext,numberQuestions) {
+function initialize(baseurl, buttontext, firstbuttontext, categorycompletedtext, numberQuestions, UnderCircle, i) {
     base_url = baseurl;
     firstButtonText = firstbuttontext;
     ButtonText = buttontext;
     categoryCompletedText = categorycompletedtext;
-    totNumberOfQuestions = numberQuestions;
-    console.log(numberQuestions);
-    
+    totNumberOfQuestionscompleted = numberQuestions;
+    underCircle = UnderCircle;
+    loadQuestion(i);
+    progressbarInit();
 }
 
 
@@ -31,7 +32,7 @@ function storeAnswer(chosenOption, base_url, categoryName) {
     /*if (index < max) {*/
     var url = base_url + 'index.php/resident/question_store_answer';
     var data = {question_set: questionSet,
-        chosen_option: chosenOption + 1};/* In the database the chosenoptions start from 1 not from 0 */
+        chosen_option: chosenOption + 1}; /* In the database the chosenoptions start from 1 not from 0 */
     $.ajax({
         url: url,
         type: 'POST',
@@ -40,7 +41,6 @@ function storeAnswer(chosenOption, base_url, categoryName) {
         cache: false,
         processData: false
     });
-
     // modify the question
     index++;
     // change the progress bar
@@ -53,7 +53,7 @@ function storeAnswer(chosenOption, base_url, categoryName) {
 
 
     if (index < max) {
-        // animations on the question text
+// animations on the question text
         $("#question_text").finish();
         $("#question_text").text("");
         $("#question_text").text(questions[index].question);
@@ -73,7 +73,6 @@ function storeAnswer(chosenOption, base_url, categoryName) {
         //$("#progress").effect( "bounce", {times:5,distance: 50}, 3 );
         timeout = setTimeout(function () {
             window.location.href = base_url + "index.php/resident/completed?category=" + categoryName;
-
         }, 750);
     }
     /*} else {
@@ -82,7 +81,7 @@ function storeAnswer(chosenOption, base_url, categoryName) {
 }
 
 function loadQuestion(i) {
-    // put all the questions in a variable and put them in the view
+// put all the questions in a variable and put them in the view
     questions = i;
     questionSet = questions[index].question_set;
     max = questions.length;
@@ -96,7 +95,7 @@ function loadQuestion(i) {
 // This function is called when the go back button is pressed
 function pressGoBack() {
     if (index === 0) {
-        // answers need to be deleted again when you go back otherwise they are assumed correct
+// answers need to be deleted again when you go back otherwise they are assumed correct
         var url = base_url + 'index.php/resident/delete_answers';
         var data = {question_set: questionSet};
         $.ajax({
@@ -110,7 +109,7 @@ function pressGoBack() {
         window.location.href = base_url + 'index.php/resident/categories?';
     }
     if (index === 1) {
-        // the button has a different text value to go back to the category choice
+// the button has a different text value to go back to the category choice
         $('#GoBackButton').html(firstButtonText);
     }
     if (index > 0) {
@@ -129,4 +128,33 @@ function pressGoBack() {
     }
 }
 
+function progressbarInit() {
+    var innerhtml = "";
+    for (var i = 0; i < totNumberOfQuestionscompleted + max; i++) {
+        //add html for already completed questions
+        if (i < (totNumberOfQuestionscompleted)) {
+            innerhtml += '<li id="question'+i+'" class="is-complete" data-step="' + i + '">' + underCircle + i + '</li>';
+        } 
+        //add the question that is active
+        else if (i === totNumberOfQuestionscompleted)
+        {
+            innerhtml += '<li id="question'+i+'" class="is-active" data-step="' + i + '">' + underCircle + i + '</li>';
+        } else if (i === (totNumberOfQuestionscompleted + max - 1)) {
+            innerhtml += '<li id="question'+i+'" class="questions__last" data-step="' + i + '">' + underCircle + i + '</li>';
+        } else {
+            innerhtml += '<li id="question'+i+'" class="" data-step="' + i + '">' + underCircle + " " + i + '</li>';
+        }
+    }
+    //console.log("innerhtml" + innerhtml);
+    window.addEventListener("load", function () {
+        $("#progress-bar").html(innerhtml);
+    }, false);
+}
+function progressbarNext() {
+
+
+}
+function progressbarPrevious() {
+
+}
 
