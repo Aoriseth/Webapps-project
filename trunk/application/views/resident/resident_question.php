@@ -81,7 +81,7 @@
     <br>
     <br>
 </div>
-<script >initialize('<?php echo base_url(); ?>', '<?= lang('r_question_back') ?>', '<?= lang('r_question_back_cat') ?>', '<?= lang('r_question_completed') ?>', {numberQuestions}, "Vraag",<?php echo json_encode($allUnansweredQuestions); ?>);</script>
+<script >initialize('<?php echo base_url(); ?>', '<?= lang('r_question_back') ?>', '<?= lang('r_question_back_cat') ?>', '<?= lang('r_question_completed') ?>', {numberQuestions}, "<?= lang('r_question_question') ?>",<?php echo json_encode($allUnansweredQuestions); ?>);</script>
 <script>
     $(document).ready(function () {
 //        $(".panel").show("slide", { direction: "left" }, 500);
