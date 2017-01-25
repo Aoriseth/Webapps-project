@@ -122,6 +122,7 @@ function pressGoBack() {
         $("#question_text").css('color', '#FF5722');
         $("#question_text").animate({color: 'black'}, 1500);
 
+        progressbarPrevious();
         //width = index / max * 100;
         //$('#progressBar').css('width', width + "%");
         //$('#progressbarText').text("Vraag " + index + " van de " + max);
@@ -157,10 +158,13 @@ function progressbarNext() {
     } else {
         $('#question' + (cindex)).attr('class', 'is-complete');
         $('#question' + (cindex + 1)).attr('class', 'is-active');
+        ;
     }
 }
 //let the progressbar move to the previous question
 function progressbarPrevious() {
-
+    var cindex = totNumberOfQuestionscompleted + index;
+    $('#question' + (cindex + 2)).attr('class', '');
+    $('#question' + (cindex + 1)).attr('class', 'is-active');
 }
 
