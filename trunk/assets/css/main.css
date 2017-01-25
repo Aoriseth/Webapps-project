@@ -137,27 +137,51 @@ ul {
     padding: 0;
 }
 
-.large-btns_nav{
-  z-index: 3;
-  position: absolute;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  opacity: 1;
-  text-indent: -9999px;
-  overflow: hidden;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  background: #FF5722 url("https://a16_webapps_3.studev.groept.be/assets/imgs/arrows.png") no-repeat left 50%;
-  width: 38px;
-  margin-left: 15px;
-  margin-bottom: 20px;
-  }
+@media screen and (max-width: 1000px) {
+    .large-btns_nav{
+        z-index: 3;
+        position: absolute;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        opacity: 1;
+        text-indent: -9999px;
+        overflow: hidden;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        background: #FF5722 url("https://a16_webapps_3.studev.groept.be/assets/imgs/arrows.png") no-repeat left 50%;
+        width: 38px;
+        margin-left: 15px;
+    }
 
-.large-btns_nav.next{
-  left: auto;
-  background-position: right 50%;
-  right: 0;
-  margin-bottom: 20px;
-  }
+    .large-btns_nav.next{
+        left: auto;
+        background-position: right 50%;
+        right: 0;
+    }
 
+}
 
+@media screen and (min-width: 1000px) {
+    .large-btns_nav{
+        z-index: 3;
+        position: absolute;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        opacity: 1;
+        text-indent: -9999px;
+        overflow: hidden;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        background: #FF5722 url("https://a16_webapps_3.studev.groept.be/assets/imgs/arrows.png") no-repeat left 50%;
+        width: 38px;
+        margin-left: 15px;
+        margin-bottom: 20px;
+    }
+
+    .large-btns_nav.next{
+        left: auto;
+        background-position: right 50%;
+        right: 0;
+        margin-bottom: 20px;
+    }
+}
