@@ -44,10 +44,11 @@ function storeAnswer(chosenOption, base_url, categoryName) {
     // modify the question
     index++;
     // change the progress bar
-    width = index / max * 100;
-    console.log("width: " + width);
-    $('#progressBar').css('width', width + "%");
-    $('#progressbarText').text("Vraag " + index + " van de " + max);
+    progressbarNext();
+//    width = index / max * 100;
+//    console.log("width: " + width);
+//    $('#progressBar').css('width', width + "%");
+//    $('#progressbarText').text("Vraag " + index + " van de " + max);
     //console.log(index);
 
 
@@ -85,12 +86,10 @@ function loadQuestion(i) {
     questions = i;
     questionSet = questions[index].question_set;
     max = questions.length;
-    window.addEventListener("load", function () {
-        $("#question_text").text(questions[index].question);
-        width = index / max * 100;
-        $('#progressBar').css('width', width + "%");
-        $('#progressbarText').text("Vraag " + index + " van de " + max);
-    }, false);
+    $("#question_text").text(questions[index].question);
+//    width = index / max * 100;
+//    $('#progressBar').css('width', width + "%");
+//    $('#progressbarText').text("Vraag " + index + " van de " + max);
 }
 // This function is called when the go back button is pressed
 function pressGoBack() {
@@ -122,38 +121,45 @@ function pressGoBack() {
         $("#question_text").finish();
         $("#question_text").css('color', '#FF5722');
         $("#question_text").animate({color: 'black'}, 1500);
-        width = index / max * 100;
-        $('#progressBar').css('width', width + "%");
-        $('#progressbarText').text("Vraag " + index + " van de " + max);
+
+        //width = index / max * 100;
+        //$('#progressBar').css('width', width + "%");
+        //$('#progressbarText').text("Vraag " + index + " van de " + max);
     }
 }
-
+// initialize the content of the progressbar
 function progressbarInit() {
     var innerhtml = "";
-    for (var i = 0; i < totNumberOfQuestionscompleted + max; i++) {
+    for (var i = 1; i < totNumberOfQuestionscompleted + max + 1; i++) {
         //add html for already completed questions
-        if (i < (totNumberOfQuestionscompleted)) {
-            innerhtml += '<li id="question'+i+'" class="is-complete" data-step="' + i + '">' + underCircle + i + '</li>';
-        } 
+        if (i <= (totNumberOfQuestionscompleted)) {
+            innerhtml += '<li id="question' + i + '" class="is-complete" data-step="' + i + '">' + underCircle + i + '</li>';
+        }
         //add the question that is active
-        else if (i === totNumberOfQuestionscompleted)
+        else if (i === (totNumberOfQuestionscompleted + 1))
         {
-            innerhtml += '<li id="question'+i+'" class="is-active" data-step="' + i + '">' + underCircle + i + '</li>';
-        } else if (i === (totNumberOfQuestionscompleted + max - 1)) {
-            innerhtml += '<li id="question'+i+'" class="questions__last" data-step="' + i + '">' + underCircle + i + '</li>';
+            innerhtml += '<li id="question' + i + '" class="is-active" data-step="' + i + '">' + underCircle + i + '</li>';
+        } else if (i === (totNumberOfQuestionscompleted + max)) {
+            innerhtml += '<li id="question' + i + '" class="questions__last" data-step="' + i + '">' + underCircle + i + '</li>';
         } else {
-            innerhtml += '<li id="question'+i+'" class="" data-step="' + i + '">' + underCircle + " " + i + '</li>';
+            innerhtml += '<li id="question' + i + '" class="" data-step="' + i + '">' + underCircle + " " + i + '</li>';
         }
     }
     //console.log("innerhtml" + innerhtml);
-    window.addEventListener("load", function () {
-        $("#progress-bar").html(innerhtml);
-    }, false);
+    $("#progress-bar").html(innerhtml);
+
 }
+// let the progressbar move to the next question
 function progressbarNext() {
-
-
+    var cindex = totNumberOfQuestionscompleted + index;
+    if (index === max) {
+        $('#question' + cindex).attr('class', 'is-complete');
+    } else {
+        $('#question' + (cindex)).attr('class', 'is-complete');
+        $('#question' + (cindex + 1)).attr('class', 'is-active');
+    }
 }
+//let the progressbar move to the previous question
 function progressbarPrevious() {
 
 }
