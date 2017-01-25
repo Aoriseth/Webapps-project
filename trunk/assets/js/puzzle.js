@@ -20,7 +20,7 @@ function loadPuzzle(base_url, path, name, categories) {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight * 0.8;
         var hRatio = canvas.width / image.width;
-        var vRatio = canvas.height / image.height ;
+        var vRatio = canvas.height / image.height;
 
         for (var y = 0; y < 4; ++y) {
             for (var x = 0; x < 3; ++x) {
@@ -74,10 +74,9 @@ function loadGallery(base_url, data) {
         document.getElementById("slider").width = window.outerWidth;
         $('#slider').empty();
         for (var i = 0; i < data.length; i++) {
-            $('#slider').append('<li id="centered-btns1_s0" style="display: block; float: none; position: absolute; opacity: 0; z-index: 2; transition: opacity 500ms ease-in-out 0s;" class="img-responsive" ><img class="img-responsive" id="slide' + i.toString() + '"></li>');
-
             var imgName = "slide" + i.toString();
-            //console.log(data[0]['picture_dir']);
+            $('#slider').append('<li id="centered-btns1_s0" style="display: block; float: none; position: absolute; opacity: 0; z-index: 2; transition: opacity 500ms ease-in-out 0s;" class="img-responsive" ><img class="img-responsive" id="' + imgName + '"></li>');
+
             document.getElementById(imgName).src = base_url + data[i]['picture_dir'] + data[i]['picture_name'];
             document.getElementById(imgName).width = document.getElementById("slider").width;
         }
