@@ -63,10 +63,10 @@ class Resident extends CI_Controller {
         $data['content'] = $this->load->view('resident/resident_gallery', '', true);
 
         $residentId = $this->session->id;
-        $query = $this->Picture_model->getFinishedPicture($residentId);
-        $data2['path'] = $query[0]->picture_dir;
-        $data2['puzzle'] = $query[0]->picture_name;
-
+        $query = $this->Picture_model->getNCompletedPictures($residentId, 5);
+        //if(count($query) != 0){
+        $data2['imgdata'] = $query;
+        //}
         $data['content'] = $this->parser->parse('resident/resident_gallery', $data2, true);
 
         $this->parser->parse('resident/resident_main', $data);

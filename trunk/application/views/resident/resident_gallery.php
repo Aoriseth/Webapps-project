@@ -1,15 +1,36 @@
-<div data-placement="bottom" data-toggle="popover" title="" data-container="body" data-content="<?= lang( 'r_gallery_help' ) ?>" class="popup panel container-fluid">
-    <br>
-    <p class="txScale">
-        <?= lang('r_gallery_explanation') ?>
-    </p>
-    
-    <div>
-     <canvas class="center-block img-responsive" id="gallery"></canvas>
-            
-            <script> loadGallery("<?php echo base_url()?>",
-             <?php echo json_encode($path); ?> , <?php echo json_encode($puzzle); ?> ); </script>
-    </div>
-    
-    <br>
+<div data-placement="bottom" data-toggle="popover" title="" data-container="body" data-content="<?= lang('r_gallery_help') ?>" class="popup panel container-fluid">
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://responsiveslides.com/responsiveslides.min.js?v=1.6"></script>
+
+
+
+    <script>
+        $(function () {
+            $("#slider").responsiveSlides({
+                auto: false, // Boolean: Animate automatically, true or false
+                speed: 500, // Integer: Speed of the transition, in milliseconds
+                pager: false, // Boolean: Show pager, true or false
+                nav: true, // Boolean: Show navigation, true or false
+                namespace: "large-btns" // String: Change the default namespace used
+            });
+        });
+    </script>
+
+
+
+
+    <ul class="rslides_container img-responsive" id="slider">
+
+        <h2 id="no_pictures_message" style="font-size:3vmax;visibility: visible">
+            <?= lang('r_gallery_empty') ?>
+        </h2>
+
+    </ul>
+
+
+
+    <script> loadGallery("<?php echo base_url() ?>", <?php echo json_encode($imgdata); ?>);</script>
+
 </div>

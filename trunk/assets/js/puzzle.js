@@ -45,30 +45,24 @@ function loadPuzzle(base_url, path, name, categories) {
 }
 
 
-function loadGallery(base_url, path, name) {
+function loadGallery(base_url, data) {
 
-    if (path !== null && name !== null) {
+// now get the first element:
 
-        var image = new Image();
+    if (data !== null) {
+        document.getElementById("slider").width = window.outerWidth;
+        $('#slider').empty();
+        for (var i = 0; i < data.length; i++) {
+            $('#slider').append('<li id="centered-btns1_s0" style="display: block; float: none; position: absolute; opacity: 0; z-index: 2; transition: opacity 500ms ease-in-out 0s;" class="img-responsive" ><img class="img-responsive" id="slide' + i.toString() + '"></li>');
 
-        var canvas = document.getElementById("gallery");
-        var context = canvas.getContext("2d");
-        image.src = base_url + path + name;
-        //image.src = base_url.concat('/assets/imgs/puzzle.jpg');
+            var imgName = "slide" + i.toString();
+            //console.log(data[0]['picture_dir']);
+            document.getElementById(imgName).src = base_url + data[i]['picture_dir'] + data[i]['picture_name'];
+            document.getElementById(imgName).width = document.getElementById("slider").width;
+            
+            console.log("height = " + window.innerHeight)
+        }
+    } else {
+        document.getElementById("no_pictures_message").style.visibility = 'visible';
     }
-    image.onload = function () {
-
-        context.imageSmoothingEnabled = false;
-        context.canvas.width = window.innerWidth;
-        context.canvas.height = window.innerHeight;
-        var hRatio = canvas.width / image.width;
-        var vRatio = canvas.height / image.height;
-        var ratio = Math.min(hRatio, vRatio);
-
-        var centerShift_x = (canvas.width - image.width * ratio) / 2;
-        var centerShift_y = (canvas.height - image.height * ratio) / 2;
-
-        context.drawImage(image, centerShift_x,
-                centerShift_y, (image.width * ratio), (image.height * ratio));
-    };
 }
