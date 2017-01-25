@@ -1,3 +1,5 @@
+<script src="<?php echo base_url(); ?>assets/js/puzzle.js"></script>
+
 <div class="fire container-fluid panel ">
     <div class=" ">
         <div class="container-fluid row">
@@ -15,6 +17,13 @@
                         {tip}
                 </p></i>
             </blockquote>
+            
+            <p class="tlScale">
+                <?= lang( 'r_completed_here_is_puzzle_piece' ) ?>
+            </p>
+           <canvas class="center-block img-responsive" id="puzzle"></canvas>
+            <script> loadPuzzlePiece( "<?php echo base_url()?>",
+             <?php echo json_encode($path); ?> , <?php echo json_encode($puzzle); ?> , <?php echo json_encode($setID); ?>); </script>
 
 
         </div> <br>
@@ -34,11 +43,3 @@
         </div>
     </div>
 </div>
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.fire').fireworks();
-        $('.fire').fireworks('destroy');
-    });
-</script>

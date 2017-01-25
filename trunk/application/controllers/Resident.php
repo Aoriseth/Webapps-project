@@ -166,6 +166,16 @@ class Resident extends CI_Controller {
         $categorySetID = $this->Question_model->getCategorySetIdFrom($this->session->language, $category);
         $tip = $this->Tip_model->getTipFromCategorySet($categorySetID)->tip;
         $data2['tip'] = htmlspecialchars($tip);
+        $data2['setID'] = $categorySetID;
+        $residentId = $this->session->id;
+        $query2 = $this->Picture_model->getPictureTest($residentId);
+        if ($query2 != null) {
+            $data2['path'] = $query2[0]->picture_dir;
+            $data2['puzzle'] = $query2[0]->picture_name;
+        } else {
+            $data2['path'] = null;
+            $data2['puzzle'] = null;
+        }
         $data['content'] = $this->parser->parse('resident/resident_completed', $data2, true);
 
         $this->Score_model->addCategoryScore($this->session->id, $categorySetID);

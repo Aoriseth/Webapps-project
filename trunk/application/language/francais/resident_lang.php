@@ -40,3 +40,4 @@ $lang[ 'r_completed_explanation' ] = 'Félicitation, vous avez terminé la caté
 $lang[ 'r_completed_here_is_tip' ] = 'Voici une astuce pour cette catégorie:';
 $lang[ 'r_completed_start_new' ] = 'Choisissez une nouvelle catégorie!';
 $lang[ 'r_completed_go_puzzle' ] = 'Allez au puzzle';
+$lang[ 'r_completed_here_is_puzzle_piece' ] = 'vous avez obtenu une nouvelle pièce de puzzle:';
