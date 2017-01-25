@@ -333,7 +333,11 @@ class Picture_model extends CI_Model {
                 . "FROM a16_webapps_3.gallery_pictures "
                 . "WHERE resident_id = '$residentId' AND in_progress = '1')"
         );
-        return $query->result();
+        if($query !== null){
+            return $query->result();
+        } else {
+            return null;
+        }
     }
 
     //Deprecated function. Do not use this anymore, it will be deleted soon.
