@@ -21,7 +21,7 @@ $lang[ 'r_puzzle_help' ] = 'You can see your progress on the puzzle here.';
 // gallery
 $lang[ 'r_gallery_explanation' ] = 'Your finished puzzles will be displayed here.';
 $lang[ 'r_gallery_help' ] = 'Click on a completed puzzle to enlarge it.';
-$lang[ 'r_gallery_empty' ] = 'You do\'n have any completed puzzles yet. Complete the puzzle.';
+$lang[ 'r_gallery_empty' ] = 'You don\'t have any completed puzzles yet. Complete a puzzle first.';
 
 
 // categories
@@ -40,3 +40,4 @@ $lang[ 'r_completed_explanation' ] = 'Congratulations, you\'ve just completed th
 $lang[ 'r_completed_here_is_tip' ] = 'Here is a tip for this category:';
 $lang[ 'r_completed_start_new' ] = 'Choose a new category!';
 $lang[ 'r_completed_go_puzzle' ] = 'Go to the puzzle';
+$lang[ 'r_completed_here_is_puzzle_piece' ] = 'You have collected this puzzle piece:';
