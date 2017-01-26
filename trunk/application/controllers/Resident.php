@@ -103,7 +103,7 @@ class Resident extends CI_Controller {
             $this->Resident_model->updateLastCompleted( $this->session->id );
             $this->Picture_model->updateAndChangePuzzle( $this->session->id );
             header( "Refresh:0" );
-            return; // to check
+            return;
         }
         $data2[ 'cat' ] = $cat;
         $data2[ 'categories' ] = $categories;
