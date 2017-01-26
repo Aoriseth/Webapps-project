@@ -21,11 +21,12 @@ $( document ).ready(function() {
 });
 
 $(window).resize(function(){
-    clickGraph();
+    chart0function();
     chart2function();
     chart3function();
 });
 
+// no longer used
 function setCookie(arg) {   // arg:Object    
     // value
     var cookieJSON = getCookie();                   
@@ -43,6 +44,7 @@ function setCookie(arg) {   // arg:Object
     document.cookie = cookie_name + "=" + cookie_value + ";" + expires + "; path=/";
 }
 
+// no longer used
 function getCookie() {
     var cookie = document.cookie;
     if (cookie !== null) {
@@ -54,7 +56,6 @@ function getCookie() {
 
 function clickAddGroup()
 {
-    console.log('clickAddGroup');
     document.getElementById("btnSave").disabled = true;
     /*
     $('#form')[0].reset(); // reset form on modals
@@ -91,7 +92,6 @@ function clickAddGroup()
 
 function clickFilter(caregiverID)
 {
-    console.log('clickFilter: ' + caregiverID);
     var url = base_url + 'index.php/caregiver/filterGroup';
     var caregiverID = caregiverID;
     // clear global array
@@ -160,7 +160,6 @@ function clickFilter(caregiverID)
 }
 
 function showFResidents(arg) {
-    console.log('showFResidents');
     var filter_residents = arg;
     $('#result-list').html("<select class=\"form-control\" id=\"filter_resident\" " 
             + "multiple=\"multiple\" " // onchange=\"clickFilter(caregiverID)\"
@@ -179,7 +178,7 @@ function showFResidents(arg) {
             }
             $("#result-list option").attr("selected", "selected");
         }
-        clickSave();
+        clickStats();
     } else {
         document.getElementById("btnSave").disabled = true;
         document.getElementById('result-info').innerHTML = "<br>" + no_result;
@@ -188,8 +187,8 @@ function showFResidents(arg) {
     }
 }
 
-function clickSave() {
-    console.log('clickSave');
+// update charts for filtered result 
+function clickStats() {
     selected_residents = [];
     var f = document.getElementById("filter_resident");
     for (var i = 0; i < f.options.length; i++) {
@@ -218,16 +217,16 @@ function clickSave() {
             //$('#modal_form').modal('hide');
             //showFilters();
             filter_residents = 0;
-            clickGraph();
+            chart0function();
             chart2function();
             chart3function();
         /*},
         error: function () {
-            console.log("clickSaveJSON: " + selected_residents, caregiverID, filter.toString());
         },
     });*/
 }
 
+// no longer used
 function reload(){
     $.ajax({
         type: "POST",
@@ -249,6 +248,7 @@ function reload(){
     });
 }
 
+// no longer used
 function showFilters() {
     filterInfo = [[]];
     var cookieJSON = getCookie();
@@ -270,14 +270,15 @@ function showFilters() {
                         code += "<div class=\"panel-body\">" + key + ":\t" + cookie[key] + "</div>" ;
                     }
                     code += "<div class=\"panel-body\">";
-                    code += "<button type=\"button\" class=\"btn-link\" id=\"btn" + i + "\" onclick=\"clickGraph("+ "\)\">Graph</button>" ;
+                    code += "<button type=\"button\" class=\"btn-link\" id=\"btn" + i + "\" onclick=\"chart0function("+ "\)\">Graph</button>" ;
                     code += "</div></div></div>";
             $('#accordion_filters').append(code);
         }
     }
 }
 
-function clickGraph() { // arg:JSON
+// c_statistics_all_category_selected_individual
+function chart0function() {
     $(document).ajaxStart(function(){
         $("#wait").css("display", "block");
     });
@@ -319,19 +320,9 @@ function clickGraph() { // arg:JSON
     return false;
 }
 
-//var formChart1 = document.getElementById('chart1_form');
-var formChart2 = document.getElementById('chart2_form');
-
-//google.charts.load('current', {'packages': ['corechart']});
-//chart1function();
-//chart2function();
-//chart3function();
-//formChart1.addEventListener('submit', function(e) {
+// no longer used
 function chart1function() {
-    console.log('chart 1 submitted');
-    //e.preventDefault();
-    //var selects = formChart1.getElementsByTagName('select');
-    //var resident = selects[0].value;
+
     var resident = parseInt($("#residents_select").val());
 
     $.ajax({
@@ -359,12 +350,8 @@ function chart1function() {
     return false;
 }
 
-//formChart2.addEventListener('submit', 
+// c_statistics_category_all_individual
 function chart2function() {
-    console.log('chart 2 submitted');
-    //e.preventDefault();
-    //var selects = formChart2.getElementsByTagName('select');
-    //var category = parseInt(selects[0].value);
     var category = parseInt($("#categories_select").val());
     
     $.ajax({
@@ -394,8 +381,8 @@ function chart2function() {
     return false;
 }
 
+// c_statistics_average_scores_of_selected_residents
 function chart3function() {
-    console.log('chart 3 submitted');
     $.ajax({
         type: "POST",
         url: base_url + "index.php/caregiver/load_avarage_score_per_resident_chart",
