@@ -92,7 +92,7 @@ function loadGallery(base_url, data) {
             image.onload = (function (localCtx, localImg) {
                 return function () {
                     localCtx.drawImage(localImg, 0, 0, canvas.width, canvas.height);
-                }
+                };
             })(context, image);
         }
     } else {
