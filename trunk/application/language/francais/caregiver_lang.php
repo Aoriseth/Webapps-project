@@ -2,6 +2,8 @@
 
 // main
 $lang[ 'c_title' ] = lang( 'common_app' ).': Soignant';
+$lang['c_main_completed'] = 'Completé le questionnaire le ';
+
 
 // navbar
 $lang[ 'c_navbar_home' ] = 'Acceuil';
