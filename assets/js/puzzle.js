@@ -77,7 +77,9 @@ function loadGallery(base_url, data) {
         $('#slider').empty();
         for (var i = 0; i < data.length; i++) {
             var imgName = "slide" + i.toString();
+            //add a list item to the ul, that has a canvas inside of it.
             $('#slider').append('<li style="display: block; float: none; position: absolute; opacity: 0; z-index: 2; transition: opacity 500ms ease-in-out 0s;"><canvas class="img-responsive" id="' + imgName + '"></canvas></li>');
+            //resize canvas
             var canvas = document.getElementById(imgName);
             var context = canvas.getContext("2d");
             context.imageSmoothingEnabled = false;
