@@ -93,7 +93,7 @@
         correctLevel: QRCode.CorrectLevel.H});
     $("#qrcodeButton").click(function () {
         // download function library http://danml.com/download.html#FullSource
-        // I changed something in teh QR-code generator library so I have an id of the image of the QR-code
+        // I changed something in the QR-code generator library so I have an id of the image of the QR-code
         // line 367
         download($("#qrcodeID").attr('src'), "qrcode_{name}_{last_name}.png", "image/png");
     });
