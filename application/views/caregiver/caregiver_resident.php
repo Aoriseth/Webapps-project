@@ -58,15 +58,16 @@
         </div>
         <div  class="col-md-6">
             <div class="panel container-fluid">
-                    <h3 style="font-size:1.3vmax;">Verloop van categorie</h3>
-                    <hr/>
-                    <form class="form-group" method="POST" id="chart2_form" name="chart2Form">
-                        <select class="selectpicker form-control" name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
-                            <?php foreach ($categories as $category) { ?>   
-                                <option value=<?= json_encode($category->category_set); ?> ><?php echo $category->category; ?></option>
-                            <?php } ?>           
-                        </select>
-                    <div id="chart2_div" style="width:100%"></div>
+                <h3 style="font-size:1.3vmax;">Verloop van categorie</h3>
+                <hr/>
+                <form class="form-group" method="POST" id="chart2_form" name="chart2Form">
+                    <select class="selectpicker form-control" name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
+                        <?php foreach ($categories as $category) { ?>   
+                            <option value=<?= json_encode($category->category_set); ?> ><?php echo $category->category; ?></option>
+                        <?php } ?>           
+                    </select>
+                </form>
+                <div id="chart2_div" style="width:100%">
                 </div>
             </div>
         </div>
