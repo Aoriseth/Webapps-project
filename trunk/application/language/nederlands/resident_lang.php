@@ -40,5 +40,5 @@ $lang[ 'r_completed_explanation' ] = 'Proficiat, je hebt de categorie <i>{catego
 $lang[ 'r_completed_here_is_tip' ] = 'Hier is een tip voor deze categorie:';
 $lang[ 'r_completed_start_new' ] = 'Start een nieuwe categorie!';
 $lang[ 'r_completed_go_puzzle' ] = 'Ga naar de puzzel';
-$lang[ 'r_completed_here_is_puzzle_piece' ] = 'Dit puzzelstuk heb je verdient:';
+$lang[ 'r_completed_here_is_puzzle_piece' ] = 'Dit puzzelstuk heb je verdiend:';
 
