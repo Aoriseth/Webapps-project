@@ -19,8 +19,8 @@
         <?= lang( 'login_manual_explanation' ) ?>
     </p>
 
-    <p span style="color:red" id="error_message_manual">
-        &nbsp<!-- will be used to display error messages -->
+    <p style="color:red" id="error_message_manual">
+        <br><!-- will be used to display error messages -->
     </p>
 
     <form method="POST" id="login_form">
