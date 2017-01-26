@@ -15,6 +15,6 @@
     <?= lang( 'login_camera_scrolldown' ) ?>
 </p>
 <div>
-    <video class="webcam" id="camfr" width="100%" height="auto" autoplay="true"></video>  
+    <video class="webcam" id="camfr" autoplay></video>  
 </div>
 
