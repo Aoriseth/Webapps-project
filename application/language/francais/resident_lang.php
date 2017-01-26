@@ -20,7 +20,7 @@ $lang[ 'r_puzzle_help' ] = 'Vous pouvez voir votre avancement sur le puzzle ici.
 
 // gallery
 $lang[ 'r_gallery_explanation' ] = 'Vos puzzle terminés sont affichés ici.';
-$lang[ 'r_gallery_help' ] = 'Cliquez sur un puzzle fini pour l\'agrandire.';
+$lang[ 'r_gallery_help' ] = 'Cliquez sur le flèches pour voir les puzzles terminé.';
 $lang[ 'r_gallery_empty' ] = 'Complête le puzzle.';
 
 // categories
