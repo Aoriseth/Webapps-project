@@ -134,7 +134,7 @@ class Statistics_model extends CI_Model{
                             $comment .= "<li> " . $badCat;
                             $comment .= "</li>";
                         }
-                        $comment .= "</li>";
+                        $comment .= "</ul>";
                     }
                 }
                 else{ //if many good categories
@@ -145,7 +145,7 @@ class Statistics_model extends CI_Model{
                             $comment .= "<li> " . $badCat;
                             $comment .= "</li>";
                         }
-                        $comment .= "</li> ";
+                        $comment .= "</ul> ";
                         if(count($average) > 0){ //if some good categories but also bad and average categories
                             $comment .= "The following topics can also be improved <ul>";
                             foreach($average as $averageCat){
@@ -153,74 +153,71 @@ class Statistics_model extends CI_Model{
                                 $comment .= $this->generateTrendComment($resident, $averageCat);
                                 $comment .= "</li>";
                             }
-                            $comment .= "</li> ";
-                    
+                            $comment .= "</ul> ";
                         }
                     }
-                    elseif(count($average) > 0){ //if some good categories but also average categories
+                    else if(count($average) > 0){ //if some good categories but also average categories
                         $comment .= "However, there is room for improvement on <ul>";
-
                         foreach($average as $averageCat){                   
                             $comment .= "<li> " . $averageCat;
                             $comment .= $this->generateTrendComment($resident, $averageCat);
                             $comment .= "</li>";
                         }
-                        $comment .= "</li> ";
+                        $comment .= "</ul> ";
                     }
                 }
             }
             else{ // some bad categories and mostly average
                 $comment = "is generally doing well. ";
                 if(count($bad) > 0){
-                        $comment .= "However, (s)he can do alot better on <ul>";
-                        foreach($bad as $badCat){
-                            $comment .= "<li> " . $badCat;
-                            $comment .= "</li>";
-                        }
-                        $comment .= "</li> ";
-                        if(count($average) > 0){
-                            $comment .= "The following topics can also be improved <ul>";
-                            foreach($average as $averageCat){
-                                $comment .= "<li> " . $averageCat;
-                                $comment .= $this->generateTrendComment($resident, $averageCat);
-                                $comment .= "</li>";
-                        }
-                        $comment .= "</li> ";
+                    $comment .= "However, (s)he can do alot better on <ul>";
+                    foreach($bad as $badCat){
+                        $comment .= "<li> " . $badCat;
+                        $comment .= "</li>";
                     }
-                }
-                
-                elseif(count($average) > 0){
-                        $comment .= "However, there is room for improvement on <ul>";
+                    $comment .= "</ul> ";
+                    if(count($average) > 0){
+                        $comment .= "The following topics can also be improved <ul>";
                         foreach($average as $averageCat){
                             $comment .= "<li> " . $averageCat;
                             $comment .= $this->generateTrendComment($resident, $averageCat);
                             $comment .= "</li>";
                         }
-                        $comment .= "</li> ";
+                        $comment .= "</ul> ";
+                    }
+                }
+                
+                else if(count($average) > 0){
+                    $comment .= "However, there is room for improvement on <ul>";
+                    foreach($average as $averageCat){
+                        $comment .= "<li> " . $averageCat;
+                        $comment .= $this->generateTrendComment($resident, $averageCat);
+                        $comment .= "</li>";
+                    }
+                    $comment .= "</ul> ";
                 }
             }
         }
         else{ // if many bad categories
             $comment = "is not doing well, (s)he scores bad on <ul>";
             if(count($bad) > 0){
-                    foreach($bad as $badCat){
-                        $comment .= "<li> " . $badCat;
+                foreach($bad as $badCat){
+                    $comment .= "<li> " . $badCat;
+                    $comment .= "</li>";
+                }
+                $comment .= "</ul> ";
+                if(count($average) > 0){
+                    $comment .= "The following topics can also be improved <ul>";
+                    foreach($average as $averageCat){
+                        $comment .= "<li> " . $averageCat;
+                        $comment .= $this->generateTrendComment($resident, $averageCat);
                         $comment .= "</li>";
                     }
-                    $comment .= "</li> ";
-                    if(count($average) > 0){
-                                $comment .= "The following topics can also be improved <ul>";
-                                foreach($average as $averageCat){
-                                    $comment .= "<li> " . $averageCat;
-                                    $comment .= $this->generateTrendComment($resident, $averageCat);
-                                    $comment .= "</li>";
-                        }
-                        $comment .= "</li> ";
-                    }
+                    $comment .= "</ul> ";
+                }
             }
         }
-        return $comment;
-        
+        return $comment;        
     }
     
     function generateTrendComment($resident, $category){
