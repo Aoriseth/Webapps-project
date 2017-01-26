@@ -50,22 +50,14 @@ class Resident extends CI_Controller {
         // puzzle
         $residentId = $this->session->id;
 
+        $this->Picture_model->activateNewPuzzle($residentId);
         $query2 = $this->Picture_model->getPictureTest($residentId);
         if ($query2 != null) {
             $data2['path'] = $query2[0]->picture_dir;
             $data2['puzzle'] = $query2[0]->picture_name;
         } else {
-            $this->Picture_model->activateNewPuzzle($residentId);
-
-            if ($query2 != null) {
-                $data2['path'] = $query2[0]->picture_dir;
-                $data2['puzzle'] = $query2[0]->picture_name;
-            } else {
-                $data2['path'] = null;
-                $data2['puzzle'] = null;
-            }
-            header("Refresh:0");
-            return;
+            $data2['path'] = null;
+            $data2['puzzle'] = null;
         }
         $data2['categories'] = $this->Question_model->getFinishedCategorySets($residentId);
         $data2['name'] = $this->session->first_name;
