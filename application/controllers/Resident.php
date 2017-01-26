@@ -1,151 +1,157 @@
 <?php
 
+/**
+ * Handles all the pages and logic related to the residents.
+ */
 class Resident extends CI_Controller {
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
 
         // redirect to base if the user shouldn't be here
-        if ($this->session->type != 'resident') {
-            redirect(base_url());
+        if ( $this->session->type != 'resident' ) {
+            redirect( base_url() );
         }
 
         // load appropriate language file
-        if (!isset($this->session->language)) {
+        if ( !isset( $this->session->language ) ) {
             // fallback on default
-            $this->session->language = $this->config->item('language');
+            $this->session->language = $this->config->item( 'language' );
         }
-        $this->lang->load('common', $this->session->language);
-        $this->lang->load('resident', $this->session->language);
+        $this->lang->load( 'common', $this->session->language );
+        $this->lang->load( 'resident', $this->session->language );
 
         // models
-        $this->load->model('Answer_model');
-        $this->load->model('Picture_model');
-        $this->load->model('Question_model');
-        $this->load->model('Resident_model');
-        $this->load->model('Tip_model');
-        $this->load->model('Score_model');
+        $this->load->model( 'Answer_model' );
+        $this->load->model( 'Picture_model' );
+        $this->load->model( 'Question_model' );
+        $this->load->model( 'Resident_model' );
+        $this->load->model( 'Tip_model' );
+        $this->load->model( 'Score_model' );
     }
 
-    function index() {
-        redirect('resident/home');
+    function index() // landing page
+    {
+        redirect( 'resident/home' );
     }
 
-    private function display_common_elements($page) {
-        $data['include'] = $this->load->view('include', '', true);
-        $data['navbar'] = $this->parser->parse('resident/resident_navbar', array('page' => $page), true);
+    private function display_common_elements( $page ) // elements that are present on every page
+    {
+        $data[ 'include' ] = $this->load->view( 'include', '', true );
+        $data[ 'navbar' ] = $this->parser->parse( 'resident/resident_navbar', array( 'page' => $page ), true );
         return $data;
     }
 
-    function home() {
-        $data = $this->display_common_elements('home');
+    function home()
+    {
+        $data = $this->display_common_elements( 'home' );
 
-        $residentId = $this->session->id;
-
-        $query2 = $this->Picture_model->getPictureTest($residentId);
-        if ($query2 != null) {
-            $data2['path'] = $query2[0]->picture_dir;
-            $data2['puzzle'] = $query2[0]->picture_name;
-        } else {
-            $data2['path'] = null;
-            $data2['puzzle'] = null;
-        }
-        $data2['categories'] = $this->Question_model->getFinishedCategorySets($residentId);
-        $data2['name'] = $this->session->first_name;
-
-        $data2['display_login_notification'] = $this->session->display_login_notification;
+        // login notification
+        $data2[ 'display_login_notification' ] = $this->session->display_login_notification;
         $this->session->display_login_notification = false;
 
-        $data['content'] = $this->parser->parse('resident/resident_home', $data2, true);
-
-        $this->parser->parse('resident/resident_main', $data);
-    }
-
-    function gallery() {
-        $data = $this->display_common_elements('gallery');
-
-        $data['content'] = $this->load->view('resident/resident_gallery', '', true);
-
+        // puzzle
         $residentId = $this->session->id;
-        $query = $this->Picture_model->getNCompletedPictures($residentId, 5);
-        //if(count($query) != 0){
-        $data2['imgdata'] = $query;
-        //}
-        $data['content'] = $this->parser->parse('resident/resident_gallery', $data2, true);
 
-        $this->parser->parse('resident/resident_main', $data);
+        $query2 = $this->Picture_model->getPictureTest( $residentId );
+        if ( $query2 != null ) {
+            $data2[ 'path' ] = $query2[ 0 ]->picture_dir;
+            $data2[ 'puzzle' ] = $query2[ 0 ]->picture_name;
+        } else {
+            $data2[ 'path' ] = null;
+            $data2[ 'puzzle' ] = null;
+        }
+        $data2[ 'categories' ] = $this->Question_model->getFinishedCategorySets( $residentId );
+        $data2[ 'name' ] = $this->session->first_name;
+
+        // insert into page
+        $data[ 'content' ] = $this->parser->parse( 'resident/resident_home', $data2, true );
+        $this->parser->parse( 'resident/resident_main', $data );
     }
 
-    function categories() {
-        $data = $this->display_common_elements('categories');
+    function gallery()
+    {
+        $data = $this->display_common_elements( 'gallery' );
+
+        // gallery iamges
+        $residentId = $this->session->id;
+        $query = $this->Picture_model->getNCompletedPictures( $residentId, 5 );
+//      if( count( $query ) != 0 ) {
+            $data2[ 'imgdata' ] = $query;
+//      }
+
+        // insert into page
+        $data[ 'content' ] = $this->parser->parse( 'resident/resident_gallery', $data2, true );
+        $this->parser->parse( 'resident/resident_main', $data );
+    }
+
+    function categories()
+    {
+        $data = $this->display_common_elements( 'categories' );
 
         // get 3 random categories
-        $categories = $this->Question_model->getAllUnfinishedCategories($this->session->id, 3);
-        $cat = $this->Question_model->getAllCategoryNames($this->session->language);
+        $categories = $this->Question_model->getAllUnfinishedCategories( $this->session->id, 3 );
+        $cat = $this->Question_model->getAllCategoryNames( $this->session->language );
 
-        if (count($categories) == 0) {
-            $this->Score_model->addSessionScore($this->session->id);
-            $this->Resident_model->incrementSession($this->session->id);
-            $this->session->completedSessions = $this->Resident_model->getSessionsCompleted($this->session->id);
-            $this->Resident_model->setInProgress($this->session->id, 0);
-            $this->Resident_model->updateLastCompleted($this->session->id);
-            $this->Picture_model->updateAndChangePuzzle($this->session->id);
-            header("Refresh:0");
-
-            // TODO: something when all categories are finished
-            /*
-             * Possible to put the $category fetch and this condition before the
-             * navbar, button,... loading to prevent unnecessary loading.
-             * Or move this if statement block + $category fetch to somewhere
-             * more appropriate.
-             */
-            // !!! Important: ensure that everything in this if-block occurs exactly 1 time.
+        // when all categories are completed
+        if ( count( $categories ) == 0 ) {
+            $this->Score_model->addSessionScore( $this->session->id );
+            $this->Resident_model->incrementSession( $this->session->id );
+            $this->session->completedSessions = $this->Resident_model->getSessionsCompleted( $this->session->id );
+            $this->Resident_model->setInProgress( $this->session->id, 0 );
+            $this->Resident_model->updateLastCompleted( $this->session->id );
+            $this->Picture_model->updateAndChangePuzzle( $this->session->id );
+            header( "Refresh:0" );
         }
-        $data2['cat'] = $cat;
-        $data2['categories'] = $categories;
+        $data2[ 'cat' ] = $cat;
+        $data2[ 'categories' ] = $categories;
 
-        $data['content'] = $this->parser->parse('resident/resident_categories', $data2, true);
-
-        $this->parser->parse('resident/resident_main', $data);
+        // insert into page
+        $data[ 'content' ] = $this->parser->parse( 'resident/resident_categories', $data2, true );
+        $this->parser->parse( 'resident/resident_main', $data );
     }
 
-    function question() {
-        if (!isset($_GET['category'])) {
-            redirect('resident/categories');
+    function question()
+    {
+        // redirect to categories if no category is set
+        if ( !isset( $_GET[ 'category' ] ) ) {
+            redirect( 'resident/categories' );
         }
-        $category = $this->input->get('category');
+        $category = $this->input->get( 'category' );
 
-        $data = $this->display_common_elements('question');
+        $data = $this->display_common_elements( 'question' );
 
-        $categorySetID = $this->Question_model->getCategorySetIdFrom($this->session->language, $category);
-        $allUnansweredQuestions = $this->Question_model->getAllUnansweredQuestionsFrom($this->session->id, $categorySetID);
-        $options = $this->Question_model->getOptionsFor($allUnansweredQuestions[0]->question_set, $this->session->language);
-        $questions = $this->Question_model->getAllQuestionSetsFrom($categorySetID);
-        $totNumberQuestions = count($questions) - count($allUnansweredQuestions);
+        // get questions and their answers
+        $categorySetID = $this->Question_model->getCategorySetIdFrom( $this->session->language, $category );
+        $allUnansweredQuestions = $this->Question_model->getAllUnansweredQuestionsFrom( $this->session->id, $categorySetID );
+        $options = $this->Question_model->getOptionsFor( $allUnansweredQuestions[ 0 ]->question_set, $this->session->language );
+        $questions = $this->Question_model->getAllQuestionSetsFrom( $categorySetID );
+        $totNumberQuestions = count( $questions ) - count( $allUnansweredQuestions );
 
-        $data2['category'] = $category;
-        $data2['allUnansweredQuestions'] = $allUnansweredQuestions;
-        $data2['options'] = $options;
-        $data2['numberQuestions'] = $totNumberQuestions;
+        $data2[ 'category' ] = $category;
+        $data2[ 'allUnansweredQuestions' ] = $allUnansweredQuestions;
+        $data2[ 'options' ] = $options;
+        $data2[ 'numberQuestions' ] = $totNumberQuestions;
 
-        $data['content'] = $this->parser->parse('resident/resident_question', $data2, true);
-
-        $this->parser->parse('resident/resident_main', $data);
+        // insert into page
+        $data[ 'content' ] = $this->parser->parse( 'resident/resident_question', $data2, true );
+        $this->parser->parse( 'resident/resident_main', $data );
     }
 
-    function question_store_answer() {
+    function question_store_answer()
+    {
         // only allow AJAX requests
-        if (!$this->input->is_ajax_request()) {
-            redirect('404');
+        if ( ! $this->input->is_ajax_request() ) {
+            redirect( '404' );
         }
 
-        $jsonDecoded = json_decode($this->security->xss_clean($this->input->raw_input_stream));
-
+        $jsonDecoded = json_decode( $this->security->xss_clean( $this->input->raw_input_stream ) );
         $questionSet = $jsonDecoded->question_set;
         $chosenOptionSet = $jsonDecoded->chosen_option;
 
-        if ($questionSet != "" && $chosenOptionSet != "") {
-            $this->Answer_model->storeAnswer($this->session->id, $questionSet, $chosenOptionSet);
+        if ( $questionSet != "" && $chosenOptionSet != "" ) {
+            $this->Answer_model->storeAnswer( $this->session->id, $questionSet, $chosenOptionSet );
 
             echo 'Answer stored succesfully.';
         } else {
@@ -153,46 +159,53 @@ class Resident extends CI_Controller {
         }
     }
 
-    function completed() {
-        if (isset($_GET['category'])) {
-            $category = $this->input->get('category');
-        } else {
-            $category = ''; // error condition
+    function delete_answers()
+    {
+        // only allow AJAX requests
+        if ( ! $this->input->is_ajax_request() ) {
+            redirect( '404' );
         }
 
-        $data = $this->display_common_elements('completed');
-
-        $data2['category'] = htmlspecialchars($category);
-        $categorySetID = $this->Question_model->getCategorySetIdFrom($this->session->language, $category);
-        $tip = $this->Tip_model->getTipFromCategorySet($categorySetID)->tip;
-        $data2['tip'] = htmlspecialchars($tip);
-        $data2['setID'] = $categorySetID;
-        $residentId = $this->session->id;
-        $query2 = $this->Picture_model->getPictureTest($residentId);
-        if ($query2 != null) {
-            $data2['path'] = $query2[0]->picture_dir;
-            $data2['puzzle'] = $query2[0]->picture_name;
-        } else {
-            $data2['path'] = null;
-            $data2['puzzle'] = null;
-        }
-        $data['content'] = $this->parser->parse('resident/resident_completed', $data2, true);
-
-        $this->Score_model->addCategoryScore($this->session->id, $categorySetID);
-
-        $this->parser->parse('resident/resident_main', $data);
-    }
-
-    function delete_answers() {
-        if (!$this->input->is_ajax_request()) {
-            redirect('404');
-        }
-
-        $jsonDecoded = json_decode($this->security->xss_clean($this->input->raw_input_stream));
+        $jsonDecoded = json_decode( $this->security->xss_clean( $this->input->raw_input_stream ) );
         $questionSet = $jsonDecoded->question_set;
 
-        //$questionSet = $this->input->post('question_set');
-        $this->Answer_model->deleteAllAnswers($this->session->id, $questionSet);
+        $this->Answer_model->deleteAllAnswers( $this->session->id, $questionSet );
+    }
+
+    function completed()
+    {
+        // category should be set in GET
+        if ( isset( $_GET[ 'category' ] ) ) {
+            $category = $this->input->get( 'category' );
+        } else {
+            $category = ''; // unhandled error condition
+        }
+
+        $data = $this->display_common_elements( 'completed' );
+
+        $categorySetID = $this->Question_model->getCategorySetIdFrom( $this->session->language, $category );
+        $tip = $this->Tip_model->getTipFromCategorySet( $categorySetID )->tip;
+
+        $this->Score_model->addCategoryScore( $this->session->id, $categorySetID );
+
+        $data2[ 'category' ] = htmlspecialchars( $category );
+        $data2[ 'setID' ] = $categorySetID;
+        $data2[ 'tip' ] = htmlspecialchars( $tip );
+
+        $residentId = $this->session->id;
+
+        $query2 = $this->Picture_model->getPictureTest( $residentId );
+        if ( $query2 != null ) {
+            $data2[ 'path' ] = $query2[ 0 ]->picture_dir;
+            $data2[ 'puzzle' ] = $query2[ 0 ]->picture_name;
+        } else {
+            $data2[ 'path' ] = null;
+            $data2[ 'puzzle' ] = null;
+        }
+
+        // insert into page
+        $data[ 'content' ] = $this->parser->parse( 'resident/resident_completed', $data2, true );
+        $this->parser->parse( 'resident/resident_main', $data );
     }
 
 }
