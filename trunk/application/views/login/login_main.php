@@ -5,6 +5,7 @@
         <title><?= lang( 'login_title' ) ?></title>
 
         {include}
+
     </head>
     <body>
         {navbar}
@@ -13,19 +14,25 @@
             <div class="row">
                 <div class=" col-md-6 text-center">
                     <div class="panel" >
+
                         {camera}
+
                     </div>
                 </div>
                 <div class=" col-md-6">
                     <div class="panel container-fluid">
                         <br>
+
                         {manual}
+
                         <br>
                     </div>
                 </div>
             </div>
         </div>
-    </body>
-</html>
 
-<script>$.material.init();</script>
+        <script>$.material.init();</script>
+
+    </body>
+
+</html>
