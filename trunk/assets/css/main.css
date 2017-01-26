@@ -27,6 +27,14 @@ Accent color
     border: 1px solid #aaaaaa;
 }
 
+a{
+    color: #673ab7;
+}
+
+a:hover{
+    color: #ff5722;
+}
+
 .grow { 
     transition: all .2s ease-in-out;
 }
