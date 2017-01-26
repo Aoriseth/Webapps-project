@@ -9,13 +9,8 @@
             <button style="margin:0px;display:inline-block;" class="btn btn-info" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> <?= lang( 'c_overview_reload' ); ?></button>
             <div id="colvis"></div>
         </div>
-        
     </div>
-    
     <hr>
-    
-    
-    
 
     <div class="table-responsive">
         <table  id="table" class="table table-striped table-bordered">
@@ -76,8 +71,7 @@
 
         //datatables
         table = $('#table').DataTable({
-           
-   
+
             //Feature control the processing indicator.
             "processing": true,
             //Feature control DataTables' server-side processing mode.
@@ -322,7 +316,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3"><?= lang( 'c_overview_date_of_birth' ) ?></label>
                             <div class="col-md-9">
-                                <input name="date_of_birth" placeholder="yyyy-mm-dd" class="form-control datepicker" type="">
+                                <input name="date_of_birth" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div> 
@@ -364,23 +358,21 @@
                             </div>
                         </div>
 
-                        <input name="last_activity" placeholder="" class="form-control" type="hidden" value="null">
+                        <input name="last_activity" class="form-control" type="hidden" value="null">
 
-                        <input name="last_completed" placeholder="" class="form-control" type="hidden" value="null">
+                        <input name="last_completed" class="form-control" type="hidden" value="null">
 
-                        <input name="completed_sessions" placeholder="" class="form-control" type="hidden" >
+                        <input name="completed_sessions" class="form-control" type="hidden" >
 
-                        <input name="session_in_progress" placeholder="" class="form-control" type="hidden">
+                        <input name="session_in_progress" class="form-control" type="hidden">
 
-                        <input name="type" placeholder="" class="form-control" type="hidden" value="resident">
-                      
+                        <input name="type" class="form-control" type="hidden" value="resident">
 
-                        <input name="account_created_by" placeholder="" class="form-control" type="hidden" >
+                        <input name="account_created_by" class="form-control" type="hidden" >
 
-                        <input name="account_created_on" placeholder="" class="form-control" type="hidden" value="">
+                        <input name="account_created_on" class="form-control" type="hidden" value="">
 
-                        <input name="profile_picture_id" placeholder="" class="form-control" type="hidden" value="null">
-
+                        <input name="profile_picture_id" class="form-control" type="hidden" value="null">
                     </div>
                 </form>
             </div>
