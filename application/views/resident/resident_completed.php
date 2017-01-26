@@ -13,9 +13,9 @@
 				<?= lang( 'r_completed_here_is_tip' ) ?>
             </p>
             <blockquote>
-                <i><p class="txScale">
-                        {tip}
-                </p></i>
+                <p class="txScale">
+                        <i>{tip}</i>
+                </p>
             </blockquote>
             
             <p class="tlScale">
