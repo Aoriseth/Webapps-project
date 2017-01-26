@@ -131,6 +131,9 @@ video.webcam {
     /* mirror video */
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
+    
+    width: 100%;
+    height: auto;
 }
 
 ul {
