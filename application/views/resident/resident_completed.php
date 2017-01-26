@@ -43,3 +43,10 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.fire').fireworks();
+        $('.fire').fireworks('destroy');
+    });
+</script>
