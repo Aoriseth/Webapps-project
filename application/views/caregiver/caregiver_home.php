@@ -7,7 +7,7 @@
 <?php } ?>
 
 <div class=" panel container-fluid">
-    </br>
+    <br>
 <!--    <p class="txScale"><?= lang('c_home_title') ?></p>
     <p class="tlScale">  Welkom!</p>
     <hr>-->
@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    </br>
+    <br>
 </div>
 
 
