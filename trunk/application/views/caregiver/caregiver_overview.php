@@ -7,6 +7,7 @@
         <div class="col-sm-6 pull-right">
                 <button style="margin:0px;display:inline-block;" class="btn btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i> <?= lang( 'c_overview_add_person' ); ?></button>
             <button style="margin:0px;display:inline-block;" class="btn btn-info" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> <?= lang( 'c_overview_reload' ); ?></button>
+            <div id="colvis"></div>
         </div>
         
     </div>
@@ -15,11 +16,6 @@
     
     
     
-<!--    <div class="row">
-        <div class="col-md-12">
-            <div id="colvis"></div>
-        </div>
-    </div>-->
 
     <div class="table-responsive">
         <table  id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -78,7 +74,8 @@
 
         //datatables
         table = $('#table').DataTable({
-
+           
+   
             //Feature control the processing indicator.
             "processing": true,
             //Feature control DataTables' server-side processing mode.
@@ -93,12 +90,15 @@
             },
 
             //Set column definition initialisation properties.
-            "columnDefs": [
+    
+      "columnDefs": [
                 {
-                    "targets": [0], //last column
-                    "orderable": false, //set not orderable
+                    "targets": [4,7,8,9],
+                    "visible": false,
+                    
                 },
             ],
+            
         });
 
         var colvis = new $.fn.dataTable.ColVis(table); //initial colvis
@@ -328,7 +328,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3"><?= lang( 'c_overview_language' ) ?></label>
                             <div class="col-md-9">
-                                <select name="Language" class="form-control">
+                                <select name="language" class="form-control">
                                     <option value="">---</option>
                                     <option value="English"><?= lang( 'c_overview_language_english' ) ?></option>
                                     <option value="francais"><?= lang( 'c_overview_language_francais' ) ?></option>
@@ -370,17 +370,8 @@
 
                         <input name="session_in_progress" placeholder="" class="form-control" type="hidden">
 
-                        <div class="form-group">
-                            <label class="control-label col-md-3"><?= lang( 'c_overview_type' ) ?></label>
-                            <div class="col-md-9">
-                                <select name="type" class="form-control">
-                                    <option value="">---</option>
-                                    <option value="resident"><?= lang( 'c_overview_type_resident' ) ?></option>
-                                    <option value="caregiver"><?= lang( 'c_overview_type_caregiver' ) ?></option>
-                                </select>
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
+                        <input name="type" placeholder="" class="form-control" type="hidden" value="resident">
+                      
 
                         <input name="account_created_by" placeholder="" class="form-control" type="hidden" >
 
