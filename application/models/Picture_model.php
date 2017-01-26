@@ -33,8 +33,8 @@ class Picture_model extends CI_Model {
      */
     function storeNewProfilePicture($picture_dir, $picture_name, $residentID) {
         $this->db->query("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
-		$this->db->query("START TRANSACTION");
-		$pictureID = $this->storePicture($picture_dir, $picture_name);
+        $this->db->query("START TRANSACTION");
+        $pictureID = $this->storePicture($picture_dir, $picture_name);
         $updateData = array('profile_picture_id' => $pictureID);
         $whereArray = array('id' => $residentID);
         $this->db->where($whereArray);
@@ -219,15 +219,17 @@ class Picture_model extends CI_Model {
                 . " ORDER BY times_completed ASC"
                 . " LIMIT 1"
         );
+        if ($query->result() != null) {
 
-        $result = $query->result();
-        $result = $result[0]->id;
+            $result = $query->result();
+            $result = $result[0]->id;
 
-        $this->db->query(
-                "UPDATE `a16_webapps_3`.`gallery_pictures`"
-                . " SET `in_progress`='1'"
-                . " WHERE id='$result'"
-        );
+            $this->db->query(
+                    "UPDATE `a16_webapps_3`.`gallery_pictures`"
+                    . " SET `in_progress`='1'"
+                    . " WHERE id='$result'"
+            );
+        }
     }
 
     /**
@@ -237,7 +239,7 @@ class Picture_model extends CI_Model {
      * Once this function has been called, deleted data will be gone forever!
      */
     function deleteGalleryPicture($galleryID) {
-		$this->db->query("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
+        $this->db->query("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
         $this->db->query("START TRANSACTION");
 
         //Get the picture id from the gallery record.
@@ -267,7 +269,7 @@ class Picture_model extends CI_Model {
      * the server and the pictures table.
      */
     function deleteProfilePicture($residentID) {
-		$this->db->query("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
+        $this->db->query("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
         $this->db->query("START TRANSACTION");
 
         //Get the profile picture id.
@@ -332,7 +334,7 @@ class Picture_model extends CI_Model {
                 . "FROM a16_webapps_3.gallery_pictures "
                 . "WHERE resident_id = '$residentId' AND in_progress = '1')"
         );
-        if($query !== null){
+        if ($query !== null) {
             return $query->result();
         } else {
             return null;
