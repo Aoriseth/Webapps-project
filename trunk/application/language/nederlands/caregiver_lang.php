@@ -2,7 +2,7 @@
 
 // main
 $lang[ 'c_title' ] = lang( 'common_app' ).': Verzorger';
-$lang['c_main_completed'] = 'Vragenlijst beantwoordt op ';
+$lang['c_main_completed'] = 'Vragenlijst beantwoord op ';
 
 
 // navbar
