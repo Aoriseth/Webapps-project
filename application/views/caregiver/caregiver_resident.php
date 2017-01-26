@@ -12,30 +12,30 @@
         </p><hr>
         <div class="container-fluid">
             <div class="row">
-                <div style="text-align: center" class="col-sm-4">
+                <div style="text-align: center" class="col-md-4 col-sm-5">
                     <img src={profile_picture} alt="Profile Picture" style="width:260px;height:300px;">
 					<form id="propic-form" action="<?php echo base_url() ?>index.php/caregiver/upload" method="POST" enctype="multipart/form-data">
 						<input type="file" id ="propic-select" name="pic" />
-						<button type="submit" id="propic-button">Change profile picture</button>
+						<button class="btn primarylink" type="submit" id="propic-button">Change profile picture</button>
 					</form>
 					<form id="puzzlepic-form" action="<?php echo base_url() ?>index.php/caregiver/upload" method="POST" enctype="multipart/form-data">
-						<input type="file" id ="puzzlepic-select" name="pic" />
-						<button type="submit" id="puzzlepic-button">Add a puzzle picture</button>
+                                            <input type="file" id ="puzzlepic-select" name="pic" />
+						<button class="btn primarylink" type="submit" id="puzzlepic-button">Add a puzzle picture</button>
 					</form>
 
                 </div> 
-                <div class="col-sm-4">
+                <div class="col-md-4 col-sm-7">
                     Born: {date_of_birth} </br>
                     Language: {language} </br>
                     Floor: {floor} Room: {room} </br>
                     Last activity: {last_activity} </br>
                     {sessions_completed} completed session(s) </br>
-                    {name}'s average score is {average_score} </br>
-                    <div  id="qrcode" style="text-align:center;"></div><button class="btn btn-raised" id = "qrcodeButton">Download QR code</button>
+                    {name}'s average score is {average_score} </br><br/>
+                    <div  id="qrcode" style="text-align:center;"></div><button class="btn primarylink" id = "qrcodeButton">Download QR code</button>
                 </div>
                 
-                <div class="col-sm-4">
-                    {name} {comment}
+                <div class="col-md-4">
+                    <br>{name} {comment}
                 </div>
             </div>
         </div>
