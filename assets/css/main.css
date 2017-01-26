@@ -166,6 +166,7 @@ ul {
         left: auto;
         background-position: right 50%;
         right: 0;
+        margin-right: 15px;
     }
 
 }
@@ -191,6 +192,7 @@ ul {
         left: auto;
         background-position: right 50%;
         right: 0;
+        margin-right: 15px;
         margin-bottom: 20px;
     }
 }
