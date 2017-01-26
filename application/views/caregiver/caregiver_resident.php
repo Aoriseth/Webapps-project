@@ -14,8 +14,14 @@
             <div class="row">
                 <div style="text-align: center" class="col-sm-4">
                     <img src={profile_picture} alt="Profile Picture" style="width:260px;height:300px;">
-                    <input type="file" id ="propic_file" style="display: none;"> <!--should not be visible, style this as: #propic_file{display:none}-->
-                    <input class="btn btn-raised" type="button" id="propic_button" value="Change profile picture">
+					<form id="propic-form" action="<?php echo base_url() ?>index.php/caregiver/upload" method="POST" enctype="multipart/form-data">
+						<input type="file" id ="propic-select" name="pic" />
+						<button type="submit" id="propic-button">Change profile picture</button>
+					</form>
+					<form id="puzzlepic-form" action="<?php echo base_url() ?>index.php/caregiver/upload" method="POST" enctype="multipart/form-data">
+						<input type="file" id ="puzzlepic-select" name="pic" />
+						<button type="submit" id="puzzlepic-button">Add a puzzle picture</button>
+					</form>
 
                 </div> 
                 <div class="col-sm-4">
@@ -93,13 +99,10 @@
         // line 367
         download($("#qrcodeID").attr('src'), "qrcode_{name}_{last_name}.png", "image/png");
     });
+	
     //Profile picture related stuff
-    /*document.getElementById('propic_button').onclick = function () {
-        document.getElementById('propic_file').click();
-        //TODO ajax call to upload() with id of resident -> $_FILES is set?
-    };*/
-    $('#uploadImage').on('submit',(function(e) {
-            
+    /*$('#propic_file').on('submit',(function(e) {
+            console.log('result:  ' + 54321);
             var data = new FormData(this);
             data.append("residentID","{username}");
             //console.log('data: ' + data);
@@ -111,20 +114,67 @@
                 contentType: false,
                 cache: false,
                 processData: false,
-                succes: function(data){
-                    //console.log('result:  ' + data);
+                success: function(data){
+                    console.log('RESULT_DATA:  ' + data);
                 }
             }).always(function(dat,stat,err){
-                //console.log("data: " + dat + "stat " + stat + "err: " + err);
+                console.log("DATA: " + dat + "STAT " + stat + "ERR: " + err);
             })
-        
-    }));
-
-    //Profile picture related stuff
-    document.getElementById('propic_button').onclick = function () {
-        document.getElementById('propic_file').click();
-        //TODO ajax call to upload() with id of resident -> $_FILES is set?
-    };
+    }));*/
+	
+    var formPuzzlepic = document.getElementById('puzzlepic-form');
+	var fileSelectPuzzlepic = document.getElementById('puzzlepic-select');
+	var uploadButtonPuzzlepic = document.getElementById('puzzlepic-button');
+	
+	formPuzzlepic.onsubmit = function(event) {
+		event.preventDefault();
+		
+		var files = fileSelectPuzzlepic.files;
+		var formData = new FormData();
+		// Loop through each of the selected files.
+		for (var i = 0; i < files.length; i++) {
+			var file = files[i];
+			// Add the file to the request.
+			formData.append('pic', file, file.name);
+		}
+		formData.append("username", "{username}");
+		formData.append("profile", "0");
+		
+		// Set up the request.
+		var xhr = new XMLHttpRequest();
+		// Open the connection.
+		xhr.open('POST', '<?php echo base_url() ?>index.php/caregiver/upload', true);
+		
+	// Send the Data.
+		xhr.send(formData);
+	};
+	
+	var formPropic = document.getElementById('propic-form');
+	var fileSelectPropic = document.getElementById('propic-select');
+	var uploadButtonPropic = document.getElementById('propic-button');
+	
+	formPropic.onsubmit = function(event) {
+		event.preventDefault();
+		
+		var files = fileSelectPropic.files;
+		var formData = new FormData();
+		// Loop through each of the selected files.
+		for (var i = 0; i < files.length; i++) {
+			var file = files[i];
+			// Add the file to the request.
+			formData.append('pic', file, file.name);
+		}
+		formData.append("username", "{username}");
+		formData.append("profile", "1");
+		
+		// Set up the request.
+		var xhr = new XMLHttpRequest();
+		// Open the connection.
+		xhr.open('POST', '<?php echo base_url() ?>index.php/caregiver/upload', true);
+		
+		// Send the Data.
+		xhr.send(formData);
+	};
     
     chart1function();
     chart2function();

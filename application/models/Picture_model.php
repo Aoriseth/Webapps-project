@@ -21,8 +21,8 @@ class Picture_model extends CI_Model {
      * the picture)
      */
     function storeNewPuzzlePicture($picture_dir, $picture_name, $residentID = NULL) {
-        $this->db->query("START TRANSACTION");
         $this->db->query("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
+        $this->db->query("START TRANSACTION");
         $pictureID = $this->storePicture($picture_dir, $picture_name);
         $this->storeNewGallery($pictureID, $residentID);
         $this->db->query("COMMIT");
@@ -32,9 +32,9 @@ class Picture_model extends CI_Model {
      * Assign a new given profile picture to a given resident.
      */
     function storeNewProfilePicture($picture_dir, $picture_name, $residentID) {
-        $this->db->query("START TRANSACTION");
         $this->db->query("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE");
-        $pictureID = $this->storePicture($picture_dir, $picture_name);
+		$this->db->query("START TRANSACTION");
+		$pictureID = $this->storePicture($picture_dir, $picture_name);
         $updateData = array('profile_picture_id' => $pictureID);
         $whereArray = array('id' => $residentID);
         $this->db->where($whereArray);
