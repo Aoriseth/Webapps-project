@@ -62,7 +62,7 @@ class Picture_model extends CI_Model {
      * Store new gallery_picture with the given ID of a picture that is
      * already in the pictures table.
      * 
-     * Do not use this function. Instead, use storeNewPuzzlePicture.
+     * Do not use this function outside of the model. Instead, use storeNewPuzzlePicture.
      */
     private function storeNewGallery($pictureID, $residentID = NULL) {
         $array = array(
@@ -94,7 +94,7 @@ class Picture_model extends CI_Model {
         $query = $this->db->query(
                 "SELECT *"
                 . " FROM a16_webapps_3.gallery_pictures"
-                . " WHERE id='$residentID'"
+                . " WHERE resident_id='$residentID'"
         );
         return $query->result();
     }
