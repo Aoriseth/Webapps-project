@@ -39,7 +39,7 @@
                                                 <div class="checkbox">
                                                     <label>
                                                         <input type="checkbox" name="optionsRadios" id="optionMale" value="option1" checked>
-                                                        &nbsp<?= lang('c_statistics_male') ?>
+                                                        &nbsp;<?= lang('c_statistics_male') ?>
                                                     </label>
                                                 </div>
                                             </div>
@@ -47,7 +47,7 @@
                                                 <div class="checkbox">
                                                     <label>
                                                         <input type="checkbox" name="optionsRadios" id="optionFemale" value="option2" checked>
-                                                        &nbsp<?= lang('c_statistics_female') ?>
+                                                        &nbsp;<?= lang('c_statistics_female') ?>
                                                     </label>
                                                 </div>
                                             </div>
