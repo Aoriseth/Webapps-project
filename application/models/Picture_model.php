@@ -211,7 +211,7 @@ class Picture_model extends CI_Model {
         );
     }
 
-    private function activateNewPuzzle($residentID) {
+    function activateNewPuzzle($residentID) {
         $query = $this->db->query(
                 "SELECT id"
                 . " FROM `a16_webapps_3`.`gallery_pictures`"
