@@ -39,7 +39,7 @@
                                             <div class="col-md-4">
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox" name="optionsRadios" id="optionMale" value="option1"<!--checked=""--><span class="circle"></span><span class="check"></span>
+                                                        <input type="checkbox" name="optionsRadios" id="optionMale" value="option1" checked>
                                                         &nbsp<?= lang('c_statistics_male') ?>
                                                     </label>
                                                 </div>
@@ -47,7 +47,7 @@
                                             <div class="col-md-4">
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox" name="optionsRadios" id="optionFemale" value="option2"><span class="circle"></span><span class="check"></span>
+                                                        <input type="checkbox" name="optionsRadios" id="optionFemale" value="option2" checked>
                                                         &nbsp<?= lang('c_statistics_female') ?>
                                                     </label>
                                                 </div>
@@ -103,7 +103,7 @@
                                     <div class="modal-footer">
                                         <!--button type="button" class="btn btn-info" id="btnFilter" onclick="clickFilter(caregiverID);" style="float: right;">
                                             <i class="glyphicon glyphicon-filter"></i> Filter</button-->
-                                        <button type="button" class="btn btn-info" id="btnSave" onclick="clickSave()">
+                                        <button type="button" class="btn btn-info" id="btnSave" onclick="clickStats()">
                                             <i class="glyphicon glyphicon-stats"></i> Stats</button>
                                     </div>
                             </form>
