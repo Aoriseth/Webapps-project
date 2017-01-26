@@ -4,6 +4,7 @@
         <script src="<?php echo base_url(); ?>assets/js/responsiveslides.js"></script>
 <div data-placement="bottom" data-toggle="popover" title="" data-container="body" data-content="<?= lang('r_gallery_help') ?>" class="popup panel container-fluid">
 
+    <!-- library used: http://responsiveslides.com/ -->
     <script>
         $(function () {
             $("#slider").responsiveSlides({
