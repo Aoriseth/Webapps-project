@@ -14,6 +14,7 @@ $lang[ 'c_navbar_statistics' ] = 'Statistieken';
 // home
 $lang[ 'c_home_title' ] = 'Hallo {name}!';
 $lang[ 'c_home_info_residents' ] = 'De volgende residenten hebben recent de vragenlijst beantwoord:';
+$lang[ 'c_home_graph_residents' ] = 'Gemiddelde scores voor alle bewoners';
 
 // overview
 $lang[ 'c_overview_add_person' ] = 'Voeg persoon toe';

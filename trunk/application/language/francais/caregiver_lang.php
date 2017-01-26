@@ -14,6 +14,7 @@ $lang[ 'c_navbar_statistics' ] = 'Statistiques';
 // home
 $lang[ 'c_home_title' ] = 'Bonjour {name}!';
 $lang[ 'c_home_info_residents' ] = 'Voici les residents ayant fini un questionnaire récemment:';
+$lang[ 'c_home_graph_residents' ] = 'Scores moyens pour tous les résidents';
 
 // overview
 $lang[ 'c_overview_add_person' ] = 'Ajouter un Personne';

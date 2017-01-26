@@ -46,7 +46,7 @@
         <div class="col-md-6">
             <div class="panel container-fluid">
                 <br>
-                <p style="font-size:16px;">Gemiddelde scores voor alle bewoners</p>
+                <p style="font-size:16px;"><?= lang('c_home_graph_residents') ?></p>
                 <hr>
                 <div id="chart1_div"></div>
                 <br>
