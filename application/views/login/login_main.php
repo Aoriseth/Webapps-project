@@ -4,6 +4,7 @@
     <head>
         <title><?= lang( 'login_title' ) ?></title>
 
+        <!--Include common scripts and css-->
         {include}
 
     </head>
