@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head> 
-        <title><?= lang( 'c_title' ) ?></title>
+        <title><?= lang('c_title') ?></title>
 
         <!--Load unique css-->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/datatables/css/dataTables.bootstrap.css">
@@ -27,13 +27,10 @@
     <body>
         {navbar}
         <br><br>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="container-fluid">
-                        {content}
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0">
+                    {content}
+                
             </div>
         </div>
     </body>
