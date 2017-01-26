@@ -6,7 +6,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand"><?= lang( 'common_app' ) ?></a>
+			<a style="pointer-events: none;" class="navbar-brand"><?= lang( 'common_app' ) ?></a>
 		</div>
 		<div class="navbar-collapse collapse navbar-responsive-collapse">
 			<ul class="nav navbar-nav">
