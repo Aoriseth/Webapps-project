@@ -1,7 +1,7 @@
 <nav class="navbar navbar-fixed-top navbar-inverse" style="background-color: #512DA8">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand"><?= lang( 'common_app' ) ?></a>
+			<a style="pointer-events: none;" class="navbar-brand"><?= lang( 'common_app' ) ?></a>
         </div>
 
 		<div class="navbar-collapse collapse navbar-responsive-collapse">
