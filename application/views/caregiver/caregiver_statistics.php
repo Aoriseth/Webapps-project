@@ -35,20 +35,20 @@
                                     <!-- GENDER -->
                                     <div class="form-group">
                                         <label class="col-md-2"><?= lang('c_statistics_gender') ?></label>
-                                        <div class="radios" onchange="clickFilter(caregiverID);">
+                                        <div class="" onchange="clickFilter(caregiverID);">
                                             <div class="col-md-4">
-                                                <div class="radio radio-primary">
+                                                <div class="checkbox">
                                                     <label>
-                                                        <?= lang('c_statistics_male') ?>
-                                                        <input type="radio" name="optionsRadios" id="optionMale" value="option1"<!--checked=""--><span class="circle"></span><span class="check"></span>
+                                                        <input type="checkbox" name="optionsRadios" id="optionMale" value="option1"<!--checked=""--><span class="circle"></span><span class="check"></span>
+                                                        &nbsp<?= lang('c_statistics_male') ?>
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <div class="radio radio-primary">
+                                                <div class="checkbox">
                                                     <label>
-                                                        <?= lang('c_statistics_female') ?>
-                                                        <input type="radio" name="optionsRadios" id="optionFemale" value="option2"><span class="circle"></span><span class="check"></span>
+                                                        <input type="checkbox" name="optionsRadios" id="optionFemale" value="option2"><span class="circle"></span><span class="check"></span>
+                                                        &nbsp<?= lang('c_statistics_female') ?>
                                                     </label>
                                                 </div>
                                             </div>

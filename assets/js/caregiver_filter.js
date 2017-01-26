@@ -98,10 +98,14 @@ function clickFilter(caregiverID)
     floors = [];
     filter = [];
     // GENDER
-    if (document.getElementById('optionMale').checked) {
+    if ( $("#optionMale").is(':checked') && !$("#optionFemale").is(':checked') ) {
         gender = "male";
-    } else if (document.getElementById('optionFemale').checked) {
+    } else if ( !$("#optionMale").is(':checked') && $("#optionFemale").is(':checked') ) {
         gender = "female";
+    } else if ( $("#optionMale").is(':checked') && $("#optionFemale").is(':checked') ) {
+        gender = "gender";
+    } else if ( !$("#optionMale").is(':checked') && !$("#optionFemale").is(':checked') ) {
+        gender = "";
     }
 
     // FLOOR
@@ -141,8 +145,13 @@ function clickFilter(caregiverID)
         cache: false,
 
         success: function (data) {
-            filter_residents = JSON.parse(data);
-            showFResidents(filter_residents);
+            if (data.length === 0) {
+                console.log("NO DATA!")
+            } else {
+                filter_residents = JSON.parse(data);
+                showFResidents(filter_residents);
+            }
+            
         },
         error: function () {
             alert("Error: filter")
@@ -335,9 +344,7 @@ function chart1function() {
         success: function (data) {
             var Yaxis = [];
             var Xaxis = [];
-            console.log(data);
             var response = JSON.parse(data);
-            console.log(response);
             Xaxis = response[0];
             Yaxis = response[1];
             //google.charts.load('current', {'packages':['corechart']});
@@ -373,9 +380,7 @@ function chart2function() {
         success: function (data) {
             var Yaxis = [];
             var Xaxis = [];
-            console.log(data);
             var response = JSON.parse(data);
-            console.log(response);
             Xaxis = response[0];
             Yaxis = response[1];
             google.charts.setOnLoadCallback(drawChart2);
@@ -402,7 +407,6 @@ function chart3function() {
             var Yaxis = [];
             var Xaxis = [];
             var response = JSON.parse(data);
-            console.log(response);
             Xaxis = response[0];
             Yaxis = response[1];
             google.charts.setOnLoadCallback(drawChart3);
