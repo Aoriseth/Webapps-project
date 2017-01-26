@@ -25,10 +25,10 @@
                 $emotion_index = 0;
                 foreach ($options as $option) {
             ?>
-                    <div class=" col-sm-offset-0 col-sm-2 col-md-offset-0 col-md-2 col-xs-5" id="col_btn">
+                    <div class=" col-sm-offset-0 col-sm-2 col-md-offset-0 col-md-2 col-xs-5">
                         <div style="width:100%;text-align: center;margin:auto;">
 
-                            <button style="width:100%;height:100%;" class="shover btn btn-fab answerbutton btn-default" id="button_emotion<?php $emotion_index ?>" 
+                            <button style="width:100%;height:100%;" class="shover btn btn-fab answerbutton btn-default" id="button_emotion<?= $emotion_index ?>" 
                                     onclick="(storeAnswer(<?php echo $emotion_index ?>, ' <?php echo base_url() ?>', '{category}'));"
                                     value="<?php echo htmlspecialchars($option->option) ?>">
 
