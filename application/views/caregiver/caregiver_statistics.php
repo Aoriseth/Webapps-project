@@ -120,7 +120,7 @@
                                     text-align:center;
                                     top:50%;
                                     left:50%;
-                                    "><img src=<?php echo base_url() . 'assets/imgs/ajax-loader.gif' ?> >                                   
+                                    "><img src=<?= base_url() . 'assets/imgs/ajax-loader.gif' ?> alt="Loading animation">
                             </div>
                         </div>
                     </div> 
