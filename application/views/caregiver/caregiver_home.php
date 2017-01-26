@@ -60,20 +60,12 @@
 
 
 <script type="text/javascript">
-
-
     google.charts.load('current', {'packages': ['corechart']});
-
     chart1function();
-
     $(window).resize(function () {
         chart1function();
     });
-    //formChart1.addEventListener('submit', function(e) {
     function chart1function() {
-        console.log('chart 1 submitted');
-        //e.preventDefault();
-
         $.ajax({
             type: "POST",
             url: "<?php echo base_url() ?>index.php/caregiver/load_avarage_score_per_category_chart",
@@ -103,5 +95,4 @@
         });
         return false;
     }
-
 </script>
