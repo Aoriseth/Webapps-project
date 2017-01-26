@@ -1,9 +1,21 @@
 <div class="panel container-fluid">
     <br>
-    <p class="tlScale">Overzicht van alle bewoners</p>
+    <div class="row">
+        <div class="col-md-8">
+            <p class="tlScale">Overzicht van alle bewoners</p>
+        </div>
+        <div class="col-md-2">
+            <button style="margin:0px" class="btn btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i> <?= lang( 'c_overview_add_person' ); ?></button>
+        </div>
+        <div class="col-md-2">
+            <button style="margin:0px" class="btn btn-info" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> <?= lang( 'c_overview_reload' ); ?></button>
+        </div>
+        
+    </div>
+    
     <hr>
-    <button class="btn btn-success" onclick="add_person()"><i class="glyphicon glyphicon-plus"></i> <?= lang( 'c_overview_add_person' ); ?></button>
-    <button class="btn btn-info" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> <?= lang( 'c_overview_reload' ); ?></button>
+    
+    
     
     <div class="row">
         <div class="col-md-12">
