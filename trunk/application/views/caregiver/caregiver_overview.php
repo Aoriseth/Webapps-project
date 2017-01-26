@@ -62,6 +62,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables-colvis/1.1.2/js/dataTables.colVis.js"></script>
 
+<script src="http://code.jquery.com/jquery-2.0.0.js"></script>
+
+
 <script src="<?php echo base_url(); ?>assets/datatables/js/dataTables.bootstrap.js"></script>
 
 
