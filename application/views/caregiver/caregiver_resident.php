@@ -12,7 +12,7 @@
         </p><hr>
         <div class="container-fluid">
             <div class="row">
-                <div style="text-align: center" class="col-md-4 col-sm-5">
+                <div  class="col-md-4 col-sm-5">
                     <img src={profile_picture} alt="Profile Picture" style="width:260px;height:300px;">
 					<form id="propic-form" action="<?php echo base_url() ?>index.php/caregiver/upload" method="POST" enctype="multipart/form-data">
 						<input type="file" id ="propic-select" name="pic" />
@@ -34,8 +34,8 @@
                     <div  id="qrcode" style="text-align:center;"></div><button class="btn primarylink" id = "qrcodeButton">Download QR code</button>
                 </div>
                 
-                <div class="col-md-4">
-                    <br>{name} {comment}
+                <div class="col-md-4 col-sm-12">
+                    {name} {comment}
                 </div>
             </div>
         </div>
