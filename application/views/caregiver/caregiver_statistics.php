@@ -1,19 +1,18 @@
-<head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.css"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
-    <script type="text/javascript">
-        var base_url = "<?php Print(base_url()); ?>"; 
-        var caregiverID = "<?php Print($caregiverID); ?>"; 
-        var no_result = "<?php Print(lang('c_statistics_no_result')); ?>"; 
-        var chart_title0 = "<?php Print(lang('c_statistics_all_category_selected_individual')); ?>"; 
-        var chart_title1 = "<?php Print(lang('c_statistics_all_category_individual')); ?>"; 
-        var chart_title2 = "<?php Print(lang('c_statistics_category_all_individual')); ?>"; 
-        var chart_title3 = "<?php Print(lang('c_statistics_average_scores_of_selected_residents')); ?>"; 
-    </script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/caregiver_filter.js"></script>
-</head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.css"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
+<script type="text/javascript">
+    var base_url = "<?php Print(base_url()); ?>"; 
+    var caregiverID = "<?php Print($caregiverID); ?>"; 
+    var no_result = "<?php Print(lang('c_statistics_no_result')); ?>"; 
+    var chart_title0 = "<?php Print(lang('c_statistics_all_category_selected_individual')); ?>"; 
+    var chart_title1 = "<?php Print(lang('c_statistics_all_category_individual')); ?>"; 
+    var chart_title2 = "<?php Print(lang('c_statistics_category_all_individual')); ?>"; 
+    var chart_title3 = "<?php Print(lang('c_statistics_average_scores_of_selected_residents')); ?>"; 
+</script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/caregiver_filter.js"></script>
 
 <!--Div that will hold the pie chart-->
 <div class="container-fluid">
