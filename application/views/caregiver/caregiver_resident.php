@@ -31,10 +31,11 @@
                     Last activity: {last_activity} </br>
                     {sessions_completed} completed session(s) </br>
                     {name}'s average score is {average_score} </br>
+                    <div  id="qrcode" style="text-align:center;"></div><button class="btn btn-raised" id = "qrcodeButton">Download QR code</button>
                 </div>
                 
                 <div class="col-sm-4">
-                    <div  id="qrcode" style="text-align:center;"></div><button class="btn btn-raised" id = "qrcodeButton">Download QR code</button>
+                    {name} {comment}
                 </div>
             </div>
         </div>
@@ -49,25 +50,22 @@
     <div class="row">
         <div class="col-md-6">
             <div class="panel container-fluid">
-                <br>
-                {name} {comment}
+                <h3 style="font-size:1.3vmax;">Score voor alle categorien</h3>
+                <hr/>
                 <div id="chart1_div" style="width:100%"></div>
                 <br>
             </div>
         </div>
         <div  class="col-md-6">
             <div class="panel container-fluid">
-                <div class="modal-header">
                     <h3 style="font-size:1.3vmax;">Verloop van categorie</h3>
-                </div>
-                <div class="modal-body form">
+                    <hr/>
                     <form class="form-group" method="POST" id="chart2_form" name="chart2Form">
                         <select class="selectpicker form-control" name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
                             <?php foreach ($categories as $category) { ?>   
                                 <option value=<?= json_encode($category->category_set); ?> ><?php echo $category->category; ?></option>
                             <?php } ?>           
                         </select>
-                    </form>
                     <div id="chart2_div" style="width:100%"></div>
                 </div>
             </div>
