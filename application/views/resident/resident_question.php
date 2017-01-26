@@ -34,12 +34,13 @@
                                 onclick="(storeAnswer(<?php echo $emotion_index ?>, ' <?php echo base_url() ?>', '{category}'));"
                                 value="<?php echo htmlspecialchars($option->option) ?>">
 
-                            <img style="width:100%;height:100%;" src=<?php echo base_url() . 'assets/imgs/emotions/' . $emotion_index . ".png" ?> >                                   
+                            <img style="width:100%;height:100%;" src=<?php echo base_url() . 'assets/imgs/emotions/' . $emotion_index . ".png" ?> alt="Answer: <?= htmlspecialchars($option->option); ?>">
                         </button>
-                        <br><br>
+                        <br>
+                        <br>
+                        <?= htmlspecialchars($option->option); ?>
                         <?php
-                        echo htmlspecialchars($option->option);
-                        $emotion_index++;
+                            $emotion_index++;
                         ?>
                     </div>
 
