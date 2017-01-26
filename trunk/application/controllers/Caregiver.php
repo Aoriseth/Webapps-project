@@ -36,8 +36,10 @@ class Caregiver extends CI_Controller {
 
 	private function display_common_elements($page)
 	{
+            // Parses commonly used javascript and css files.
+            // Shows the navbar and indicates the current page based on $page
+            
 		$data[ 'include' ] = $this->load->view( 'include', '', true );
-
 		$data2[ 'pages' ] = [ 'home', 'overview', 'statistics' ];
 		$data2[ 'page_active' ] = $page;
 		$data[ 'navbar' ] = $this->parser->parse( 'caregiver/caregiver_navbar', $data2, true );
@@ -47,6 +49,9 @@ class Caregiver extends CI_Controller {
 
 	function home()
 	{
+            // Parses home page and shows residents which recently completed the questionnaire
+            // A notification is show when first logging in
+            
 		$data = $this->display_common_elements( 'home' );
                 $residents = $this->Resident_model->getAllResidents();
                 $recentResidents = $this->Resident_model->getNMostRecentCompletedResidents();
@@ -61,18 +66,14 @@ class Caregiver extends CI_Controller {
 		$this->session->display_login_notification = false;
 
 		$data[ 'content' ] = $this->parser->parse( 'caregiver/caregiver_home', $data2, true );
-
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
-		
 		$this->Caregiver_model->updateLastActivity($this->session->id);
 	}
 
 	function overview()
 	{
 		$data = $this->display_common_elements( 'overview' );
-
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_overview', '', true );
-
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
 	}
 
@@ -80,8 +81,8 @@ class Caregiver extends CI_Controller {
 	{
 		$data = $this->display_common_elements( 'groups' );
 		$data2[ 'residents' ] = $this->Resident_model->getAllResidents();
-                    $data2[ 'floors'] = $this->Resident_model->getAllFloors();
-                    $data2[ 'caregiverID' ] = $this->session->id; 
+                $data2[ 'floors'] = $this->Resident_model->getAllFloors();
+                $data2[ 'caregiverID' ] = $this->session->id; 
                 $data2[ 'groups' ] = $this->Group_model->getGroups();
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_groups', $data2, true );
 
@@ -94,15 +95,14 @@ class Caregiver extends CI_Controller {
 		$this->parser->parse( 'caregiver/caregiver_groups.php', $data );
         }
 
-
 	function statistics()
 	{
 		$data = $this->display_common_elements( 'statistics' );
 
 		$data2[ 'residents' ] = $this->Resident_model->getAllResidents();
 		$data2[ 'categories' ] = $this->Question_model->getAllCategoryNames( $this->session->language );
-                    $data2[ 'floors'] = $this->Resident_model->getAllFloors();
-                    $data2[ 'caregiverID' ] = $this->session->id; 
+                $data2[ 'floors'] = $this->Resident_model->getAllFloors();
+                $data2[ 'caregiverID' ] = $this->session->id; 
 		$data[ 'content' ] = $this->load->view( 'caregiver/caregiver_statistics', $data2, true );
 
 		$this->parser->parse( 'caregiver/caregiver_main.php', $data );
