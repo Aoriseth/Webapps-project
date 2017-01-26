@@ -17,7 +17,7 @@
         <!-- the main element of the page (puzzle, etc) -->
         <div class="container" id="container_resident">
             <div class="row">
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0">
                     <div>
 
                         {content}	
