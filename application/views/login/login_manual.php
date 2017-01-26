@@ -19,7 +19,7 @@
         <?= lang( 'login_manual_explanation' ) ?>
     </p>
 
-    <p style="color:red" id="error_message_manual">
+    <p class="container-fluid" style="color:red" id="error_message_manual">
         <br><!-- will be used to display error messages -->
     </p>
 
