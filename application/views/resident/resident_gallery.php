@@ -19,12 +19,12 @@
 
 
 
-    <ul class="rslides_container img-responsive" id="slider">
-
-        <h2 id="no_pictures_message" style="font-size:3vmax;visibility: visible">
-            <?= lang('r_gallery_empty') ?>
-        </h2>
-
+    <ul class="rslides_container img-responsive" id="slider" style="list-style: none;">
+        <li>
+            <h2 id="no_pictures_message" style="font-size:3vmax;visibility: visible">
+                <?= lang('r_gallery_empty') ?>
+            </h2>
+        </li>
     </ul>
 
 
