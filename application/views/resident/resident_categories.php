@@ -16,42 +16,42 @@
                             <button style="width:13vw;height:13vw;" type="submit" name="category" value="<?php echo $category->category ?>" class="grow btn btn-fab btn-default text-center">
                                 <?php if ($category->category === $cat[2]->category) { ?>
                                     <!--Veiligheid-->
-                                    <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/295/295666.png"> 
+                                    <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/295/295666.png" alt="<?= $category->category ?>">
                                 <?php } elseif ($category->category === $cat[1]->category) { ?>
                                     <!--Maaltijden-->
-                                    <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/272/272155.png">
+                                    <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/272/272155.png" alt="<?= $category->category ?>">
                                 <?php } elseif ($category->category === $cat[3]->category) { ?>
                                     <!--Comfort-->
-                                    <img style="width:10vw;" src="https://image.flaticon.com/icons/png/512/148/148102.png">
+                                    <img style="width:10vw;" src="https://image.flaticon.com/icons/png/512/148/148102.png" alt="<?= $category->category ?>">
                                 <?php } elseif ($category->category === $cat[9]->category) { ?>
                                     <!--Personal Relationships-->
-                                    <img style="width:10vw;" src="https://image.flaticon.com/icons/png/512/265/265667.png">
+                                    <img style="width:10vw;" src="https://image.flaticon.com/icons/png/512/265/265667.png" alt="<?= $category->category ?>">
                                 <?php } elseif ($category->category === $cat[8]->category) { ?>
                                     <!--Activiteiten-->
-                                    <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/147/147206.png">
+                                    <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/147/147206.png" alt="<?= $category->category ?>">
                                 <?php } elseif ($category->category === $cat[0]->category) { ?>
                                     <!--Privacy-->
-                                    <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/147/147040.png">
+                                    <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/147/147040.png" alt="<?= $category->category ?>">
                                 <?php } elseif ($category->category === $cat[5]->category) { ?>
                                     <!--Respect van personeel-->
-                                    <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/189/189073.png">
+                                    <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/189/189073.png" alt="<?= $category->category ?>">
                                 <?php } elseif ($category->category === $cat[10]->category) { ?>
                                     <!--Informatie vanuit het woonzorgcentrum-->
-                                    <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/263/263195.png">
+                                    <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/263/263195.png" alt="<?= $category->category ?>">
                                 <?php } elseif ($category->category === $cat[4]->category) { ?>
                                     <!--Autonomie-->
-                                    <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/265/265669.png">
+                                    <img style="width:8vw;" src="https://image.flaticon.com/icons/png/512/265/265669.png" alt="<?= $category->category ?>">
                                 <?php } elseif ($category->category === $cat[6]->category) { ?>
                                     <!--Reageren door medewerkers op vragen-->
-                                    <img style="width:9vw;" src="https://image.flaticon.com/icons/png/512/263/263205.png">
+                                    <img style="width:9vw;" src="https://image.flaticon.com/icons/png/512/263/263205.png" alt="<?= $category->category ?>">
                                 <?php } elseif ($category->category === $cat[7]->category) { ?>
                                     <!--Band met personeel-->
-                                    <img style="width:10vw;" src="http://image.flaticon.com/icons/png/512/236/236810.png">
+                                    <img style="width:10vw;" src="http://image.flaticon.com/icons/png/512/236/236810.png" alt="<?= $category->category ?>">
                                 <?php } elseif ($category->category === $cat[0]) { ?>
                                     <!--Persoonlijke omgang-->
-                                    <img style="width:10vw;" src="https://image.flaticon.com/icons/png/512/214/214351.png">
+                                    <img style="width:10vw;" src="https://image.flaticon.com/icons/png/512/214/214351.png" alt="<?= $category->category ?>">
                                 <?php } else { ?>
-                                    <img style="width:10vw;" src="https://image.flaticon.com/icons/png/512/190/190177.png">
+                                    <img style="width:10vw;" src="https://image.flaticon.com/icons/png/512/190/190177.png" alt="<?= $category->category ?>">
                                 <?php } ?>
                             </button><br><br>
                             <p class="txScale"><?php echo $category->category ?></p>
