@@ -155,8 +155,17 @@ ul {
     background-color: #673ab7 !important;
 }
 
-.noUi-base{
+.noUi-base {
     height: 0% !important;
+}
+
+.checkbox input[type=checkbox]:checked + .checkbox-material .check {
+    color: #673ab7 !important;
+    border-color: #673ab7 !important;
+}
+
+.checkbox input[type=checkbox]:checked + .checkbox-material .check:before, label.checkbox-inline input[type=checkbox]:checked + .checkbox-material .check:before {
+    color: #673ab7 !important;
 }
 
 @media screen and (max-width: 992px) {
