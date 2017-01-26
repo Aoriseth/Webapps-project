@@ -176,6 +176,11 @@ ul {
     background-image: linear-gradient(#673ab7, #673ab7) !important;
 }
 
+table {
+    width: 100% !important;
+    cellspacing: 0;
+}
+
 @media screen and (max-width: 992px) {
     .large-btns_nav{
         z-index: 3;
