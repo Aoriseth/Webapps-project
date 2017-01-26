@@ -41,7 +41,6 @@
                         echo htmlspecialchars($option->option);
                         $emotion_index++;
                         ?>
-                        <span class="visible-xs"></br></span>
                     </div>
 
                 </div>
