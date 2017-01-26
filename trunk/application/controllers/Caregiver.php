@@ -142,7 +142,7 @@ class Caregiver extends CI_Controller {
             //
             $floors = $this->input->post('floors');
             $gender = $this->input->post('gender');
-            if (trim($gender) == "") {
+            if (trim($gender) == "gender") {
                 $array_requirements = array('floor_number' => intval($floors)); // string to int
             } else {
                 $array_requirements = array('floor_number' => intval($floors), 'gender' => $gender);
