@@ -28,11 +28,11 @@ Accent color
 }
 
 a{
-    color: #673ab7;
+    color: #673ab7 !important;
 }
 
 a:hover{
-    color: #ff5722;
+    color: #ff5722 !important;
 }
 
 .grow { 
