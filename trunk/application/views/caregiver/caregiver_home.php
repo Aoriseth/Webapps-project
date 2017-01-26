@@ -6,43 +6,52 @@
     </script>
 <?php } ?>
 
-<div class=" panel container-fluid">
-    <br>
+<div class="container-fluid">
+
+
 <!--    <p class="txScale"><?= lang('c_home_title') ?></p>
-    <p class="tlScale">  Welkom!</p>
-    <hr>-->
+<p class="tlScale">  Welkom!</p>
+<hr>-->
 
 
 
     <div class="row">
         <div class="col-md-6">
-            <p style="font-size:16px;"><?= lang('c_home_info_residents') ?></p>
-            <hr>
-            <div class="list-group">
-                <?php
-                $i = 0;
-                foreach ($recent_residents as $resident) {
-                    ?><div class="list-group-item">
-                        <div class="row-picture">
-                            <img class="circle" src= "<?php echo $profile_pictures[$i] ?>" alt="icon">
+            <div class="panel container-fluid">
+                <br>
+                <p style="font-size:16px;"><?= lang('c_home_info_residents') ?></p>
+                <hr>
+                <div class="list-group">
+                    <?php
+                    $i = 0;
+                    foreach ($recent_residents as $resident) {
+                        ?><div class="list-group-item">
+                            <div class="row-picture">
+                                <img class="circle" src= "<?php echo $profile_pictures[$i] ?>" alt="icon">
+                            </div>
+                            <div class="row-content">
+                                <h4 class="list-group-item-heading"><a class="primarylink" href="<?php echo base_url(); ?>index.php/caregiver/resident/<?php echo $resident->id ?>" ><?php echo $resident->first_name; ?> <?php echo $resident->last_name; ?> </a></h4>
+                                <p class="list-group-item-text"><?= lang('c_main_completed') ?> <?php echo date("Y-m-d", strtotime($resident->last_completed)); ?></p>
+                            </div>
                         </div>
-                        <div class="row-content">
-
-                            <h4 class="list-group-item-heading"><a class="primarylink" href="<?php echo base_url(); ?>index.php/caregiver/resident/<?php echo $resident->id ?>" ><?php echo $resident->first_name; ?> <?php echo $resident->last_name; ?> </a></h4>
-
-
-                            <p class="list-group-item-text"><?= lang('c_main_completed')?> <?php echo date("Y-m-d", strtotime($resident->last_completed));?></p>
-                        </div>
-                    </div>
-                    <div class="list-group-separator"></div> 
-    <?php $i++;
-} ?>
-
+                        <div class="list-group-separator"></div> 
+                        <?php
+                        $i++;
+                    }
+                    ?>
+                </div>
+                <br><br>
             </div>
         </div>
         <div class="col-md-6">
-            <div id="chart1_div"></div>
-            <br>
+            <div class="panel container-fluid">
+                <br>
+                <p style="font-size:16px;">Gemiddelde scores voor alle bewoners</p>
+                <hr>
+                <div id="chart1_div"></div>
+                <br>
+            </div>
+
         </div>
     </div>
 
