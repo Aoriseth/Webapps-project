@@ -8,8 +8,7 @@
         $(function () {
             $("#slider").responsiveSlides({
                 auto: false, // Boolean: Animate automatically, true or false
-                speed: 500, // Integer: Speed of the transition, in milliseconds
-                pager: false, // Boolean: Show pager, true or false
+                speed: 0, // Integer: Speed of the transition, in milliseconds
                 nav: true, // Boolean: Show navigation, true or false
                 namespace: "large-btns" // String: Change the default namespace used
             });
