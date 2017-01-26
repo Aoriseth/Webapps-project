@@ -25,12 +25,12 @@
 
                 </div> 
                 <div class="col-md-4 col-sm-7">
-                    Born: {date_of_birth} </br>
-                    Language: {language} </br>
-                    Floor: {floor} Room: {room} </br>
-                    Last activity: {last_activity} </br>
-                    {sessions_completed} completed session(s) </br>
-                    {name}'s average score is {average_score} </br><br/>
+                    Born: {date_of_birth} <br>
+                    Language: {language} <br>
+                    Floor: {floor} Room: {room} <br>
+                    Last activity: {last_activity} <br>
+                    {sessions_completed} completed session(s) <br>
+                    {name}'s average score is {average_score} <br><br>
                     <div  id="qrcode" style="text-align:center;"></div><button class="btn primarylink" id = "qrcodeButton">Download QR code</button>
                 </div>
                 
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        </br>
+        <br>
     </div>
 
 
