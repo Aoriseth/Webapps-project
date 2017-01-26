@@ -413,74 +413,77 @@ class Caregiver extends CI_Controller {
 	 */
 	function upload()
 	{
-		// only allow AJAX requests
+		/*// only allow AJAX requests
 		if ( ! $this->input->is_ajax_request() ) {
 			redirect( '404' );
+		}*/
+		
+		$target_dir = "assets/pictures/";
+
+		$finfo = new finfo( FILEINFO_MIME_TYPE );
+		$img_types = array(
+			'jpeg' => 'image/jpeg',
+			'jpg' => 'image/jpg',
+			'png' => 'image/png'
+		);
+		
+		$uploaded_file = $_FILES[ "pic" ][ "tmp_name" ];
+		
+		if ( false === $ext = array_search( $finfo->file( $uploaded_file ), $img_types, true ) ) {
+			return;
+		}
+		
+		$target_name = basename( sprintf( './uploads/%s.%s', sha1_file( $uploaded_file ), $ext ) );
+		$target_file = $target_dir.$target_name;
+		$imageFileType = pathinfo( $target_file, PATHINFO_EXTENSION );
+
+		//Check if image file is an actual image
+		$check = getimagesize( $uploaded_file );
+		if ( $check == false ) {
+			echo 'Fake image.';
+			return;
 		}
 
-		if ( isset( $_POST[ "submit" ] ) ) {
-			$target_dir = "assets/pictures/";
-
-			$finfo = new finfo( FILEINFO_MIME_TYPE );
-			$img_types = array(
-				'jpeg' => 'image/jpeg',
-				'jpg' => 'image/jpg',
-				'png' => 'image/png'
-			);
-
-			if ( false === $ext = array_search( $finfo->file( $_FILES[ "fileToUpload" ][ "tmp_name" ] ), $img_types, true ) ) {
+		//Check if file already exists, rename if it exists. Give up if it fails too many times.
+		$counter = 1;
+		$randomString = '';
+		while ( file_exists( $target_file ) ) {
+			if($counter > 8) {
+				echo 'Chances of this happening are astronomically small. Please try again later.';
 				return;
 			}
+			$randomString = substr( md5( microtime() ), mt_rand( 0, 26 ), $counter );
+			$target_file = $target_dir.$randomString.$target_name;
+			$counter = $counter + 1;
+		}
 
-			$target_name = basename( sprintf( './uploads/%s.%s', sha1_file( $_FILES[ "fileToUpload" ][ "tmp_name" ] ), $ext ) );
-			$target_file = $target_dir.$target_name;
-			$imageFileType = pathinfo( $target_file, PATHINFO_EXTENSION );
+		//Check file size
+		if ( $_FILES[ "pic" ][ "size" ] > 700000 ) {
+			echo 'File too large. ';
+			return;
+		}
 
-			//Check if image file is an actual image
-			$check = getimagesize( $_FILES[ "fileToUpload" ][ "tmp_name" ] );
-			if ( $check == false ) {
-				echo 'Fake image.';
-				return;
-			}
-
-			//Check if file already exists, rename if it exists. Give up if it fails too many times.
-			$counter = 0;
-			while ( file_exists( $target_file ) ) {
-				if($counter > 8) {
-					echo 'Chances of this happening are astronomically small. Please try again later.';
-					return;
-				}
-				$randomString = substr( md5( microtime() ), mt_rand( 0, 26 ), 1 );
-				$target_file = $target_file.$randomString;
-				$counter = $counter + 1;
-			}
-
-			//Check file size
-			if ( $_FILES[ "fileToUpload" ][ "size" ] > 700000 ) {
-				echo 'File too large. ';
-				return;
-			}
+		//Allow certain file formats
+		if ( $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ) {
+			//Something else than a jpg, png or jpeg cannot be uploaded
+			echo 'This type of images is not supported. ';
+			return;
+		}
+		
+		//Now that all checks are done, really upload the file.
+		if ( is_uploaded_file( $uploaded_file ) ) {
+			move_uploaded_file( $uploaded_file, $target_file );
+			chmod( $target_file, 0644 ); //Change the permissions of the uploaded file, otherwise you can't open it.
 			
-			//Allow certain file formats
-			if ( $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" ) {
-				//Something else than a jpg, png or jpeg cannot be uploaded
-				echo 'This type of images is not supported. ';
-				return;
+			if($_POST["profile"] == 0) {
+				$this->Picture_model->storeNewPuzzlePicture($target_dir, $randomString.$target_name, $_POST["username"]);
 			}
-			
-			//Now that all checks are done, really upload the file.
-			if ( is_uploaded_file( $_FILES[ "fileToUpload" ][ "tmp_name" ] ) ) {
-				move_uploaded_file( $_FILES[ "fileToUpload" ][ "tmp_name" ], $target_file );
-				chmod( $target_file, 0644 ); //Change the permissions of the uploaded file, otherwise you can't open it.
-
-				// TODO hard-coded resident ID --> replace by parameter in AJAX call?
-				$this->Picture_model->storeNewPuzzlePicture( $target_dir, $target_name, 'r123' );
-
-				echo 'Picture uploaded! ' . $target_file . '<br/>';
-				echo '<img src=/' . $target_dir . $target_name . ' />';
-			} else {
-				echo 'File is not uploaded';
+			else {
+				$this->Picture_model->storeNewProfilePicture($target_dir, $randomString.$target_name, $_POST["username"]);
 			}
+
+		} else {
+			echo 'File is not uploaded';
 		}
 	}
 }
