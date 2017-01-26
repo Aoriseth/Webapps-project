@@ -77,13 +77,10 @@
 
 
 <script type="text/javascript">
-    var qrcode = null;
-    var formChart2 = document.getElementById('chart2_form');
-    google.charts.load('current', {'packages': ['corechart']});
     // Below here the QR code stuff
     // qr code generator library -> http://davidshimjs.github.io/qrcodejs/
+    var qrcode = null;
     var data = ' {"username": "{username}", "password": "{password}"} ';
-    console.log(data);
     qrcode = new QRCode(document.getElementById("qrcode"), {
         text: data,
         width: 200,
@@ -98,28 +95,8 @@
         download($("#qrcodeID").attr('src'), "qrcode_{name}_{last_name}.png", "image/png");
     });
 	
-    //Profile picture related stuff
-    /*$('#propic_file').on('submit',(function(e) {
-            console.log('result:  ' + 54321);
-            var data = new FormData(this);
-            data.append("residentID","{username}");
-            //console.log('data: ' + data);
-            //console.log(data);
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url() ?>index.php/caregiver/upload",
-                data: data,
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data){
-                    console.log('RESULT_DATA:  ' + data);
-                }
-            }).always(function(dat,stat,err){
-                console.log("DATA: " + dat + "STAT " + stat + "ERR: " + err);
-            })
-    }));*/
-	
+ 
+    // puzzle stuf and profile pic
     var formPuzzlepic = document.getElementById('puzzlepic-form');
 	var fileSelectPuzzlepic = document.getElementById('puzzlepic-select');
 	var uploadButtonPuzzlepic = document.getElementById('puzzlepic-button');
@@ -173,7 +150,8 @@
 		// Send the Data.
 		xhr.send(formData);
 	};
-    
+    var formChart2 = document.getElementById('chart2_form');
+    google.charts.load('current', {'packages': ['corechart']});
     chart1function();
     chart2function();
         
@@ -182,13 +160,7 @@
         chart2function();
     });
     
-    //formChart1.addEventListener('submit', function(e) {
     function chart1function() {
-        console.log('chart 1 submitted');
-        //e.preventDefault();
-
-
-
         $.ajax({
             type: "POST",
             url: "<?php echo base_url() ?>index.php/caregiver/load_resident_chart",
@@ -198,28 +170,20 @@
             success: function (data) {
                 var Yaxis = [];
                 var Xaxis = [];
-                //console.log(data);
                 var response = JSON.parse(data);
-                //console.log(response);
                 Xaxis = response[0];
                 Yaxis = response[1];
-                //google.charts.load('current', {'packages':['corechart']});
                 google.charts.setOnLoadCallback(drawChart);
                 function drawChart() {
-
                     var data = new google.visualization.DataTable();
                     columnChart(Yaxis, Xaxis, data, "chart1_div", '<?= lang('c_statistics_all_category_individual') ?>');
                 }
-
-
             }
         });
         return false;
     }
 
     function chart2function() {
-        console.log('chart 2 submitted');
-        //e.preventDefault();
         var selects = formChart2.getElementsByTagName('select');
         var category = parseInt(selects[0].value);
         $.ajax({
@@ -231,18 +195,14 @@
             success: function (data) {
                 var Yaxis = [];
                 var Xaxis = [];
-                //console.log(data);
                 var response = JSON.parse(data);
-                //console.log(response);
                 Xaxis = response[0];
                 Yaxis = response[1];
                 google.charts.setOnLoadCallback(drawChart2);
                 function drawChart2() {
-
                     var data = new google.visualization.DataTable();
                     lineChart(Yaxis, Xaxis, data, "chart2_div"); // ,'verloop van categorie'
                 }
-
             }
         });
         return false;
