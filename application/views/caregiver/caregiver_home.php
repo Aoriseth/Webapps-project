@@ -29,7 +29,7 @@
                         <div class="row-content">
                             <h4 class="list-group-item-heading"><a class="primarylink" href="<?php echo base_url(); ?>index.php/caregiver/resident/<?php echo $resident->id ?>" ><?php echo $resident->first_name; ?> <?php echo $resident->last_name; ?> </a></h4>
 
-                            <p class="list-group-item-text">Completed Questionnaire on - <?php echo date("Y-m-d", strtotime($resident->last_completed)); ?></p>
+                            <p class="list-group-item-text"><?= lang('c_main_completed')?> <?php echo date("Y-m-d", strtotime($resident->last_completed));?></p>
                         </div>
                     </div>
                     <div class="list-group-separator"></div> 
