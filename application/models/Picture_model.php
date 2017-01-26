@@ -163,7 +163,6 @@ class Picture_model extends CI_Model {
             return "/assets/imgs/nopropic.png";
         }
         $picture = $this->getPicture($pictureID)[0];
-        echo "/" . $picture->picture_dir . $picture->picture_name;
         return ("/" . $picture->picture_dir . $picture->picture_name);
     }
 
