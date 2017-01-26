@@ -26,6 +26,9 @@
                                 },
                         legend: {position: 'none'},
                         bar: {groupWidth: 15},
+                        series: { 0: {color: '#673ab7'} }
+                        
+                        
 
                         
                     };
@@ -61,6 +64,7 @@
                                 minValue: 0,
                                 maxValue: 100
                                 },
+                        series: { 0: {color: '#673ab7'} }
 
 
                         
