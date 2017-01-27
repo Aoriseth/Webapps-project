@@ -50,7 +50,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="panel container-fluid">
-                <h3 style="font-size:1.3vmax;">Score voor alle categorien</h3>
+                <h3 style="font-size:1.3vmax;"><?= lang('c_profile_average_chart') ?></h3>
                 <hr/>
                 <div id="chart1_div" style="width:100%"></div>
                 <br>
@@ -58,7 +58,7 @@
         </div>
         <div  class="col-md-6">
             <div class="panel container-fluid">
-                <h3 style="font-size:1.3vmax;">Verloop van categorie</h3>
+                <h3 style="font-size:1.3vmax;"><?= lang('c_profile_trend_chart') ?></h3>
                 <hr/>
                 <form class="form-group" method="POST" id="chart2_form" name="chart2Form">
                     <select class="selectpicker form-control" name="categories" id="categories_select" onchange="chart2function()" onload="chart2function()">
