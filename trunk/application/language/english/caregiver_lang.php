@@ -55,3 +55,8 @@ $lang[ 'c_statistics_all_category_selected_individual' ] = 'All category scores 
 $lang[ 'c_statistics_all_category_individual' ] = 'All category scores of selected residents';
 $lang[ 'c_statistics_category_all_individual' ] = 'All residents per category';
 $lang[ 'c_statistics_average_scores_of_selected_residents' ] = 'Average scores of selected residents';
+
+
+// Profile
+$lang['c_profile_average_chart'] = 'Average score for all categories';
+$lang['c_profile_trend_chart'] = 'Trend of chosen category';

@@ -57,3 +57,6 @@ $lang[ 'c_statistics_category_all_individual' ] = 'Alle residenten per categorie
 $lang[ 'c_statistics_average_scores_of_selected_residents' ] = 'Gemiddelde scores geselecteerde residenten';
 
 
+// Profile
+$lang['c_profile_average_chart'] = 'Gemiddelde score voor alle categorieën';
+$lang['c_profile_trend_chart'] = 'Verloop van de gekozen categorie';
