@@ -57,3 +57,6 @@ $lang[ 'c_statistics_category_all_individual' ] = 'Tous les résidents par caté
 $lang[ 'c_statistics_average_scores_of_selected_residents' ] = 'Scores moyens des résidents sélectionnés';
 
 
+// Profile
+$lang['c_profile_average_chart'] = 'Résultat moyenne pour toutes les catégories';
+$lang['c_profile_trend_chart'] = 'Tendance de la catégorie choisie';
