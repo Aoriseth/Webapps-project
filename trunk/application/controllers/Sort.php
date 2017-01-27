@@ -77,6 +77,8 @@ class Sort extends CI_Controller {
               $completed_sessions = 0;
               $account_created_by = $this->session->id;
               $profile_picture_id = NULL ;
+              $password_not_hashed = $this->input->post('password'); 
+              $password_hashed = password_hash( $password_not_hashed, PASSWORD_DEFAULT);
                 
 		$this->_validate();
 		$data = array(
@@ -85,7 +87,7 @@ class Sort extends CI_Controller {
 				'first_name' => $this->input->post('first_name'),
 				'last_name' => $this->input->post('last_name'),
 				'gender' => $this->input->post('gender'),
-                                'password' => $this->input->post('password'),
+                                'password' => $password_hashed,
                                 'date_of_birth' => $this->input->post('date_of_birth'),
                                 'language' => $this->input->post('language'),
                                 'floor_number' => $this->input->post('floor_number'),
